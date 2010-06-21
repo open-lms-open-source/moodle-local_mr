@@ -24,12 +24,12 @@
 /**
  * @see mr_helper_abstract
  */
-require_once($CFG->libdir.'/mr/helper/abstract.php');
+require_once($CFG->dirroot.'/local/mr/framework/helper/abstract.php');
 
 /**
  * @see mr_html_tag
  */
-require_once($CFG->libdir.'/mr/html/tag.php');
+require_once($CFG->dirroot.'/local/mr/framework/html/tag.php');
 
 /**
  * Tag Helper

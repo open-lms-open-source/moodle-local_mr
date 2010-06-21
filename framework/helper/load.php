@@ -24,7 +24,7 @@
 /**
  * @see mr_helper_abstract
  */
-require_once($CFG->libdir.'/mr/helper/abstract.php');
+require_once($CFG->dirroot.'/local/mr/framework/helper/abstract.php');
 
 /**
  * Load Helper
@@ -35,7 +35,7 @@ require_once($CFG->libdir.'/mr/helper/abstract.php');
  *
  * This class is namespace driven.  A namespace is a relative
  * directory path from Moodle's directory root. Examples:
- *  - lib/mr
+ *  - local/mr/framework
  *  - blocks/helloworld
  *
  * Files are loaded based on the passed path and current or
@@ -60,7 +60,7 @@ class mr_helper_load extends mr_helper_abstract {
      *
      * @var string
      */
-    protected $namespace = 'lib/mr';
+    protected $namespace = 'local/mr/framework';
 
     /**
      * Set the namespace of the mr_helper that created this instance
@@ -271,8 +271,8 @@ class mr_helper_load extends mr_helper_abstract {
             return $classname;
         }
 
-        // Try modifying classname for MR lib
-        $newclass = str_replace('lib_mr', 'mr', $classname);
+        // Try modifying classname for MR Framework
+        $newclass = str_replace('local_mr_framework', 'mr', $classname);
 
         if (class_exists($newclass, false)) {
             return $newclass;
@@ -321,7 +321,7 @@ class mr_helper_load extends mr_helper_abstract {
             $namespace = $this->namespace;
         }
         if (!empty($namespace)) {
-            return "$namespace/$path";
+            return str_replace('local/mr/framework/mr', 'local/mr/framework', "$namespace/$path");
         }
         return $path;
     }

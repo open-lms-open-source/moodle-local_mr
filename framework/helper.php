@@ -24,18 +24,18 @@
 /**
  * @see mr_helper_load
  */
-require_once($CFG->libdir.'/mr/helper/load.php');
+require_once($CFG->dirroot.'/local/mr/framework/helper/load.php');
 
 /**
  * MR Helper
  *
  * This class is namespace driven.  A namespace is a relative
  * directory path from Moodle's directory root. Examples:
- *  - lib/mr
+ *  - local/mr/framework
  *  - blocks/helloworld
  *
  * This model controls access to classes defined
- * in lib/mr/helper/ or in /path/to/current/namespace/helper/
+ * in local/mr/framework/helper/ or in /path/to/current/namespace/helper/
  * and those classes methods.
  *
  * Each namespace has its own copy of any helper class used and
@@ -54,7 +54,7 @@ require_once($CFG->libdir.'/mr/helper/load.php');
  *      $helper->world();            // Call blocks_helloworld_helper_world::direct() (Short cut)
  *
  *      // If a helper is not found in blocks/helloworld/helper/
- *      // then we will look in lib/mr/helper:
+ *      // then we will look in local/mr/framework/helper:
  *      $helper->buffer('foo');      // Call mr_helper_buffer::direct()
  * ?>
  * </code>
@@ -68,7 +68,7 @@ class mr_helper {
      *
      * @var string
      */
-    private $mrnamespace = 'lib/mr';
+    private $mrnamespace = 'local/mr/framework';
 
     /**
      * Helper instances

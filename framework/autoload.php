@@ -22,21 +22,16 @@
  */
 
 /**
- * @see moodle_exception, coding_exception
- */
-require_once($CFG->libdir.'/mr/exception.php');
-
-/**
  * @see mr_helper
  */
-require_once($CFG->libdir.'/mr/helper.php');
+require_once($CFG->dirroot.'/local/mr/framework/helper.php');
 
 /**
  * MR Autoload
  *
  * Used to automatically load class files.  This
  * is optimized to automatically
- * include lib/mr class files.  Extreme caution
+ * include MR Framework class files.  Extreme caution
  * must be used when adding additonal autoloaders, meaning
  * debug what this class does when you add your new autoloader.
  * You may find that it would be more efficient to extend this class
@@ -69,7 +64,7 @@ class mr_autoload {
      * @param string $namespace The namespace to pass to the helper, cannot be empty string.
      * @throws coding_exception
      */
-    public function __construct($namespace = 'lib') {
+    public function __construct($namespace = 'local/mr/framework') {
         if ($namespace === '') {
             throw new coding_exception('Cannot autoload with an empty namespace.  This will enable autoload for all of Moodle.');
         }
@@ -92,7 +87,7 @@ class mr_autoload {
      * Autoload
      *
      * Does the actual autoloading and is optimized for
-     * lib/mr.  If you want to register your own autoloader
+     * MR Framework.  If you want to register your own autoloader
      * it might be wise to extend this class and optimize autoload()
      * for your particular use case.
      *
@@ -101,7 +96,7 @@ class mr_autoload {
      */
     public function autoload($class) {
         // Quick check to prevent trying to autoload everything in Moodle
-        if ($this->helper->load->get_namespace() == 'lib' and strpos($class, 'mr_') !== 0) {
+        if ($this->helper->load->get_namespace() == 'local/mr/framework' and strpos($class, 'mr_') !== 0) {
             return false;
         }
         try {

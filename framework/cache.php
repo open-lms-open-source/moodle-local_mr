@@ -24,12 +24,12 @@
 /**
  * @see mr_var
  */
-require_once($CFG->libdir.'/mr/var.php');
+require_once($CFG->dirroot.'/local/mr/framework/var.php');
 
 /**
  * @see mr_zend
  */
-require_once($CFG->libdir.'/mr/zend.php');
+require_once($CFG->dirroot.'/local/mr/framework/zend.php');
 
 /**
  * MR Cache

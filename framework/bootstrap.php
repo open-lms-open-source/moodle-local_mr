@@ -24,14 +24,14 @@
 /**
  * @see mr_autoload
  */
-require_once($CFG->libdir.'/mr/autoload.php');
+require_once($CFG->dirroot.'/local/mr/framework/autoload.php');
 
 /**
  * MR Bootstrap
  *
  * As of now, mr_bootstrap is very simple and
  * does all the environment setup for using
- * lib/mr.  In the future, mr_bootstrap may include
+ * MR Framework.  In the future, mr_bootstrap may include
  * more methods/information regarding state
  * and environment.
  *
@@ -50,9 +50,6 @@ class mr_bootstrap {
 
     /**
      * Run startup routine
-     *
-     * This method is AUTOMATICALLY called by including mr/bootstrap.php,
-     * so there is no need to manually call this method.
      *
      * @return void
      */
@@ -77,15 +74,7 @@ class mr_bootstrap {
      * @return void
      */
     public static function shutdown() {
-        // Currently disabled, use case
-        // require_once($CFG->libdir.'/mr/bootstrap.php');
-        // (Do someting)
-        // mr_bootstrap::shutdown();
-        // (Somewhere later)
-        // require_once($CFG->libdir.'/mr/bootstrap.php');
-        // (Use lib/rm code and it'll fail to include classes because require_once())
-        // Solution: change require_once to include, UGH!
-        if (false and self::$init) {
+        if (self::$init) {
             // Stop autoloading all mr_* classes
             mr_autoload::unregister();
 
@@ -94,6 +83,3 @@ class mr_bootstrap {
         }
     }
 }
-
-// Run the bootstrap
-mr_bootstrap::startup();

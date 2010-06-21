@@ -24,7 +24,7 @@
 /**
  * @see mr_controller
  */
-require_once($CFG->libdir.'/mr/controller.php');
+require_once($CFG->dirroot.'/local/mr/framework/controller.php');
 
 /**
  * MR Controller for Modules

@@ -24,12 +24,12 @@
 /**
  * @see mr_db_record
  */
-require_once($CFG->libdir.'/mr/db/record.php');
+require_once($CFG->dirroot.'/local/mr/framework/db/record.php');
 
 /**
  * @see mr_db_table
  */
-require_once($CFG->libdir.'/mr/db/table.php');
+require_once($CFG->dirroot.'/local/mr/framework/db/table.php');
 
 /**
  * MR DB Queue

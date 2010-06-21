@@ -31,7 +31,7 @@
  * mr_cache.  This is a per PHP execution storage of variables.
  *
  * Note: index "mrconfig" is automatically set to the config
- * for lib/mr.  Please do not overrite with something else.
+ * for local/mr/framework.  Please do not overrite with something else.
  *
  * @package mr
  * @author Mark Nielsen
@@ -65,7 +65,7 @@ class mr_var extends ArrayObject {
     protected static function init() {
         if (self::$_instance === NULL) {
             // Automatically set mrconfig
-            $config = get_config('blocks/libmr');
+            $config = get_config('local/mr');
 
             if (empty($config)) {
                 $config = new stdClass;

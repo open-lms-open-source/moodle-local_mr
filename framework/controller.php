@@ -24,22 +24,22 @@
 /**
  * @see mr_helper
  */
-require_once($CFG->libdir.'/mr/helper.php');
+require_once($CFG->dirroot.'/local/mr/framework/helper.php');
 
 /**
  * @see mr_notify
  */
-require_once($CFG->libdir.'/mr/notify.php');
+require_once($CFG->dirroot.'/local/mr/framework/notify.php');
 
 /**
  * @see mr_tabs
  */
-require_once($CFG->libdir.'/mr/tabs.php');
+require_once($CFG->dirroot.'/local/mr/framework/tabs.php');
 
 /**
  * @see mr_var
  */
-require_once($CFG->libdir.'/mr/var.php');
+require_once($CFG->dirroot.'/local/mr/framework/var.php');
 
 /**
  * MR Controller
@@ -165,7 +165,7 @@ abstract class mr_controller {
 
         if (!empty($parts[0]) and $parts[0] == 'get' and !empty($parts[1])) {
             $member = $parts[1];
-            if (isset($this->$member)) {
+            if (property_exists($this, $member)) {
                 return $this->$member;
             }
         }

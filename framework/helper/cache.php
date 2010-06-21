@@ -24,12 +24,12 @@
 /**
  * @see mr_helper_abstract
  */
-require_once($CFG->libdir.'/mr/helper/abstract.php');
+require_once($CFG->dirroot.'/local/mr/framework/helper/abstract.php');
 
 /**
  * @see mr_cache
  */
-require_once($CFG->libdir.'/mr/cache.php');
+require_once($CFG->dirroot.'/local/mr/framework/cache.php');
 
 /**
  * Cache Helper

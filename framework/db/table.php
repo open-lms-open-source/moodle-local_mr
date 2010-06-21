@@ -24,7 +24,7 @@
 /**
  * @see mr_db_record
  */
-require_once($CFG->libdir.'/mr/db/record.php');
+require_once($CFG->dirroot.'/local/mr/framework/db/record.php');
 
 /**
  * MR DB Table

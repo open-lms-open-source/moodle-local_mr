@@ -24,7 +24,7 @@
 /**
  * @see mr_helper_abstract
  */
-require_once($CFG->libdir.'/mr/helper/abstract.php');
+require_once($CFG->dirroot.'/local/mr/framework/helper/abstract.php');
 
 /**
  * Buffer Helper

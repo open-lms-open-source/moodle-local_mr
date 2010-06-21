@@ -36,7 +36,7 @@ abstract class mr_helper_abstract {
      *
      * @var string
      */
-    protected $_helper_namespace = 'lib/mr';
+    protected $_helper_namespace = 'local/mr/framework';
 
     /**
      * Set the namespace of the mr_helper that created this instance
