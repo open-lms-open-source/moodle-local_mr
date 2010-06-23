@@ -55,8 +55,7 @@ abstract class mr_controller_block extends mr_controller {
     /**
      * Controller setup
      *
-     * Set $blockname and $instance.  $instance
-     * is a best attempt, but for best results
+     * Set $blockname and $instance.  For best results
      * pass an instanceid URL param.  Getting
      * the instance is not required and is usually
      * not necessary.
@@ -66,7 +65,7 @@ abstract class mr_controller_block extends mr_controller {
      * @throws coding_exception
      */
     public function setup() {
-        global $CFG, $COURSE;
+        global $CFG, $COURSE, $PAGE;
 
         // Run parent routine
         parent::setup();
@@ -79,23 +78,7 @@ abstract class mr_controller_block extends mr_controller {
 
         // Attempt to get the block instance
         if ($instanceid) {
-            if (!$this->instance = get_record('block_instance', 'id', $instanceid)) {
-                throw new coding_exception("Invalid block instance ID passed: $instanceid");
-            }
-        } else {
-            // Note, this only works for course blocks!
-            $instances = get_records_sql("SELECT i.*
-                                            FROM {$CFG->prefix}block b,
-                                                 {$CFG->prefix}block_instance i
-                                           WHERE b.name = '$this->blockname'
-                                             AND b.id = i.blockid
-                                             AND i.pageid = $COURSE->id
-                                             AND i.pagetype = 'course-view'");
-
-            // Only allow if there is only one instance in the course, otherwise, pass an instanceid
-            if ($instances and count($instances) == 1) {
-                $this->instance = array_shift($instances);
-            }
+            $this->instance = $DB->get_record('block_instance', array('id' => $instanceid), '*', MUST_EXIST);
         }
     }
 
@@ -105,8 +88,8 @@ abstract class mr_controller_block extends mr_controller {
      * Only include block instance ID if it is passed.
      */
     public function new_url($extraparams = array()) {
-        if ($instanceid = optional_param('instanceid', 0, PARAM_INT)) {
-            $extraparams['instanceid'] = $instanceid;
+        if ($this->instance) {
+            $extraparams['instanceid'] = $instance->id;
         }
         return parent::new_url($extraparams);
     }

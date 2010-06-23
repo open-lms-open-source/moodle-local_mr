@@ -59,7 +59,7 @@ abstract class mr_controller_mod extends mr_controller {
      * @throws coding_exception
      */
     public function setup() {
-        global $COURSE;
+        global $DB, $COURSE, $PAGE;
 
         // Course module ID or module instance ID
         $id = optional_param('id', 0, PARAM_INT);
@@ -67,29 +67,22 @@ abstract class mr_controller_mod extends mr_controller {
 
         // Get required course module record
         if ($id) {
-            if (!$this->cm = get_coursemodule_from_id($this->strmodule, $id)) {
-                throw new coding_exception('Course Module ID was incorrect');
-            }
+            $this->cm = get_coursemodule_from_id($this->strmodule, $id, 0, false, MUST_EXIST);
         } else if ($a) {
-            if (!$this->cm = get_coursemodule_from_instance($this->strmodule, $a)) {
-                throw new coding_exception('Course Module Instance ID was incorrect');
-            }
+            $this->cm = get_coursemodule_from_instance($this->strmodule, $a, 0, false, MUST_EXIST);
         } else {
             throw new coding_exception('No Course Module or Instance ID was passed');
         }
 
         // Get the module instance
-        if (!$this->instance = get_record($this->strmodule, 'id', $this->cm->instance)) {
-            throw new coding_exception("Module instance could not be found for $this->strmodule with id = {$this->cm->instance}");
-        }
+        $this->instance = $DB->get_record($this->strmodule, array('id' => $this->cm->instance), '*', MUST_EXIST);
+
         require_login($this->cm->course, true, $this->cm);
 
-        // Module header setup
-        $this->set_headerparams(
-            'button', update_module_button($this->cm->id, $this->cm->course, get_string($this->stridentifier, $this->strmodule)),
-            'menu', navmenu($COURSE, $this->cm),
-            'navigation', ''
-        );
+        $PAGE->set_title(format_string($this->instance->name));
+        $PAGE->set_heading(format_string($COURSE->fullname));
+        $PAGE->set_activity_record($this->instance);
+        $this->heading->set(format_string($this->instance->name));
     }
 
     /**
@@ -112,15 +105,5 @@ abstract class mr_controller_mod extends mr_controller {
      */
     public function get_context() {
         return get_context_instance(CONTEXT_MODULE, $this->cm->id);
-    }
-
-    /**
-     * Build header navigation
-     *
-     * @param mixed $navigation First param to build_navigation
-     * @return object
-     */
-    protected function build_navigation($navigation) {
-        return build_navigation($navigation, $this->cm);
     }
 }

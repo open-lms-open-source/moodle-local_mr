@@ -37,7 +37,7 @@
  * @package mr
  * @see mr_controller
  */
-class mr_notify {
+class mr_notify implements renderable {
     /**
      * Message that is bad
      */
@@ -169,24 +169,22 @@ class mr_notify {
     }
 
     /**
-     * Display all messages added to the session.
+     * Get all messages added to the session.
      *
      * @uses $SESSION
+     * @param boolean $clear Remove messages from the session
      * @return string
      */
-    public function display() {
+    public function get_messages($clear = true) {
         global $SESSION;
 
-        $output = '';
-
+        $messages = array();
         if (!empty($SESSION->messages)) {
-            foreach($SESSION->messages as $message) {
-                $output .= notify($message[0], $message[1], $message[2], true);
-            }
+            $messages = $SESSION->messages;
         }
-        // Reset
-        unset($SESSION->messages);
-
-        return $output;
+        if ($clear) {
+            unset($SESSION->messages);
+        }
+        return $messages;
     }
 }

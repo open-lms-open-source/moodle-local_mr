@@ -37,6 +37,11 @@ require_once($CFG->dirroot.'/local/mr/framework/notify.php');
 require_once($CFG->dirroot.'/local/mr/framework/tabs.php');
 
 /**
+ * @see mr_heading
+ */
+require_once($CFG->dirroot.'/local/mr/framework/heading.php');
+
+/**
  * @see mr_var
  */
 require_once($CFG->dirroot.'/local/mr/framework/var.php');
@@ -74,13 +79,6 @@ abstract class mr_controller {
      * @var moodle_url
      */
     protected $url;
-
-    /**
-     * Paramaters to be passed to print_header_simple()
-     *
-     * @var array
-     */
-    protected $headerparams = array();
 
     /**
      * Helper
@@ -121,6 +119,34 @@ abstract class mr_controller {
     protected $stridentifier;
 
     /**
+     * Controller tabs
+     *
+     * @var mr_tabs
+     */
+    protected $tabs;
+
+    /**
+     * Controller heading
+     *
+     * @var mr_heading
+     */
+    protected $heading;
+
+    /**
+     * Either plugin's renderer or core renderer
+     *
+     * @var renderer_base
+     */
+    protected $output;
+
+    /**
+     * MR Frameworks renderer
+     *
+     * @var local_mr_renderer
+     */
+    protected $mroutput;
+
+    /**
      * Constructor
      *
      * Setup the controller with plugin specific configurations.
@@ -128,9 +154,10 @@ abstract class mr_controller {
      * @param string $plugin The plugin path
      * @param string $stridentifier Get string module name
      * @param string $strmodule Get string identifier for default name
+     * @param string $action Set the current action of the controller
      */
-    public function __construct($plugin, $stridentifier, $strmodule) {
-        global $CFG;
+    public function __construct($plugin, $stridentifier, $strmodule, $action) {
+        global $CFG, $OUTPUT, $PAGE;
 
         // Controller name
         $this->name = end(explode('_', get_class($this)));
@@ -140,15 +167,34 @@ abstract class mr_controller {
         $this->plugin         = $plugin;
         $this->stridentifier  = $stridentifier;
 
-        $this->helper = new mr_helper($this->plugin);
-        $this->notify = new mr_notify($this->strmodule);
-        $this->config = $this->get_config();
+        // Rest of the variable setup
+        $this->action   = $action;
+        $this->helper   = new mr_helper($this->plugin);
+        $this->notify   = new mr_notify($this->strmodule);
+        $this->heading  = new mr_heading($this->strmodule);
+        $this->config   = $this->get_config();
+        $this->mroutput = $PAGE->get_renderer('local_mr');
 
+        if (file_exists("$CFG->dirroot/$plugin/renderer.php")) {
+            $this->output = $PAGE->get_renderer(str_replace('/', '_', $plugin));
+        } else {
+            $this->output = $PAGE->get_renderer('core'); // Should this be $OUTPUT ?
+        }
         // Run base controller setup
         $this->setup();
 
+        // Default page setup
+        $PAGE->set_context($this->get_context());
+        $PAGE->set_url($this->new_url(array('action' => $this->action)));
+
         // Get URL
         $this->url = $this->new_url();
+
+        // Build tab structure
+        $this->init_tabs();
+
+        // ALWAYS called last for constructor customizations
+        $this->init();
     }
 
     /**
@@ -178,7 +224,13 @@ abstract class mr_controller {
      * @return void
      */
     public function setup() {
-        require_login(optional_param('courseid', SITEID, PARAM_INT));
+        global $COURSE, $PAGE;
+
+        // require_login(optional_param('courseid', SITEID, PARAM_INT));
+
+        $PAGE->set_title(format_string($COURSE->fullname));
+        $PAGE->set_heading(format_string($COURSE->fullname));
+        $this->heading->set($this->stridentifier);
     }
 
     /**
@@ -207,6 +259,36 @@ abstract class mr_controller {
     }
 
     /**
+     * Setup controller tabs
+     *
+     * This goes through all of the controllers
+     * and calls the add_tabs() method to get all
+     * the available tabs.
+     *
+     * @return void
+     */
+    protected function init_tabs() {
+        global $CFG;
+
+        $url = $this->new_url();
+        $url->remove_params('controller');
+
+        $this->tabs = new mr_tabs($url, $this->strmodule);
+
+        // Restirct to only files and single depth
+        $files = get_directory_list("$CFG->dirroot/$this->plugin/controller", '', false);
+
+        foreach ($files as $file) {
+            $name = pathinfo($file, PATHINFO_FILENAME);
+            $this->helper->load->file("controller/$name");
+            $classname = $this->helper->load->classname("controller/$name");
+
+            call_user_func_array(array($classname, 'add_tabs'), array($this, &$this->tabs));
+        }
+        $this->tabs->set($this->action);
+    }
+
+    /**
      * Get global plugin config
      *
      * @return object
@@ -231,17 +313,6 @@ abstract class mr_controller {
         global $COURSE;
 
         return get_context_instance(CONTEXT_COURSE, $COURSE->id);
-    }
-
-    /**
-     * Set the current action of the controller
-     *
-     * @param string $action The current action
-     * @return void
-     * @see $action
-     */
-    public function set_action($action) {
-        $this->action = $action;
     }
 
     /**
@@ -276,103 +347,35 @@ abstract class mr_controller {
         $action     = optional_param('action', 'view', PARAM_ALPHA);
         $helper     = new mr_helper($plugin);
 
-        try {
-            // If controller is not a path, then assume under controller dir
-            if (strpos($controller, '/') === false) {
-                $controller = "controller/$controller";
-            }
-            $controller = $helper->load($controller, array($plugin, $stridentifier, $strmodule));
-
-            // Hook method to execute
-            $method = "{$action}_action";
-
-            // Ensure the method is available and is public
-            $reflection = new ReflectionClass($controller);
-            if (!$reflection->hasMethod($method) or $reflection->getMethod($method)->isPublic() != true) {
-                throw new coding_exception("Unable to handle request for $method");
-            }
-            // Action is OK, let the controller know what its doing...
-            $controller->set_action($action);
-
-            // Specific controller instance setup
-            $controller->init();
-
-            // Capability check
-            $controller->require_capability();
-
-            // Execute
-            $return = $controller->$method();
-
-            if ($return) {
-                $controller->print_header();
-                echo $return;
-                $controller->print_footer();
-            }
-        } catch (moodle_exception $e) {
-            error($e->getMessage());
-        } catch (Exception $e) {
-            error($e->getMessage());
+        // If controller is not a path, then assume under controller dir
+        if (strpos($controller, '/') === false) {
+            $controller = "controller/$controller";
         }
-    }
+        // Load controller's class file
+        $helper->load->file($controller);
 
-    /**
-     * Set header parameters
-     *
-     * Keep passing header paramater name and value pairs
-     * to set header values.  EG: set_headerparams('title', 'Foo', 'heading', 'Bar')
-     *
-     * @return void
-     */
-    protected function set_headerparams() {
-        $arguments = func_get_args();
+        // Hook method to execute
+        $method = "{$action}_action";
 
-        $pairs = array_chunk($arguments, 2);
-        foreach ($pairs as $pair) {
-            // Might be an odd number of params, handle it
-            if (!array_key_exists(1, $pair)) {
-                debugging('Cannot pass odd number of arguments to set_headerparams', DEBUG_DEVELOPER);
-                continue;
-            }
-
-            $this->headerparams[$pair[0]] = $pair[1];
+        // Ensure the method is available and is public
+        $reflection = new ReflectionClass($helper->load->classname($controller));
+        if (!$reflection->hasMethod($method) or $reflection->getMethod($method)->isPublic() != true) {
+            throw new coding_exception("Unable to handle request for $method");
         }
-    }
+        // Action is OK, instantiate the controller
+        $controller = $helper->load($controller, array($plugin, $stridentifier, $strmodule, $action));
 
-    /**
-     * Sets the defaults for the params used in print_header_simple()
-     *
-     * @return void
-     */
-    protected function set_header_defaults() {
-        $defaults = array(
-            'title'      => get_string($this->stridentifier, $this->strmodule),
-            'heading'    => get_string($this->stridentifier, $this->strmodule),
-            'navigation' => get_string($this->stridentifier, $this->strmodule),
-            'focus'      => '',
-            'meta'       => '',
-            'cache'      => true,
-            'button'     => '',
-            'menu'       => '',
-            'usexml'     => false,
-            'bodytags'   => '',
-            'helpfile'   => '',
-            'helpmod'    => $this->strmodule,
-            'tab'        => $this->name,
-            'subtab'     => $this->action
-        );
+        // Capability check
+        $controller->require_capability();
 
-        // Merge the defaults in w/o overriding values already set in headerparams
-        $this->headerparams = array_merge($defaults, $this->headerparams);
-    }
+        // Execute
+        $return = $controller->$method();
 
-    /**
-     * Build header navigation
-     *
-     * @param mixed $navigation First param to build_navigation
-     * @return object
-     */
-    protected function build_navigation($navigation) {
-        return build_navigation($navigation);
+        if ($return) {
+            $controller->print_header();
+            echo $return;
+            $controller->print_footer();
+        }
     }
 
     /**
@@ -381,23 +384,10 @@ abstract class mr_controller {
      * @return void
      */
     public function print_header() {
-        // Really only want to call just before printing header to avoid unecessary processing
-        $this->set_header_defaults();
-
-        // Make it shorter cuz I'm lazy ><
-        $p = $this->headerparams;
-
-        // Print header, heading, messages and tabs
-        print_header_simple($p['title'], $p['heading'], $this->build_navigation($p['navigation']), $p['focus'],
-                            $p['meta'], $p['cache'], $p['button'], $p['menu'], $p['usexml'], $p['bodytags']);
-
-        if (empty($p['helpfile'])) {
-            print_heading($p['title']);
-        } else {
-            print_heading_with_help($p['title'], $p['helpfile'], $p['helpmod']);
-        }
-        echo $this->notify->display();
-        $this->print_tabs($p['tab'], $p['subtab']);
+        echo $this->output->header();
+        echo $this->mroutput->render($this->heading);
+        echo $this->mroutput->render($this->notify);
+        echo $this->mroutput->render($this->tabs);
     }
 
     /**
@@ -406,41 +396,7 @@ abstract class mr_controller {
      * @return void
      */
     public function print_footer() {
-        print_footer();
-    }
-
-    /**
-     * Print tabs for the controller
-     *
-     * This goes through all of the controllers
-     * and calls the add_tabs() method to get all
-     * the available tabs.
-     *
-     * @param string $tab Current top level tab
-     * @param string $subtab Current sub tab
-     * @return void
-     */
-    public function print_tabs($tab, $subtab = NULL) {
-        global $CFG;
-
-        if (!empty($tab)) {
-            $url = $this->new_url();
-            $url->remove_params('controller');
-
-            $tabs = new mr_tabs($url, $this->strmodule);
-
-            // Restirct to only files and single depth
-            $files = get_directory_list("$CFG->dirroot/$this->plugin/controller", '', false);
-
-            foreach ($files as $file) {
-                $name = pathinfo($file, PATHINFO_FILENAME);
-                $this->helper->load->file("controller/$name");
-                $classname = $this->helper->load->classname("controller/$name");
-
-                call_user_func_array(array($classname, 'add_tabs'), array($this, &$tabs));
-            }
-            echo $tabs->display($tab, $subtab);
-        }
+        echo $this->output->footer();
     }
 
     /**

@@ -30,7 +30,7 @@
  * @author Mark Nielsen
  * @example controller/default.php
  */
-class mr_tabs {
+class mr_tabs implements renderable {
     /**
      * An array of tabobjects
      *
@@ -46,21 +46,57 @@ class mr_tabs {
     protected $url;
 
     /**
-     * Get string module key
+     * Get string component key
      *
      * @var string
      */
-    protected $module = '';
+    protected $component = '';
+
+    /**
+     * Currently selected tab index
+     *
+     * @var string
+     */
+    protected $current = '';
 
     /**
      * Constructor
      *
      * @param moodle_url $url Base URL for the tabs
-     * @param string $module Default get string module key
+     * @param string $component Default get string component key
      */
-    public function __construct($url = NULL, $module = '') {
-        $this->url    = $url;
-        $this->module = $module;
+    public function __construct($url = NULL, $component = '') {
+        $this->url       = $url;
+        $this->component = $component;
+    }
+
+    /**
+     * Set the current tab
+     *
+     * @param string $tabindex The tab index key
+     * @return mr_tab
+     */
+    public function set($tabindex) {
+        $this->current = $tabindex;
+        return $this;
+    }
+
+    /**
+     * Get the current tab
+     *
+     * @return string
+     */
+    public function get_current() {
+        return $this->current;
+    }
+
+    /**
+     * Get the defined tabs
+     *
+     * @return array
+     */
+    public function get_tabs() {
+        return $this->tabs;
     }
 
     /**
@@ -102,46 +138,12 @@ class mr_tabs {
                 $url = $this->url->out(false, $url);
             }
             if (empty($name)) {
-                $name = get_string("{$id}tab", $this->module);
+                $name = get_string("{$id}tab", $this->component);
             }
 
             $this->tabs[$parentid][$weight][$id] = new tabobject($id, $url, $name, $title, $linkedwhenselected);
+            ksort($this->tabs[$parentid]);
         }
         return $this;
-    }
-
-    /**
-     * Display the tabs
-     *
-     * @param string $tab The current tab
-     * @param string $subtab (Optional) The sub tab that is selected
-     * @return string
-     */
-    public function display($tab, $subtab = NULL) {
-        if (!empty($tab) and !empty($this->tabs['__parents__'])) {
-            // Default
-            $currenttab = $tab;
-
-            $tabs = $row = $inactive = $active = array();
-
-            ksort($this->tabs['__parents__']);
-            foreach ($this->tabs['__parents__'] as $parents) {
-                $row = array_merge($row, $parents);
-            }
-            $tabs[] = $row;
-
-            if (!empty($subtab) and !empty($this->tabs[$tab])) {
-                $active[]   = $tab;
-                $currenttab = $subtab;
-                $row        = array();
-                ksort($this->tabs[$tab]);
-                foreach ($this->tabs[$tab] as $children) {
-                    $row = array_merge($row, $children);
-                }
-                $tabs[] = $row;
-            }
-            return print_tabs($tabs, $currenttab, $inactive, $active, true);
-        }
-        return '';
     }
 }
