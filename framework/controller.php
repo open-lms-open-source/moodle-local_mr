@@ -173,15 +173,17 @@ abstract class mr_controller {
         $this->notify   = new mr_notify($this->component);
         $this->heading  = new mr_heading($this->component);
         $this->config   = $this->get_config();
-        $this->mroutput = $PAGE->get_renderer('local_mr');
 
-        if (file_exists("$CFG->dirroot/$plugin/renderer.php")) {
-            $this->output = $PAGE->get_renderer(str_replace('/', '_', $plugin));
-        } else {
-            $this->output = $PAGE->get_renderer('core'); // Should this be $OUTPUT ?
-        }
         // Run base controller setup
         $this->setup();
+
+        // Load up renderers
+        try {
+            $this->output = $PAGE->get_renderer($this->component);
+        } catch (moodle_exception $e) {
+            $this->output = $PAGE->get_renderer('core'); // Should this be $OUTPUT ?
+        }
+        $this->mroutput = $PAGE->get_renderer('local_mr');
 
         // Default page setup
         $PAGE->set_context($this->get_context());
@@ -226,7 +228,7 @@ abstract class mr_controller {
     public function setup() {
         global $COURSE, $PAGE;
 
-        // require_login(optional_param('courseid', SITEID, PARAM_INT));
+        require_login(optional_param('courseid', SITEID, PARAM_INT));
 
         $PAGE->set_title(format_string($COURSE->fullname));
         $PAGE->set_heading(format_string($COURSE->fullname));
@@ -274,6 +276,7 @@ abstract class mr_controller {
         $url->remove_params('controller');
 
         $this->tabs = new mr_tabs($url, $this->component);
+        $this->tabs->set($this->action);
 
         // Restirct to only files and single depth
         $files = get_directory_list("$CFG->dirroot/$this->plugin/controller", '', false);
@@ -285,7 +288,6 @@ abstract class mr_controller {
 
             call_user_func_array(array($classname, 'add_tabs'), array($this, &$this->tabs));
         }
-        $this->tabs->set($this->action);
     }
 
     /**

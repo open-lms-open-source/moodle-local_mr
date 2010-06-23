@@ -320,25 +320,12 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      * state.  Only performs these actions if actually
      * necessary.
      *
-     * <b>WARNING</b>: this method will not automatically add slashes
-     * to the record data.  If you need to add slashes, then
-     * either add slashes before sending the value to mr_db_record
-     * or use mr_db_record::addslashes()
-     *
-     * Example of adding slashes to the record:
-     * <code>
-     * <?php
-     *      // Add slashes to record before saving
-     *      $record = new mr_db_record('tablename');
-     *      $record->field = "It's";
-     *      $record->addslashes()->save();
-     * ?>
-     * </code>
+     * @param boolean $bulk Bulk flag which gets passed to inserts and updates
      * @return void
      * @throws coding_exception
      * @see mr_db_record::addslashes()
      */
-    public function save() {
+    public function save($bulk = false) {
         // Check for delete
         if ($this->is_delete()) {
             // Delete the record and reset _record so we don't try to delete again
@@ -348,16 +335,11 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
         // Check for update
         } else if ($this->is_update()) {
             $this->_change->id = $this->_record->id;
-            if (!update_record($this->_table->get_name(), $this->_change)) {
-                throw new coding_exception("Failed to update record with id = {$this->_record->id} in table $this->_table");
-            }
+            $this->_table->update_record($this->_change, $bulk);
 
         // Check for insert
         } else if ($this->is_insert()) {
-            if (!$id = insert_record($this->_table->get_name(), $this->_record)) {
-                throw new coding_exception("Failed to insert record into table $this->_table");
-            }
-            $this->_record->id = $id;
+            $this->_record->id = $this->_table->insert_record($this->_record, true, $bulk);
         }
         // Reset change state
         $this->_change = new stdClass;
@@ -372,37 +354,5 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
     public function delete() {
         $this->queue_delete();
         $this->save();
-    }
-
-    /**
-     * Add slashes to mr_db_record
-     *
-     * @return mr_db_record
-     * @see mr_db_record::save() Example usage
-     */
-    public function addslashes() {
-        $this->_record = $this->_do_addslashes($this->_record);
-        $this->_change = $this->_do_addslashes($this->_change);
-
-        return $this;
-    }
-
-    /**
-     * Addslashes to object - don't
-     * add slashes to numbers or to NULL values
-     *
-     * @param object $object Object to add slashes to
-     * @return object
-     */
-    protected function _do_addslashes($object) {
-        $slashed = new stdClass;
-        foreach ($object as $key => $value) {
-            if (!is_null($value) and !is_numeric($value)) {
-                $slashed->$key = addslashes($value);
-            } else {
-                $slashed->$key = $value;
-            }
-        }
-        return $slashed;
     }
 }

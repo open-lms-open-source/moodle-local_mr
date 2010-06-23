@@ -44,13 +44,6 @@ class mr_db_table {
     protected $table;
 
     /**
-     * Cache meta column data for tables
-     *
-     * @var array
-     */
-    static protected $columns = array();
-
-    /**
      * Constructor
      *
      * @param string $table The table this model represents
@@ -113,6 +106,8 @@ class mr_db_table {
      * @see mr_db_record
      */
     public function __call($name, $arguments) {
+        global $DB;
+
         array_unshift($arguments, $this->table);
 
         switch ($name) {
@@ -121,7 +116,9 @@ class mr_db_table {
             case 'get_records':
             case 'get_records_select':
             case 'get_records_list':
-                return $this->convert(call_user_func_array($name, $arguments));
+                return $this->convert(call_user_func_array(array($DB, $name), $arguments));
+            case 'insert_record':
+            case 'update_record':
             case 'count_records':
             case 'count_records_select':
             case 'delete_records':
@@ -134,7 +131,7 @@ class mr_db_table {
             case 'record_exists_select':
             case 'set_field':
             case 'set_field_select':
-                return call_user_func_array($name, $arguments);
+                return call_user_func_array(array($DB, $name), $arguments);
         }
         throw new coding_exception("Invalid method call to mr_db_table::$name()");
     }
@@ -165,18 +162,12 @@ class mr_db_table {
      * @throws coding_exception
      */
     public function get_metacolumns() {
-        global $CFG, $db;
+        global $DB;
 
-        if (!array_key_exists($this->table, self::$columns)) {
-            if (!$columns = $db->MetaColumns($CFG->prefix.$this->table)) {
-                throw new coding_exception("Failed to get meta columns for database table $this->table");
-            }
-            // Change columns to lowercase for easier lookups
-            foreach ($columns as $key => $column) {
-                self::$columns[$this->table][strtolower($key)] = $column;
-            }
+        if (!$columns = $DB->get_columns($this->table)) {
+            throw new coding_exception("Failed to get meta columns for database table $this->table");
         }
-        return self::$columns[$this->table];
+        return $columns;
     }
 
     /**
@@ -251,7 +242,7 @@ class mr_db_table {
      * @return mixed
      */
     public function get($id) {
-        return $this->get_record('id', $id);
+        return $this->get_record(array('id' => $id));
     }
 
     /**
@@ -262,7 +253,7 @@ class mr_db_table {
      * @throws coding_exception
      */
     public function delete($id) {
-        if (!$this->delete_records('id', $id)) {
+        if (!$this->delete_records(array('id' => $id))) {
             throw new coding_exception("Failed to delete record with id = $id from table $this->table");
         }
     }

@@ -49,11 +49,11 @@ class mr_notify implements renderable {
     const GOOD = 'notifysuccess';
 
     /**
-     * Get string module key
+     * Get string component
      *
      * @var string
      */
-    protected $module = '';
+    protected $component = '';
 
     /**
      * Message alignment
@@ -65,24 +65,24 @@ class mr_notify implements renderable {
     /**
      * Constructor
      *
-     * Override default module and align.
+     * Override default component and align.
      *
-     * @param string $module Default get string module key
+     * @param string $component Default get string component
      * @param string $align Default alignment
      */
-    public function __construct($module = '', $align = 'center') {
-        $this->set_module($module)
+    public function __construct($component = '', $align = 'center') {
+        $this->set_component($component)
              ->set_align($align);
     }
 
     /**
-     * Set module string
+     * Set component string
      *
-     * @param string $module Get string module key
+     * @param string $component Get string component
      * @return mr_notify
      */
-    public function set_module($module) {
-        $this->module = $module;
+    public function set_component($component) {
+        $this->component = $component;
         return $this;
     }
 
@@ -102,12 +102,12 @@ class mr_notify implements renderable {
      *
      * @param string $identifier The string identifier to use in get_string()
      * @param mixed $a To be passed in the call to get_string()
-     * @param string $module Get string module key
+     * @param string $component Get string component
      * @param string $align Alignment of the message
      * @return mr_notify
      */
-    public function good($identifier, $a = NULL, $module = NULL, $align = NULL) {
-        return $this->add($identifier, self::GOOD, $a, $module, $align);
+    public function good($identifier, $a = NULL, $component = NULL, $align = NULL) {
+        return $this->add($identifier, self::GOOD, $a, $component, $align);
     }
 
     /**
@@ -115,12 +115,12 @@ class mr_notify implements renderable {
      *
      * @param string $identifier The string identifier to use in get_string()
      * @param mixed $a To be passed in the call to get_string()
-     * @param string $module Get string module key
+     * @param string $component Get string component
      * @param string $align Alignment of the message
      * @return mr_notify
      */
-    public function bad($identifier, $a = NULL, $module = NULL, $align = NULL) {
-        return $this->add($identifier, self::BAD, $a, $module, $align);
+    public function bad($identifier, $a = NULL, $component = NULL, $align = NULL) {
+        return $this->add($identifier, self::BAD, $a, $component, $align);
     }
 
     /**
@@ -131,18 +131,17 @@ class mr_notify implements renderable {
      * @param string $identifier The string identifier to use in get_string()
      * @param string $class Class to be passed to notify().  Usually notifyproblem or notifysuccess.
      * @param mixed $a To be passed in the call to get_string()
-     * @param string $module Get string module key
+     * @param string $component Get string component
      * @param string $align Alignment of the message
      * @example controller/default.php See this being used in a mr_controller
      * @return mr_notify
      * @see BAD, GOOD
      */
-    public function add($identifier, $class = self::BAD, $a = NULL, $module = NULL, $align = NULL) {
-        if (is_null($module)) {
-            $module = $this->module;
+    public function add($identifier, $class = self::BAD, $a = NULL, $component = NULL, $align = NULL) {
+        if (is_null($component)) {
+            $component = $this->component;
         }
-
-        return $this->add_string(get_string($identifier, $module, $a), $class, $align);
+        return $this->add_string(get_string($identifier, $component, $a), $class, $align);
     }
 
     /**

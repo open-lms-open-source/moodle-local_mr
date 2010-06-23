@@ -39,13 +39,12 @@
  */
 abstract class mr_plugin {
     /**
-     * Passed to get_string calls as the module.  Change
-     * to re-route plugin specific string definitions
-     * to another module.
+     * Passed to get_string calls.  Change to re-route
+     * plugin specific string definitions to another module.
      *
      * @return string
      */
-    abstract public function string_module();
+    abstract public function get_component();
 
     /**
      * Return a human readable name of the plugin
@@ -53,7 +52,7 @@ abstract class mr_plugin {
      * @return string
      */
     public function name() {
-        return get_string('plugin-'.$this->type(), $this->string_module());
+        return get_string('plugin-'.$this->type(), $this->get_component());
     }
 
     /**

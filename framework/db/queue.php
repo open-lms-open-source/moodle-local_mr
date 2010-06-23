@@ -37,9 +37,6 @@ require_once($CFG->dirroot.'/local/mr/framework/db/table.php');
  * Processes mr_db_record's
  * as efficiently as possible
  *
- * <b>WARNING</b>: assumes all data is not quoted.  Use
- * stripslashes() if needed.
- *
  * @author Mark Nielsen
  * @package mr
  * @see mr_db_record
@@ -110,7 +107,7 @@ class mr_db_queue {
 
             } else if ($record->is_update()) {
                 // Its an update, just save it
-                $record->save();
+                $record->save(true);
 
             } else if ($record->is_insert()) {
                 // Its an insert, add to queue for bulk insert
@@ -171,7 +168,7 @@ class mr_db_queue {
      * @return void
      */
     protected function _flush_inserts($table) {
-        global $CFG;
+        global $CFG, $DB;
 
         if (empty($this->inserts[$table])) {
             return;
@@ -183,44 +180,42 @@ class mr_db_queue {
 
         if (!empty($columns)) {
             $values = array();  // Holds our CSVs
+            $params = array();
+            $filler = array_fill(0, count($columns), '?');
+            $filler = implode(',', $filler);
             foreach ($this->inserts[$table]['records'] as $record) {
                 // Get the record values in order of our columns
-                $tmpvalues = array();
                 foreach ($columns as $column) {
                     if (!array_key_exists($column, $metacolumns)) {
                         throw new coding_exception("Using an non-existant column ($column) for table ($table)");
 
                     } else if (isset($record->$column)) {
-                        $tmpvalues[] = $this->quote($record->$column);
+                        $params[] = $record->$column;
 
-                    } else if ($CFG->dbfamily == 'mysql') {
+                    } else if ($CFG->dbtype == 'mysqli') {
                         // Not set, use field's default
-                        $tmpvalues[] = 'DEFAULT';
+                        $params[] = 'DEFAULT';
 
                     } else {
                         // Not set, use field's default - lookup in meta data
                         $meta = $metacolumns[$column];
 
                         if (!empty($meta->has_default)) {
-                            $tmpvalues[] = $this->quote($meta->default_value);
+                            $params[] = $meta->default_value;
                         } else if (empty($meta->not_null)) {
-                            $tmpvalues[] = 'NULL';
+                            $params[] = 'NULL';
                         } else {
                             throw new coding_exception('Default not handled');
                         }
                     }
                 }
-                if (!empty($tmpvalues)) {
-                    $values[] = implode(',', $tmpvalues);
-                }
+                $values[] = $filler;
             }
             if (!empty($values)) {
                 $columns = implode(',', $columns);
                 $values  = implode('),(', $values);
 
-                if (!execute_sql("INSERT INTO $CFG->prefix$table ($columns) VALUES ($values)", false)) {
-                    throw new coding_exception('Failed to perform bulk insert');
-                }
+                $DB->execute("INSERT INTO {$CFG->prefix}$table ($columns) VALUES ($values)", $params);
             }
         }
         // Clear the queue
@@ -234,30 +229,14 @@ class mr_db_queue {
      * @return void
      */
     protected function _flush_deletes($table) {
+        global $DB;
+
         if (!empty($this->deletes[$table])) {
-            if (!delete_records_select($table, 'id IN('.implode(',', $this->deletes[$table]).')')) {
+            if (!$DB->delete_records_select($table, 'id IN('.implode(',', $this->deletes[$table]).')')) {
                 throw new coding_exception('Failed to perform bulk delete');
             }
             // Clear the queue
             unset($this->deletes[$table]);
-        }
-    }
-
-    /**
-     * DB quote a value
-     *
-     * @param mixed $value The value to quote
-     * @return mixed
-     */
-    public function quote($value) {
-        global $db;
-
-        if (is_null($value)) {
-            return 'NULL';
-        } else if (is_numeric($value)) {
-            return $value;
-        } else {
-            return $db->quote($value);
         }
     }
 }

@@ -1,10 +1,33 @@
 <?php
-
+/**
+ * Moodlerooms Framework
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see http://opensource.org/licenses/gpl-3.0.html.
+ *
+ * @copyright Copyright (c) 2009 Moodlerooms Inc. (http://www.moodlerooms.com)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License
+ * @package mr
+ * @author Mark Nielsen
+ */
 
 if (!defined('MOODLE_INTERNAL')) {
     die('Direct access to this script is forbidden.');
 }
 
+/**
+ * @see mr_autoload
+ */
 require_once($CFG->dirroot.'/local/mr/framework/autoload.php');
 
 class mr_autoload_test extends UnitTestCase {
@@ -23,20 +46,44 @@ class mr_autoload_test extends UnitTestCase {
         $instance = new mr_autoload('');
     }
 
-    /*
-    The following two methods would give us full code coverage - need to figure out a way to implement them though
-
     public function test_register() {
         mr_autoload::register();
 
-        $this->assertTrue(class_exists('mr_bootstrap'));
+        $autoloads = spl_autoload_functions();
+        $this->assertIsA($autoloads, 'array');
+
+        $found = false;
+        foreach ($autoloads as $autoload) {
+            if (is_array($autoload) and $autoload[0] instanceof mr_autoload) {
+                $found = true;
+            }
+        }
+        $this->assertTrue($found);
     }
 
     public function test_unregister() {
         mr_autoload::register();
         mr_autoload::unregister();
 
-        $this->assertFalse(class_exists('mr_bootstrap'));
+        $autoloads = spl_autoload_functions();
+        $this->assertIsA($autoloads, 'array');
+
+        $found = false;
+        foreach ($autoloads as $autoload) {
+            if (is_array($autoload) and $autoload[0] instanceof mr_autoload) {
+                $found = true;
+            }
+        }
+        $this->assertFalse($found);
     }
-    */
+
+    public function test_bad_register() {
+        $this->expectException('coding_exception');
+        mr_autoload::register('some_crazy_function');
+    }
+
+    public function test_bad_unregister() {
+        $this->expectException('coding_exception');
+        mr_autoload::unregister('some_crazy_function');
+    }
 }

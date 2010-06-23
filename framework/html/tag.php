@@ -101,18 +101,14 @@ class mr_html_tag {
      * mr_html_tag::__call()
      *
      * @param string $tag The HTML tag name
-     * @param mixed $contents The HTML tag contents
+     * @param array $contents The HTML tag contents
      * @return void
      */
-    protected function init($tag, $contents = NULL) {
+    protected function init($tag, $contents) {
         $this->tag = $tag;
 
-        if (is_array($contents)) {
-            if (!empty($contents)) {
-                $this->contents = implode('', $contents);
-            }
-        } else {
-            $this->contents = $contents;
+        if (is_array($contents) and !empty($contents)) {
+            $this->contents = implode('', $contents);
         }
     }
 
@@ -182,21 +178,21 @@ class mr_html_tag {
 
         // Handle attribute manipulation and retrieval
         } else if (count($parts) == 2) {
-            list($method, $name) = $parts;
+            list($method, $attrname) = $parts;
 
             switch ($method) {
                 case 'get':
-                    return $this->get_attribute($name);
+                    return $this->get_attribute($attrname);
                 case 'append':
                 case 'prepend':
                     if (count($arguments) != 1) {
                         throw new coding_exception("Invalid method call mr_html_tag::$name() - must pass an argument");
                     }
                     $method = "{$method}_attribute";
-                    return $this->$method($name, $arguments[0]);
+                    return $this->$method($attrname, $arguments[0]);
 
                 case 'remove':
-                    return $this->remove_attribute($name);
+                    return $this->remove_attribute($attrname);
             }
         }
         throw new coding_exception("Call to non-existent method: mr_html_tag::$name()");
@@ -420,32 +416,10 @@ class mr_html_tag {
             $this->contents = ((string) $this->contents).implode('', $contents);
         }
 
-        // Construct attributes string
-        $attributes = array();
-        foreach ($this->attributes as $name => $value) {
-            if ($value instanceof moodle_url) {
-                $value = $value->out();
-            } else {
-                $value = s((string) $value);
-            }
-            $attributes[] = "$name=\"$value\"";
-        }
-        $attributes = implode(' ', $attributes);
-
-        // Build HTML
-        $html = "<$this->tag";
-
-        // Add attributes
-        if (!empty($attributes)) {
-            $html .= " $attributes";
-        }
-
-        // Close tag with or without content
+        // Generate the tag
         if (!is_null($this->contents)) {
-            $html .= ">$this->contents</$this->tag>";
-        } else {
-            $html .= ' />';
+            return html_writer::tag($this->tag, $this->contents, (array) $this->attributes);
         }
-        return $html;
+        return html_writer::empty_tag($this->tag, (array) $this->attributes);
     }
 }
