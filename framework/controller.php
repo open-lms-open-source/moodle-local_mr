@@ -105,18 +105,18 @@ abstract class mr_controller {
     protected $plugin;
 
     /**
-     * Get string module name
+     * Get string component
      *
      * @var string
      */
-    protected $strmodule;
+    protected $component;
 
     /**
-     * Get string identifier for default name
+     * Get string idenifier
      *
      * @var string
      */
-    protected $stridentifier;
+    protected $identifier;
 
     /**
      * Controller tabs
@@ -152,26 +152,26 @@ abstract class mr_controller {
      * Setup the controller with plugin specific configurations.
      *
      * @param string $plugin The plugin path
-     * @param string $stridentifier Get string module name
-     * @param string $strmodule Get string identifier for default name
+     * @param string $identifier Get string idenifier
+     * @param string $component Get string component
      * @param string $action Set the current action of the controller
      */
-    public function __construct($plugin, $stridentifier, $strmodule, $action) {
+    public function __construct($plugin, $identifier, $component, $action) {
         global $CFG, $OUTPUT, $PAGE;
 
         // Controller name
         $this->name = end(explode('_', get_class($this)));
 
         // Store plugin information
-        $this->strmodule      = $strmodule;
-        $this->plugin         = $plugin;
-        $this->stridentifier  = $stridentifier;
+        $this->component   = $component;
+        $this->plugin      = $plugin;
+        $this->identifier  = $identifier;
 
         // Rest of the variable setup
         $this->action   = $action;
         $this->helper   = new mr_helper($this->plugin);
-        $this->notify   = new mr_notify($this->strmodule);
-        $this->heading  = new mr_heading($this->strmodule);
+        $this->notify   = new mr_notify($this->component);
+        $this->heading  = new mr_heading($this->component);
         $this->config   = $this->get_config();
         $this->mroutput = $PAGE->get_renderer('local_mr');
 
@@ -230,7 +230,7 @@ abstract class mr_controller {
 
         $PAGE->set_title(format_string($COURSE->fullname));
         $PAGE->set_heading(format_string($COURSE->fullname));
-        $this->heading->set($this->stridentifier);
+        $this->heading->set($this->identifier);
     }
 
     /**
@@ -273,7 +273,7 @@ abstract class mr_controller {
         $url = $this->new_url();
         $url->remove_params('controller');
 
-        $this->tabs = new mr_tabs($url, $this->strmodule);
+        $this->tabs = new mr_tabs($url, $this->component);
 
         // Restirct to only files and single depth
         $files = get_directory_list("$CFG->dirroot/$this->plugin/controller", '', false);
@@ -337,12 +337,12 @@ abstract class mr_controller {
      * controller/foo.php and call method "bar_action".
      *
      * @param string $plugin The plugin path
-     * @param string $stridentifier Get string module name
-     * @param string $strmodule Get string identifier for default name
+     * @param string $identifier Get string idenifier
+     * @param string $component Get string component
      * @return void
      * @throws coding_exception
      */
-    public static function render($plugin, $stridentifier, $strmodule) {
+    public static function render($plugin, $identifier, $component) {
         $controller = optional_param('controller', 'default', PARAM_PATH);
         $action     = optional_param('action', 'view', PARAM_ALPHA);
         $helper     = new mr_helper($plugin);
@@ -363,7 +363,7 @@ abstract class mr_controller {
             throw new coding_exception("Unable to handle request for $method");
         }
         // Action is OK, instantiate the controller
-        $controller = $helper->load($controller, array($plugin, $stridentifier, $strmodule, $action));
+        $controller = $helper->load($controller, array($plugin, $identifier, $component, $action));
 
         // Capability check
         $controller->require_capability();

@@ -67,15 +67,15 @@ abstract class mr_controller_mod extends mr_controller {
 
         // Get required course module record
         if ($id) {
-            $this->cm = get_coursemodule_from_id($this->strmodule, $id, 0, false, MUST_EXIST);
+            $this->cm = get_coursemodule_from_id($this->component, $id, 0, false, MUST_EXIST);
         } else if ($a) {
-            $this->cm = get_coursemodule_from_instance($this->strmodule, $a, 0, false, MUST_EXIST);
+            $this->cm = get_coursemodule_from_instance($this->component, $a, 0, false, MUST_EXIST);
         } else {
             throw new coding_exception('No Course Module or Instance ID was passed');
         }
 
         // Get the module instance
-        $this->instance = $DB->get_record($this->strmodule, array('id' => $this->cm->instance), '*', MUST_EXIST);
+        $this->instance = $DB->get_record($this->component, array('id' => $this->cm->instance), '*', MUST_EXIST);
 
         require_login($this->cm->course, true, $this->cm);
 
