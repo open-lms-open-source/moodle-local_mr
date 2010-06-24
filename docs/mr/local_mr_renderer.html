@@ -3,7 +3,7 @@
   <html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
 			<!-- template designed by Marco Von Ballmoos  -->
-			<title>Docs For Class mr_plugin</title>
+			<title>Docs For Class local_mr_renderer</title>
 			<link rel="stylesheet" href="../media/stylesheet.css" />
 						<script src="../media/lib/classTree.js"></script>
 												<script language="javascript" type="text/javascript">
@@ -85,7 +85,7 @@
 					</head>
 		<body>
 			<div class="page-body">			
-<h2 class="class-name">Class mr_plugin</h2>
+<h2 class="class-name">Class local_mr_renderer</h2>
 
 <a name="sec-description"></a>
 <div class="info-box">
@@ -97,22 +97,19 @@
 					</div>
 	<div class="info-box-body">
         		<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">MR Plugin</p>
-<p class="description"><p>Very basic plugin base class.  Primary  purpose is to provide a human readable name  and coding plugin name.</p><p>Plugin instances can be managed with mr_helper_load::plugin()</p></p>
+<p class="short-description">MR Renderer</p>
+<p class="description"><p>Default renderer for the framework.</p></p>
 	<ul class="tags">
 				<li><span class="field">author:</span> Mark Nielsen</li>
-				<li><span class="field">see:</span> <a href="../mr/mr_helper_load.html#methodplugin">mr_helper_load::plugin()</a></li>
-				<li><span class="field">todo:</span> Make $this-&gt;helper more available?</li>
-				<li><span class="field">abstract:</span> </li>
-				<li><span class="field">example:</span> <a href="../__examplesource/exsource__core_trunk_blocks_helloworld_plugin_one_class.php_9fe3eede2e83602eb0943f87a5084315.html">Plugin class, extending base plugin class</a></li>
-				<li><span class="field">example:</span> <a href="../__examplesource/exsource_core_trunk_blocks_helloworld_plugin_base_class.php_960955426f11bf183dedd2a1db0c6bf3.html">Base plugin class</a></li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_framework---plugin.php.html">/framework/plugin.php</a> (line <span class="field">40</span>)
+			Located in <a class="field" href="_renderer.php.html">/renderer.php</a> (line <span class="field">32</span>)
 		</p>
 		
 				
-		<pre></pre>
+		<pre>plugin_renderer_base
+   |
+   --local_mr_renderer</pre>
 	
 			</div>
 </div>
@@ -132,20 +129,20 @@
 																																						
 				<div class="method-definition">
 											<span class="method-result">string</span>
-										<a href="#get_component" title="details" class="method-name">get_component</a>
-										()
+										<a href="#render_mr_heading" title="details" class="method-name">render_mr_heading</a>
+											(<span class="var-type"><a href="../mr/mr_heading.html">mr_heading</a></span>&nbsp;<span class="var-name">$heading</span>)
 									</div>
 														
 				<div class="method-definition">
 											<span class="method-result">string</span>
-										<a href="#name" title="details" class="method-name">name</a>
-										()
+										<a href="#render_mr_notify" title="details" class="method-name">render_mr_notify</a>
+											(<span class="var-type"><a href="../mr/mr_notify.html">mr_notify</a></span>&nbsp;<span class="var-name">$notify</span>)
 									</div>
 														
 				<div class="method-definition">
 											<span class="method-result">string</span>
-										<a href="#type" title="details" class="method-name">type</a>
-										()
+										<a href="#render_mr_tabs" title="details" class="method-name">render_mr_tabs</a>
+											(<span class="var-type"><a href="../mr/mr_tabs.html">mr_tabs</a></span>&nbsp;<span class="var-name">$tabs</span>)
 									</div>
 											</div>
 		</div>
@@ -162,76 +159,90 @@
 		</div>
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
-<a name="methodget_component" id="get_component"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<span class="method-title">get_component</span> (line <span class="line-number">47</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Passed to get_string calls.  Change to re-route  plugin specific string definitions to another module.</p>
-	<ul class="tags">
-				<li><span class="field">abstract:</span> </li>
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">string</span>
-		<span class="method-name">
-			get_component
-		</span>
-				()
-			</div>
-	
-		
-			
-	</div>
-<a name="methodname" id="name"><!-- --></a>
+<a name="methodrender_mr_heading" id="render_mr_heading"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">name</span> (line <span class="line-number">54</span>)
+		<span class="method-title">render_mr_heading</span> (line <span class="line-number">77</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Return a human readable name of the plugin</p>
+<p class="short-description">Render mr_heading</p>
 	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
+				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
 	<div class="method-signature">
 		<span class="method-result">string</span>
 		<span class="method-name">
-			name
+			render_mr_heading
 		</span>
-				()
+					(<span class="var-type"><a href="../mr/mr_heading.html">mr_heading</a></span>&nbsp;<span class="var-name">$heading</span>)
 			</div>
 	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_heading.html">mr_heading</a></span>
+				<span class="var-name">$heading</span><span class="var-description">: mr_heading instance</span>			</li>
+				</ul>
 		
 			
 	</div>
-<a name="methodtype" id="type"><!-- --></a>
+<a name="methodrender_mr_notify" id="render_mr_notify"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">type</span> (line <span class="line-number">63</span>)
+		<span class="method-title">render_mr_notify</span> (line <span class="line-number">39</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Returns the plugin's name based on class name</p>
+<p class="short-description">Renders mr_notify</p>
 	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
+				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
 	<div class="method-signature">
 		<span class="method-result">string</span>
 		<span class="method-name">
-			type
+			render_mr_notify
 		</span>
-				()
+					(<span class="var-type"><a href="../mr/mr_notify.html">mr_notify</a></span>&nbsp;<span class="var-name">$notify</span>)
 			</div>
 	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_notify.html">mr_notify</a></span>
+				<span class="var-name">$notify</span><span class="var-description">: mr_notify instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrender_mr_tabs" id="render_mr_tabs"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">render_mr_tabs</span> (line <span class="line-number">53</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Renders mr_tabs</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			render_mr_tabs
+		</span>
+					(<span class="var-type"><a href="../mr/mr_tabs.html">mr_tabs</a></span>&nbsp;<span class="var-name">$tabs</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_tabs.html">mr_tabs</a></span>
+				<span class="var-name">$tabs</span><span class="var-description">: mr_tabs instance</span>			</li>
+				</ul>
 		
 			
 	</div>
@@ -241,7 +252,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Thu, 24 Jun 2010 13:32:38 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Thu, 24 Jun 2010 13:32:41 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
