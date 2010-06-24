@@ -132,7 +132,11 @@
 					static <span class="var-type">boolean</span>
 					<a href="#$init" title="details" class="var-name">$init</a>
 				</div>
-																							</div>
+																<div class="var-title">
+					static <span class="var-type">boolean</span>
+					<a href="#$zend" title="details" class="var-name">$zend</a>
+				</div>
+																															</div>
 		</div>
 	</div>
 
@@ -160,7 +164,13 @@
 										<a href="#startup" title="details" class="method-name">startup</a>
 										()
 									</div>
-																															</div>
+														
+				<div class="method-definition">
+					static 						<span class="method-result">void</span>
+										<a href="#zend" title="details" class="method-name">zend</a>
+										()
+									</div>
+																																							</div>
 		</div>
 	</div>		
 
@@ -178,7 +188,7 @@
 					</div>
 		<div class="info-box-body">
 			<a name="var$init" id="$init"><!-- --></A>
-<div class="oddrow">
+<div class="evenrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -189,7 +199,29 @@
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Flag for if startup is needed or not</p>
+<p class="short-description">Flag for if startup is needed or not.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$zend" id="$zend"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			static <span class="var-type">boolean</span>
+			<span class="var-name">$zend</span>
+			 = <span class="var-default"> false</span>			(line <span class="line-number">57</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Flag for if Zend Framework has been  bootstrapped or not.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> protected</li>
 			</ul>
@@ -219,12 +251,12 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">static shutdown</span> (line <span class="line-number">76</span>)
+		<span class="method-title">static shutdown</span> (line <span class="line-number">83</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Run shutdown routine</p>
-<p class="description"><p>This method is NOT automatically called.  Recommended to call  this when you don't want the Moodlerooms Framework to  conflict with other code, EG: when using the framework on  the cron.</p></p>
+<p class="description"><p>Recommended to call this when you don't want the Moodlerooms  Framework to conflict with other code, EG: when using the  framework on the cron.</p></p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -244,7 +276,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">static startup</span> (line <span class="line-number">56</span>)
+		<span class="method-title">static startup</span> (line <span class="line-number">64</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -264,13 +296,38 @@
 		
 			
 	</div>
+<a name="methodzend" id="zend"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static zend</span> (line <span class="line-number">101</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Bootstrap Zend Framework</p>
+<p class="description"><p>Right now, this just sets a proper include path  so you can require_once(...) Zend files.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">void</span>
+		<span class="method-name">
+			zend
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
 						
 		</div>
 	</div>
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Thu, 24 Jun 2010 13:32:29 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Thu, 24 Jun 2010 15:07:41 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

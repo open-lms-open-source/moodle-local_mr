@@ -90,14 +90,14 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="mr/mr_db_queue.html#method_flush_deletes">mr_db_queue::_flush_deletes()</a> in queue.php</div>
-							<div class="index-item-description">Flush deletes</div>
+							<div class="index-item-description">Flushes deletes</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">_flush_inserts</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="mr/mr_db_queue.html#method_flush_inserts">mr_db_queue::_flush_inserts()</a> in queue.php</div>
-							<div class="index-item-description">Does the actual flush work</div>
+							<div class="index-item-description">Flushes inserts</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">_set_helper_namespace</span>
@@ -265,7 +265,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="mr/mr_file_lock.html#method__destruct">mr_file_lock::__destruct()</a> in lock.php</div>
-							<div class="index-item-description">Release file lock on deconstruct</div>
+							<div class="index-item-description">Release file lock on destruct</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">__destruct</span>
@@ -464,13 +464,6 @@
 							<div class="index-item-description">Cache storage</div>
 					</dd>
 			<dt class="field">
-						<span class="method-title">bad</span>
-					</dt>
-		<dd class="index-item-body">
-			<div class="index-item-details"><a href="mr/mr_notify.html#methodbad">mr_notify::bad()</a> in notify.php</div>
-							<div class="index-item-description">Add a bad message</div>
-					</dd>
-			<dt class="field">
 						BAD
 					</dt>
 		<dd class="index-item-body">
@@ -478,10 +471,11 @@
 							<div class="index-item-description">Message that is bad</div>
 					</dd>
 			<dt class="field">
-						<span class="include-title">bootstrap.php</span>
+						<span class="method-title">bad</span>
 					</dt>
 		<dd class="index-item-body">
-			<div class="index-item-details"><a href="mr/_bootstrap.php.html">bootstrap.php</a> in bootstrap.php</div>
+			<div class="index-item-details"><a href="mr/mr_notify.html#methodbad">mr_notify::bad()</a> in notify.php</div>
+							<div class="index-item-description">Add a bad message</div>
 					</dd>
 			<dt class="field">
 						<span class="include-title">bootstrap.php</span>
@@ -809,7 +803,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="mr/mr_plugin.html#methodget_component">mr_plugin::get_component()</a> in plugin.php</div>
-							<div class="index-item-description">Passed to get_string calls.  Change to re-route  plugin specific string definitions to another module.</div>
+							<div class="index-item-description">Passed to get_string calls.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">get_config</span>
@@ -1004,7 +998,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="mr/mr_bootstrap.html#var$init">mr_bootstrap::$init</a> in bootstrap.php</div>
-							<div class="index-item-description">Flag for if startup is needed or not</div>
+							<div class="index-item-description">Flag for if startup is needed or not.</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$inserts</span>
@@ -1348,13 +1342,6 @@
 			<div class="index-item-details"><a href="mr/mr_var.html">mr_var</a> in var.php</div>
 							<div class="index-item-description">MR Var</div>
 					</dd>
-			<dt class="field">
-						mr_zend
-					</dt>
-		<dd class="index-item-body">
-			<div class="index-item-details"><a href="mr/mr_zend.html">mr_zend</a> in zend.php</div>
-							<div class="index-item-description">Zend Framework</div>
-					</dd>
 		</dl>
 	<a name="n"></a>
 	<div class="index-letter-section">
@@ -1681,8 +1668,8 @@
 						<span class="method-title">save</span>
 					</dt>
 		<dd class="index-item-body">
-			<div class="index-item-details"><a href="mr/mr_db_record.html#methodsave">mr_db_record::save()</a> in record.php</div>
-							<div class="index-item-description">Save the record.</div>
+			<div class="index-item-details"><a href="mr/mr_db_table.html#methodsave">mr_db_table::save()</a> in table.php</div>
+							<div class="index-item-description">Save data to the table</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">save</span>
@@ -1695,15 +1682,8 @@
 						<span class="method-title">save</span>
 					</dt>
 		<dd class="index-item-body">
-			<div class="index-item-details"><a href="mr/mr_db_table.html#methodsave">mr_db_table::save()</a> in table.php</div>
-							<div class="index-item-description">Save data to the table</div>
-					</dd>
-			<dt class="field">
-						<span class="method-title">set</span>
-					</dt>
-		<dd class="index-item-body">
-			<div class="index-item-details"><a href="mr/mr_tabs.html#methodset">mr_tabs::set()</a> in tabs.php</div>
-							<div class="index-item-description">Set the current tab</div>
+			<div class="index-item-details"><a href="mr/mr_db_record.html#methodsave">mr_db_record::save()</a> in record.php</div>
+							<div class="index-item-description">Save the record.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">set</span>
@@ -1727,17 +1707,24 @@
 							<div class="index-item-description">Setter method, basically same as offsetSet().</div>
 					</dd>
 			<dt class="field">
-						<span class="method-title">setup</span>
+						<span class="method-title">set</span>
 					</dt>
 		<dd class="index-item-body">
-			<div class="index-item-details"><a href="mr/mr_controller_mod.html#methodsetup">mr_controller_mod::setup()</a> in mod.php</div>
-							<div class="index-item-description">Controller setup</div>
+			<div class="index-item-details"><a href="mr/mr_tabs.html#methodset">mr_tabs::set()</a> in tabs.php</div>
+							<div class="index-item-description">Set the current tab</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">setup</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="mr/mr_controller_block.html#methodsetup">mr_controller_block::setup()</a> in block.php</div>
+							<div class="index-item-description">Controller setup</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">setup</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="mr/mr_controller_mod.html#methodsetup">mr_controller_mod::setup()</a> in mod.php</div>
 							<div class="index-item-description">Controller setup</div>
 					</dd>
 			<dt class="field">
@@ -1760,13 +1747,6 @@
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="mr/mr_notify.html#methodset_component">mr_notify::set_component()</a> in notify.php</div>
 							<div class="index-item-description">Set component string</div>
-					</dd>
-			<dt class="field">
-						<span class="method-title">set_includepath</span>
-					</dt>
-		<dd class="index-item-body">
-			<div class="index-item-details"><a href="mr/mr_zend.html#methodset_includepath">mr_zend::set_includepath()</a> in zend.php</div>
-							<div class="index-item-description">Set the Zend Framework library include path</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">set_namespace</span>
@@ -1957,10 +1937,18 @@
 	</div>
 	<dl>
 			<dt class="field">
-						<span class="include-title">zend.php</span>
+						<span class="var-title">$zend</span>
 					</dt>
 		<dd class="index-item-body">
-			<div class="index-item-details"><a href="mr/_framework---zend.php.html">zend.php</a> in zend.php</div>
+			<div class="index-item-details"><a href="mr/mr_bootstrap.html#var$zend">mr_bootstrap::$zend</a> in bootstrap.php</div>
+							<div class="index-item-description">Flag for if Zend Framework has been  bootstrapped or not.</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">zend</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="mr/mr_bootstrap.html#methodzend">mr_bootstrap::zend()</a> in bootstrap.php</div>
+							<div class="index-item-description">Bootstrap Zend Framework</div>
 					</dd>
 		</dl>
 
