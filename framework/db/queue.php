@@ -162,7 +162,7 @@ class mr_db_queue {
     }
 
     /**
-     * Does the actual flush work
+     * Flushes inserts
      *
      * @param string $table The table to flush
      * @return void
@@ -223,7 +223,7 @@ class mr_db_queue {
     }
 
     /**
-     * Flush deletes
+     * Flushes deletes
      *
      * @param string $table The table to flush
      * @return void

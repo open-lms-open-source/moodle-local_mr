@@ -42,11 +42,19 @@ require_once($CFG->dirroot.'/local/mr/framework/autoload.php');
 class mr_bootstrap {
 
     /**
-     * Flag for if startup is needed or not
+     * Flag for if startup is needed or not.
      *
      * @var boolean
      */
     protected static $init = false;
+
+    /**
+     * Flag for if Zend Framework has been
+     * bootstrapped or not.
+     *
+     * @var boolean
+     */
+    protected static $zend = false;
 
     /**
      * Run startup routine
@@ -66,10 +74,9 @@ class mr_bootstrap {
     /**
      * Run shutdown routine
      *
-     * This method is NOT automatically called.  Recommended to call
-     * this when you don't want the Moodlerooms Framework to
-     * conflict with other code, EG: when using the framework on
-     * the cron.
+     * Recommended to call this when you don't want the Moodlerooms
+     * Framework to conflict with other code, EG: when using the
+     * framework on the cron.
      *
      * @return void
      */
@@ -80,6 +87,33 @@ class mr_bootstrap {
 
             // Reset!
             self::$init = false;
+        }
+    }
+
+    /**
+     * Bootstrap Zend Framework
+     *
+     * Right now, this just sets a proper include path
+     * so you can require_once(...) Zend files.
+     *
+     * @return void
+     */
+    public static function zend() {
+        global $CFG;
+
+        if (!self::$zend) {
+            // Include path for Zend
+            $includepath = get_include_path();
+            $searchpath  = $CFG->dirroot.'/search';
+            $zendpath    = $CFG->libdir.'/zend';
+
+            // Don't add twice
+            if (strpos($includepath, $zendpath) === false) {
+                set_include_path($searchpath . PATH_SEPARATOR . $zendpath . PATH_SEPARATOR . $includepath);
+            }
+
+            // Init done!
+            self::$zend = true;
         }
     }
 }

@@ -82,6 +82,8 @@ abstract class mr_controller_mod extends mr_controller {
         $PAGE->set_title(format_string($this->instance->name));
         $PAGE->set_heading(format_string($COURSE->fullname));
         $PAGE->set_activity_record($this->instance);
+        $PAGE->set_context($this->get_context());
+        $PAGE->set_url($this->new_url(array('action' => $this->action)));
         $this->heading->set(format_string($this->instance->name));
     }
 

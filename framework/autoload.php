@@ -120,7 +120,7 @@ class mr_autoload {
      * @return void
      * @throws coding_exception
      */
-    public static function register($autoload = NULL) {
+    public static function register(mr_autoload $autoload = NULL) {
         if (is_null($autoload)) {
             $autoload = self::get_instance();
         } else if (!$autoload instanceof mr_autoload) {
@@ -138,7 +138,7 @@ class mr_autoload {
      * @return void
      * @throws coding_exception
      */
-    public static function unregister($autoload = NULL) {
+    public static function unregister(mr_autoload $autoload = NULL) {
         if (is_null($autoload)) {
             $autoload = self::get_instance();
         } else if (!$autoload instanceof mr_autoload) {

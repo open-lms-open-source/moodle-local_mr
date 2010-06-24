@@ -94,10 +94,8 @@ class mr_heading implements renderable {
      * Set heading
      *
      * @param string $identifier String key to pass to get_string()
+     * @param string $helpidentifier Help button identifier (EG: help file's name without extension)
      * @param string $a Additional variables to pass to get_string()
-     * @param string $level Size of heading
-     * @param string $clalsses Heading classes
-     * @param string $id Heading ID
      * @return void
      */
     public function set($identifier, $helpidentifier = '', $a = NULL) {

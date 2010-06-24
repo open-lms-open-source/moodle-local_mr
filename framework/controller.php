@@ -185,10 +185,6 @@ abstract class mr_controller {
         }
         $this->mroutput = $PAGE->get_renderer('local_mr');
 
-        // Default page setup
-        $PAGE->set_context($this->get_context());
-        $PAGE->set_url($this->new_url(array('action' => $this->action)));
-
         // Get URL
         $this->url = $this->new_url();
 
@@ -232,6 +228,8 @@ abstract class mr_controller {
 
         $PAGE->set_title(format_string($COURSE->fullname));
         $PAGE->set_heading(format_string($COURSE->fullname));
+        $PAGE->set_context($this->get_context());
+        $PAGE->set_url($this->new_url(array('action' => $this->action)));
         $this->heading->set($this->identifier);
     }
 
@@ -405,7 +403,7 @@ abstract class mr_controller {
      * Add tabs for the controller
      *
      * @param mr_controller $controller The current active controller
-     * @param mr_tabs $tabs The current set of tabs - add tabs to this
+     * @param mr_tabs &$tabs The current set of tabs - add tabs to this
      * @return void
      * @see mr_tabs
      */

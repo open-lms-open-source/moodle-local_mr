@@ -27,9 +27,9 @@
 require_once($CFG->dirroot.'/local/mr/framework/var.php');
 
 /**
- * @see mr_zend
+ * @see mr_bootstrap
  */
-require_once($CFG->dirroot.'/local/mr/framework/zend.php');
+require_once($CFG->dirroot.'/local/mr/framework/bootstrap.php');
 
 /**
  * MR Cache
@@ -67,7 +67,7 @@ class mr_cache {
      */
     public function __construct($prefix = NULL) {
         // Setup Zend
-        mr_zend::set_includepath();
+        mr_bootstrap::zend();
 
         require_once('Zend/Cache.php');
         require_once('Zend/Cache/Exception.php');

@@ -39,8 +39,7 @@
  */
 abstract class mr_plugin {
     /**
-     * Passed to get_string calls.  Change to re-route
-     * plugin specific string definitions to another module.
+     * Passed to get_string calls.
      *
      * @return string
      */

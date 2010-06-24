@@ -80,7 +80,7 @@ class mr_file_lock {
     }
 
     /**
-     * Release file lock on deconstruct
+     * Release file lock on destruct
      *
      * This is done to prevent script execution
      * errors from releasing the lock.
