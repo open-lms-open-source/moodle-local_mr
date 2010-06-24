@@ -276,7 +276,7 @@ abstract class mr_controller {
         $url->remove_params('controller');
 
         $this->tabs = new mr_tabs($url, $this->component);
-        $this->tabs->set($this->action);
+        $this->tabs->set($this->name, $this->action);
 
         // Restirct to only files and single depth
         $files = get_directory_list("$CFG->dirroot/$this->plugin/controller", '', false);

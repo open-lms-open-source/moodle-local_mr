@@ -51,35 +51,21 @@ class local_mr_renderer extends plugin_renderer_base {
      * @return string
      */
     protected function render_mr_tabs(mr_tabs $tabs) {
-        $currenttab = $tabs->get_current();
-        $alltabs    = $tabs->get_tabs();
+        $rows   = $tabs->get_rows();
+        $output = '';
 
-        if (!empty($currenttab) and !empty($alltabs['__parents__'])) {
-            $rows = $toptabs = $subtabs = $inactive = $active = array();
+        if (!empty($rows)) {
+            $inactive = $active = array();
 
-            foreach ($alltabs['__parents__'] as $parents) {
-                $toptabs = array_merge($toptabs, $parents);
-
-                foreach ($parents as $tabindex => $parent) {
-                    if (empty($subtabs) and !empty($alltabs[$tabindex])) {
-                        foreach ($alltabs[$tabindex] as $children) {
-                            $subtabs = array_merge($subtabs, $children);
-                        }
-                        if (!array_key_exists($currenttab, $subtabs)) {
-                            $subtabs = array();
-                        } else {
-                            $active[] = $tabindex;
-                        }
-                    }
-                }
+            if (count($rows) == 2 and !empty($tabs->subtab) and !empty($rows[1][$tabs->subtab])) {
+                $active[]   = $tabs->toptab;
+                $currenttab = $tabs->subtab;
+            } else {
+                $currenttab = $tabs->toptab;
             }
-            $rows[] = $toptabs;
-            if (!empty($subtabs)) {
-                $rows[] = $subtabs;
-            }
-            return print_tabs($rows, $currenttab, $inactive, $active, true);
+            $output = print_tabs($rows, $currenttab, $inactive, $active, true);
         }
-        return '';
+        return $output;
     }
 
     /**

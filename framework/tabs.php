@@ -53,11 +53,25 @@ class mr_tabs implements renderable {
     protected $component = '';
 
     /**
-     * Currently selected tab index
+     * Currently selected toptab index
      *
      * @var string
      */
-    protected $current = '';
+    public $toptab = '';
+
+    /**
+     * Currently selected subtab index
+     *
+     * @var string
+     */
+    public $subtab = '';
+
+    /**
+     * The last toptab set
+     *
+     * @var string
+     */
+    protected $lasttoptabid = '';
 
     /**
      * Constructor
@@ -73,30 +87,41 @@ class mr_tabs implements renderable {
     /**
      * Set the current tab
      *
-     * @param string $tabindex The tab index key
+     * @param string $toptab The toptab index key
+     * @param string $subtab The subtab index key
      * @return mr_tab
      */
-    public function set($tabindex) {
-        $this->current = $tabindex;
+    public function set($toptab, $subtab = '') {
+        $this->toptab = $toptab;
+        $this->subtab = $subtab;
         return $this;
     }
 
     /**
-     * Get the current tab
-     *
-     * @return string
-     */
-    public function get_current() {
-        return $this->current;
-    }
-
-    /**
-     * Get the defined tabs
+     * Based on the current $tobtab, return
+     * the tab row or rows.
      *
      * @return array
      */
-    public function get_tabs() {
-        return $this->tabs;
+    public function get_rows() {
+        $rows = $toptabs = $subtabs = array();
+
+        if (!empty($this->toptab) and !empty($this->tabs['__parents__'])) {
+            foreach ($this->tabs['__parents__'] as $parents) {
+                $toptabs = array_merge($toptabs, $parents);
+            }
+            if (!empty($this->tabs[$this->toptab])) {
+                foreach ($this->tabs[$this->toptab] as $children) {
+                    $subtabs = array_merge($subtabs, $children);
+                }
+            }
+
+            $rows[] = $toptabs;
+            if (!empty($subtabs)) {
+                $rows[] = $subtabs;
+            }
+        }
+        return $rows;
     }
 
     /**
@@ -131,6 +156,9 @@ class mr_tabs implements renderable {
      */
     public function add_subtab($parentid, $id, $url, $name = NULL, $weight = 0, $visible = true, $title = '', $linkedwhenselected = true) {
         if ($visible) {
+            if ($parentid == '__parents__') {
+                $this->lasttoptabid = $id;
+            }
             if (is_array($url)) {
                 if (is_null($this->url)) {
                     throw new coding_exception('Must pass a moodle_url to constructor to pass an array of URL params');
@@ -138,12 +166,50 @@ class mr_tabs implements renderable {
                 $url = $this->url->out(false, $url);
             }
             if (empty($name)) {
-                $name = get_string("{$id}tab", $this->component);
+                if ($parentid != '__parents__') {
+                    $prefix = $parentid;
+                } else {
+                    $prefix = '';
+                }
+                $name = get_string("$prefix{$id}tab", $this->component);
             }
 
             $this->tabs[$parentid][$weight][$id] = new tabobject($id, $url, $name, $title, $linkedwhenselected);
             ksort($this->tabs[$parentid]);
         }
         return $this;
+    }
+
+    /**
+     * Simple interface: Adds a top tab
+     *
+     * @param string $id The unique top tab ID
+     * @param mixed $url moodle_url or an array of params
+     * @param boolean $visible If the tab is visible to the user or not
+     * @return mr_tabs
+     * @throws coding_exception
+     */
+    public function toptab($id, $url = array(), $visible = true) {
+        return $this->add($id, $url, NULL, 0, $visible);
+    }
+
+    /**
+     * Simple interface: Adds a sub tab
+     *
+     * @param string $id The unique sub tab ID
+     * @param mixed $url moodle_url or an array of params
+     * @param boolean $visible If the tab is visible to the user or not
+     * @param string $toptabid The top tab's ID that the sub tab belongs to (defaults to the last top tab's ID)
+     * @return mr_tabs
+     * @throws coding_exception
+     */
+    public function subtab($id, $url = array(), $visible = true, $toptabid = NULL) {
+        if ($toptabid == NULL) {
+            if (empty($this->lasttoptabid)) {
+                throw new coding_exception('No toptabs have been added, create one before creating subtabs');
+            }
+            $toptabid = $this->lasttoptabid;
+        }
+        return $this->add_subtab($toptabid, $id, $url, NULL, 0, $visible);
     }
 }
