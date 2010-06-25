@@ -21,9 +21,7 @@
  * @author Mark Nielsen
  */
 
-if (!defined('MOODLE_INTERNAL')) {
-    die('Direct access to this script is forbidden.');
-}
+defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
 /**
  * @see mr_bootstrap

@@ -21,6 +21,8 @@
  * @author Mark Nielsen
  */
 
+defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
+
 /**
  * @see mr_helper_abstract
  */
