@@ -76,14 +76,4 @@ class mr_autoload_test extends UnitTestCase {
         }
         $this->assertFalse($found);
     }
-
-    public function test_bad_register() {
-        $this->expectException('coding_exception');
-        mr_autoload::register('some_crazy_function');
-    }
-
-    public function test_bad_unregister() {
-        $this->expectException('coding_exception');
-        mr_autoload::unregister('some_crazy_function');
-    }
 }

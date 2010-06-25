@@ -123,8 +123,6 @@ class mr_autoload {
     public static function register(mr_autoload $autoload = NULL) {
         if (is_null($autoload)) {
             $autoload = self::get_instance();
-        } else if (!$autoload instanceof mr_autoload) {
-            throw new coding_exception('Must pass NULL or an instance of mr_autoload');
         }
         spl_autoload_register(array($autoload, 'autoload'));
     }
@@ -141,8 +139,6 @@ class mr_autoload {
     public static function unregister(mr_autoload $autoload = NULL) {
         if (is_null($autoload)) {
             $autoload = self::get_instance();
-        } else if (!$autoload instanceof mr_autoload) {
-            throw new coding_exception('Must pass NULL or an instance of mr_autoload');
         }
         spl_autoload_unregister(array($autoload, 'autoload'));
     }
