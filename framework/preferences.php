@@ -1,13 +1,39 @@
 <?php
 /**
- * User preferences model
+ * Moodlerooms Framework
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see http://opensource.org/licenses/gpl-3.0.html.
+ *
+ * @copyright Copyright (c) 2009 Moodlerooms Inc. (http://www.moodlerooms.com)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License
+ * @package mr
+ * @author Mark Nielsen
+ */
+
+/**
+ * MR Preferences
+ *
+ * Keeps track of user's course preferences
+ * in the session.  Feel free to extend this
+ * class to provide some alternative storage
+ * (EG: store in a database table) but keep
+ * the session parts for caching hits.
  *
  * @author Mark Nielsen
- * @version $Id$
- * @package blocks/reports
+ * @package mr
  **/
-
-class block_reports_model_preferences {
+class mr_preferences {
     /**
      * The plugin that the preferences belong
      *
@@ -62,15 +88,8 @@ class block_reports_model_preferences {
     public function load() {
         global $USER;
 
-        if (!isset($USER->block_reports_preferences)) {
-            // Get ALL preferences for user
-            $preferences = array();
-            if ($prefs = get_records('block_reports_preferences', 'userid', $USER->id)) {
-                foreach ($prefs as $pref) {
-                    $preferences[$pref->courseid][$pref->plugin][$pref->name] = $pref->value;
-                }
-            }
-            $USER->block_reports_preferences = $preferences;
+        if (!isset($USER->mr_preferences)) {
+            $USER->mr_preferences = array();
         }
         return $this;
     }
@@ -84,7 +103,7 @@ class block_reports_model_preferences {
         global $USER;
 
         // Unload
-        unset($USER->block_reports_preferences);
+        unset($USER->mr_preferences);
 
         // Load
         return $this->load();
@@ -123,8 +142,8 @@ class block_reports_model_preferences {
         $this->load();
         $this->process_args($courseid, $plugin);
 
-        if (isset($USER->block_reports_preferences[$courseid][$plugin][$name])) {
-            return $USER->block_reports_preferences[$courseid][$plugin][$name];
+        if (isset($USER->mr_preferences[$courseid][$plugin][$name])) {
+            return $USER->mr_preferences[$courseid][$plugin][$name];
         }
         return $default;
     }
@@ -136,7 +155,7 @@ class block_reports_model_preferences {
      * @param mixed $value Value to save
      * @param string $plugin Override plugin name
      * @param int $courseid Override course ID
-     * @return mixed
+     * @return mr_preferences
      */
     public function set($name, $value, $plugin = NULL, $courseid = NULL) {
         global $USER;
@@ -144,32 +163,9 @@ class block_reports_model_preferences {
         $this->load();
         $this->process_args($courseid, $plugin);
 
-        if (isset($USER->block_reports_preferences[$courseid][$plugin][$name]) and 
-            $USER->block_reports_preferences[$courseid][$plugin][$name] == $value) {
+        $USER->mr_preferences[$courseid][$plugin][$name] = $value;
 
-            // Already set
-            return true;
-        }
-
-        $record = new stdClass;
-        $record->userid   = $USER->id;
-        $record->courseid = $courseid;
-        $record->plugin   = addslashes($plugin);
-        $record->name     = addslashes($name);
-        $record->value    = addslashes($value);
-
-        if ($record->id = get_field_select('block_reports_preferences', 'id', "userid = $record->userid AND
-                                                                               courseid = $record->courseid AND
-                                                                               plugin = '$record->plugin' AND
-                                                                               name = '$record->name'")) {
-            $result = update_record('block_reports_preferences', $record);
-        } else {
-            $result = insert_record('block_reports_preferences', $record);
-        }
-        if ($result) {
-            $USER->block_reports_preferences[$courseid][$plugin][$name] = $value;
-        }
-        return (boolean) $result;
+        return $this;
     }
 
     /**
@@ -178,7 +174,7 @@ class block_reports_model_preferences {
      * @param string $name Preference name
      * @param string $plugin Override plugin name
      * @param int $courseid Override course ID
-     * @return mixed
+     * @return mr_preferences
      */
     public function delete($name, $plugin = NULL, $courseid = NULL) {
         global $USER;
@@ -186,21 +182,8 @@ class block_reports_model_preferences {
         $this->load();
         $this->process_args($courseid, $plugin);
 
-        if (!isset($USER->block_reports_preferences[$courseid][$plugin][$name])) {
-            return true; // Not set already
-        }
+        unset($USER->mr_preferences[$courseid][$plugin][$name]);
 
-        $name   = addslashes($name);
-        $plugin = addslashes($plugin);
-
-        $result = (boolean) delete_records_select('block_reports_preferences', "userid = $USER->id AND
-                                                                                courseid = $courseid AND
-                                                                                plugin = '$plugin' AND
-                                                                                name = '$name'");
-
-        if ($result) {
-            unset($USER->block_reports_preferences[$courseid][$plugin][$name]);
-        }
-        return $result;
+        return $this;
     }
 }
