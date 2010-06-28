@@ -49,10 +49,10 @@ class mr_preferences {
     protected $courseid = 0;
 
     /**
-     * Setup
+     * Constructor: set defaults
      *
      * @param int $courseid Course ID
-     * @param string $plugin Plugin name
+     * @param string $plugin Plugin name, EG: blocks/blockname, block_blockname, etc
      */
     public function __construct($courseid, $plugin) {
         $this->process_args($courseid, $plugin);
@@ -83,7 +83,7 @@ class mr_preferences {
     /**
      * Load the preferences for a user
      *
-     * @return block_reports_model_preferences
+     * @return mr_preferences
      */
     public function load() {
         global $USER;
@@ -97,7 +97,7 @@ class mr_preferences {
     /**
      * Reload preferences
      *
-     * @return block_reports_model_preferences
+     * @return mr_preferences
      */
     public function reload() {
         global $USER;
