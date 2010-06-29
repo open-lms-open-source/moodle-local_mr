@@ -1,18 +1,39 @@
 <?php
 /**
- * Filter Model: This controls the setup, interaction and usage
- * of block_reports_form_filter and block_reports_model_filter_*
+ * Moodlerooms Framework
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see http://opensource.org/licenses/gpl-3.0.html.
+ *
+ * @copyright Copyright (c) 2009 Moodlerooms Inc. (http://www.moodlerooms.com)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License
+ * @package mr
+ * @author Mark Nielsen
+ */
+
+defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
+
+/**
+ * MR Filter
+ *
+ * This controls the setup, interaction and usage
+ * of a moodleform class and mr_filter_*
  * classes.
  *
  * @author Mark Nielsen
- * @version $Id$
- * @package blocks/reports
- **/
-
-require_once($CFG->libdir.'/mr/bootstrap.php');
-require_once($CFG->dirroot.'/blocks/reports/exception.php');
-
-class block_reports_model_filter {
+ * @package mr
+ */
+class mr_filter {
     /**
      * Added filters
      *
@@ -30,7 +51,7 @@ class block_reports_model_filter {
     /**
      * User preferences
      *
-     * @var block_reports_model_preferences
+     * @var mr_preferences
      */
     protected $preferences;
 
@@ -42,9 +63,16 @@ class block_reports_model_filter {
     protected $url;
 
     /**
+     * The path to the form class
+     *
+     * @var string
+     */
+    protected $formpath;
+
+    /**
      * Filter form
      *
-     * @var block_reports_form_filter
+     * @var moodleform
      */
     protected $mform;
 
@@ -58,12 +86,14 @@ class block_reports_model_filter {
     /**
      * Construct
      *
-     * @param block_reports_model_preferences Preferences model
+     * @param mr_preferences Preferences model
      * @param moodle_url $url Base URL
+     * @param string $formpath The patch to the form class, passed to mr_helper_load
      */
-    public function __construct($preferences, $url) {
+    public function __construct($preferences, $url, $formpath = 'local/mr/form/filter') {
         $this->url         = $url;
-        $this->helper      = new mr_helper('blocks/reports');
+        $this->helper      = new mr_helper();
+        $this->formpath    = $formpath;
         $this->preferences = $preferences;
     }
 
@@ -71,21 +101,19 @@ class block_reports_model_filter {
      * After filters have been added, you can
      * initialze the form and handle submitted data
      *
-     * @return block_reports_model_filter
+     * @return mr_filter
      */
     public function init() {
         global $CFG;
 
         if (empty($this->filters)) {
-            throw new block_reports_exception('Must add filters');
+            throw new coding_exception('Must add filters');
         }
         if (empty($this->mform)) {
-            require_once($CFG->dirroot.'/blocks/reports/form/filter.php');
-
-            $this->mform = new block_reports_form_filter($this->preferences->get_plugin(), $this->url, $this->filters);
+            $this->mform = $this->helper->load($this->formpath, array($this->url, $this->filters), false);
 
             if ($data = $this->mform->get_data()) {
-                if (stripslashes($data->submitbutton) == get_string('reset', 'block_reports')) {
+                if (!empty($data->resetbutton)) {
                     foreach ($this->filters as $filter) {
                         $filter->preferences_delete();
                     }
@@ -94,11 +122,7 @@ class block_reports_model_filter {
                         $filter->preferences_update($data);
                     }
                 }
-                $params = array();
-                if ($data->chart != 'none') {
-                    $params['chart'] = $data->chart;
-                }
-                redirect($this->url->out(false, $params));
+                redirect($this->url);
             }
         }
         return $this;
@@ -129,16 +153,17 @@ class block_reports_model_filter {
 
     /**
      * Pass filter names to this method to exclude their
-     * SQL from the block_reports_model_filter::sql() method.
+     * SQL from the mr_filter::sql() method.
      *
      * @param string $param Keep passing filter names to exclude
-     * @return block_reports_model_filter
+     * @return mr_filter
      */
     public function exclude_sql() {
         $args = func_get_args();
         foreach ($args as $arg) {
             if (!is_string($arg)) {
-                throw new block_reports_exception('Can only pass strings to exclude_sql()');
+                throw new coding_exception
+('Can only pass strings to exclude_sql()');
             }
             $this->excludesql[$arg] = $arg;
         }
@@ -149,15 +174,28 @@ class block_reports_model_filter {
      * Display the form
      *
      * @return void
+     * @todo Remove this? Implement renderable?
      */
     public function display() {
         foreach ($this->filters as $filter) {
-            if (!($filter instanceof block_reports_model_filter_hidden)) {
+            if (!($filter instanceof mr_filter_hidden)) {
                 $this->init();
                 $this->mform->display();
                 break;
             }
         }
+    }
+
+    /**
+     * Add a filter
+     *
+     * @param mr_filter_abstract $filter A filter instance
+     * @return mr_filter
+     */
+    public function add(mr_filter_abstract $filter) {
+        $filter->preferences_init($this->preferences);
+        $this->filters[] = $filter;
+        return $this;
     }
 
     /**
@@ -168,7 +206,7 @@ class block_reports_model_filter {
      *
      * @param string $name The name of the filter
      * @param array $arguments Filter args
-     * @return block_reports_model_filter
+     * @return mr_filter
      */
     public function __call($name, $arguments) {
         $parts = explode('_', $name);
@@ -176,15 +214,12 @@ class block_reports_model_filter {
         if (count($parts) == 2) {
             switch ($parts[0]) {
                 case 'new':
-                    $filter = $this->helper->load('model/filter/'.$parts[1], $arguments);
-                    $filter->preferences_init($this->preferences);
-
-                    $this->filters[] = $filter;
-                    return $this;
+                    return $this->add($this->helper->load('filter/'.$parts[1], $arguments));
                     break;
             }
         }
-        throw new block_reports_exception('Invalid call to block_reports_model_filter');
+        throw new coding_exception
+('Invalid call to mr_filter');
     }
 
     /**

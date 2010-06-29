@@ -43,7 +43,7 @@ require_once($CFG->dirroot.'/local/mr/framework/db/table.php');
  * @package mr
  * @see mr_db_record
  * @example controller/db.php See this class in action
- **/
+ */
 class mr_db_queue {
     /**
      * Record insert queue

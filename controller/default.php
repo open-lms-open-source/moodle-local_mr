@@ -27,7 +27,6 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  * Default controller
  *
  * @author Mark Nielsen
- * @version $Id$
  * @package local/mr
  */
 class local_mr_controller_default extends mr_controller_block {

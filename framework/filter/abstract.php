@@ -1,13 +1,35 @@
 <?php
 /**
- * Filter Abstraction
+ * Moodlerooms Framework
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see http://opensource.org/licenses/gpl-3.0.html.
+ *
+ * @copyright Copyright (c) 2009 Moodlerooms Inc. (http://www.moodlerooms.com)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License
+ * @package mr
+ * @author Mark Nielsen
+ */
+
+defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
+
+/**
+ * MR Filter Abstract
  *
  * @author Mark Nielsen
- * @version $Id$
- * @package blocks/reports
- **/
-
-abstract class block_reports_model_filter_abstract {
+ * @package mr
+ */
+abstract class mr_filter_abstract {
     /**
      * The filter's name
      *
@@ -40,7 +62,7 @@ abstract class block_reports_model_filter_abstract {
     /**
      * User preferences (filter values are stored here)
      *
-     * @var block_reports_model_preferences
+     * @var mr_preferences
      */
     protected $preferences;
 
@@ -108,7 +130,7 @@ abstract class block_reports_model_filter_abstract {
      * Preferences init
      *
      * @param string $prefix Unique prefix
-     * @return block_reports_model_filter_abstract
+     * @return mr_filter_abstract
      */
     public function preferences_init($preferences) {
         $this->preferences = $preferences;
@@ -132,7 +154,7 @@ abstract class block_reports_model_filter_abstract {
      * Update user preferences to current filter settings
      *
      * @param object $data Form data
-     * @return block_reports_model_filter_abstract
+     * @return mr_filter_abstract
      */
     public function preferences_update($data) {
         foreach ($this->preferences_defaults() as $name => $default) {
@@ -149,7 +171,7 @@ abstract class block_reports_model_filter_abstract {
      * Remove preferences for this filter
      *
      * @param string $name A specific preference to delete, if NULL all are deleted
-     * @return block_reports_model_filter_abstract
+     * @return mr_filter_abstract
      */
     public function preferences_delete($name = NULL) {
         if (is_null($name)) {
@@ -167,7 +189,7 @@ abstract class block_reports_model_filter_abstract {
      * Add filter form element
      *
      * @param MoodleQuickForm $mform Filter form
-     * @return block_reports_model_filter_abstract
+     * @return mr_filter_abstract
      */
     abstract public function add_element($mform);
 

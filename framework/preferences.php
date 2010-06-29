@@ -32,7 +32,7 @@
  *
  * @author Mark Nielsen
  * @package mr
- **/
+ */
 class mr_preferences {
     /**
      * The plugin that the preferences belong

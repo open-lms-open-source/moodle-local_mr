@@ -1,44 +1,86 @@
 <?php
 /**
- * Filter Checkbox - uses formslib advanced checkbox
+ * Moodlerooms Framework
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see http://opensource.org/licenses/gpl-3.0.html.
+ *
+ * @copyright Copyright (c) 2009 Moodlerooms Inc. (http://www.moodlerooms.com)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License
+ * @package mr
+ * @author Mark Nielsen
+ */
+
+defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
+
+/**
+ * @see mr_filter_abstract
+ */
+require_once($CFG->dirroot.'/local/mr/framework/filter/abstract.php');
+
+/**
+ * MR Filter Checkbox
  *
  * @author Mark Nielsen
  * @author Sam Chaffee
- * @version $Id$
- * @package blocks/reports
- **/
-
-require_once($CFG->dirroot.'/blocks/reports/model/filter/abstract.php');
-
-class block_reports_model_filter_checkbox extends block_reports_model_filter_abstract {
-
+ * @package mr
+ */
+class mr_filter_checkbox extends mr_filter_abstract {
+    /**
+     * Default state, checked/unchecked (0, 1)
+     *
+     * @var int
+     */
     protected $default;
 
-    protected $right_label;
+    /**
+     * Right label
+     *
+     * @var string
+     */
+    protected $rightlabel;
 
-    protected $checked_sql;
+    /**
+     * SQL for when the checkbox is unchecked
+     *
+     * @var string
+     */
+    protected $checkedsql;
 
-    protected $unchecked_sql;
+    /**
+     * SQL for when the checkbox is checked
+     *
+     * @var string
+     */
+    protected $uncheckedsql;
 
     /**
      * Checkbox filter constructor
      *
      * @param string $name - name for the filter instance
      * @param string $label - label to the left of the checkbox
-     * @param string $right_label - label to the right of the checkbox
+     * @param string $rightlabel - label to the right of the checkbox
      * @param int $default - the default state of the checkbox (0, 1)
-
      * @param bool $advanced - whether or not the form element should be an advanced option
      * @param string $field - the field to be used in the filter
      */
-    public function __construct($name, $label, $right_label = '', $default = 0, $checked_sql = '', $unchecked_sql = '', $advanced = false, $field = NULL) {
+    public function __construct($name, $label, $rightlabel = '', $default = 0, $checkedsql = '', $uncheckedsql = '', $advanced = false, $field = NULL) {
         parent::__construct($name, $label, $advanced, $field);
 
-        $this->right_label    = $right_label;
-        $this->default        = $default;
-        $this->checked_sql    = $checked_sql;
-        $this->unchecked_sql  = $unchecked_sql;
-        
+        $this->rightlabel   = $rightlabel;
+        $this->default      = $default;
+        $this->checkedsql   = $checkedsql;
+        $this->uncheckedsql = $uncheckedsql;
     }
 
     /**
@@ -49,29 +91,12 @@ class block_reports_model_filter_checkbox extends block_reports_model_filter_abs
     public function preferences_defaults() {
         return array($this->name => $this->default);
     }
-    
-    /**
-     * Update user preferences to current filter settings
-     *
-     * @param object $data Form data
-     * @return block_reports_model_filter_abstract
-     */
-    public function preferences_update($data) {
-        foreach ($this->preferences_defaults() as $name => $default) {
-            if (!isset($data->$name) or $data->$name == $default) {
-                $this->preferences_delete($name);
-            } else {
-                $this->preferences->set($name, stripslashes($data->$name));
-            }
-        }
-        return $this;
-    }
 
     /**
      * Add checkbox
      */
     public function add_element($mform) {
-        $mform->addElement('advcheckbox', $this->name, $this->label, $this->right_label, array('group' => 1), array(0, 1));
+        $mform->addElement('advcheckbox', $this->name, $this->label, $this->rightlabel, array('group' => 1), array(0, 1));
         $mform->setDefault($this->name, $this->preferences_get($this->name));
 
         if ($this->advanced) {
@@ -89,9 +114,9 @@ class block_reports_model_filter_checkbox extends block_reports_model_filter_abs
 
         $preference = $this->preferences_get($this->name);
         if (!empty($preference)) {
-            return $this->checked_sql;
+            return $this->checkedsql;
         } else {
-            return $this->unchecked_sql;
+            return $this->uncheckedsql;
         }
         return false;
     }

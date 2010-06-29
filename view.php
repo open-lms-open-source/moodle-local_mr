@@ -25,7 +25,6 @@
  * View renderer
  *
  * @author Mark Nielsen
- * @version $Id$
  * @package local/mr
  */
 
