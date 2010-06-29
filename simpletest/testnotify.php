@@ -24,11 +24,11 @@
 defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
 /**
- * @see mr_notify
+ * @see mr_html_notify
  */
 require_once($CFG->dirroot.'/local/mr/framework/notify.php');
 
-class mr_notify_test extends UnitTestCase {
+class mr_html_notify_test extends UnitTestCase {
 
     public static $includecoverage = array('local/mr/framework/notify.php');
 
@@ -41,7 +41,7 @@ class mr_notify_test extends UnitTestCase {
     public function test_messages() {
         global $SESSION;
 
-        $notify = new mr_notify();
+        $notify = new mr_html_notify();
         $notify->set_component('local_mr');
         $notify->set_align('right');
         $notify->good('mrframework');

@@ -29,17 +29,17 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 require_once($CFG->dirroot.'/local/mr/framework/helper.php');
 
 /**
- * @see mr_notify
+ * @see mr_html_notify
  */
 require_once($CFG->dirroot.'/local/mr/framework/notify.php');
 
 /**
- * @see mr_tabs
+ * @see mr_html_tabs
  */
 require_once($CFG->dirroot.'/local/mr/framework/tabs.php');
 
 /**
- * @see mr_heading
+ * @see mr_html_heading
  */
 require_once($CFG->dirroot.'/local/mr/framework/heading.php');
 
@@ -123,14 +123,14 @@ abstract class mr_controller {
     /**
      * Controller tabs
      *
-     * @var mr_tabs
+     * @var mr_html_tabs
      */
     protected $tabs;
 
     /**
      * Controller heading
      *
-     * @var mr_heading
+     * @var mr_html_heading
      */
     protected $heading;
 
@@ -172,8 +172,8 @@ abstract class mr_controller {
         // Rest of the variable setup
         $this->action   = $action;
         $this->helper   = new mr_helper($this->plugin);
-        $this->notify   = new mr_notify($this->component);
-        $this->heading  = new mr_heading($this->component);
+        $this->notify   = new mr_html_notify($this->component);
+        $this->heading  = new mr_html_heading($this->component);
         $this->config   = $this->get_config();
 
         // Run base controller setup
@@ -275,7 +275,7 @@ abstract class mr_controller {
         $url = $this->new_url();
         $url->remove_params('controller');
 
-        $this->tabs = new mr_tabs($url, $this->component);
+        $this->tabs = new mr_html_tabs($url, $this->component);
         $this->tabs->set($this->name, $this->action);
 
         // Restirct to only files and single depth
@@ -405,9 +405,9 @@ abstract class mr_controller {
      * Add tabs for the controller
      *
      * @param mr_controller $controller The current active controller
-     * @param mr_tabs &$tabs The current set of tabs - add tabs to this
+     * @param mr_html_tabs &$tabs The current set of tabs - add tabs to this
      * @return void
-     * @see mr_tabs
+     * @see mr_html_tabs
      */
     public static function add_tabs($controller, &$tabs) {
     }

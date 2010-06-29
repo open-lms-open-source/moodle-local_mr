@@ -24,7 +24,7 @@
 defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
 /**
- * MR Heading
+ * MR HTML Heading
  *
  * Simple renderable object for
  * headings.  Can include help
@@ -33,7 +33,7 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  * @package mr
  * @author Mark Nielsen
  */
-class mr_heading implements renderable {
+class mr_html_heading implements renderable {
     /**
      * Heading display text
      *

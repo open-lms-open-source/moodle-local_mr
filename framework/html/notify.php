@@ -24,13 +24,13 @@
 defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
 /**
- * MR Notify
+ * MR HTML Notify
  *
  * This model is used to add messages to the session
  * which can then be printed on subsequent page loads.
  *
  * Use case: submit data to be saved, set a message with
- * mr_notify like "Changes Saved" and then redirect to the
+ * mr_html_notify like "Changes Saved" and then redirect to the
  * orignal screen and display the message.
  *
  * This class is tightly integrated with mr_controller.
@@ -39,7 +39,7 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  * @package mr
  * @see mr_controller
  */
-class mr_notify implements renderable {
+class mr_html_notify implements renderable {
     /**
      * Message that is bad
      */
@@ -81,7 +81,7 @@ class mr_notify implements renderable {
      * Set component string
      *
      * @param string $component Get string component
-     * @return mr_notify
+     * @return mr_html_notify
      */
     public function set_component($component) {
         $this->component = $component;
@@ -92,7 +92,7 @@ class mr_notify implements renderable {
      * Set alignment
      *
      * @param string $align Alignment
-     * @return mr_notify
+     * @return mr_html_notify
      */
     public function set_align($align) {
         $this->align = $align;
@@ -106,7 +106,7 @@ class mr_notify implements renderable {
      * @param mixed $a To be passed in the call to get_string()
      * @param string $component Get string component
      * @param string $align Alignment of the message
-     * @return mr_notify
+     * @return mr_html_notify
      */
     public function good($identifier, $a = NULL, $component = NULL, $align = NULL) {
         return $this->add($identifier, self::GOOD, $a, $component, $align);
@@ -119,7 +119,7 @@ class mr_notify implements renderable {
      * @param mixed $a To be passed in the call to get_string()
      * @param string $component Get string component
      * @param string $align Alignment of the message
-     * @return mr_notify
+     * @return mr_html_notify
      */
     public function bad($identifier, $a = NULL, $component = NULL, $align = NULL) {
         return $this->add($identifier, self::BAD, $a, $component, $align);
@@ -136,7 +136,7 @@ class mr_notify implements renderable {
      * @param string $component Get string component
      * @param string $align Alignment of the message
      * @example controller/default.php See this being used in a mr_controller
-     * @return mr_notify
+     * @return mr_html_notify
      * @see BAD, GOOD
      */
     public function add($identifier, $class = self::BAD, $a = NULL, $component = NULL, $align = NULL) {
@@ -152,7 +152,7 @@ class mr_notify implements renderable {
      * @param string $string The string to be printed
      * @param string $class The class to be passed to notify().  Usually notifyproblem or notifysuccess.
      * @param string $align Alignment of the message
-     * @return mr_notify
+     * @return mr_html_notify
      * @see BAD, GOOD
      */
     public function add_string($string, $class = self::BAD, $align = NULL) {

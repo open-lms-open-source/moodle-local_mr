@@ -24,7 +24,7 @@
 defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
 /**
- * MR Tabs
+ * MR HTML Tabs
  *
  * Manage tabs and their sub tabs.
  *
@@ -32,7 +32,7 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  * @author Mark Nielsen
  * @example controller/default.php
  */
-class mr_tabs implements renderable {
+class mr_html_tabs implements renderable {
     /**
      * An array of tabobjects
      *
@@ -136,7 +136,7 @@ class mr_tabs implements renderable {
      * @param boolean $visible If the tab is visible, EG: pass result of a has_capability() call here
      * @param string $title The alt text of the tab
      * @param boolean $linkedwhenselected Keep the tab clickable when selected
-     * @return mr_tabs
+     * @return mr_html_tabs
      */
     public function add($id, $url, $name = NULL, $weight = 0, $visible = true, $title = '', $linkedwhenselected = true) {
         return $this->add_subtab('__parents__', $id, $url, $name, $weight, $visible, $title, $linkedwhenselected);
@@ -153,7 +153,7 @@ class mr_tabs implements renderable {
      * @param boolean $visible If the tab is visible, EG: pass result of a has_capability() call here
      * @param string $title The alt text of the tab
      * @param boolean $linkedwhenselected Keep the tab clickable when selected
-     * @return mr_tabs
+     * @return mr_html_tabs
      * @throws coding_exception
      */
     public function add_subtab($parentid, $id, $url, $name = NULL, $weight = 0, $visible = true, $title = '', $linkedwhenselected = true) {
@@ -188,7 +188,7 @@ class mr_tabs implements renderable {
      * @param string $id The unique top tab ID
      * @param mixed $url moodle_url or an array of params
      * @param boolean $visible If the tab is visible to the user or not
-     * @return mr_tabs
+     * @return mr_html_tabs
      * @throws coding_exception
      */
     public function toptab($id, $url = array(), $visible = true) {
@@ -202,7 +202,7 @@ class mr_tabs implements renderable {
      * @param mixed $url moodle_url or an array of params
      * @param boolean $visible If the tab is visible to the user or not
      * @param string $toptabid The top tab's ID that the sub tab belongs to (defaults to the last top tab's ID)
-     * @return mr_tabs
+     * @return mr_html_tabs
      * @throws coding_exception
      */
     public function subtab($id, $url = array(), $visible = true, $toptabid = NULL) {

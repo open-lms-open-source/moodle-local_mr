@@ -33,12 +33,12 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  */
 class local_mr_renderer extends plugin_renderer_base {
     /**
-     * Renders mr_notify
+     * Renders mr_html_notify
      *
-     * @param mr_notify $notify mr_notify instance
+     * @param mr_html_notify $notify mr_html_notify instance
      * @return string
      */
-    protected function render_mr_notify(mr_notify $notify) {
+    protected function render_mr_html_notify(mr_html_notify $notify) {
         $output = '';
         foreach($notify->get_messages() as $message) {
             $output .= $this->output->notification($message[0], $message[1]);
@@ -47,12 +47,12 @@ class local_mr_renderer extends plugin_renderer_base {
     }
 
     /**
-     * Renders mr_tabs
+     * Renders mr_html_tabs
      *
-     * @param mr_tabs $tabs mr_tabs instance
+     * @param mr_html_tabs $tabs mr_html_tabs instance
      * @return string
      */
-    protected function render_mr_tabs(mr_tabs $tabs) {
+    protected function render_mr_html_tabs(mr_html_tabs $tabs) {
         $rows   = $tabs->get_rows();
         $output = '';
 
@@ -71,12 +71,12 @@ class local_mr_renderer extends plugin_renderer_base {
     }
 
     /**
-     * Render mr_heading
+     * Render mr_html_heading
      *
-     * @param mr_heading $heading mr_heading instance
+     * @param mr_html_heading $heading mr_html_heading instance
      * @return string
      */
-    protected function render_mr_heading(mr_heading $heading) {
+    protected function render_mr_html_heading(mr_html_heading $heading) {
         // Do we have anything to render?
         if (empty($heading->text)) {
             return '';
