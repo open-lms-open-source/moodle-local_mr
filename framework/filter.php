@@ -102,6 +102,7 @@ class mr_filter {
      * initialze the form and handle submitted data
      *
      * @return mr_filter
+     * @throws coding_exception
      */
     public function init() {
         global $CFG;
@@ -132,6 +133,7 @@ class mr_filter {
      * Return filter SQL
      *
      * @return string
+     * @todo Return prepared statement and values?
      */
     public function sql() {
         $this->init();
@@ -157,13 +159,13 @@ class mr_filter {
      *
      * @param string $param Keep passing filter names to exclude
      * @return mr_filter
+     * @throws coding_exception
      */
     public function exclude_sql() {
         $args = func_get_args();
         foreach ($args as $arg) {
             if (!is_string($arg)) {
-                throw new coding_exception
-('Can only pass strings to exclude_sql()');
+                throw new coding_exception('Can only pass strings to exclude_sql()');
             }
             $this->excludesql[$arg] = $arg;
         }
@@ -207,6 +209,7 @@ class mr_filter {
      * @param string $name The name of the filter
      * @param array $arguments Filter args
      * @return mr_filter
+     * @throws coding_exception
      */
     public function __call($name, $arguments) {
         $parts = explode('_', $name);
@@ -218,8 +221,7 @@ class mr_filter {
                     break;
             }
         }
-        throw new coding_exception
-('Invalid call to mr_filter');
+        throw new coding_exception('Invalid call to mr_filter');
     }
 
     /**
