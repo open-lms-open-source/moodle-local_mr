@@ -9,7 +9,7 @@
 
 require_once($CFG->dirroot.'/blocks/reports/plugin/export/excel/class.php');
 
-class block_reports_plugin_export_ods_class extends block_reports_plugin_export_excel_class {
+class mr_file_export_ods extends mr_file_export_excel {
     /**
      * File extension
      */

@@ -9,7 +9,7 @@
 
 require_once($CFG->dirroot.'/blocks/reports/plugin/export/csv/class.php');
 
-class block_reports_plugin_export_text_class extends block_reports_plugin_export_csv_class {
+class mr_file_export_text extends mr_file_export_csv {
     /**
      * Tab
      */

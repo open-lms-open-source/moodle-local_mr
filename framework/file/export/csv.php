@@ -7,10 +7,13 @@
  * @package blocks/reports
  **/
 
-require_once($CFG->dirroot.'/blocks/reports/plugin/export/base/class.php');
+/**
+ * @see mr_file_export_abstract
+ */
+require_once($CFG->dirroot.'/local/mr/framework/file/export/abstract.php');
 require_once($CFG->libdir.'/filelib.php');
 
-class block_reports_plugin_export_csv_class extends block_reports_plugin_export_base_class {
+class mr_file_export_csv extends mr_file_export_abstract {
     /**
      * The export file
      *

@@ -9,7 +9,7 @@
 
 require_once($CFG->dirroot.'/blocks/reports/plugin/export/base/class.php');
 
-class block_reports_plugin_export_excel_class extends block_reports_plugin_export_base_class {
+class mr_file_export_excel extends mr_file_export_abstract {
     /**
      * Max rows per worksheet
      */

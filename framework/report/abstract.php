@@ -65,7 +65,7 @@ abstract class block_reports_plugin_report_base_class {
     /**
      * Export plugin
      *
-     * @var block_reports_plugin_export_base_class
+     * @var mr_file_export_abstract
      */
     protected $export;
 
@@ -417,7 +417,7 @@ abstract class block_reports_plugin_report_base_class {
     /**
      * Export report
      *
-     * @param block_reports_plugin_export_base_class $plugin The export plugin to use - the
+     * @param mr_file_export_abstract $plugin The export plugin to use - the
      *                                                       export plugin is expected to already
      *                                                       be setup and ready to use
      * @return void

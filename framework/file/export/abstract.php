@@ -7,9 +7,19 @@
  * @package blocks/reports
  **/
 
-require_once($CFG->dirroot.'/blocks/reports/plugin.php');
+require_once($CFG->dirroot.'/local/mr/framework/plugin.php');
 
-abstract class block_reports_plugin_export_base_class extends block_reports_plugin {
+abstract class mr_file_export_abstract extends mr_plugin {
+    /**
+     * Passed to get_string calls.
+     *
+     * Implementing abstract mr_plugin::get_component()
+     *
+     * @return string
+     */
+    public function get_component() {
+        return 'local_mr';
+    }
 
     /**
      * If the export plugin generates a file or not

@@ -136,7 +136,7 @@ class mr_html_table extends mr_readonly implements renderable {
      * Route rows to an export plugin
      * instead of $this->rows
      *
-     * @var block_reports_plugin_export_base_class
+     * @var mr_file_export_abstract
      */
     protected $export;
 
@@ -252,7 +252,7 @@ class mr_html_table extends mr_readonly implements renderable {
      * send all rows to the plugin instead
      * of itself
      *
-     * @param block_reports_plugin_export_base_class $export The export plugin
+     * @param mr_file_export_abstract $export The export plugin
      * @return mr_html_table
      */
     public function set_export($export) {
