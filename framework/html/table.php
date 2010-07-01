@@ -4,7 +4,7 @@
  *
  * @author Mark Nielsen
  * @version $Id$
- * @package blocks/reports
+ * @package mr
  **/
 
 /**
@@ -118,7 +118,7 @@ class mr_html_table extends mr_readonly implements renderable {
     /**
      * Preferences model
      *
-     * @var block_reports_model_preferences
+     * @var mr_preferences
      */
     protected $preferences;
 
@@ -132,7 +132,7 @@ class mr_html_table extends mr_readonly implements renderable {
     /**
      * Setup
      *
-     * @param block_reports_model_preferences $preferences User preferences
+     * @param mr_preferences $preferences User preferences
      * @param moodle_url $url Base url
      * @param string $sort Sorting field
      * @param string $order Sorting order
@@ -313,7 +313,7 @@ class mr_html_table extends mr_readonly implements renderable {
                 }
             }
             if (empty($column)) {
-                throw new block_reports_exception('Invalid column sorting');
+                throw new coding_exception('Invalid column sorting');
             }
             $sort = array();
             foreach ($column->get_sorting() as $column => $order) {
@@ -374,7 +374,7 @@ class mr_html_table extends mr_readonly implements renderable {
     /**
      * Add a table column.  This method is a shortcut for
      * adding different column types.  Types are listed in
-     * blocks/reports/model/column/
+     * html/table/column/
      *
      * @param string $type The column type
      * @param string $name Column SQL field name (see mr_html_table_column)
@@ -392,7 +392,7 @@ class mr_html_table extends mr_readonly implements renderable {
      * Add column format
      *
      * @param mixed $columns Column name(s) to apply the format to
-     * @param string $format Format name or block_reports_model_format_abstract
+     * @param string $format Format name or mr_format_abstract
      * @param mixed $x Keep passing params to pass to the format's constructor
      * @return mr_html_table
      */
@@ -406,7 +406,7 @@ class mr_html_table extends mr_readonly implements renderable {
         }
         foreach ($columns as $column) {
             if (!array_key_exists($column, $this->columns)) {
-                throw new block_reports_exception("Attempting to add a format to a nonexistant column: $column");
+                throw new coding_exception("Attempting to add a format to a nonexistant column: $column");
             }
             call_user_func_array(array($this->columns[$column], 'add_format'), $args);
         }

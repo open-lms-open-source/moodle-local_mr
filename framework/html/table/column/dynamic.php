@@ -8,7 +8,7 @@
  *
  * @author Mark Nielsen
  * @version $Id$
- * @package blocks/reports
+ * @package mr
  **/
 
 require_once($CFG->dirroot.'/local/mr/framework/html/table/column.php');

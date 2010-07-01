@@ -4,7 +4,7 @@
  *
  * @author Mark Nielsen
  * @version $Id$
- * @package blocks/reports
+ * @package mr
  **/
 
 require_once($CFG->dirroot.'/local/mr/framework/html/table.php');
@@ -30,7 +30,7 @@ abstract class block_reports_plugin_report_base_class {
     /**
      * User preferences
      *
-     * @var block_reports_model_preferences
+     * @var mr_preferences
      */
     protected $preferences;
 
@@ -114,7 +114,7 @@ abstract class block_reports_plugin_report_base_class {
         $this->courseid    = $courseid;
         $this->helper      = new mr_helper('blocks/reports');
         $this->config      = new mr_var();
-        $this->preferences = new block_reports_model_preferences($courseid, $this->plugin_name());
+        $this->preferences = new mr_preferences($courseid, $this->plugin_name());
 
         if (($setajax = optional_param('setajax', -1, PARAM_INT)) != -1) {
             $this->preferences->set('ajax', $setajax);
@@ -390,7 +390,7 @@ abstract class block_reports_plugin_report_base_class {
             $this->table_fill();
 
             if (!$this->table instanceof mr_html_table_ajax) {
-                throw new block_reports_exception('Invalid table model');
+                throw new coding_exception('Invalid table model');
             }
 
             return $this->table->json();
@@ -493,7 +493,7 @@ abstract class block_reports_plugin_report_base_class {
                                'self', get_string('displayas', 'block_reports')).
                            print_box_end(true);
                 }
-            } catch (block_reports_exception $e) {
+            } catch (coding_exception $e) {
                 // Don't care
             }
         }
@@ -633,7 +633,7 @@ abstract class block_reports_plugin_report_base_class {
                 $this->table_course_init();
             }
             if (!$this->table instanceof mr_html_table) {
-                throw new block_reports_exception('Programmer error: table is not defined correctly');
+                throw new coding_exception('Programmer error: table is not defined correctly');
             }
             if ($this->config->perpage) {
                 $this->table->set_perpageopts($this->config->perpageopts);

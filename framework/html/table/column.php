@@ -4,7 +4,7 @@
  *
  * @author Mark Nielsen
  * @version $Id$
- * @package blocks/reports
+ * @package mr
  **/
 
 require_once($CFG->dirroot.'/local/mr/framework/var.php');
@@ -148,10 +148,11 @@ class mr_html_table_column {
     /**
      * Add a column format
      *
-     * @param mixed $format This can be block_reports_model_format_abstract or a string
+     * @param mixed $format This can be mr_format_abstract or a string
      *                      representing the format's name.  If a string, then keep passing
      *                      args which will be passed to the format's constructor
      * @return mr_html_table_column
+     * @throws coding_exception
      */
     public function add_format($format) {
         if (is_string($format)) {
@@ -159,11 +160,11 @@ class mr_html_table_column {
             $args = func_get_args();
             array_shift($args);
 
-            $helper = new mr_helper('blocks/reports');
+            $helper = new mr_helper();
             $format = $helper->load("model/format/$format", $args);
 
-        } else if (!$format instanceof block_reports_model_format_abstract) {
-            throw new block_reports_exception('Invalid format parameter');
+        } else if (!$format instanceof mr_format_abstract) {
+            throw new coding_exception('Invalid format parameter');
         }
         $this->formats[] = $format;
 
@@ -175,12 +176,22 @@ class mr_html_table_column {
      *
      * @param object $row The SQL row
      * @return mixed
+     * @throws coding_exception
      */
     public function extract_row_data($row) {
+        if ($row instanceof html_table_row) {
+            throw new coding_exception('Cannot extract row data from html_table_row classes. '.
+                                       'This must be done before adding the cell to a '.
+                                       'html_table_row instance');
+        }
         if (array_key_exists($this->config->name, $row)) {
             $value = $row[$this->config->name];
             foreach ($this->formats as $format) {
-                $value = $format->format($value);
+                if ($value instanceof html_table_cell) {
+                    $value->text = $format->format($value->text);
+                } else {
+                    $value = $format->format($value);
+                }
             }
             return $value;
         }
@@ -191,7 +202,7 @@ class mr_html_table_column {
      * Derive cell value from row and position
      *
      * @param object $row Database record object
-     * @return string
+     * @return mixed
      */
     public function get_cell($row) {
         $cell = $this->extract_row_data($row);

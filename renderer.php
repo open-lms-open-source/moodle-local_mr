@@ -210,6 +210,7 @@ class local_mr_renderer extends plugin_renderer_base {
                         if ($cell instanceof html_table_cell) {
                             $htmlrow->cells[] = $cell;
                         } else {
+                            // @todo attributes are not being set correctly atm, wait for response on MDL-21652
                             $cell = new html_table_cell($cell);
                             $cell->attributes = array_merge($cell->attributes, $column->get_config()->attributes);
                             $htmlrow->cells[] = $cell;
