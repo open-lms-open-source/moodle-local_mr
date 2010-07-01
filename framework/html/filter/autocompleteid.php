@@ -24,18 +24,18 @@
 defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
 /**
- * @see mr_filter_abstract
+ * @see mr_html_filter_abstract
  */
-require_once($CFG->dirroot.'/local/mr/framework/filter/abstract.php');
+require_once($CFG->dirroot.'/local/mr/framework/html/filter/abstract.php');
 
 /**
- * MR Filter Autocomplete with IDs
+ * MR HTML Filter Autocomplete with IDs
  *
  * @author Mark Nielsen
  * @package mr
  * @todo Make this work again
  */
-class mr_filter_autocompleteid extends mr_filter_abstract {
+class mr_html_filter_autocompleteid extends mr_html_filter_abstract {
 
     /**
      * Autocomplete options

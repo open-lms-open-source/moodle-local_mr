@@ -24,12 +24,12 @@
 defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
 /**
- * MR Filter Abstract
+ * MR HTML Filter Abstract
  *
  * @author Mark Nielsen
  * @package mr
  */
-abstract class mr_filter_abstract {
+abstract class mr_html_filter_abstract {
     /**
      * The filter's name
      *
@@ -130,7 +130,7 @@ abstract class mr_filter_abstract {
      * Preferences init
      *
      * @param string $prefix Unique prefix
-     * @return mr_filter_abstract
+     * @return mr_html_filter_abstract
      */
     public function preferences_init($preferences) {
         $this->preferences = $preferences;
@@ -154,7 +154,7 @@ abstract class mr_filter_abstract {
      * Update user preferences to current filter settings
      *
      * @param object $data Form data
-     * @return mr_filter_abstract
+     * @return mr_html_filter_abstract
      */
     public function preferences_update($data) {
         foreach ($this->preferences_defaults() as $name => $default) {
@@ -171,7 +171,7 @@ abstract class mr_filter_abstract {
      * Remove preferences for this filter
      *
      * @param string $name A specific preference to delete, if NULL all are deleted
-     * @return mr_filter_abstract
+     * @return mr_html_filter_abstract
      */
     public function preferences_delete($name = NULL) {
         if (is_null($name)) {
@@ -189,7 +189,7 @@ abstract class mr_filter_abstract {
      * Add filter form element
      *
      * @param MoodleQuickForm $mform Filter form
-     * @return mr_filter_abstract
+     * @return mr_html_filter_abstract
      */
     abstract public function add_element($mform);
 

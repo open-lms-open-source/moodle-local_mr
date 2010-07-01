@@ -24,18 +24,18 @@
 defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
 /**
- * @see mr_filter_abstract
+ * @see mr_html_filter_abstract
  */
-require_once($CFG->dirroot.'/local/mr/framework/filter/abstract.php');
+require_once($CFG->dirroot.'/local/mr/framework/html/filter/abstract.php');
 
 /**
- * MR Filter Checkbox
+ * MR HTML Filter Checkbox
  *
  * @author Mark Nielsen
  * @author Sam Chaffee
  * @package mr
  */
-class mr_filter_checkbox extends mr_filter_abstract {
+class mr_html_filter_checkbox extends mr_html_filter_abstract {
     /**
      * Default state, checked/unchecked (0, 1)
      *

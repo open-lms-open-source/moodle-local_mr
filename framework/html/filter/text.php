@@ -24,17 +24,17 @@
 defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
 /**
- * @see mr_filter_abstract
+ * @see mr_html_filter_abstract
  */
-require_once($CFG->dirroot.'/local/mr/framework/filter/abstract.php');
+require_once($CFG->dirroot.'/local/mr/framework/html/filter/abstract.php');
 
 /**
- * MR Filter Text
+ * MR HTML Filter Text
  *
  * @author Mark Nielsen
  * @package mr
  */
-class mr_filter_text extends mr_filter_abstract {
+class mr_html_filter_text extends mr_html_filter_abstract {
 
     /**
      * Add text input

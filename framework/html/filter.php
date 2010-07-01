@@ -24,16 +24,16 @@
 defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
 /**
- * MR Filter
+ * MR HTML Filter
  *
  * This controls the setup, interaction and usage
- * of a moodleform class and mr_filter_*
+ * of a moodleform class and mr_html_filter_*
  * classes.
  *
  * @author Mark Nielsen
  * @package mr
  */
-class mr_filter {
+class mr_html_filter {
     /**
      * Added filters
      *
@@ -101,7 +101,7 @@ class mr_filter {
      * After filters have been added, you can
      * initialze the form and handle submitted data
      *
-     * @return mr_filter
+     * @return mr_html_filter
      * @throws coding_exception
      */
     public function init() {
@@ -155,10 +155,10 @@ class mr_filter {
 
     /**
      * Pass filter names to this method to exclude their
-     * SQL from the mr_filter::sql() method.
+     * SQL from the mr_html_filter::sql() method.
      *
      * @param string $param Keep passing filter names to exclude
-     * @return mr_filter
+     * @return mr_html_filter
      * @throws coding_exception
      */
     public function exclude_sql() {
@@ -180,7 +180,7 @@ class mr_filter {
      */
     public function display() {
         foreach ($this->filters as $filter) {
-            if (!($filter instanceof mr_filter_hidden)) {
+            if (!($filter instanceof mr_html_filter_hidden)) {
                 $this->init();
                 $this->mform->display();
                 break;
@@ -191,10 +191,10 @@ class mr_filter {
     /**
      * Add a filter
      *
-     * @param mr_filter_abstract $filter A filter instance
-     * @return mr_filter
+     * @param mr_html_filter_abstract $filter A filter instance
+     * @return mr_html_filter
      */
-    public function add(mr_filter_abstract $filter) {
+    public function add(mr_html_filter_abstract $filter) {
         $filter->preferences_init($this->preferences);
         $this->filters[] = $filter;
         return $this;
@@ -208,7 +208,7 @@ class mr_filter {
      *
      * @param string $name The name of the filter
      * @param array $arguments Filter args
-     * @return mr_filter
+     * @return mr_html_filter
      * @throws coding_exception
      */
     public function __call($name, $arguments) {
@@ -217,11 +217,11 @@ class mr_filter {
         if (count($parts) == 2) {
             switch ($parts[0]) {
                 case 'new':
-                    return $this->add($this->helper->load('filter/'.$parts[1], $arguments));
+                    return $this->add($this->helper->load('html/filter/'.$parts[1], $arguments));
                     break;
             }
         }
-        throw new coding_exception('Invalid call to mr_filter');
+        throw new coding_exception('Invalid call to mr_html_filter');
     }
 
     /**

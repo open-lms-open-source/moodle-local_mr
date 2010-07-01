@@ -198,7 +198,7 @@ class local_mr_renderer extends plugin_renderer_base {
             $htmltable->data[] = array($cell);
         } else {
             $suppress = array();
-            foreach ($table->get_rows() as $row) {
+            foreach ($rows as $row) {
                 // Generate a html_table_row
                 if ($row instanceof html_table_row) {
                     $htmlrow = $row;
