@@ -80,7 +80,7 @@ abstract class mr_controller_block extends mr_controller {
 
         // Attempt to get the block instance
         if ($instanceid) {
-            $this->instance = $DB->get_record('block_instance', array('id' => $instanceid), '*', MUST_EXIST);
+            $this->instance = $DB->get_record('block_instances', array('id' => $instanceid), '*', MUST_EXIST);
         }
     }
 
