@@ -80,10 +80,10 @@ class mr_cache {
         }
 
         // DISABLED!!! Not yet implemented on our servers
-        if (defined('MR_CACHE_TEST') and !empty(mr_var::get('mrconfig')->cache_lifetime)) {
+        if (defined('MR_CACHE_TEST') and !empty(mr_var::instance()->get('mrconfig')->cache_lifetime)) {
             $frontendoptions = array(
                 'cache_id_prefix' => $prefix,
-                'lifetime' => mr_var::get('mrconfig')->cache_lifetime,
+                'lifetime' => mr_var::instance()->get('mrconfig')->cache_lifetime,
             );
 
             $backendoptions = array(

@@ -31,17 +31,22 @@ require_once($CFG->dirroot.'/local/mr/framework/helper.php');
 /**
  * @see mr_html_notify
  */
-require_once($CFG->dirroot.'/local/mr/framework/notify.php');
+require_once($CFG->dirroot.'/local/mr/framework/html/notify.php');
 
 /**
  * @see mr_html_tabs
  */
-require_once($CFG->dirroot.'/local/mr/framework/tabs.php');
+require_once($CFG->dirroot.'/local/mr/framework/html/tabs.php');
 
 /**
  * @see mr_html_heading
  */
-require_once($CFG->dirroot.'/local/mr/framework/heading.php');
+require_once($CFG->dirroot.'/local/mr/framework/html/heading.php');
+
+/**
+ * @see mr_readonly
+ */
+require_once($CFG->dirroot.'/local/mr/framework/readonly.php');
 
 /**
  * @see mr_var
@@ -60,7 +65,7 @@ require_once($CFG->dirroot.'/local/mr/framework/var.php');
  * @author Mark Nielsen
  * @example controller/default.php See a class that extends mr_controller
  */
-abstract class mr_controller {
+abstract class mr_controller extends mr_readonly {
     /**
      * Name of the controller, this is automatically defined in __construct
      *
@@ -198,27 +203,6 @@ abstract class mr_controller {
     }
 
     /**
-     * To the outside world, just about all data members
-     * are readonly, provide get access here
-     *
-     * @param string $method Method name should be get_{dataMember}()
-     * @param array $arguments Should be empty, no args needed
-     * @return mixed
-     * @throws coding_exception
-     */
-    public function __call($method, $arguments) {
-        $parts = explode('_', $method);
-
-        if (!empty($parts[0]) and $parts[0] == 'get' and !empty($parts[1])) {
-            $member = $parts[1];
-            if (property_exists($this, $member)) {
-                return $this->$member;
-            }
-        }
-        throw new coding_exception("Method $method does not exist in class ".get_class($this));
-    }
-
-    /**
      * Controller setup
      *
      * @return void
@@ -297,13 +281,13 @@ abstract class mr_controller {
      * @example settings.php See how to save global config to work with this method
      */
     public function get_config() {
-        if (!mr_var::exists($this->plugin)) {
+        if (!mr_var::instance()->exists($this->plugin)) {
             if (!$config = get_config($this->plugin)) {
                 $config = new stdClass;
             }
-            mr_var::set($this->plugin, $config);
+            mr_var::instance()->set($this->plugin, $config);
         }
-        return mr_var::get($this->plugin);
+        return mr_var::instance()->get($this->plugin);
     }
 
     /**

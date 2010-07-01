@@ -94,8 +94,8 @@ class mr_cache_test extends UnitTestCase {
         if (!defined('MR_CACHE_TEST')) {
             return;
         }
-        $old = mr_var::get('mrconfig')->cache_lifetime;
-        mr_var::get('mrconfig')->cache_lifetime = 0;
+        $old = mr_var::instance()->get('mrconfig')->cache_lifetime;
+        mr_var::instance()->get('mrconfig')->cache_lifetime = 0;
 
         $cache = new mr_cache('test/mr/cache');
 
@@ -106,6 +106,6 @@ class mr_cache_test extends UnitTestCase {
         $this->assertTrue($cache->touch('key', 60));
         $this->assertTrue($cache->remove('key'));
 
-        mr_var::get('mrconfig')->cache_lifetime = $old;
+        mr_var::instance()->get('mrconfig')->cache_lifetime = $old;
     }
 }

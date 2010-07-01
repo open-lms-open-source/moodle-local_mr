@@ -11,9 +11,9 @@
  * @package blocks/reports
  **/
 
-require_once($CFG->dirroot.'/blocks/reports/model/column.php');
+require_once($CFG->dirroot.'/local/mr/framework/html/table/column.php');
 
-class block_reports_model_column_dynamic extends block_reports_model_column {
+class mr_html_table_column_dynamic extends mr_html_table_column {
 
     /**
      * The dynamic columns
@@ -25,8 +25,8 @@ class block_reports_model_column_dynamic extends block_reports_model_column {
     /**
      * Add a column to the model
      *
-     * @param block_reports_model_column $column The column object
-     * @return block_reports_model_column_dynamic
+     * @param mr_html_table_column $column The column object
+     * @return mr_html_table_column_dynamic
      */
     public function add_column($column) {
         $this->columns[$column->get_name()] = $column;
@@ -44,6 +44,15 @@ class block_reports_model_column_dynamic extends block_reports_model_column {
             return $this->columns[$name];
         }
         return false;
+    }
+
+    /**
+     * Get all columns
+     *
+     * @return array
+     */
+    public function get_columns() {
+        return $this->columns;
     }
 
     /**
@@ -121,20 +130,6 @@ class block_reports_model_column_dynamic extends block_reports_model_column {
     }
 
     /**
-     * Print all column table headers
-     */
-    public function th(&$position, $url, $sort, $order) {
-        $html = '';
-        foreach ($this->columns as $column) {
-            $html .= $column->th($position, $url, $sort, $order);
-            $position++;
-        }
-        $position--; // Back off one...
-
-        return $html;
-    }
-
-    /**
      * Table header for AJAX view
      */
     public function th_ajax() {
@@ -143,20 +138,6 @@ class block_reports_model_column_dynamic extends block_reports_model_column {
             $th[] = $column->th_ajax();
         }
         return implode(',', $th);
-    }
-
-    /**
-     * Print all column table definitions
-     */
-    public function td(&$position, $row) {
-        $html = '';
-        foreach ($this->columns as $column) {
-            $html .= $column->td($position, $row);
-            $position++;
-        }
-        $position--; // Back off one...
-
-        return $html;
     }
 
     /**

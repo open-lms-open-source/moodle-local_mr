@@ -37,8 +37,9 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  *
  * @package mr
  * @author Mark Nielsen
+ * @todo implement ArrayAccess
  */
-class mr_var extends ArrayObject {
+class mr_var extends stdClass {
 
     /**
      * mr_var object provides storage for shared objects.
@@ -48,23 +49,11 @@ class mr_var extends ArrayObject {
     private static $_instance = NULL;
 
     /**
-     * Retrieves the default mr_var instance.
+     * Get the global static instance of mr_var
      *
      * @return mr_var
      */
-    public static function get_instance() {
-        if (self::$_instance === NULL) {
-            self::init();
-        }
-        return self::$_instance;
-    }
-
-    /**
-     * Initialize the default mr_var instance.
-     *
-     * @return void
-     */
-    protected static function init() {
+    public static function instance() {
         if (self::$_instance === NULL) {
             // Automatically set mrconfig
             $config = get_config('local/mr');
@@ -74,86 +63,76 @@ class mr_var extends ArrayObject {
             }
             self::$_instance = new mr_var(array('mrconfig' => $config));
         }
+        return self::$_instance;
     }
 
     /**
-     * Unset the default mr_var instance.
+     * Setup with initial values
      *
-     * @return void
+     * @param array $init Initial values
      */
-    public static function _unset_instance() {
-        self::$_instance = NULL;
+    public function __construct($init = array()) {
+        $this->set($init);
     }
 
     /**
-     * Getter method, basically same as offsetGet().
+     * Set values
      *
-     * This method can be called from an object of type mr_var, or it
-     * can be called statically.  In the latter case, it uses the default
-     * static instance stored in the class.
-     *
-     * @param string $index - get the value associated with $index
-     * @return mixed
-     * @throws coding_exception if no entry is registerd for $index.
+     * @param mixed $param Pass an array(name => value, etc) or ($name, $value)
+     * @return mr_var
      */
-    public static function get($index) {
-        $instance = self::get_instance();
+    public function set() {
+        $args = func_get_args();
 
-        if (!$instance->offsetExists($index)) {
+        if (count($args) == 1) {
+            $args = array_shift($args);
+
+            if (!is_array($args)) {
+                throw new coding_exception('Invalid call to method set: single arg is not an array');
+            }
+        } else if (count($args) == 2) {
+            $args = array($args[0] => $args[1]);
+        } else {
+            throw new coding_exception('Invalid call to method set: invalid argument count');
+        }
+        foreach ($args as $name => $value) {
+            $this->$name = $value;
+        }
+        return $this;
+    }
+
+    /**
+     * Get a value at index
+     *
+     * @param string $index The index's value to fetch
+     * @return mr_var
+     * @todo allow the passing of a default?
+     */
+    public function get($index) {
+        if (!property_exists($this, $index)) {
             throw new coding_exception("No entry is registered for key '$index'");
         }
-        return $instance->offsetGet($index);
+        return $this->$index;
     }
 
     /**
-     * Setter method, basically same as offsetSet().
+     * Check if an index exists
      *
-     * This method can be called from an object of type mr_var, or it
-     * can be called statically.  In the latter case, it uses the default
-     * static instance stored in the class.
-     *
-     * @param string $index The location in the ArrayObject in which to store
-     *   the value.
-     * @param mixed $value The object to store in the ArrayObject.
-     * @return void
+     * @param string $index The index to check
+     * @return mr_var
      */
-    public static function set($index, $value) {
-        $instance = self::get_instance();
-        $instance->offsetSet($index, $value);
+    public function exists($index) {
+        return property_exists($this, $index);
     }
 
     /**
-     * Returns TRUE if the $index is a named value in mr_var,
-     * or FALSE if $index was not found in mr_var.
+     * Unset an index
      *
-     * @param  string $index
-     * @return boolean
+     * @param string $index The index to unset
+     * @return mr_var
      */
-    public static function exists($index) {
-        if (self::$_instance === null) {
-            return false;
-        }
-        return self::$_instance->offsetExists($index);
-    }
-
-    /**
-     * Constructs a parent ArrayObject with default
-     * ARRAY_AS_PROPS to allow acces as an object
-     *
-     * @param array $array data array
-     * @param integer $flags ArrayObject flags
-     */
-    public function __construct($array = array(), $flags = parent::ARRAY_AS_PROPS) {
-        parent::__construct($array, $flags);
-    }
-
-    /**
-     * @param string $index
-     * @returns mixed
-     *
-     * Workaround for http://bugs.php.net/bug.php?id=40442 (ZF-960).
-     */
-    public function offsetExists($index) {
-        return array_key_exists($index, $this);
+    public function remove($index) {
+        unset($this->$index);
+        return $this;
     }
 }

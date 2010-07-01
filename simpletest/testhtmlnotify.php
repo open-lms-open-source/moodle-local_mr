@@ -26,11 +26,11 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 /**
  * @see mr_html_notify
  */
-require_once($CFG->dirroot.'/local/mr/framework/notify.php');
+require_once($CFG->dirroot.'/local/mr/framework/html/notify.php');
 
 class mr_html_notify_test extends UnitTestCase {
 
-    public static $includecoverage = array('local/mr/framework/notify.php');
+    public static $includecoverage = array('local/mr/framework/html/notify.php');
 
     public function tearDown() {
         global $SESSION;

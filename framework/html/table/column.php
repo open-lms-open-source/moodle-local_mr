@@ -7,15 +7,14 @@
  * @package blocks/reports
  **/
 
-require_once($CFG->libdir.'/mr/bootstrap.php');
-require_once($CFG->dirroot.'/blocks/reports/model/config.php');
+require_once($CFG->dirroot.'/local/mr/framework/var.php');
 
-class block_reports_model_column {
+class mr_html_table_column {
 
     /**
      * Column settings/configurations
      *
-     * @var block_reports_model_config
+     * @var mr_var
      */
     protected $config;
 
@@ -25,14 +24,6 @@ class block_reports_model_column {
      * @var array
      */
     protected $formats = array();
-
-    /**
-     * Keep track of column suppression
-     * Only used for printing HTML
-     *
-     * @var array
-     */
-    protected static $suppress = array();
 
     /**
      * Column definition
@@ -46,7 +37,7 @@ class block_reports_model_column {
      */
     public function __construct($field, $heading = '', $config = array()) {
 
-        $this->config = new block_reports_model_config();
+        $this->config = new mr_var();
 
         // Extract column name from field name
         if (stripos($field, ' AS ') !== false) {
@@ -138,11 +129,20 @@ class block_reports_model_column {
      *
      * @param string $name Name of the config to set
      * @param mixed $value The value of the config
-     * @return block_reports_model_column
+     * @return mr_html_table_column
      */
     public function set_config($name, $value) {
         $this->config->$name = $value;
         return $this;
+    }
+
+    /**
+     * Get config object
+     *
+     * @return mr_var
+     */
+    public function get_config() {
+        return $this->config;
     }
 
     /**
@@ -151,7 +151,7 @@ class block_reports_model_column {
      * @param mixed $format This can be block_reports_model_format_abstract or a string
      *                      representing the format's name.  If a string, then keep passing
      *                      args which will be passed to the format's constructor
-     * @return block_reports_model_column
+     * @return mr_html_table_column
      */
     public function add_format($format) {
         if (is_string($format)) {
@@ -190,76 +190,15 @@ class block_reports_model_column {
     /**
      * Derive cell value from row and position
      *
-     * @param int $position Current column position
      * @param object $row Database record object
      * @return string
      */
-    public function get_cell($position, $row) {
+    public function get_cell($row) {
         $cell = $this->extract_row_data($row);
         if ($cell === false) {
             $cell = '';
         }
-
-        // Enfoce column suppression
-        if ($this->config->suppress) {
-            if (isset(self::$suppress[$position]) and self::$suppress[$position] == $cell) {
-                $cell = '';  // Suppressed
-            } else {
-                if (isset(self::$suppress[$position]) and self::$suppress[$position] != $cell and $position == 0) {
-                    self::$suppress = array();
-                }
-                self::$suppress[$position] = $cell;
-            }
-        }
         return $cell;
-    }
-
-    /**
-     * Print Table Heading
-     *
-     * @param int $position The column position
-     * @param moodle_url $url Base URL
-     * @param string $sort The current sort column
-     * @param string $order The current sort order
-     * @return string
-     */
-    public function th(&$position, $url, $sort, $order) {
-        global $CFG;
-
-        // Adjust attributes for headers
-        $attributes = $this->config->attributes;
-        if (isset($attributes['class'])) {
-            $attributes['class'] .= " header c$position";
-        } else {
-            $attributes['class'] = "header c$position";
-        }
-        $attributes['scope'] = 'col';
-
-        // Figure out column sort controls
-        if ($this->config->sortable) {
-            if ($sort == $this->config->name) {
-                if ($order == SORT_ASC) {
-                    $icon    = ' <img src="'.$CFG->pixpath.'/t/down.gif" alt="'.get_string('asc').'" />';
-                    $sortstr = get_string('asc');
-                    $torder  = 'desc';
-                } else {
-                    $icon    = ' <img src="'.$CFG->pixpath.'/t/up.gif" alt="'.get_string('desc').'" />';
-                    $sortstr = get_string('desc');
-                    $torder  = 'asc';
-                }
-            } else {
-                $icon    = '';
-                $torder  = 'asc';
-                $sortstr = get_string('asc');
-            }
-            $url     = $url->out(false, array('tsort' => $this->config->name, 'torder' => $torder));
-            $heading = get_string('sortby').' '.$this->config->heading.' '.$sortstr;
-            $heading = $this->config->heading.get_accesshide($heading);
-            $heading = "<a href=\"$url\">$heading</a>$icon";
-        } else {
-            $heading = $this->config->heading;
-        }
-        return "\t\t<th".$this->attribute_string($attributes).">$heading</th>\n";
     }
 
     /**
@@ -287,26 +226,6 @@ class block_reports_model_column {
     }
 
     /**
-     * Print Table Data cell
-     *
-     * @param int $position Current column position
-     * @param object $row The current SQL row
-     * @return string
-     */
-    public function td(&$position, $row) {
-        // Adjust attributes for cells
-        $attributes = $this->config->attributes;
-        if (isset($attributes['class'])) {
-            $attributes['class'] .= " cell c$position";
-        } else {
-            $attributes['class'] = "cell c$position";
-        }
-        $cell = $this->get_cell($position, $row);
-
-        return "\t\t<td".$this->attribute_string($attributes).">$cell</td>\n";
-    }
-
-    /**
      * Get column name and value for AJAX - will be used
      * to generate record object for JSON
      *
@@ -316,22 +235,5 @@ class block_reports_model_column {
      */
     public function td_ajax(&$position, $row) {
         return array($this->get_name() => $this->get_cell($position, $row));
-    }
-
-    /**
-     * Attributes array to a string
-     *
-     * @param array $attributes Array
-     * @return string
-     */
-    protected function attribute_string($attributes) {
-        if (empty($attributes)) {
-            return '';
-        }
-        $pairs = array();
-        foreach ($attributes as $name => $value) {
-            $pairs[] = "$name=\"".s($value).'"';
-        }
-        return ' '.implode(' ', $pairs);
     }
 }
