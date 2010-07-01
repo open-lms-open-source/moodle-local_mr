@@ -64,7 +64,7 @@ class mr_format_string extends mr_format_abstract {
      * @param boolean $format Run the value though format_string()
      * @param boolean $striplinks Passed to format_string() when $format = true
      */
-    public function __construct($isnull = '', $format = false, $striplinks = true) {
+    public function __construct($isnull = '', $format = true, $striplinks = true) {
         $this->isnull     = $isnull;
         $this->format     = $format;
         $this->striplinks = $striplinks;

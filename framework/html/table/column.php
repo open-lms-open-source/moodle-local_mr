@@ -1,16 +1,40 @@
 <?php
 /**
- * Model Table Column
+ * Moodlerooms Framework
  *
- * @author Mark Nielsen
- * @version $Id$
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see http://opensource.org/licenses/gpl-3.0.html.
+ *
+ * @copyright Copyright (c) 2009 Moodlerooms Inc. (http://www.moodlerooms.com)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License
  * @package mr
- **/
+ * @author Mark Nielsen
+ */
 
+defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
+
+/**
+ * @see mr_var
+ */
 require_once($CFG->dirroot.'/local/mr/framework/var.php');
 
+/**
+ * MR HTML Table Column
+ *
+ * @author Mark Nielsen
+ * @package mr
+ **/
 class mr_html_table_column {
-
     /**
      * Column settings/configurations
      *
@@ -132,7 +156,7 @@ class mr_html_table_column {
      * @return mr_html_table_column
      */
     public function set_config($name, $value) {
-        $this->config->$name = $value;
+        $this->config->set($name, $value);
         return $this;
     }
 
@@ -161,7 +185,7 @@ class mr_html_table_column {
             array_shift($args);
 
             $helper = new mr_helper();
-            $format = $helper->load("model/format/$format", $args);
+            $format = $helper->load("format/$format", $args);
 
         } else if (!$format instanceof mr_format_abstract) {
             throw new coding_exception('Invalid format parameter');
@@ -186,6 +210,8 @@ class mr_html_table_column {
         }
         if (array_key_exists($this->config->name, $row)) {
             $value = $row[$this->config->name];
+
+            // Apply all formats to the value
             foreach ($this->formats as $format) {
                 if ($value instanceof html_table_cell) {
                     $value->text = $format->format($value->text);
@@ -217,6 +243,7 @@ class mr_html_table_column {
      * JS to define column header
      *
      * @return string
+     * @todo Remove and replace with renderer
      */
     public function th_ajax() {
         if ($this->config->sortable) {
@@ -243,6 +270,7 @@ class mr_html_table_column {
      * @param int $position Current column position
      * @param object $row The current SQL row
      * @return array
+     * @todo Remove and replace with renderer
      */
     public function td_ajax(&$position, $row) {
         return array($this->get_name() => $this->get_cell($position, $row));

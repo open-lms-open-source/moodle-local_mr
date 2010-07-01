@@ -1,20 +1,52 @@
 <?php
 /**
- * Model Table
+ * Moodlerooms Framework
  *
- * @author Mark Nielsen
- * @version $Id$
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see http://opensource.org/licenses/gpl-3.0.html.
+ *
+ * @copyright Copyright (c) 2009 Moodlerooms Inc. (http://www.moodlerooms.com)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License
  * @package mr
- **/
+ * @author Mark Nielsen
+ */
+
+defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
 /**
  * @see mr_readonly
  */
 require_once($CFG->dirroot.'/local/mr/framework/readonly.php');
 
+/**
+ * @see mr_html_table_column
+ */
 require_once($CFG->dirroot.'/local/mr/framework/html/table/column.php');
+
+/**
+ * @see mr_html_table_column_dynamic
+ */
 require_once($CFG->dirroot.'/local/mr/framework/html/table/column/dynamic.php');
 
+/**
+ * MR HTML Table
+ *
+ * Used to generate a HTML table with sorting.
+ *
+ * @author Mark Nielsen
+ * @package mr
+ * @todo Add demo area, add better comments
+ **/
 class mr_html_table extends mr_readonly implements renderable {
     /**
      * Sort request param
@@ -285,7 +317,7 @@ class mr_html_table extends mr_readonly implements renderable {
      */
     public function get_sql_select() {
         $fields = array();
-        foreach ($this->columns as $column) {
+        foreach ($this->get_columns() as $column) {
             if ($field = $column->get_select_field()) {
                 $fields[] = $field;
             }
@@ -297,24 +329,17 @@ class mr_html_table extends mr_readonly implements renderable {
      * Get sort SQL
      *
      * @return string
+     * @throws coding_exception
      */
     public function get_sql_sort() {
         if (!empty($this->sort)) {
-            if (array_key_exists($this->sort, $this->columns)) {
-                $column = $this->columns[$this->sort];
-            } else {
-                // Try to find within dynamic column
-                foreach ($this->columns as $dynamic) {
-                    if ($dynamic instanceof mr_html_table_column_dynamic) {
-                        if ($column = $dynamic->get_column($this->sort)) {
-                            break;
-                        }
-                    }
-                }
-            }
-            if (empty($column)) {
+            // Find our column that we are sorting by
+            $columns = $this->get_columns();
+            if (!array_key_exists($this->sort, $columns)) {
                 throw new coding_exception('Invalid column sorting');
             }
+            $column = $columns[$this->sort];
+
             $sort = array();
             foreach ($column->get_sorting() as $column => $order) {
                 if (is_null($order)) {
@@ -395,6 +420,7 @@ class mr_html_table extends mr_readonly implements renderable {
      * @param string $format Format name or mr_format_abstract
      * @param mixed $x Keep passing params to pass to the format's constructor
      * @return mr_html_table
+     * @throws coding_exception
      */
     public function add_format($columns, $format) {
         // Get remaining args, burn columns
