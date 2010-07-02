@@ -8,3 +8,8 @@ div.paging div.singleselect form div {
 div.paging div.singleselect {
     padding-left: 10px;
 }
+
+/* mr_file_export styles */
+div.mr_file_export .singleselect {
+    text-align: center;
+}

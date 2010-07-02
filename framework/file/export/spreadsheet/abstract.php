@@ -28,6 +28,113 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  */
 require_once($CFG->dirroot.'/local/mr/framework/file/export/abstract.php');
 
-class mr_file_export_spreadsheet_abstract extends mr_file_export_abstract {
-    
+abstract class mr_file_export_spreadsheet_abstract extends mr_file_export_abstract {
+    /**
+     * Max rows per worksheet
+     */
+    const MAXROWS = 65535;
+
+    /**
+     * Workbook instance
+     *
+     * @var MoodleExcelWorkbook
+     */
+    protected $workbook;
+
+    /**
+     * Current worksheet
+     *
+     * @var object
+     */
+    protected $writer;
+
+    /**
+     * Current row
+     *
+     * @var int
+     */
+    protected $row = 0;
+
+    /**
+     * Worksheet count
+     *
+     * @var int
+     */
+    protected $worksheet = 1;
+
+    /**
+     * Export name
+     *
+     * @var string
+     */
+    protected $name = '';
+
+    /**
+     * Cannot make files with the lib
+     */
+    public function generates_file() {
+        return false;
+    }
+
+    /**
+     * Open workbook and send to browser
+     *
+     * @param string $name The preferred file name (no extension)
+     * @return void
+     */
+    public function init($name) {
+        $this->name = $name;
+        $filename   = clean_filename($name);
+        $filename   = trim($name, '_');
+
+        $this->workbook = $this->new_workbook();
+        $this->workbook->send("$filename.".$this->get_extension());
+
+        // Adding the worksheet
+        $this->writer =& $this->workbook->add_worksheet("$this->name $this->worksheet");
+    }
+
+    /**
+     * Write headers to the file
+     */
+    public function set_headers($headers) {
+        $this->add_row($headers);
+    }
+
+    /**
+     * Write the row to the file
+     */
+    public function add_row($row) {
+        if ($this->row >= self::MAXROWS) {
+            $this->worksheet++;
+
+            $this->writer =& $this->workbook->add_worksheet("$this->name $this->worksheet");
+            $this->row    = 0;
+        }
+
+        $column = 0;
+        foreach ($row as $cell) {
+            if (is_numeric($cell)) {
+                $this->writer->write_number($this->row, $column, $cell);
+            } else {
+                $this->writer->write_string($this->row, $column, $cell);
+            }
+            $column++;
+        }
+        $this->row++;
+    }
+
+    /**
+     * Close the file pointer and return file
+     */
+    public function close() {
+        $this->workbook->close();
+    }
+
+    /**
+     * Generate a new workbook
+     *
+     * @return mixed
+     */
+    abstract public function new_workbook();
 }

@@ -175,17 +175,18 @@ class mr_html_filter {
     /**
      * Display the form
      *
-     * @return void
+     * @return string
      * @todo Remove this? Implement renderable?
      */
     public function display() {
         foreach ($this->filters as $filter) {
             if (!($filter instanceof mr_html_filter_hidden)) {
                 $this->init();
-                $this->mform->display();
+                return $this->helper->buffer(array($this->mform, 'display'));
                 break;
             }
         }
+        return '';
     }
 
     /**

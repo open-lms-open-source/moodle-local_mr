@@ -196,15 +196,15 @@ class mr_html_table_column {
     }
 
     /**
-     * Given a row from the SQL query, get the column's field value
+     * Derive cell value from row
      *
-     * @param object $row The SQL row
+     * @param object $row Generally database record object
      * @return mixed
      * @throws coding_exception
      */
-    public function extract_row_data($row) {
+    public function get_cell($row) {
         if ($row instanceof html_table_row) {
-            throw new coding_exception('Cannot extract row data from html_table_row classes. '.
+            throw new coding_exception('Cannot get cell from html_table_row classes. '.
                                        'This must be done before adding the cell to a '.
                                        'html_table_row instance');
         }
@@ -221,21 +221,7 @@ class mr_html_table_column {
             }
             return $value;
         }
-        return false;
-    }
-
-    /**
-     * Derive cell value from row and position
-     *
-     * @param object $row Database record object
-     * @return mixed
-     */
-    public function get_cell($row) {
-        $cell = $this->extract_row_data($row);
-        if ($cell === false) {
-            $cell = '';
-        }
-        return $cell;
+        return '';
     }
 
     /**

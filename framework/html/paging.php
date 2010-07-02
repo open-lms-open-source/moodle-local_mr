@@ -156,6 +156,26 @@ class mr_html_paging extends mr_readonly implements renderable {
     }
 
     /**
+     * Set the export instance
+     *
+     * This will set the limitfrom and limitnum
+     * appropriately for exporting
+     *
+     * @param mr_file_export $export The export plugin
+     * @return mr_html_paging
+     */
+    public function set_export($export) {
+        if ($export->is_exporting()) {
+            // Start from the beginning
+            $this->page = 0;
+
+            // Grab as many rows as the exporter can handle
+            $this->perpage = $export->instance()->max_rows();
+        }
+        return $this;
+    }
+
+    /**
      * Get limitfrom SQL value
      *
      * @return int

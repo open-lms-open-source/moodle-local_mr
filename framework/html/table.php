@@ -133,10 +133,12 @@ class mr_html_table extends mr_readonly implements renderable {
     protected $emptymessage;
 
     /**
-     * Route rows to an export plugin
-     * instead of $this->rows
+     * Export class
      *
-     * @var mr_file_export_abstract
+     * When set through set_export(), then rows are routed
+     * to this export class.
+     *
+     * @var mr_file_export
      */
     protected $export;
 
@@ -248,20 +250,22 @@ class mr_html_table extends mr_readonly implements renderable {
     }
 
     /**
-     * Set an export plugin.  Model will
-     * send all rows to the plugin instead
+     * Set the export instance
+     *
+     * Table will send all rows to the plugin instead
      * of itself
      *
-     * @param mr_file_export_abstract $export The export plugin
+     * @param mr_file_export $export The export plugin
      * @return mr_html_table
      */
     public function set_export($export) {
-        $headers = array();
-        foreach ($this->columns as $column) {
-            $column->add_heading($headers);
+        if ($export->is_exporting()) {
+            $headers = array();
+            foreach ($this->columns as $column) {
+                $column->add_heading($headers);
+            }
+            $export->instance()->set_headers($headers);
         }
-        $export->set_headers($headers);
-
         $this->export = $export;
         return $this;
     }
@@ -446,31 +450,59 @@ class mr_html_table extends mr_readonly implements renderable {
      * @return mr_html_table
      */
     public function add_row($row) {
-
         if (is_object($row)) {
             $row = (array) $row;
         }
-
-        // Send the row to export or to $this->rows
-        if ($this->export) {
-            // @todo Need to handle when html_table_cells and html_table_rows are passed
-            $data = array();
-            // @todo change $this->columns to get_columns() then wont have to worry about an array of cells
-            foreach ($this->columns as $column) {
-                $cell = $column->extract_row_data($row);
-
-                if (is_array($cell)) {
-                    $data = array_merge($data, $cell);
-                } else if ($cell !== false) {
-                    $data[] = $cell;
-                } else {
-                    $data[] = '';
-                }
-            }
-            $this->export->add_row($data);
+        // Send the row to export or store internally
+        if ($this->export instanceof mr_file_export and $this->export->is_exporting()) {
+            $this->export->instance()->add_row($this->extract_data($row));
         } else {
             $this->rows[] = $row;
         }
         return $this;
+    }
+
+    /**
+     * Extract column data from a row while trying
+     * to keep everything in the same order as the
+     * columns.  Generally, don't need to call this
+     * method unless you are micro managing an export.
+     *
+     * @param mixed $row Can be an object, array or html_table_row (if this, then ensure proper cell ordering!)
+     * @return array
+     */
+    public function extract_data($row) {
+        if (is_object($row)) {
+            $row = (array) $row;
+        }
+
+        $data    = array();
+        $columns = $this->get_columns();
+
+        // Try our best with html_table_row
+        if ($row instanceof html_table_row) {
+            foreach ($row->cells as $cell) {
+                if ($cell instanceof html_table_cell) {
+                    $data[] = $cell->text;
+                } else {
+                    $data[] = $cell;
+                }
+            }
+        } else {
+            foreach ($columns as $column) {
+                $cell = $column->get_cell($row);
+
+                if ($cell instanceof html_table_cell) {
+                    $data[] = $cell->text;
+                } else {
+                    $data[] = $cell;
+                }
+            }
+        }
+        // Make sure we return even number of columns
+        if (count($data) < count($columns)) {
+            $data = array_pad($data, $columns, '');
+        }
+        return $data;
     }
 }

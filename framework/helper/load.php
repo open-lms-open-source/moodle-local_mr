@@ -102,27 +102,36 @@ class mr_helper_load extends mr_helper_abstract {
      *
      * @param string $path Relative file path to class definition, EG: controller/mycontroller
      *                     Include "/*" at the end of path to load all files in path
+     *                     Include "/**" at the end of path to load all files in path and sub directories
      * @param array $arguments Arguments to pass to the constructor
      * @param string $namespace Alter namespace
      * @return mixed
      * @throws coding_exception
-     * @todo Add "path/**" support where it recursively loads
      */
     public function direct($path, $arguments = array(), $namespace = NULL) {
         global $CFG;
 
-        if (substr($path, -2) == '/*') {
-            // Load all classes in a directory
-            $path = rtrim($path, '/*');
-            $path = $this->resolve_namespace($path, $namespace);
-
-            // Restirct to only files and single depth
-            $files = get_directory_list("$CFG->dirroot/$path", array('abstract.php'), false);
+        // Load all classes in a directory
+        if (substr($path, -1) == '*') {
+            // See if it is recursive or not
+            if (substr($path, -3) == '/**') {
+                $descend = true;
+            } else if (substr($path, -2) == '/*') {
+                $descend = false;
+            } else {
+                throw new coding_exception("Improper use of asterisk in path ($path), use {path}/* or {path}/**");
+            }
+            $path  = rtrim($path, '/*');
+            $path  = $this->resolve_namespace($path, $namespace);
+            $files = get_directory_list("$CFG->dirroot/$path", array('abstract.php'), $descend);
 
             // Generate instances for each file
             $instances = array();
             foreach ($files as $file) {
-                $name = pathinfo($file, PATHINFO_FILENAME);
+                $filename = pathinfo($file, PATHINFO_FILENAME);
+                $dirname  = pathinfo($file, PATHINFO_DIRNAME);
+                $name     = trim("$dirname/$filename", '/.');
+
                 $instances[$name] = $this->direct("$path/$name", $arguments, '');
             }
             return $instances;

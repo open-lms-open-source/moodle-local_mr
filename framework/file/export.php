@@ -34,72 +34,278 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  * @author Mark Nielsen
  */
 class mr_file_export implements renderable {
-    // Need a way to say...
-    // Only x y z plugins are ok to use
-    // Only plugins that generate files
-    // Request var
-    // Methods for sending file and closing...
 
+    /**
+     * Flag for if exporting is currently underway or not
+     *
+     * @var boolean
+     */
+    protected $exporting = false;
+
+    /**
+     * Loaded exporters, only these can be used
+     *
+     * @var array
+     */
+    protected $exporters = array();
+
+    /**
+     * Export file name
+     *
+     * @var string
+     */
+    protected $filename;
+
+    /**
+     * Exporter instance
+     *
+     * @var mr_file_export_abstract
+     */
     protected $instance = NULL;
 
-    public function __construct(...) {
+    /**
+     * Moodle URL - used for rendering
+     *
+     * @var moodle_url
+     */
+    protected $url;
 
+    /**
+     * Exporter setup
+     *
+     * There are many ways to define which exporters are available.  The $exporters
+     * param can be a string or an array of strings that get sent to the mr_helper_load class.
+     *
+     * Examples:
+     * <?php
+     *      // Load all exporters
+     *      $export = new mr_file_export('**');
+     *
+     *      // Load only text exporters
+     *      $export = new mr_file_export('text/*');
+     *
+     *      // Load all spreadsheet and text/csv exporters
+     *      $export = new mr_file_export(array('text/csv', 'spreadsheet/*'));
+     * ?>
+     *
+     * @param mixed $exporters This can take on many forms, see above for examples.
+     * @param boolean $requirefile If true, then no export plugin will be included that cannot generate a file
+     * @param moodle_url $url Moodle URL for current page, used for rendering only
+     * @param string $filename The exported file's name
+     */
+    public function __construct($exporters = '**', $requirefile = false, moodle_url $url = NULL, $filename = 'export') {
+        // Store params
+        $this->url = $url;
+        $this->set_filename($filename);
 
-        if ($mrexport = optional_param('mrexport', '', PARAM_SAFEDIR) {
-            $this->init($mrexport);
+        if (!is_array($exporters)) {
+            $exporters = array($exporters);
+        }
+
+        // Load exporters
+        $helper = new mr_helper();
+        foreach ($exporters as $exporter) {
+            $plugins = $helper->load("file/export/$exporter");
+
+            // Might return a single plugin
+            if (!is_array($plugins)) {
+                $plugins = array($plugins);
+            }
+            foreach ($plugins as $plugin) {
+                $this->exporters[$plugin->type()] = $plugin;
+            }
+        }
+        // Make sure we successfully loaded some
+        if (empty($this->exporters)) {
+            throw new coding_exception('Failed to load exporters, check the $exporters param value');
+        }
+
+        // If files are requred, then weed out any exporters that cannot produce a file
+        if ($requirefile) {
+            foreach ($this->exporters as $name => $exporter) {
+                if (!$exporter->generates_file()) {
+                    unset($this->exporters[$name]);
+                }
+            }
+            if (empty($this->exporters)) {
+                throw new coding_exception('All loaded exporters do not generate files, but files required');
+            }
+        }
+
+        // Auto-detect if we are exporting, if yes, fire 'er up!
+        if ($exporter = optional_param('mrexporter', '', PARAM_PATH)) {
+            $this->init($exporter);
         }
     }
 
+    /**
+     * Once an export has started, you can get access
+     * to the current exporter through this method.
+     *
+     * @return mr_file_export_abstract
+     */
     public function instance() {
-        if (!$this->instance instanceof ) {
+        if (!$this->instance instanceof mr_file_export_abstract) {
             throw new coding_exception('Must call init() before the export instance is available');
         }
         return $this->instance;
     }
 
-    public function init($format) {
+    /**
+     * Are we currently exporting?
+     *
+     * @return boolean
+     */
+    public function is_exporting() {
+        return $this->exporting;
+    }
+
+    /**
+     * Start exporting process
+     *
+     * Can be manually called.
+     *
+     * @param string $exporter The exporter to use
+     * @param string $filename Optionally change the file name
+     * @return mr_file_export
+     * @throws coding_exception
+     */
+    public function init($exporter, $filename = NULL) {
+        if ($this->is_exporting()) {
+            throw new coding_exception('Cannot re-init while exporting');
+        }
+        $this->set_filename($filename);
+
         // Set this
         $this->exporting = true;
 
         // Bump to 5 minutes
         set_time_limit((MINSECS * 5));
 
-        // Make the export instance
-        helper->load
+        // Set the exporter instance
+        if (!array_key_exists($exporter, $this->exporters)) {
+            throw new coding_exception('The passed exporter is not one of the available exporters');
+        }
+        $this->instance = $this->exporters[$exporter];
 
-        // Perform export
-        $export->init($report->name());
+        // Start export
+        $this->instance->init($this->filename);
+        return $this;
     }
 
+    /**
+     * Stop exporting and if the exporter
+     * returns a file, then the file is returned,
+     * otherwise, always returns false.
+     *
+     * To remove the export file from the file
+     * system, you must call mr_file_export::cleanup()
+     *
+     * @return mixed
+     */
     public function close() {
-        // Close, may return a file
-        $file = $export->close();
+        if ($this->is_exporting()) {
+            // Close, may return a file
+            $file = $this->instance->close();
 
-        // Any cleanup
-        $export->cleanup();
+            // Flip this off
+            $this->exporting = false;
 
-        return $file;
+            if (file_exists($file)) {
+                return $file;
+            }
+        }
+        return false;
     }
 
+    /**
+     * Calls the exporters cleanup.
+     *
+     * If the exporter generates a file, then the file
+     * is deleted.
+     *
+     * @return mr_file_export
+     */
+    public function cleanup() {
+        if (!$this->instance instanceof mr_file_export_abstract) {
+            $this->instance->cleanup();
+        }
+        return $this;
+    }
+
+    /**
+     * Closes, cleans and sends the exported file to the
+     * browser for download.
+     *
+     * If a file is sent, this method will kill the PHP script!
+     *
+     * @return void
+     */
     public function send() {
-        // Close, may return a file
-        $file = $export->close();
+        global $CFG;
 
-        if ($export->generates_file() and file_exists($file)) {
-            $content = file_get_contents($file);
+        require_once($CFG->libdir.'/filelib.php');
+
+        if ($this->is_exporting()) {
+            // We might get a file
+            $file = $this->close();
+
+            // Grab file contents if we got em
+            if ($file !== false) {
+                $content = file_get_contents($file);
+            }
+
+            // Any cleanup (will delete the file)
+            $this->cleanup();
+
+            // Send contents for download (only for exports that generate a file)
+            if (!empty($content)) {
+                send_file($content, pathinfo($file, PATHINFO_BASENAME), 'default', 0, true, true);
+            }
+            die;
         }
-
-        // Any cleanup
-        $export->cleanup();
-
-        // Send contents for download (only for exports that generate a file)
-        if (!empty($content)) {
-            send_file($content, pathinfo($file, PATHINFO_BASENAME), 'default', 0, true, true);
-        }
-        die;
     }
 
-    public function is_exporting() {
-        return $this->exporting;
+    /**
+     * Change the export file name
+     *
+     * @param string $filename The new file name
+     * @return mr_file_export
+     * @throws coding_exception
+     */
+    public function set_filename($filename) {
+        if ($this->is_exporting()) {
+            throw new coding_exception('Cannot change the file name while exporting');
+        }
+        if (!is_null($filename)) {
+            $this->filename = $filename;
+        }
+        return $this;
+    }
+
+    /**
+     * Get the URL
+     *
+     * @return moodle_url
+     * @throws coding_exception
+     */
+    public function get_url() {
+        if (!$this->url instanceof moodle_url) {
+            throw new coding_exception('Must pass an instance of moodle_url');
+        }
+        return $this->url;
+    }
+
+    /**
+     * Get select options for the currently available exporters
+     *
+     * @return array
+     */
+    public function get_select_options() {
+        $options = array();
+        foreach ($this->exporters as $type => $exporter) {
+            $options[$type] = $exporter->name();
+        }
+        return $options;
     }
 }

@@ -136,25 +136,6 @@ class mr_html_table_column_dynamic extends mr_html_table_column {
     }
 
     /**
-     * Get row data from all columns
-     */
-    public function extract_row_data($row) {
-        $data = array();
-        foreach ($this->columns as $column) {
-            $cell = $column->extract_row_data($row);
-
-            if (is_array($cell)) {
-                $data += $cell;
-            } else if ($cell !== false) {
-                $data[] = $cell;
-            } else {
-                $data[] = '';
-            }
-        }
-        return $data;
-    }
-
-    /**
      * Table header for AJAX view
      * @todo Remove and replace with renderer
      */

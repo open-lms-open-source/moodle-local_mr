@@ -249,4 +249,17 @@ class local_mr_renderer extends plugin_renderer_base {
         }
         return html_writer::table($htmltable);
     }
+
+    /**
+     * Render mr_file_export
+     *
+     * @param mr_file_export $export mr_file_export instance
+     * @return string
+     */
+    protected function render_mr_file_export(mr_file_export $export) {
+        $select = new single_select($export->get_url(), 'mrexporter', $export->get_select_options());
+        $select->set_label(get_string('export', 'local_mr'));
+
+        return html_writer::tag('div', $this->output->render($select), array('class' => 'mr_file_export'));
+    }
 }
