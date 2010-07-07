@@ -329,13 +329,6 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
         // Set the exporter
         $this->export->init($exporter, $filename);
 
-        $this->filter_init();
-        $this->table_init();
-
-        // Setup table for export, send all records to export plugin
-        $this->table->set_export($this->export);
-        $this->paging->set_export($this->export);
-
         // Send rows to export
         $this->table_fill();
 
@@ -361,41 +354,33 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
      * @return void
      */
     public function table_fill() {
-        // Best place to do this?
         if ($this->export instanceof mr_file_export and $this->export->is_exporting()) {
             $this->table->set_export($this->export);
             $this->paging->set_export($this->export);
         }
 
-        // if (!$this->config->cache or !$this->table->cached()) {
-            $total = $this->get_recordset_count($this->filter_sql());
+        $total = $this->get_recordset_count($this->filter_sql());
 
-            if ($this->config->maxrows == 0 or $total <= $this->config->maxrows) {
-                $rs = $this->get_recordset(
-                    $this->filter_sql(),
-                    $this->get_sql_sort(),
-                    $this->paging->get_limitfrom(),
-                    $this->paging->get_limitnum()
-                );
-                foreach ($rs as $row) {
-                    $this->table_fill_row($row);
-                }
-                $rs->close();
-
-                if ($this->paging->get_perpage() > 0) {
-                    $this->paging->set_total($total);
-                }
-            } else {
-                $this->table->set_emptymessage(
-                    get_string('toomanyrows', 'local_mr', (object) array('total' => $total, 'max' => $this->config->maxrows))
-                );
+        if ($this->config->maxrows == 0 or $total <= $this->config->maxrows) {
+            $rs = $this->get_recordset(
+                $this->filter_sql(),
+                $this->get_sql_sort(),
+                $this->paging->get_limitfrom(),
+                $this->paging->get_limitnum()
+            );
+            foreach ($rs as $row) {
+                $this->table_fill_row($row);
             }
-        // }
+            $rs->close();
 
-        // Best place to do this?
-        // if ($this->export instanceof mr_file_export) {
-        //     $this->export->send();
-        // }
+            if ($this->paging->get_perpage() > 0) {
+                $this->paging->set_total($total);
+            }
+        } else {
+            $this->table->set_emptymessage(
+                get_string('toomanyrows', 'local_mr', (object) array('total' => $total, 'max' => $this->config->maxrows))
+            );
+        }
     }
 
     /**
