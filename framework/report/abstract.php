@@ -140,36 +140,6 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
     static public $ajaxdefault = NULL;
 
     /**
-     * Passed to get_string calls.
-     *
-     * @return string
-     */
-    abstract public function get_component();
-
-    /**
-     * Return a human readable name of the plugin
-     *
-     * @return string
-     */
-    public function name() {
-        return get_string('plugin-'.$this->type(), $this->get_component());
-    }
-
-    /**
-     * Returns the plugin's name based on class name
-     *
-     * @return string
-     */
-    public function type() {
-        $classparts = explode('_', get_class($this));
-
-        // Burn the word class
-        array_pop($classparts);
-
-        return array_pop($classparts);
-    }
-
-    /**
      * Construct
      *
      * @param moodle_url $url Base URL
@@ -236,7 +206,7 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
 
         // Setup Export
         if ($this->config->export) {
-            $this->export = new mr_file_export($this->config->export, false, $this->url, 'TODOEXPORTNAME');
+            $this->export = new mr_file_export($this->config->export, false, $this->url, $this->name());
         }
     }
 
@@ -267,12 +237,37 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
     abstract public function table_init();
 
     /**
+     * Passed to get_string calls.
+     *
+     * @return string
+     */
+    abstract public function get_component();
+
+    /**
+     * Return a human readable name of the plugin
+     *
+     * @return string
+     */
+    public function name() {
+        return get_string($this->type(), $this->get_component());
+    }
+
+    /**
+     * Returns the plugin's name based on class name
+     *
+     * @return string
+     */
+    public function type() {
+        return get_class($this);
+    }
+
+    /**
      * Get report description text
      *
      * @return mixed
      */
     public function get_description() {
-        $identifier  = $this->type().'-description';
+        $identifier  = $this->type().'_description';
         if (get_string_manager()->string_exists($identifier, $this->get_component())) {
             return get_string($identifier, $this->get_component());
         }

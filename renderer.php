@@ -307,6 +307,7 @@ class local_mr_renderer extends plugin_renderer_base {
      * @return string
      * @todo display SELECT * SQL and SELECT COUNT(*) SQL
      * @todo Perhaps wrap everything in a div to control layout?  Then other render methods don't do align, etc
+     * @todo Render in heading with help button?
      */
     public function render_mr_report_abstract(mr_report_abstract $report) {
         // Fill the table
