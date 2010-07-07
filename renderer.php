@@ -321,24 +321,21 @@ class local_mr_renderer extends plugin_renderer_base {
         }
 
         // Report SQL
-        $sql = $report->get_sql();
-        if (/*$this->helper->reportsql() and*/ !empty($sql)) {
-            $lines = explode("\n", $sql);
-            $sql   = array();
-            foreach ($lines as $line) {
-                // $line = trim($line); Bad idea ?
-                if (!empty($line)) {
-                    $sql[] = $line;
+        $executedsql = $report->get_executedsql();
+        if (/*$this->helper->reportsql() and*/ !empty($executedsql)) {
+            $sql = '';
+            foreach ($executedsql as $values) {
+                list($rawsql, $params) = $values;
+                $rawsql = trim($rawsql);
+
+                $sql .= s($rawsql)."\n\n";
+                if (!is_null($params)) {
+                    $sql .= s(var_export($params, true))."\n\n\n";
                 }
             }
-            $sql = implode("\n", $sql);
-            $sql = str_replace(' ORDER BY', 'ORDER BY', $sql);
-            $sql = trim($sql);
-            $sql = "<pre>$sql</pre>";
-
             $output .= $this->output->box(
                 $this->output->heading(get_string('reportsql', 'local_mr'), 4).
-                $this->output->box($sql, ''),
+                $this->output->box('<pre>'.trim($sql).'</pre>', ''),
                 'generalbox boxwidthwide boxaligncenter mr_report_sqlbox'
             );
         }

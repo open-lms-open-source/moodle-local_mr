@@ -77,14 +77,9 @@ class mr_html_filter_select extends mr_html_filter_abstract {
      * Limit by input value
      */
     public function sql() {
-        global $db;
-
         $preference = $this->preferences_get($this->name);
         if (!empty($preference)) {
-            if (is_numeric($preference)) {
-                return "$this->field = $preference";
-            }
-            return $this->field.' = '.$db->quote($preference);
+            return array("$this->field = ?", $preference);
         }
         return false;
     }

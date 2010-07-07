@@ -99,28 +99,11 @@ class mr_html_filter_selectmulti extends mr_html_filter_abstract {
      * Limit by input value
      */
     public function sql() {
-        global $db;
+        global $DB;
 
         $preference = $this->preferences_get($this->name);
         if (!empty($preference)) {
-            $preference = explode(',', $preference);
-
-            if (count($preference) == 1) {
-                if (is_numeric($preference[0])) {
-                    return $this->field.' = '.$preference[0];
-                }
-                return $this->field.' = '.$db->quote($preference[0]);
-            } else {
-                $values = array();
-                foreach ($preference as $value) {
-                    if (is_numeric($value)) {
-                        $values[] = $value;
-                    } else {
-                        $values[] = $db->quote($value);
-                    }
-                }
-                return $this->field.' IN ('.implode(',', $values).')';
-            }
+            return $DB->get_in_or_equal(explode(',', $preference));
         }
         return false;
     }

@@ -102,20 +102,23 @@ class mr_html_filter_daterange extends mr_html_filter_abstract {
      * Set limits on field
      */
     public function sql() {
-        $sql = array();
+        $sql    = array();
+        $params = array();
 
         $preference = $this->preferences_get($this->name.'_sd');
         if (!empty($preference)) {
-            $sql[] = "$this->field >= $preference";
+            $sql[]    = "$this->field >= ?";
+            $params[] = $preference;
         }
         $preference = $this->preferences_get($this->name.'_ed');
         if (!empty($preference)) {
             // Note, we may want "$this->field > 0 AND " added to the following
-            $sql[] = "$this->field <= $preference";
+            $sql[]    = "$this->field <= ?";
+            $params[] = $preference;
         }
 
         if (!empty($sql)) {
-            return implode(' AND ', $sql);
+            return array(implode(' AND ', $sql), $params);
         }
         return false;
     }

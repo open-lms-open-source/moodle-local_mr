@@ -102,10 +102,7 @@ class mr_html_filter_autocompleteid extends mr_html_filter_abstract {
     public function sql() {
         $preference = $this->preferences_get($this->name);
         if (!empty($preference)) {
-            if (is_numeric($preference)) {
-                return "$this->field = $preference";
-            }
-            return $this->field.' = \''.addslashes($preference).'\'';
+            return array("$this->field = ?", $preference);
         }
         return false;
     }

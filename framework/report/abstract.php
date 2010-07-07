@@ -140,6 +140,13 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
     static public $ajaxdefault = NULL;
 
     /**
+     * SQL executed by this report
+     *
+     * @var array
+     */
+    protected $executedsql = array();
+
+    /**
      * Construct
      *
      * @param moodle_url $url Base URL
@@ -359,12 +366,12 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
             $this->paging->set_export($this->export);
         }
 
-        $total = $this->get_recordset_count($this->filter_sql());
+        $total = $this->count_records($this->filter_sql());
 
         if ($this->config->maxrows == 0 or $total <= $this->config->maxrows) {
             $rs = $this->get_recordset(
                 $this->filter_sql(),
-                $this->get_sql_sort(),
+                $this->table->get_sql_sort(),
                 $this->paging->get_limitfrom(),
                 $this->paging->get_limitnum()
             );
@@ -396,87 +403,67 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
     /**
      * Get the recordset to the data for the report
      *
-     * @param string $filter Filter SQL
+     * @param array $filter Filter SQL and params
      * @param string $sort Sort SQL
      * @param string $limitfrom Limit from SQL
      * @param string $limitnum Limit number SQL
      * @return recordset
      */
-    public function get_recordset($filter = '', $sort = '', $limitfrom = '', $limitnum = '') {
+    public function get_recordset($filter = array(), $sort = '', $limitfrom = '', $limitnum = '') {
         global $DB;
 
-        if (!$sqlbody = $this->get_sql_body() or !$sqlselect = $this->get_sql_select()) {
-            return false;
+        if (empty($filter)) {
+            $filter = array('1 = 1', array());
         }
-        if (!empty($sort)) {
-            $sort = "ORDER BY $sort";
-        }
-        $sqlgroupby = $this->get_sql_groupby();
-        $sql        = "SELECT $sqlselect\n$sqlbody\n$filter\n$sqlgroupby\n$sort";
-        $this->sql  = "$sql\nlimit $limitfrom, $limitnum";
+        list($filtersql, $filterparams) = $filter;
+        list($sql, $params) = $this->get_sql($this->table->get_sql_select(), $filtersql, $filterparams);
 
-        return $DB->get_recordset_sql($sql, NULL, $limitfrom, $limitnum);
+        if (!empty($sort)) {
+            $sql .= "$sql\nORDER BY $sort";
+        }
+        $this->executedsql[] = array("$sql\nlimit $limitfrom, $limitnum", $params);
+
+        return $DB->get_recordset_sql($sql, $params, $limitfrom, $limitnum);
     }
 
     /**
      * Count the total number of records
      * that are included in the report
      *
-     * @param string $filter Filter SQL
+     * @param array $filter Filter SQL and params
      * @return int
      */
-    public function get_recordset_count($filter = '') {
+    public function count_records($filter = array()) {
         global $DB;
 
-        if (!$sqlbody = $this->get_sql_body()) {
-            return 0;
+        if (empty($filter)) {
+            $filter = array('1 = 1', array());
         }
-        $sqlgroupby = $this->get_sql_groupby();
+        list($filtersql, $filterparams) = $filter;
+        list($sql, $params)  = $this->get_count_sql($filtersql, $filterparams);
+        $this->executedsql[] = array($sql, $params);
 
-        if (empty($sqlgroupby)) {
-            $sql = "SELECT COUNT(*) $sqlbody$filter$sqlgroupby";
-        } else {
-            $sql = "SELECT COUNT(*) FROM (SELECT COUNT(*) $sqlbody$filter$sqlgroupby) t";
-        }
-        return $DB->count_records_sql($sql);
+        return $DB->count_records_sql($sql, $params);
     }
 
     /**
-     * Define the SQL select fields for the report
+     * Get the SQL to generate the report rows
      *
-     * @return string
+     * @param string $fields The fields to select
+     * @param string $filtersql The filter SQL
+     * @param array $filterparams The filter parameters
+     * @return array Must return array(SQL, parameters)
      */
-    public function get_sql_select() {
-        return $this->table->get_sql_select();
-    }
+    abstract public function get_sql($fields, $filtersql, $filterparams);
 
     /**
-     * Define the body of the SQL query, start with FROM
+     * Get the SQL to count to the total report rows
      *
-     * @return string
+     * @param string $filtersql The filter SQL
+     * @param array $filterparams The filter parameters
+     * @return array Must return array(SQL, parameters)
      */
-    public function get_sql_body() {
-        return '';
-    }
-
-    /**
-     * If groupby is needed, override this method.
-     * Do not add groupby to your get_sql_body()
-     *
-     * Return a string like: ' GROUP BY fieldname'
-     *
-     * @return string
-     */
-    public function get_sql_groupby() {
-        return '';
-    }
-
-    /**
-     * Get sorting SQL
-     *
-     * @return string
-     */
-    public function get_sql_sort() {
-        return $this->table->get_sql_sort();
+    public function get_count_sql($filtersql, $filterparams) {
+        return $this->get_sql('COUNT(*)', $filtersql, $filterparams);
     }
 }

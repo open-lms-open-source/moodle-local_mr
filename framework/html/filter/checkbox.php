@@ -74,7 +74,7 @@ class mr_html_filter_checkbox extends mr_html_filter_abstract {
      * @param bool $advanced - whether or not the form element should be an advanced option
      * @param string $field - the field to be used in the filter
      */
-    public function __construct($name, $label, $rightlabel = '', $default = 0, $checkedsql = '', $uncheckedsql = '', $advanced = false, $field = NULL) {
+    public function __construct($name, $label, $rightlabel = '', $default = 0, $checkedsql = array(), $uncheckedsql = array(), $advanced = false, $field = NULL) {
         parent::__construct($name, $label, $advanced, $field);
 
         $this->rightlabel   = $rightlabel;
@@ -110,8 +110,6 @@ class mr_html_filter_checkbox extends mr_html_filter_abstract {
      * Limit by input value
      */
     public function sql() {
-        global $db;
-
         $preference = $this->preferences_get($this->name);
         if (!empty($preference)) {
             return $this->checkedsql;

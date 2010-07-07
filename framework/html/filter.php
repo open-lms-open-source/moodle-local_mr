@@ -137,16 +137,23 @@ class mr_html_filter extends mr_readonly implements renderable {
         $this->init();
 
         $sqlands = array();
+        $params  = array();
         foreach ($this->filters as $filter) {
             $field = $filter->get_field();
             if (!empty($field) and ($sql = $filter->sql())) {
-                $sqlands[] = $sql;
+                $sqlands[] = $sql[0];
+
+                if (is_array($sql[1])) {
+                    $params = array_merge($params, $sql[1]);
+                } else {
+                    $params[] = $sql[1];
+                }
             }
         }
         if (!empty($sqlands)) {
-            return ' AND '.implode(' AND ', $sqlands);
+            return array(implode(' AND ', $sqlands), $params);
         }
-        return '';
+        return array('1 = 1', array());
     }
 
     /**

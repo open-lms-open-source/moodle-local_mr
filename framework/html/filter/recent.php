@@ -75,7 +75,7 @@ class mr_html_filter_recent extends mr_html_filter_abstract {
         $preference = $this->preferences_get($this->name);
 
         if (!empty($preference) and ($time = strtotime($preference)) !== false) {
-            return "$this->field >= $time";
+            return array("$this->field >= ?", $time);
         }
         return false;
     }

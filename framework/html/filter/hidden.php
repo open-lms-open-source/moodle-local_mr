@@ -81,11 +81,6 @@ class mr_html_filter_hidden extends mr_html_filter_abstract {
      * Set field to value
      */
     public function sql() {
-        global $db;
-
-        if (is_numeric($this->_value)) {
-            return "$this->field = $this->_value";
-        }
-        return "$this->field = ".$db->quote($this->_value);
+        return array("$this->field = ?", $this->_value);
     }
 }
