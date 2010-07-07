@@ -37,6 +37,7 @@ require_once($CFG->dirroot.'/local/mr/framework/readonly.php');
  *
  * @author Mark Nielsen
  * @package mr
+ * @example controller/filter.php See how to use this class
  */
 class mr_html_filter extends mr_readonly implements renderable {
     /**

@@ -45,7 +45,7 @@ require_once($CFG->dirroot.'/local/mr/framework/html/table/column/dynamic.php');
  *
  * @author Mark Nielsen
  * @package mr
- * @todo Add demo area, add better comments
+ * @example controller/table.php See how to use this class
  * @todo Make html_table class available through this class?
  */
 class mr_html_table extends mr_readonly implements renderable {

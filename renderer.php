@@ -375,7 +375,7 @@ class local_mr_renderer extends plugin_renderer_base {
         );
 
         // Render Paging bottom
-        $this->render($report->get_paging());
+        $output .= $this->render($report->get_paging());
 
         // Export
         if ($report->get_export() instanceof mr_file_export) {
