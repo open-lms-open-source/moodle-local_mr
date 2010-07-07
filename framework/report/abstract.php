@@ -64,7 +64,7 @@ require_once($CFG->dirroot.'/local/mr/framework/file/export.php');
  * @package mr
  * @author Mark Nielsen
  * @example controller/report.php See how to render this class
- * @example controller/report/users.php See how to extend this class
+ * @example report/users.php See how to extend this class
  */
 abstract class mr_report_abstract extends mr_readonly implements renderable {
     /**

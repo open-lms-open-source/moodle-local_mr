@@ -32,7 +32,7 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  *
  * @package mr
  * @author Mark Nielsen
- * @example controller/export.php See how to use this class
+ * @example controller/table.php See how to use this class
  */
 class mr_file_export implements renderable {
 
