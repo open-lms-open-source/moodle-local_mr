@@ -308,6 +308,7 @@ class local_mr_renderer extends plugin_renderer_base {
      * @todo display SELECT * SQL and SELECT COUNT(*) SQL
      * @todo Perhaps wrap everything in a div to control layout?  Then other render methods don't do align, etc
      * @todo Render in heading with help button?
+     * @todo Don't show report SQL for some users... how to toggle on/off?
      */
     public function render_mr_report_abstract(mr_report_abstract $report) {
         // Fill the table
@@ -319,6 +320,9 @@ class local_mr_renderer extends plugin_renderer_base {
         if ($report->get_export() instanceof mr_file_export and $report->get_export()->is_exporting()) {
             $report->get_export()->send();
         }
+
+        // Heading
+        $output .= $this->output->heading($report->name());
 
         // Report SQL
         $executedsql = $report->get_executedsql();
@@ -352,10 +356,16 @@ class local_mr_renderer extends plugin_renderer_base {
                 'boxwidthwide boxaligncenter mr_html_filter'
             );
         }
-        // Paging and table
-        $output .= $this->render($report->get_paging()).
-                   $this->render($report->get_table()).
-                   $this->render($report->get_paging());
+        // Render Paging top
+        $output .= $this->render($report->get_paging());
+
+        // Render table and allow report to wrap it with w/e
+        $output .= $report->output_wrapper(
+            $this->render($report->get_table())
+        );
+
+        // Render Paging bottom
+        $this->render($report->get_paging());
 
         // Export
         if ($report->get_export() instanceof mr_file_export) {
