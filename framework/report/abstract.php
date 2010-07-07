@@ -275,6 +275,7 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
      * Export report
      *
      * Example Code:
+     * <code>
      * <?php
      *      $report = new some_report_class(...);
      *      $file   = $report->export('text/csv');
@@ -282,6 +283,7 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
      *      // Do something with $file, then to delete it...
      *      $report->get_export()->cleanup();
      * ?>
+     * </code>
      *
      * @param string $exporter The exporter to use, like 'text/csv'
      * @param string $filename Override the file name

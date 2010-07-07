@@ -133,33 +133,4 @@ class mr_html_table_column_dynamic extends mr_html_table_column {
         }
         return $this;
     }
-
-    /**
-     * Table header for AJAX view
-     * @todo Remove and replace with renderer
-     */
-    public function th_ajax() {
-        $th = array();
-        foreach ($this->columns as $column) {
-            $th[] = $column->th_ajax();
-        }
-        return implode(',', $th);
-    }
-
-    /**
-     * Get column name and value for AJAX
-     *
-     * @return array
-     * @todo Remove and replace with renderer
-     */
-    public function td_ajax(&$position, $row) {
-        $tds = array();
-        foreach ($this->columns as $column) {
-            $tds = array_merge($tds, $column->td_ajax($position, $row));
-            $position++;
-        }
-        $position--; // Back off one...
-
-        return $tds;
-    }
 }

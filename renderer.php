@@ -247,9 +247,14 @@ class local_mr_renderer extends plugin_renderer_base {
                         if ($cell instanceof html_table_cell) {
                             $htmlrow->cells[] = $cell;
                         } else {
-                            // @todo attributes are not being set correctly atm, wait for response on MDL-21652
                             $cell = new html_table_cell($cell);
-                            $cell->attributes = array_merge($cell->attributes, $column->get_config()->attributes);
+                            foreach ($column->get_config()->attributes as $name => $value) {
+                                if (property_exists($cell, $name)) {
+                                    $cell->$name = $value;
+                                } else {
+                                    $cell->attributes[$name] = $value;
+                                }
+                            }
                             $htmlrow->cells[] = $cell;
                         }
                     }
@@ -305,12 +310,13 @@ class local_mr_renderer extends plugin_renderer_base {
      *
      * @param mr_report_abstract $report mr_report_abstract instance
      * @return string
-     * @todo display SELECT * SQL and SELECT COUNT(*) SQL
      * @todo Perhaps wrap everything in a div to control layout?  Then other render methods don't do align, etc
      * @todo Render in heading with help button?
-     * @todo Don't show report SQL for some users... how to toggle on/off?
+     * @todo How to toggle report SQL on/off?
      */
     public function render_mr_report_abstract(mr_report_abstract $report) {
+        global $CFG, $USER;
+
         // Fill the table
         $report->table_fill();
 
@@ -322,11 +328,15 @@ class local_mr_renderer extends plugin_renderer_base {
         }
 
         // Heading
-        $output .= $this->output->heading($report->name());
+        // $output .= $this->output->heading($report->name());
 
         // Report SQL
         $executedsql = $report->get_executedsql();
-        if (/*$this->helper->reportsql() and*/ !empty($executedsql)) {
+        $usernames   = array('mrsupport', 'mrdev');
+        if (!empty($CFG->reportviewsql) and is_array($CFG->reportviewsql)) {
+            $usernames = array_merge($usernames, $CFG->reportviewsql);
+        }
+        if (in_array($USER->username, $usernames) and !empty($executedsql)) {
             $sql = '';
             foreach ($executedsql as $values) {
                 list($rawsql, $params) = $values;

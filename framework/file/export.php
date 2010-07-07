@@ -77,6 +77,7 @@ class mr_file_export implements renderable {
      * param can be a string or an array of strings that get sent to the mr_helper_load class.
      *
      * Examples:
+     * <code>
      * <?php
      *      // Load all exporters
      *      $export = new mr_file_export('**');
@@ -87,6 +88,7 @@ class mr_file_export implements renderable {
      *      // Load all spreadsheet and text/csv exporters
      *      $export = new mr_file_export(array('text/csv', 'spreadsheet/*'));
      * ?>
+     * </code>
      *
      * @param mixed $exporters This can take on many forms, see above for examples.
      * @param boolean $requirefile If true, then no export plugin will be included that cannot generate a file

@@ -128,10 +128,9 @@ class mr_html_filter extends mr_readonly implements renderable {
     }
 
     /**
-     * Return filter SQL
+     * Return filter SQL and params
      *
-     * @return string
-     * @todo Return prepared statement and values?
+     * @return array
      */
     public function sql() {
         $this->init();

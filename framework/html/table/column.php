@@ -223,42 +223,4 @@ class mr_html_table_column {
         }
         return '';
     }
-
-    /**
-     * Table header for AJAX view - generate
-     * JS to define column header
-     *
-     * @return string
-     * @todo Remove and replace with renderer
-     */
-    public function th_ajax() {
-        if ($this->config->sortable) {
-            $sortable = 'true';
-        } else {
-            $sortable = 'false';
-        }
-        $label = addslashes_js($this->config->heading);
-        $name  = $this->get_name();
-
-        if ($this->config->editor) {
-            $editor = ", editor: {$this->config->editor}";
-        } else {
-            $editor = '';
-        }
-
-        return "{key:\"$name\", label:\"$label\", sortable:$sortable$editor}";
-    }
-
-    /**
-     * Get column name and value for AJAX - will be used
-     * to generate record object for JSON
-     *
-     * @param int $position Current column position
-     * @param object $row The current SQL row
-     * @return array
-     * @todo Remove and replace with renderer
-     */
-    public function td_ajax(&$position, $row) {
-        return array($this->get_name() => $this->get_cell($position, $row));
-    }
 }
