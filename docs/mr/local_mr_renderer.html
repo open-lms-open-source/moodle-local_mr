@@ -103,7 +103,7 @@
 				<li><span class="field">author:</span> Mark Nielsen</li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_renderer.php.html">/renderer.php</a> (line <span class="field">34</span>)
+			Located in <a class="field" href="_renderer.php.html">/renderer.php</a> (line <span class="field">39</span>)
 		</p>
 		
 				
@@ -126,23 +126,59 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																						
+																																																																																						
 				<div class="method-definition">
 											<span class="method-result">string</span>
-										<a href="#render_mr_heading" title="details" class="method-name">render_mr_heading</a>
-											(<span class="var-type"><a href="../mr/mr_heading.html">mr_heading</a></span>&nbsp;<span class="var-name">$heading</span>)
+										<a href="#render" title="details" class="method-name">render</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$widget</span>)
 									</div>
 														
 				<div class="method-definition">
 											<span class="method-result">string</span>
-										<a href="#render_mr_notify" title="details" class="method-name">render_mr_notify</a>
-											(<span class="var-type"><a href="../mr/mr_notify.html">mr_notify</a></span>&nbsp;<span class="var-name">$notify</span>)
+										<a href="#render_mr_file_export" title="details" class="method-name">render_mr_file_export</a>
+											(<span class="var-type"><a href="../mr/mr_file_export.html">mr_file_export</a></span>&nbsp;<span class="var-name">$export</span>)
 									</div>
 														
 				<div class="method-definition">
 											<span class="method-result">string</span>
-										<a href="#render_mr_tabs" title="details" class="method-name">render_mr_tabs</a>
-											(<span class="var-type"><a href="../mr/mr_tabs.html">mr_tabs</a></span>&nbsp;<span class="var-name">$tabs</span>)
+										<a href="#render_mr_html_filter" title="details" class="method-name">render_mr_html_filter</a>
+											(<span class="var-type"><a href="../mr/mr_html_filter.html">mr_html_filter</a></span>&nbsp;<span class="var-name">$filter</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#render_mr_html_heading" title="details" class="method-name">render_mr_html_heading</a>
+											(<span class="var-type"><a href="../mr/mr_html_heading.html">mr_html_heading</a></span>&nbsp;<span class="var-name">$heading</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#render_mr_html_notify" title="details" class="method-name">render_mr_html_notify</a>
+											(<span class="var-type"><a href="../mr/mr_html_notify.html">mr_html_notify</a></span>&nbsp;<span class="var-name">$notify</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#render_mr_html_paging" title="details" class="method-name">render_mr_html_paging</a>
+											(<span class="var-type"><a href="../mr/mr_html_paging.html">mr_html_paging</a></span>&nbsp;<span class="var-name">$paging</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#render_mr_html_table" title="details" class="method-name">render_mr_html_table</a>
+											(<span class="var-type"><a href="../mr/mr_html_table.html">mr_html_table</a></span>&nbsp;<span class="var-name">$table</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#render_mr_html_tabs" title="details" class="method-name">render_mr_html_tabs</a>
+											(<span class="var-type"><a href="../mr/mr_html_tabs.html">mr_html_tabs</a></span>&nbsp;<span class="var-name">$tabs</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#render_mr_report_abstract" title="details" class="method-name">render_mr_report_abstract</a>
+											(<span class="var-type"><a href="../mr/mr_report_abstract.html">mr_report_abstract</a></span>&nbsp;<span class="var-name">$report</span>)
 									</div>
 											</div>
 		</div>
@@ -159,73 +195,45 @@
 		</div>
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
-<a name="methodrender_mr_heading" id="render_mr_heading"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<span class="method-title">render_mr_heading</span> (line <span class="line-number">79</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Render mr_heading</p>
-	<ul class="tags">
-				<li><span class="field">access:</span> protected</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">string</span>
-		<span class="method-name">
-			render_mr_heading
-		</span>
-					(<span class="var-type"><a href="../mr/mr_heading.html">mr_heading</a></span>&nbsp;<span class="var-name">$heading</span>)
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type"><a href="../mr/mr_heading.html">mr_heading</a></span>
-				<span class="var-name">$heading</span><span class="var-description">: mr_heading instance</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodrender_mr_notify" id="render_mr_notify"><!-- --></a>
+<a name="methodrender" id="render"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">render_mr_notify</span> (line <span class="line-number">41</span>)
+		<span class="method-title">render</span> (line <span class="line-number">49</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Renders mr_notify</p>
+<p class="short-description">Returns rendered widget.</p>
+<p class="description"><p>Add another error catching layer for  rendering reports.</p></p>
 	<ul class="tags">
-				<li><span class="field">access:</span> protected</li>
+				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	<div class="method-signature">
 		<span class="method-result">string</span>
 		<span class="method-name">
-			render_mr_notify
+			render
 		</span>
-					(<span class="var-type"><a href="../mr/mr_notify.html">mr_notify</a></span>&nbsp;<span class="var-name">$notify</span>)
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$widget</span>)
 			</div>
 	
 			<ul class="parameters">
 					<li>
-				<span class="var-type"><a href="../mr/mr_notify.html">mr_notify</a></span>
-				<span class="var-name">$notify</span><span class="var-description">: mr_notify instance</span>			</li>
+				<span class="var-type">renderable</span>
+				<span class="var-name">$widget</span><span class="var-description">: instance with renderable interface</span>			</li>
 				</ul>
 		
 			
 	</div>
-<a name="methodrender_mr_tabs" id="render_mr_tabs"><!-- --></a>
+<a name="methodrender_mr_file_export" id="render_mr_file_export"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">render_mr_tabs</span> (line <span class="line-number">55</span>)
+		<span class="method-title">render_mr_file_export</span> (line <span class="line-number">296</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Renders mr_tabs</p>
+<p class="short-description">Render mr_file_export</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> protected</li>
 			</ul>
@@ -233,15 +241,222 @@
 	<div class="method-signature">
 		<span class="method-result">string</span>
 		<span class="method-name">
-			render_mr_tabs
+			render_mr_file_export
 		</span>
-					(<span class="var-type"><a href="../mr/mr_tabs.html">mr_tabs</a></span>&nbsp;<span class="var-name">$tabs</span>)
+					(<span class="var-type"><a href="../mr/mr_file_export.html">mr_file_export</a></span>&nbsp;<span class="var-name">$export</span>)
 			</div>
 	
 			<ul class="parameters">
 					<li>
-				<span class="var-type"><a href="../mr/mr_tabs.html">mr_tabs</a></span>
-				<span class="var-name">$tabs</span><span class="var-description">: mr_tabs instance</span>			</li>
+				<span class="var-type"><a href="../mr/mr_file_export.html">mr_file_export</a></span>
+				<span class="var-name">$export</span><span class="var-description">: mr_file_export instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrender_mr_html_filter" id="render_mr_html_filter"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">render_mr_html_filter</span> (line <span class="line-number">128</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Render mr_html_filter</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			render_mr_html_filter
+		</span>
+					(<span class="var-type"><a href="../mr/mr_html_filter.html">mr_html_filter</a></span>&nbsp;<span class="var-name">$filter</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_html_filter.html">mr_html_filter</a></span>
+				<span class="var-name">$filter</span><span class="var-description">: mr_html_filter instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrender_mr_html_heading" id="render_mr_html_heading"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">render_mr_html_heading</span> (line <span class="line-number">105</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Render mr_html_heading</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			render_mr_html_heading
+		</span>
+					(<span class="var-type"><a href="../mr/mr_html_heading.html">mr_html_heading</a></span>&nbsp;<span class="var-name">$heading</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_html_heading.html">mr_html_heading</a></span>
+				<span class="var-name">$heading</span><span class="var-description">: mr_html_heading instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrender_mr_html_notify" id="render_mr_html_notify"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">render_mr_html_notify</span> (line <span class="line-number">67</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Renders mr_html_notify</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			render_mr_html_notify
+		</span>
+					(<span class="var-type"><a href="../mr/mr_html_notify.html">mr_html_notify</a></span>&nbsp;<span class="var-name">$notify</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_html_notify.html">mr_html_notify</a></span>
+				<span class="var-name">$notify</span><span class="var-description">: mr_html_notify instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrender_mr_html_paging" id="render_mr_html_paging"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">render_mr_html_paging</span> (line <span class="line-number">144</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Render mr_html_paging</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			render_mr_html_paging
+		</span>
+					(<span class="var-type"><a href="../mr/mr_html_paging.html">mr_html_paging</a></span>&nbsp;<span class="var-name">$paging</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_html_paging.html">mr_html_paging</a></span>
+				<span class="var-name">$paging</span><span class="var-description">: mr_html_paging instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrender_mr_html_table" id="render_mr_html_table"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">render_mr_html_table</span> (line <span class="line-number">176</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Render mr_html_table</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			render_mr_html_table
+		</span>
+					(<span class="var-type"><a href="../mr/mr_html_table.html">mr_html_table</a></span>&nbsp;<span class="var-name">$table</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_html_table.html">mr_html_table</a></span>
+				<span class="var-name">$table</span><span class="var-description">: mr_html_table instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrender_mr_html_tabs" id="render_mr_html_tabs"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">render_mr_html_tabs</span> (line <span class="line-number">81</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Renders mr_html_tabs</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			render_mr_html_tabs
+		</span>
+					(<span class="var-type"><a href="../mr/mr_html_tabs.html">mr_html_tabs</a></span>&nbsp;<span class="var-name">$tabs</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_html_tabs.html">mr_html_tabs</a></span>
+				<span class="var-name">$tabs</span><span class="var-description">: mr_html_tabs instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrender_mr_report_abstract" id="render_mr_report_abstract"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">render_mr_report_abstract</span> (line <span class="line-number">313</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Render mr_report_abstract</p>
+	<ul class="tags">
+				<li><span class="field">todo:</span> display SELECT * SQL and SELECT COUNT(*) SQL</li>
+				<li><span class="field">todo:</span> Don't show report SQL for some users... how to toggle on/off?</li>
+				<li><span class="field">todo:</span> Perhaps wrap everything in a div to control layout?  Then other render methods don't do align, etc</li>
+				<li><span class="field">todo:</span> Render in heading with help button?</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			render_mr_report_abstract
+		</span>
+					(<span class="var-type"><a href="../mr/mr_report_abstract.html">mr_report_abstract</a></span>&nbsp;<span class="var-name">$report</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_report_abstract.html">mr_report_abstract</a></span>
+				<span class="var-name">$report</span><span class="var-description">: mr_report_abstract instance</span>			</li>
 				</ul>
 		
 			
@@ -252,7 +467,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Fri, 25 Jun 2010 11:39:02 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Wed, 07 Jul 2010 15:07:30 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

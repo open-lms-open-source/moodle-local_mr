@@ -94,22 +94,21 @@
 					<span class="disabled">Description</span> |
 															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
 						
-											<a href="#sec-consts">Constants</a>
-						
-			</div>
+					</div>
 	<div class="info-box-body">
         		<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">MR Var</p>
 <p class="description"><p>Variable storage class.  Very similar to Zend_Registry  (http://framework.zend.com/manual/en/zend.registry.html).</p><p>This does not replace the session nor does it replace  mr_cache.  This is a per PHP execution storage of variables.</p><p>Note: index &quot;mrconfig&quot; is automatically set to the config  for local/mr/framework.  Please do not overrite with something else.</p></p>
 	<ul class="tags">
 				<li><span class="field">author:</span> Mark Nielsen</li>
+				<li><span class="field">todo:</span> implement ArrayAccess</li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_framework---var.php.html">/framework/var.php</a> (line <span class="field">41</span>)
+			Located in <a class="field" href="_framework---var.php.html">/framework/var.php</a> (line <span class="field">42</span>)
 		</p>
 		
 				
-		<pre>ArrayObject
+		<pre>stdClass
    |
    --mr_var</pre>
 	
@@ -124,61 +123,47 @@
 		<div class="info-box-title">Method Summary</span></div>
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
-															<a href="#sec-consts">Constants</a>
-							
-									<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																		
+																																		
 				<div class="method-definition">
-					static 						<span class="method-result">boolean</span>
+					static 						<span class="method-result"><a href="../mr/mr_var.html">mr_var</a></span>
+										<a href="#instance" title="details" class="method-name">instance</a>
+										()
+									</div>
+																																		
+				<div class="method-definition">
+											<span class="method-result">mr_var</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											([<span class="var-type">array</span>&nbsp;<span class="var-name">$init</span> = <span class="var-default">array()</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_var.html">mr_var</a></span>
 										<a href="#exists" title="details" class="method-name">exists</a>
 											(<span class="var-type">string</span>&nbsp;<span class="var-name">$index</span>)
 									</div>
 														
 				<div class="method-definition">
-					static 						<span class="method-result">mixed</span>
+											<span class="method-result"><a href="../mr/mr_var.html">mr_var</a></span>
 										<a href="#get" title="details" class="method-name">get</a>
 											(<span class="var-type">string</span>&nbsp;<span class="var-name">$index</span>)
 									</div>
-														
-				<div class="method-definition">
-					static 						<span class="method-result"><a href="../mr/mr_var.html">mr_var</a></span>
-										<a href="#get_instance" title="details" class="method-name">get_instance</a>
-										()
-									</div>
-														
-				<div class="method-definition">
-					static 						<span class="method-result">void</span>
-										<a href="#init" title="details" class="method-name">init</a>
-										()
-									</div>
 																						
 				<div class="method-definition">
-					static 						<span class="method-result">void</span>
-										<a href="#set" title="details" class="method-name">set</a>
-											(<span class="var-type">string</span>&nbsp;<span class="var-name">$index</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+											<span class="method-result"><a href="../mr/mr_var.html">mr_var</a></span>
+										<a href="#remove" title="details" class="method-name">remove</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$index</span>)
 									</div>
 														
 				<div class="method-definition">
-					static 						<span class="method-result">void</span>
-										<a href="#_unset_instance" title="details" class="method-name">_unset_instance</a>
-										()
+											<span class="method-result"><a href="../mr/mr_var.html">mr_var</a></span>
+										<a href="#set" title="details" class="method-name">set</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$param</span>)
 									</div>
-																		
-				<div class="method-definition">
-											<span class="method-result">mr_var</span>
-										<a href="#__construct" title="details" class="method-name">__construct</a>
-											([<span class="var-type">array</span>&nbsp;<span class="var-name">$array</span> = <span class="var-default">array()</span>], [<span class="var-type">integer</span>&nbsp;<span class="var-name">$flags</span> = <span class="var-default">parent::ARRAY_AS_PROPS</span>])
-									</div>
-																																														
-				<div class="method-definition">
-											<span class="method-result">mixed</span>
-										<a href="#offsetExists" title="details" class="method-name">offsetExists</a>
-											(<span class="var-type">string</span>&nbsp;<span class="var-name">$index</span>)
-									</div>
-																											</div>
+											</div>
 		</div>
 	</div>		
 
@@ -188,82 +173,20 @@
 		<div class="info-box-title">Methods</div>
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
-																		<a href="#sec-consts">Constants</a>
-							
-										<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
 						
 		</div>
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
-<a name="methodexists" id="exists"><!-- --></a>
+<a name="methodinstance" id="instance"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">static exists</span> (line <span class="line-number">132</span>)
+		<span class="method-title">static instance</span> (line <span class="line-number">56</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Returns TRUE if the $index is a named value in mr_var,  or FALSE if $index was not found in mr_var.</p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		static <span class="method-result">boolean</span>
-		<span class="method-name">
-			exists
-		</span>
-					(<span class="var-type">string</span>&nbsp;<span class="var-name">$index</span>)
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">string</span>
-				<span class="var-name">$index</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodget" id="get"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<span class="method-title">static get</span> (line <span class="line-number">99</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Getter method, basically same as offsetGet().</p>
-<p class="description"><p>This method can be called from an object of type mr_var, or it  can be called statically.  In the latter case, it uses the default  static instance stored in the class.</p></p>
-	<ul class="tags">
-				<li><span class="field">throws:</span> coding_exception if no entry is registerd for $index.</li>
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		static <span class="method-result">mixed</span>
-		<span class="method-name">
-			get
-		</span>
-					(<span class="var-type">string</span>&nbsp;<span class="var-name">$index</span>)
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">string</span>
-				<span class="var-name">$index</span><span class="var-description">: - get the value associated with $index</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodget_instance" id="get_instance"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<span class="method-title">static get_instance</span> (line <span class="line-number">55</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Retrieves the default mr_var instance.</p>
+<p class="short-description">Get the global static instance of mr_var</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -271,88 +194,7 @@
 	<div class="method-signature">
 		static <span class="method-result"><a href="../mr/mr_var.html">mr_var</a></span>
 		<span class="method-name">
-			get_instance
-		</span>
-				()
-			</div>
-	
-		
-			
-	</div>
-<a name="methodinit" id="init"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<span class="method-title">static init</span> (line <span class="line-number">67</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Initialize the default mr_var instance.</p>
-	<ul class="tags">
-				<li><span class="field">access:</span> protected</li>
-			</ul>
-	
-	<div class="method-signature">
-		static <span class="method-result">void</span>
-		<span class="method-name">
-			init
-		</span>
-				()
-			</div>
-	
-		
-			
-	</div>
-<a name="methodset" id="set"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<span class="method-title">static set</span> (line <span class="line-number">120</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Setter method, basically same as offsetSet().</p>
-<p class="description"><p>This method can be called from an object of type mr_var, or it  can be called statically.  In the latter case, it uses the default  static instance stored in the class.</p></p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		static <span class="method-result">void</span>
-		<span class="method-name">
-			set
-		</span>
-					(<span class="var-type">string</span>&nbsp;<span class="var-name">$index</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">string</span>
-				<span class="var-name">$index</span><span class="var-description">: The location in the ArrayObject in which to store    the value.</span>			</li>
-					<li>
-				<span class="var-type">mixed</span>
-				<span class="var-name">$value</span><span class="var-description">: The object to store in the ArrayObject.</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="method_unset_instance" id="_unset_instance"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<span class="method-title">static _unset_instance</span> (line <span class="line-number">84</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Unset the default mr_var instance.</p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		static <span class="method-result">void</span>
-		<span class="method-name">
-			_unset_instance
+			instance
 		</span>
 				()
 			</div>
@@ -361,14 +203,14 @@
 			
 	</div>
 <a name="method__construct" id="__construct"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">146</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">74</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Constructs a parent ArrayObject with default  ARRAY_AS_PROPS to allow acces as an object</p>
+<p class="short-description">Setup with initial values</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -378,42 +220,34 @@
 		<span class="method-name">
 			__construct
 		</span>
-					([<span class="var-type">array</span>&nbsp;<span class="var-name">$array</span> = <span class="var-default">array()</span>], [<span class="var-type">integer</span>&nbsp;<span class="var-name">$flags</span> = <span class="var-default">parent::ARRAY_AS_PROPS</span>])
+					([<span class="var-type">array</span>&nbsp;<span class="var-name">$init</span> = <span class="var-default">array()</span>])
 			</div>
 	
 			<ul class="parameters">
 					<li>
 				<span class="var-type">array</span>
-				<span class="var-name">$array</span><span class="var-description">: data array</span>			</li>
-					<li>
-				<span class="var-type">integer</span>
-				<span class="var-name">$flags</span><span class="var-description">: ArrayObject flags</span>			</li>
+				<span class="var-name">$init</span><span class="var-description">: Initial values</span>			</li>
 				</ul>
 		
-			<hr class="separator" />
-		<div class="notes">Redefinition of:</div>
-		<dl>
-			<dt>ArrayObject::constructor __construct ( $array )</dt>
-					</dl>
 			
 	</div>
-<a name="methodoffsetExists" id="offsetExists"><!-- --></a>
-<div class="evenrow">
+<a name="methodexists" id="exists"><!-- --></a>
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">offsetExists</span> (line <span class="line-number">156</span>)
+		<span class="method-title">exists</span> (line <span class="line-number">124</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Check if an index exists</p>
 	<ul class="tags">
-				<li><span class="field">return:</span> Workaround for http://bugs.php.net/bug.php?id=40442 (ZF-960).</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">mixed</span>
+		<span class="method-result"><a href="../mr/mr_var.html">mr_var</a></span>
 		<span class="method-name">
-			offsetExists
+			exists
 		</span>
 					(<span class="var-type">string</span>&nbsp;<span class="var-name">$index</span>)
 			</div>
@@ -421,78 +255,106 @@
 			<ul class="parameters">
 					<li>
 				<span class="var-type">string</span>
-				<span class="var-name">$index</span>			</li>
+				<span class="var-name">$index</span><span class="var-description">: The index to check</span>			</li>
 				</ul>
 		
-			<hr class="separator" />
-		<div class="notes">Redefinition of:</div>
-		<dl>
-			<dt>ArrayObject::offsetExists ( $index )</dt>
-					</dl>
 			
 	</div>
-							<h4>Inherited Methods</h4>
-				<a name='inherited_methods'><!-- --></a>	
-									<!-- =========== Summary =========== -->
-					<p>Inherited From <span class="classname">ArrayObject (Internal Class)</span></p>
-					<blockquote>
-													<span class="method-name">constructor __construct ( $array )</span><br>
-													<span class="method-name">append ( $value )</span><br>
-													<span class="method-name">asort (  )</span><br>
-													<span class="method-name">count (  )</span><br>
-													<span class="method-name">exchangeArray ( $array )</span><br>
-													<span class="method-name">getArrayCopy (  )</span><br>
-													<span class="method-name">getFlags (  )</span><br>
-													<span class="method-name">getIterator (  )</span><br>
-													<span class="method-name">getIteratorClass (  )</span><br>
-													<span class="method-name">ksort (  )</span><br>
-													<span class="method-name">natcasesort (  )</span><br>
-													<span class="method-name">natsort (  )</span><br>
-													<span class="method-name">offsetExists ( $index )</span><br>
-													<span class="method-name">offsetGet ( $index )</span><br>
-													<span class="method-name">offsetSet ( $index, $newval )</span><br>
-													<span class="method-name">offsetUnset ( $index )</span><br>
-													<span class="method-name">setFlags ( $flags )</span><br>
-													<span class="method-name">setIteratorClass ( $iteratorClass )</span><br>
-													<span class="method-name">uasort ( $cmp_function )</span><br>
-													<span class="method-name">uksort ( $cmp_function )</span><br>
-											</blockquote>
-										
+<a name="methodget" id="get"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get</span> (line <span class="line-number">111</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get a value at index</p>
+	<ul class="tags">
+				<li><span class="field">todo:</span> allow the passing of a default?</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_var.html">mr_var</a></span>
+		<span class="method-name">
+			get
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$index</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$index</span><span class="var-description">: The index's value to fetch</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodremove" id="remove"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">remove</span> (line <span class="line-number">134</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Unset an index</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_var.html">mr_var</a></span>
+		<span class="method-name">
+			remove
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$index</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$index</span><span class="var-description">: The index to unset</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodset" id="set"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">set</span> (line <span class="line-number">84</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set values</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_var.html">mr_var</a></span>
+		<span class="method-name">
+			set
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$param</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$param</span><span class="var-description">: Pass an array(name =&gt; value, etc) or ($name, $value)</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
 		</div>
 	</div>
 
-	<a name="sec-consts"></a>
-	<div class="info-box">
-		<div class="info-box-title">Class Constants</div>
-		<div class="nav-bar">
-			<a href="#sec-description">Description</a> |
-										<a href="#sec-var-summary">Constants</a> (<span class="disabled">details</span>)
-						
-			
-										| 
-									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
-							
-					</div>
-		<div class="info-box-body">
-										<h4>Inherited Constants</h4>
-				<A NAME='inherited_vars'><!-- --></A>
-									<p>Inherited from <span class="classname">ArrayObject (Internal Class)</span></p>
-					<blockquote>
-													<img src="../media/images/Variable.png" />
-							<span class="const-title">
-								<span class="const-name">ARRAY_AS_PROPS = 2</span><br>
-							</span>
-													<img src="../media/images/Variable.png" />
-							<span class="const-title">
-								<span class="const-name">STD_PROP_LIST = 1</span><br>
-							</span>
-											</blockquote> 
-										
-		</div>
-	</div>
 
 	<p class="notes" id="credit">
-		Documentation generated on Fri, 25 Jun 2010 11:39:06 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Wed, 07 Jul 2010 15:07:33 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
