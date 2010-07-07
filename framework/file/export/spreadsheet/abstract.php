@@ -28,6 +28,12 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  */
 require_once($CFG->dirroot.'/local/mr/framework/file/export/abstract.php');
 
+/**
+ * MR File Export Spreadsheet Abstract
+ *
+ * @package mr
+ * @author Mark Nielsen
+ */
 abstract class mr_file_export_spreadsheet_abstract extends mr_file_export_abstract {
     /**
      * Max rows per worksheet
@@ -84,8 +90,8 @@ abstract class mr_file_export_spreadsheet_abstract extends mr_file_export_abstra
      */
     public function init($name) {
         $this->name = $name;
-        $filename   = clean_filename($name);
-        $filename   = trim($name, '_');
+        $filename   = clean_filename($this->name);
+        $filename   = trim($this->name, '_');
 
         $this->workbook = $this->new_workbook();
         $this->workbook->send("$filename.".$this->get_extension());

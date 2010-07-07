@@ -33,7 +33,7 @@ require_once($CFG->dirroot.'/local/mr/framework/format/abstract.php');
  *
  * @author Mark Nielsen
  * @package mr
- **/
+ */
 class mr_format_date extends mr_format_abstract {
     /**
      * If date is zero, use this value

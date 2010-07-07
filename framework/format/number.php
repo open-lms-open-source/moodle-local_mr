@@ -33,7 +33,7 @@ require_once($CFG->dirroot.'/local/mr/framework/format/abstract.php');
  *
  * @author Mark Nielsen
  * @package mr
- **/
+ */
 class mr_format_number extends mr_format_abstract {
     /**
      * Decimals to round to

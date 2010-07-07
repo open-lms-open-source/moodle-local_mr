@@ -31,7 +31,7 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  * @author Mark Nielsen
  * @package mr
  * @todo Add a format chain class
- **/
+ */
 abstract class mr_format_abstract {
     /**
      * Format a value

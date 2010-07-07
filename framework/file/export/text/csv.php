@@ -33,7 +33,7 @@ require_once($CFG->dirroot.'/local/mr/framework/file/export/text/abstract.php');
  *
  * @author Mark Nielsen
  * @package mr
- **/
+ */
 class mr_file_export_text_csv extends mr_file_export_text_abstract {
     /**
      * Get the text delimiter

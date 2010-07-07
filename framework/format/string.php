@@ -34,7 +34,7 @@ require_once($CFG->dirroot.'/local/mr/framework/format/abstract.php');
  * @author Sam Chaffee
  * @author Mark Nielsen
  * @package mr
- **/
+ */
 class mr_format_string extends mr_format_abstract {
     /**
      * If the value is NULL, then return this value

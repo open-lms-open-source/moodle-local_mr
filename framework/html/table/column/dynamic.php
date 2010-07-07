@@ -36,9 +36,8 @@ require_once($CFG->dirroot.'/local/mr/framework/html/table/column.php');
  * to all of its contained columns.
  *
  * @author Mark Nielsen
- * @version $Id$
  * @package mr
- **/
+ */
 class mr_html_table_column_dynamic extends mr_html_table_column {
     /**
      * The dynamic columns

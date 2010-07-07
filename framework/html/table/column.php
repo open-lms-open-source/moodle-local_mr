@@ -33,7 +33,7 @@ require_once($CFG->dirroot.'/local/mr/framework/var.php');
  *
  * @author Mark Nielsen
  * @package mr
- **/
+ */
 class mr_html_table_column {
     /**
      * Column settings/configurations

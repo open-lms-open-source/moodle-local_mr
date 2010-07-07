@@ -28,6 +28,12 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  */
 require_once($CFG->dirroot.'/local/mr/framework/file/export/abstract.php');
 
+/**
+ * MR File Export Text Abstract
+ *
+ * @package mr
+ * @author Mark Nielsen
+ */
 abstract class mr_file_export_text_abstract extends mr_file_export_abstract {
     /**
      * The export file

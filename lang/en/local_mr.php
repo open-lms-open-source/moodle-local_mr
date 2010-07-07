@@ -51,6 +51,7 @@ $string['plugin-text/csv'] = 'CSV';
 $string['plugin-text/tsv'] = 'TSV';
 $string['popupdocs'] = 'Open docs in a new window';
 $string['popuperrors'] = 'Open doc errors in a new window';
+$string['reportsql'] = 'Report SQL';
 $string['reset'] = 'Reset';
 $string['xdays'] = '{$a} days';
 $string['xhours'] = '{$a} hours';

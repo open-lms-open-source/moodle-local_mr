@@ -38,6 +38,27 @@ require_once($CFG->dirroot.'/local/mr/framework/html/tag.php');
  */
 class local_mr_renderer extends plugin_renderer_base {
     /**
+     * Returns rendered widget.
+     *
+     * Add another error catching layer for
+     * rendering reports.
+     *
+     * @param renderable $widget instance with renderable interface
+     * @return string
+     */
+    public function render(renderable $widget) {
+        try {
+            return parent::render($widget);
+        } catch (coding_exception $e) {
+            if ($widget instanceof mr_report_abstract) {
+                return $this->render_mr_report_abstract($widget);
+            }
+            // Re-throw original error
+            throw $e;
+        }
+    }
+
+    /**
      * Renders mr_html_notify
      *
      * @param mr_html_notify $notify mr_html_notify instance
@@ -96,6 +117,22 @@ class local_mr_renderer extends plugin_renderer_base {
             $help = $this->output->help_icon($heading->helpidentifier, $heading->component);
         }
         return $this->output->heading($icon.$heading->text.$help, $heading->level, $heading->classes, $heading->id);
+    }
+
+    /**
+     * Render mr_html_filter
+     *
+     * @param mr_html_filter $filter mr_html_filter instance
+     * @return string
+     */
+    protected function render_mr_html_filter(mr_html_filter $filter) {
+        // Only render the filter form if one of the filters is not hidden
+        foreach ($filter->get_filters() as $mrfilter) {
+            if (!$mrfilter instanceof mr_html_filter_hidden) {
+                return $filter->init()->get_helper()->buffer(array($filter->get_mform(), 'display'));
+            }
+        }
+        return '';
     }
 
     /**
@@ -223,7 +260,7 @@ class local_mr_renderer extends plugin_renderer_base {
                 foreach ($columns as $column) {
                     $position++;
 
-                    if (!$column->get_config()->suppress or !array_key_exists($htmlrow->cells[$position])) {
+                    if (!$column->get_config()->suppress or !array_key_exists($position, $htmlrow->cells)) {
                         continue;
                     }
                     $cell = $htmlrow->cells[$position];
@@ -261,5 +298,88 @@ class local_mr_renderer extends plugin_renderer_base {
         $select->set_label(get_string('export', 'local_mr'));
 
         return html_writer::tag('div', $this->output->render($select), array('class' => 'mr_file_export'));
+    }
+
+    /**
+     * Render mr_report_abstract
+     *
+     * @param mr_report_abstract $report mr_report_abstract instance
+     * @return string
+     * @todo display SELECT * SQL and SELECT COUNT(*) SQL
+     * @todo Perhaps wrap everything in a div to control layout?  Then other render methods don't do align, etc
+     */
+    public function render_mr_report_abstract(mr_report_abstract $report) {
+        // Fill the table
+        $report->table_fill();
+
+        $output = '';
+
+        // @todo good idea?
+        if ($report->get_export() instanceof mr_file_export and $report->get_export()->is_exporting()) {
+            $report->get_export()->send();
+        }
+
+        // Report SQL
+        $sql = $report->get_sql();
+        if (/*$this->helper->reportsql() and*/ !empty($sql)) {
+            $lines = explode("\n", $sql);
+            $sql   = array();
+            foreach ($lines as $line) {
+                // $line = trim($line); Bad idea ?
+                if (!empty($line)) {
+                    $sql[] = $line;
+                }
+            }
+            $sql = implode("\n", $sql);
+            $sql = str_replace(' ORDER BY', 'ORDER BY', $sql);
+            $sql = trim($sql);
+            $sql = "<pre>$sql</pre>";
+
+            $output .= $this->output->box(
+                $this->output->heading(get_string('reportsql', 'local_mr'), 4).
+                $this->output->box($sql, ''),
+                'generalbox boxwidthwide boxaligncenter mr_report_sqlbox'
+            );
+        }
+
+        // Description
+        if ($description = $report->get_description()) {
+            $output .= $this->output->box($description, 'generalbox boxwidthnormal boxaligncenter reportdescription');
+        }
+
+        // Filter
+        if ($report->get_filter() instanceof mr_html_filter) {
+            $output .= $this->output->box(
+                $this->render($report->get_filter()),
+                'boxwidthwide boxaligncenter mr_html_filter'
+            );
+        }
+        // Paging and table
+        $output .= $this->render($report->get_paging()).
+                   $this->render($report->get_table()).
+                   $this->render($report->get_paging());
+
+        // Export
+        if ($report->get_export() instanceof mr_file_export) {
+            $output .= $this->render($report->get_export());
+        }
+
+        // AJAX DISPLAY: internal only
+        // if ($this->config->ajax) {
+        //     if ($this->preferences->get('ajax', self::$ajaxdefault)) {
+        //         $newajax = 0;
+        //         $label   = get_string('basichtml', 'local_mr');
+        //     } else {
+        //         $newajax = 1;
+        //         $label   = get_string('standard', 'local_mr');
+        //     }
+        //     $title = s($label);
+        //     $url   = $this->url->out(false, array('setajax' => $newajax));
+        // 
+        //     return "<p class=\"toggleajax\"><a href=\"$url\" title=\"$title\">$label</a></p>";
+        // }
+        // return '';
+
+        return $output;
     }
 }

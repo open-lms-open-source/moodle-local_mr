@@ -24,6 +24,11 @@
 defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
 /**
+ * @see mr_readonly
+ */
+require_once($CFG->dirroot.'/local/mr/framework/readonly.php');
+
+/**
  * MR HTML Filter
  *
  * This controls the setup, interaction and usage
@@ -33,20 +38,13 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  * @author Mark Nielsen
  * @package mr
  */
-class mr_html_filter {
+class mr_html_filter extends mr_readonly implements renderable {
     /**
      * Added filters
      *
      * @var array
      */
     protected $filters = array();
-
-    /**
-     * Exclude filter SQL of filters defined in here
-     *
-     * @var array
-     */
-    protected $excludesql = array();
 
     /**
      * User preferences
@@ -140,51 +138,13 @@ class mr_html_filter {
 
         $sqlands = array();
         foreach ($this->filters as $filter) {
-            if (in_array($filter->get_name(), $this->excludesql)) {
-                continue;
-            }
-            if (($filter->get_field() != '') && ($sql = $filter->sql())) {
+            $field = $filter->get_field();
+            if (!empty($field) and ($sql = $filter->sql())) {
                 $sqlands[] = $sql;
             }
         }
         if (!empty($sqlands)) {
             return ' AND '.implode(' AND ', $sqlands);
-        }
-        return '';
-    }
-
-    /**
-     * Pass filter names to this method to exclude their
-     * SQL from the mr_html_filter::sql() method.
-     *
-     * @param string $param Keep passing filter names to exclude
-     * @return mr_html_filter
-     * @throws coding_exception
-     */
-    public function exclude_sql() {
-        $args = func_get_args();
-        foreach ($args as $arg) {
-            if (!is_string($arg)) {
-                throw new coding_exception('Can only pass strings to exclude_sql()');
-            }
-            $this->excludesql[$arg] = $arg;
-        }
-        return $this;
-    }
-
-    /**
-     * Display the form
-     *
-     * @return string
-     * @todo Remove this? Implement renderable?
-     */
-    public function display() {
-        foreach ($this->filters as $filter) {
-            if (!($filter instanceof mr_html_filter_hidden)) {
-                $this->init();
-                return $this->helper->buffer(array($this->mform, 'display'));
-                break;
-            }
         }
         return '';
     }
@@ -222,7 +182,7 @@ class mr_html_filter {
                     break;
             }
         }
-        throw new coding_exception('Invalid call to mr_html_filter');
+        return parent::__call($name, $arguments);
     }
 
     /**

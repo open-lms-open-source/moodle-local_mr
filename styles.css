@@ -13,3 +13,12 @@ div.paging div.singleselect {
 div.mr_file_export .singleselect {
     text-align: center;
 }
+
+/* mr_report_abstract styles */
+div.mr_report_sqlbox {
+    padding: 0px;
+}
+
+div.mr_report_sqlbox div {
+    margin: 10px;
+}
