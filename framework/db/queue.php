@@ -194,10 +194,6 @@ class mr_db_queue {
                     } else if (isset($record->$column)) {
                         $params[] = $record->$column;
 
-                    } else if ($CFG->dbtype == 'mysqli') {
-                        // Not set, use field's default
-                        $params[] = 'DEFAULT';
-
                     } else {
                         // Not set, use field's default - lookup in meta data
                         $meta = $metacolumns[$column];
@@ -205,7 +201,7 @@ class mr_db_queue {
                         if (!empty($meta->has_default)) {
                             $params[] = $meta->default_value;
                         } else if (empty($meta->not_null)) {
-                            $params[] = 'NULL';
+                            $params[] = NULL;
                         } else {
                             throw new coding_exception('Default not handled');
                         }
