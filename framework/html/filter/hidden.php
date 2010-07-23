@@ -59,7 +59,7 @@ class mr_html_filter_hidden extends mr_html_filter_abstract {
      * Defaults to value
      */
     public function preferences_defaults() {
-        return array($this->name, $this->value);
+        return array($this->name, $this->_value);
     }
 
     /**
