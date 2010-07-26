@@ -91,7 +91,7 @@ class local_mr_renderer extends plugin_renderer_base {
             } else {
                 $currenttab = $tabs->toptab;
             }
-            $output = print_tabs($rows, $currenttab, $inactive, $active, true);
+            $output = html_writer::tag('div', print_tabs($rows, $currenttab, $inactive, $active, true), array('class' => 'mr_html_tabs'));
         }
         return $output;
     }
@@ -116,7 +116,7 @@ class local_mr_renderer extends plugin_renderer_base {
         if (!empty($heading->helpidentifier)) {
             $help = $this->output->help_icon($heading->helpidentifier, $heading->component);
         }
-        return $this->output->heading($icon.$heading->text.$help, $heading->level, $heading->classes, $heading->id);
+        return html_writer::tag('div', $this->output->heading($icon.$heading->text.$help, $heading->level, $heading->classes, $heading->id), array('class' => 'mr_html_heading'));
     }
 
     /**
@@ -129,7 +129,7 @@ class local_mr_renderer extends plugin_renderer_base {
         // Only render the filter form if one of the filters is not hidden
         foreach ($filter->get_filters() as $mrfilter) {
             if (!$mrfilter instanceof mr_html_filter_hidden) {
-                return $filter->init()->get_helper()->buffer(array($filter->get_mform(), 'display'));
+                return html_writer::tag('div', $filter->init()->get_helper()->buffer(array($filter->get_mform(), 'display')), array('class' => 'mr_html_filter'));
             }
         }
         return '';
@@ -163,6 +163,7 @@ class local_mr_renderer extends plugin_renderer_base {
             } else {
                 $output .= $this->output->box($select, 'paging');
             }
+            $output = html_writer::tag('div', $output, array('class' => 'mr_html_paging'));
         }
         return $output;
     }
@@ -179,9 +180,16 @@ class local_mr_renderer extends plugin_renderer_base {
         $columns = $table->get_columns();
 
         // Table setup
-        $htmltable             = new html_table();
-        $htmltable->data       = array();
-        $htmltable->attributes = array_merge($htmltable->attributes, $table->get_attributes());
+        $htmltable       = new html_table();
+        $htmltable->data = array();
+
+        foreach ($table->get_attributes() as $name => $value) {
+            if (property_exists($htmltable, $name)) {
+                $htmltable->$name = $value;
+            } else {
+                $htmltable->attributes[$name] = $value;
+            }
+        }
 
         // Check if we have any column headings
         $haveheadings = false;
@@ -289,7 +297,7 @@ class local_mr_renderer extends plugin_renderer_base {
                 $htmltable->data[] = $htmlrow;
             }
         }
-        return html_writer::table($htmltable);
+        return html_writer::tag('div', html_writer::table($htmltable), array('class' => 'mr_html_table'));
     }
 
     /**
@@ -315,22 +323,71 @@ class local_mr_renderer extends plugin_renderer_base {
      * @todo How to toggle report SQL on/off?
      */
     public function render_mr_report_abstract(mr_report_abstract $report) {
-        global $CFG, $USER;
-
-        // Fill the table
-        $report->table_fill();
-
-        $output = '';
-
-        // @todo good idea?
-        if ($report->get_export() instanceof mr_file_export and $report->get_export()->is_exporting()) {
-            $report->get_export()->send();
-        }
+        // Wrapper DIV
+        $output = $this->output->box_start('boxwidthnormal boxaligncenter mr_report');
 
         // Heading
         // $output .= $this->output->heading($report->name());
 
         // Report SQL
+        $output .= $this->help_render_mr_report_sql($report);
+
+        // Description
+        if ($description = $report->get_description()) {
+            $output .= $this->output->box($description, 'generalbox boxwidthnormal boxaligncenter mr_report_description');
+        }
+
+        // Filter
+        if ($report->get_filter() instanceof mr_html_filter) {
+            $output .= $this->render($report->get_filter());
+        }
+        // Render Paging top
+        $output .= $this->render($report->get_paging());
+
+        // Render table and allow report to wrap it with w/e
+        $output .= $report->output_wrapper(
+            $this->render($report->get_table())
+        );
+
+        // Render Paging bottom
+        $output .= $this->render($report->get_paging());
+
+        // Export
+        if ($report->get_export() instanceof mr_file_export) {
+            $output .= $this->render($report->get_export());
+        }
+
+        $output .= $this->output->box_end();
+
+        // AJAX DISPLAY: internal only
+        // if ($this->config->ajax) {
+        //     if ($this->preferences->get('ajax', self::$ajaxdefault)) {
+        //         $newajax = 0;
+        //         $label   = get_string('basichtml', 'local_mr');
+        //     } else {
+        //         $newajax = 1;
+        //         $label   = get_string('standard', 'local_mr');
+        //     }
+        //     $title = s($label);
+        //     $url   = $this->url->out(false, array('setajax' => $newajax));
+        // 
+        //     return "<p class=\"toggleajax\"><a href=\"$url\" title=\"$title\">$label</a></p>";
+        // }
+        // return '';
+
+        return $output;
+    }
+
+    /**
+     * Help render mr_report_abstract SQL
+     *
+     * @param mr_report_abstract $report mr_report_abstract instance
+     * @return string
+     */
+    public function help_render_mr_report_sql(mr_report_abstract $report) {
+        global $CFG, $USER;
+
+        $output      = '';
         $executedsql = $report->get_executedsql();
         $usernames   = array('mrsupport', 'mrdev');
         if (!empty($CFG->reportviewsql) and is_array($CFG->reportviewsql)) {
@@ -350,54 +407,9 @@ class local_mr_renderer extends plugin_renderer_base {
             $output .= $this->output->box(
                 $this->output->heading(get_string('reportsql', 'local_mr'), 4).
                 $this->output->box('<pre>'.trim($sql).'</pre>', ''),
-                'generalbox boxwidthwide boxaligncenter mr_report_sqlbox'
+                'generalbox mr_report_sql'
             );
         }
-
-        // Description
-        if ($description = $report->get_description()) {
-            $output .= $this->output->box($description, 'generalbox boxwidthnormal boxaligncenter reportdescription');
-        }
-
-        // Filter
-        if ($report->get_filter() instanceof mr_html_filter) {
-            $output .= $this->output->box(
-                $this->render($report->get_filter()),
-                'boxwidthwide boxaligncenter mr_html_filter'
-            );
-        }
-        // Render Paging top
-        $output .= $this->render($report->get_paging());
-
-        // Render table and allow report to wrap it with w/e
-        $output .= $report->output_wrapper(
-            $this->render($report->get_table())
-        );
-
-        // Render Paging bottom
-        $output .= $this->render($report->get_paging());
-
-        // Export
-        if ($report->get_export() instanceof mr_file_export) {
-            $output .= $this->render($report->get_export());
-        }
-
-        // AJAX DISPLAY: internal only
-        // if ($this->config->ajax) {
-        //     if ($this->preferences->get('ajax', self::$ajaxdefault)) {
-        //         $newajax = 0;
-        //         $label   = get_string('basichtml', 'local_mr');
-        //     } else {
-        //         $newajax = 1;
-        //         $label   = get_string('standard', 'local_mr');
-        //     }
-        //     $title = s($label);
-        //     $url   = $this->url->out(false, array('setajax' => $newajax));
-        // 
-        //     return "<p class=\"toggleajax\"><a href=\"$url\" title=\"$title\">$label</a></p>";
-        // }
-        // return '';
-
         return $output;
     }
 }

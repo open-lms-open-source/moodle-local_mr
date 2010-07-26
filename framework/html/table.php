@@ -66,9 +66,7 @@ class mr_html_table extends mr_readonly implements renderable {
      *
      * @var array
      */
-    protected $attributes = array(
-        'class' => 'flexible generaltable boxwidthwide boxaligncenter',
-    );
+    protected $attributes = array();
 
     /**
      * Columns

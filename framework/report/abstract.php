@@ -128,8 +128,10 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
      *
      * @param moodle_url $url Base URL
      * @param int $courseid Course ID
+     * @param boolean $autorun Automatically run the report SQL and
+     *                         retrieve rows for rendering or exporting
      */
-    public function __construct($url = NULL, $courseid = NULL) {
+    public function __construct(moodle_url $url, $courseid = NULL, $autorun = true) {
         global $CFG;
 
         if (is_null($courseid) or $courseid == 0) {
@@ -153,6 +155,10 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
             ),
         ));
         $this->_init();
+
+        if ($autorun) {
+            $this->run();
+        }
     }
 
     /**
@@ -217,6 +223,24 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
      * @return void
      */
     abstract public function table_init();
+
+    /**
+     * Run the report SQL and retrieve rows for rendering or exporting.
+     *
+     * This method also sends the export to the browser if the
+     * user is exporting the report.
+     *
+     * @return void
+     */
+    public function run() {
+        // Fill the report rows (can send to exporter)
+        $this->table_fill();
+
+        // If exporting, send it to the browser
+        if ($this->export instanceof mr_file_export and $this->export->is_exporting()) {
+            $this->export->get_export()->send();
+        }
+    }
 
     /**
      * Get report description text

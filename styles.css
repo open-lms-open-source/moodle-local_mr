@@ -22,3 +22,7 @@ div.mr_report_sqlbox {
 div.mr_report_sqlbox div {
     margin: 10px;
 }
+
+div.mr_report div.mr_html_table table {
+    width: 100%;
+}
