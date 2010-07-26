@@ -357,6 +357,7 @@ class local_mr_renderer extends plugin_renderer_base {
             $output .= $this->render($report->get_export());
         }
 
+        // Close wrapper DIV
         $output .= $this->output->box_end();
 
         // AJAX DISPLAY: internal only
