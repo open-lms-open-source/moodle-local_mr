@@ -75,6 +75,13 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
     protected $table;
 
     /**
+     * Paging model
+     *
+     * @var mr_html_paging
+     */
+    protected $paging;
+
+    /**
      * Filter model
      *
      * @var mr_html_filter
