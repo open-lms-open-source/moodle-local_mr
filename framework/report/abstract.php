@@ -245,7 +245,7 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
 
         // If exporting, send it to the browser
         if ($this->export instanceof mr_file_export and $this->export->is_exporting()) {
-            $this->export->get_export()->send();
+            $this->export->send();
         }
     }
 
