@@ -310,7 +310,7 @@ class mr_helper_load extends mr_helper_abstract {
         $reflection = new ReflectionClass($classname);
 
         if ($reflection->isInstantiable()) {
-            if ($reflection->hasMethod('__construct') or $reflection->hasMethod($classname)) {
+            if ($reflection->getConstructor() instanceof ReflectionMethod) {
                 return $reflection->newInstanceArgs($arguments);
             } else {
                 return $reflection->newInstance();
