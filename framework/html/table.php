@@ -170,7 +170,7 @@ class mr_html_table extends mr_readonly implements renderable {
      * @param string $sort Sorting field
      * @param string $order Sorting order
      */
-    public function __construct($preferences, $url, $sort = '', $order = SORT_ASC) {
+    public function __construct($preferences, moodle_url $url, $sort = '', $order = SORT_ASC) {
         $this->url          = $url;
         $this->preferences  = $preferences;
         $this->helper       = new mr_helper();
