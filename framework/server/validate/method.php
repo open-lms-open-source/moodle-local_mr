@@ -50,9 +50,8 @@ require_once 'Zend/Validate/Abstract.php';
  * @package mr
  */
 class mr_server_validate_method extends Zend_Validate_Abstract {
-
     /**
-     * @const string Error constants
+     * Error constants
      */
     const MUSTBE = 'mustBe';
 

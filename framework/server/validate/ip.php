@@ -50,9 +50,8 @@ require_once 'Zend/Validate/Abstract.php';
  * @package mr
  */
 class mr_server_validate_ip extends Zend_Validate_Abstract {
-
     /**
-     * @const string Error constants
+     * Error constants
      */
     const NOT_FOUND = 'notFound';
     const NOT_VALID = 'notValid';
