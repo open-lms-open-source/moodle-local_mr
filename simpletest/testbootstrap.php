@@ -38,6 +38,8 @@ class mr_bootstrap_test extends UnitTestCase {
     public static $includecoverage = array('local/mr/framework/bootstrap.php');
 
     public function test_bootstrap_startup() {
+        // Have to shutdown first (I believe that simpletest kill autoload)
+        mr_bootstrap::shutdown();
         mr_bootstrap::startup();
 
         $autoloads = spl_autoload_functions();

@@ -32,6 +32,12 @@ class mr_html_notify_test extends UnitTestCase {
 
     public static $includecoverage = array('local/mr/framework/html/notify.php');
 
+    public function setUp() {
+        global $SESSION;
+
+        unset($SESSION->messages);
+    }
+
     public function tearDown() {
         global $SESSION;
 
