@@ -75,8 +75,15 @@ abstract class mr_server_response_abstract {
         $this->server       = $server;
         $this->serviceclass = $serviceclass;
 
-        $this->set_servicemethod(optional_param('method', 'unknown', PARAM_ALPHAEXT))
-             ->init();
+        $method = $this->server->get_request()->getParam('method', '');
+        $method = eregi_replace('[^a-zA-Z_]', '', $method);
+
+        if (empty($method)) {
+            $method = 'unknown';
+        }
+        $this->servicemethod = $method;
+
+        $this->init();
     }
 
     /**
@@ -85,23 +92,6 @@ abstract class mr_server_response_abstract {
      * @return void
      */
     protected function init() {
-    }
-
-    /**
-     * Set the service method
-     *
-     * @param string $value The value to set
-     * @return mr_server_response_abstract
-     */
-    public function set_servicemethod($value) {
-        $value = clean_param($value, PARAM_ALPHAEXT);
-        $value = eregi_replace('[^a-zA-Z_]', '', $value);
-
-        if (empty($value)) {
-            $value = 'unknown';
-        }
-        $this->servicemethod = $value;
-        return $this;
     }
 
     /**

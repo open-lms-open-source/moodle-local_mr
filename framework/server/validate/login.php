@@ -100,12 +100,14 @@ class mr_server_validate_login extends Zend_Validate_Abstract {
      * @return boolean
      */
     public function isValid($request) {
-        global $USER;
+        global $USER, $UNITTEST;
 
         // No cookies !
-        if (!defined('NO_MOODLE_COOKIES') or !NO_MOODLE_COOKIES) {
-            $this->_error(self::LOGIN_COOKIE);
-            return false;
+        if (empty($UNITTEST->running)) {
+            if (!defined('NO_MOODLE_COOKIES') or !NO_MOODLE_COOKIES) {
+                $this->_error(self::LOGIN_COOKIE);
+                return false;
+            }
         }
 
         $wsusername = $request->getParam($this->_paramusername, '');

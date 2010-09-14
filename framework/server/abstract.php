@@ -72,6 +72,13 @@ abstract class mr_server_abstract {
     protected $response;
 
     /**
+     * Server request
+     *
+     * @var Zend_Controller_Request_Http
+     */
+    protected $request;
+
+    /**
      * Validator chain to validate the incoming request
      *
      * @var Zend_Validate
@@ -100,15 +107,80 @@ abstract class mr_server_abstract {
     abstract protected function new_server();
 
     /**
+     * Was the last handle() successful?
+     *
+     * @return boolean
+     */
+    public function is_success() {
+        foreach ($this->server->getHeaders() as $header) {
+            if (strpos($header, ' 400 ') !== false or strpos($header, ' 404 ') !== false) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Document the service and its response
+     *
+     * @param string $response The server response
+     * @return mr_server_abstract
+     */
+    public function document($response) {
+        global $CFG, $UNITTEST;
+
+        if (!empty($UNITTEST->running)) {
+            require_once($CFG->dirroot.'/local/mr/framework/helper.php');
+
+            $helper = new mr_helper();
+            $helper->testwebservice->document($this->class, $this->get_request()->getParam('method'), $response);
+        }
+        return $this;
+    }
+
+    /**
+     * Output something nice when running simpletest
+     *
+     * @param string $response The server response
+     * @return mr_server_abstract
+     */
+    public function simpletest_report($response) {
+        global $CFG, $UNITTEST;
+
+        if (!empty($UNITTEST->running)) {
+            require_once($CFG->dirroot.'/local/mr/framework/helper.php');
+
+            $helper = new mr_helper();
+            $helper->testwebservice->simpletest_report(
+                $this->class,
+                $this->get_request()->getParam('method'),
+                $this->get_request()->getParams(),
+                $response
+            );
+        }
+        return $this;
+    }
+
+    /**
+     * Get the HTTP request
+     *
+     * @return Zend_Controller_Request_Http
+     */
+    public function get_request() {
+        if (!$this->request instanceof Zend_Controller_Request_Http) {
+            require_once('Zend/Controller/Request/Http.php');
+            $this->request = new Zend_Controller_Request_Http();
+        }
+        return $this->request;
+    }
+
+    /**
      * Security checks
      *
      * @return void
      */
     public function security() {
-        require_once('Zend/Controller/Request/Http.php');
-
-        $request = new Zend_Controller_Request_Http();
-        if (!$this->validator->isValid($request)) {
+        if (!$this->validator->isValid($this->get_request())) {
             foreach ($this->validator->getMessages() as $message) {
                 throw new Exception($message);
             }
@@ -153,8 +225,6 @@ abstract class mr_server_abstract {
                 }
                 header($header);
             }
-            // header("Response-service-class: $this->class");
-            // header('Response-service-method: '. (!empty($_REQUEST['method']) ? $_REQUEST['method'] : ''));
         }
     }
 
@@ -166,39 +236,39 @@ abstract class mr_server_abstract {
      * @return void
      */
     public function handle($request = false, $return = false) {
+        global $UNITTEST;
+
         try {
+            // Set the request to our server's request
+            if (is_array($request)) {
+                $this->get_request()->setParams($request);
+            }
+
             // Security checks
             $this->security();
-
-            // Response normally looks at HTTP request for method...
-            if (is_array($request) and !empty($request['method'])) {
-                $this->response->set_servicemethod($request['method']);
-            }
 
             // Server setup
             $this->server->setClass($this->class, '', array($this, $this->response));
             $this->server->returnResponse(true);
 
-            // Run the server (Run output buffer to capture any Moodle printing)
-            ob_start();
+            // Output buffer when not testing (ensures clean response)
+            if (!empty($UNITTEST->running)) {
+                ob_start();
+            }
+            // Run the server
             $response = $this->server->handle($request);
-            // $debug    = ob_get_contents();  // Debug ONLY!
-            ob_end_clean();
+
+            // Close output buffer if needed
+            if (!empty($UNITTEST->running)) {
+                ob_end_clean();
+            }
 
             // Allow response class to look at the response
             $response = $this->response->post_handle($response);
 
-            // Debug ONLY!
-            // if (isset($debug)) {
-            //     $xml = simplexml_load_string($response);
-            //     $xml->addChild('debug', $debug);
-            //     $response = $xml->asXML();
-            // }
-
         } catch (Exception $e) {
             $response = $this->fault($e->getMessage());
         }
-
         if ($return) {
             return $response;
         }
