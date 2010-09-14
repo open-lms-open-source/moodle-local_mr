@@ -64,13 +64,13 @@ class mr_helper_testwebservice extends mr_helper_abstract {
     /**
      * Document a web service along with its response
      *
-     * @param string $claassname The service class name
+     * @param string $classname The service class name
      * @param string $methodname The service method name
      * @param string $response The server response
      * @return void
      * @author Mark Nielsen
      */
-    public function document($claassname, $methodname, $response) {
+    public function document($classname, $methodname, $response) {
         $markup = '';
 
         if (!empty($methodname)) {
