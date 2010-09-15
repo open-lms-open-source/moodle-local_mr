@@ -157,7 +157,11 @@
 								</div>
 		<div class="info-box-body">
 			<div class="var-summary">
-																																																<div class="var-title">
+																																																								<div class="var-title">
+					<span class="var-type">Zend_Controller_Request_Http</span>
+					<a href="#$request" title="details" class="var-name">$request</a>
+				</div>
+																<div class="var-title">
 					<span class="var-type"><a href="../mr/mr_server_response_abstract.html">mr_server_response_abstract</a></span>
 					<a href="#$response" title="details" class="var-name">$response</a>
 				</div>
@@ -190,11 +194,17 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																																														
+																																																																																														
 				<div class="method-definition">
 											<span class="method-result">mr_server_abstract</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
 											(<span class="var-type">string</span>&nbsp;<span class="var-name">$serviceclass</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$responseclass</span>, <span class="var-type">Zend_Validate</span>&nbsp;<span class="var-name">$validator</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_server_abstract.html">mr_server_abstract</a></span>
+										<a href="#document" title="details" class="method-name">document</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$response</span>)
 									</div>
 														
 				<div class="method-definition">
@@ -204,9 +214,21 @@
 									</div>
 														
 				<div class="method-definition">
+											<span class="method-result">Zend_Controller_Request_Http</span>
+										<a href="#get_request" title="details" class="method-name">get_request</a>
+										()
+									</div>
+														
+				<div class="method-definition">
 											<span class="method-result">void</span>
 										<a href="#handle" title="details" class="method-name">handle</a>
 											([<span class="var-type">array</span>&nbsp;<span class="var-name">$request</span> = <span class="var-default">false</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$return</span> = <span class="var-default">false</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#is_success" title="details" class="method-name">is_success</a>
+										()
 									</div>
 														
 				<div class="method-definition">
@@ -225,6 +247,12 @@
 											<span class="method-result">void</span>
 										<a href="#send_headers" title="details" class="method-name">send_headers</a>
 										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_server_abstract.html">mr_server_abstract</a></span>
+										<a href="#simpletest_report" title="details" class="method-name">simpletest_report</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$response</span>)
 									</div>
 											</div>
 		</div>
@@ -245,6 +273,28 @@
 					</div>
 		<div class="info-box-body">
 			
+<a name="var$request" id="$request"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">Zend_Controller_Request_Http</span>
+			<span class="var-name">$request</span>
+						(line <span class="line-number">79</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Server request</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
 <a name="var$response" id="$response"><!-- --></A>
 <div class="evenrow">
 
@@ -318,7 +368,7 @@
 		<span class="var-title">
 			<span class="var-type">Zend_Validate</span>
 			<span class="var-name">$validator</span>
-						(line <span class="line-number">79</span>)
+						(line <span class="line-number">86</span>)
 		</span>
 	</div>
 
@@ -353,7 +403,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">88</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">95</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -384,11 +434,40 @@
 		
 			
 	</div>
-<a name="methodfault" id="fault"><!-- --></a>
+<a name="methoddocument" id="document"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">fault</span> (line <span class="line-number">125</span>)
+		<span class="method-title">document</span> (line <span class="line-number">129</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Document the service and its response</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_server_abstract.html">mr_server_abstract</a></span>
+		<span class="method-name">
+			document
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$response</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$response</span><span class="var-description">: The server response</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodfault" id="fault"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">fault</span> (line <span class="line-number">197</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -416,11 +495,35 @@
 		
 			
 	</div>
+<a name="methodget_request" id="get_request"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_request</span> (line <span class="line-number">169</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the HTTP request</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">Zend_Controller_Request_Http</span>
+		<span class="method-name">
+			get_request
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
 <a name="methodhandle" id="handle"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">handle</span> (line <span class="line-number">168</span>)
+		<span class="method-title">handle</span> (line <span class="line-number">238</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -448,11 +551,35 @@
 		
 			
 	</div>
-<a name="methodnew_server" id="new_server"><!-- --></a>
+<a name="methodis_success" id="is_success"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">new_server</span> (line <span class="line-number">100</span>)
+		<span class="method-title">is_success</span> (line <span class="line-number">114</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Was the last handle() successful?</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			is_success
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodnew_server" id="new_server"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">new_server</span> (line <span class="line-number">107</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -482,10 +609,10 @@
 				</ul>
 	</div>
 <a name="methodsecurity" id="security"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">security</span> (line <span class="line-number">107</span>)
+		<span class="method-title">security</span> (line <span class="line-number">182</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -506,10 +633,10 @@
 			
 	</div>
 <a name="methodsend_headers" id="send_headers"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">send_headers</span> (line <span class="line-number">141</span>)
+		<span class="method-title">send_headers</span> (line <span class="line-number">213</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -529,13 +656,42 @@
 		
 			
 	</div>
+<a name="methodsimpletest_report" id="simpletest_report"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">simpletest_report</span> (line <span class="line-number">147</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Output something nice when running simpletest</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_server_abstract.html">mr_server_abstract</a></span>
+		<span class="method-name">
+			simpletest_report
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$response</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$response</span><span class="var-description">: The server response</span>			</li>
+				</ul>
+		
+			
+	</div>
 						
 		</div>
 	</div>
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Fri, 10 Sep 2010 16:20:44 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Wed, 15 Sep 2010 10:07:30 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
