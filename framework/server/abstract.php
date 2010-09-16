@@ -51,11 +51,18 @@ require_once 'Zend/Validate.php';
  */
 abstract class mr_server_abstract {
     /**
-     * Service class name
+     * The service class name
      *
      * @var string
      */
-    protected $service;
+    protected $serviceclass;
+
+    /**
+     * The response class name
+     *
+     * @var string
+     */
+    protected $responseclass;
 
     /**
      * Server instance
@@ -93,10 +100,11 @@ abstract class mr_server_abstract {
      * @param Zend_Validate $validator A vaidator chain used to validate the request
      */
     public function __construct($serviceclass, $responseclass, $validator) {
-        $this->validator = $validator;
-        $this->class     = $serviceclass;
-        $this->server    = $this->new_server();
-        $this->response  = new $responseclass($this, $serviceclass);
+        $this->validator     = $validator;
+        $this->serviceclass  = $serviceclass;
+        $this->responseclass = $responseclass;
+        $this->response      = $responseclass;
+        $this->server        = $this->new_server();
     }
 
     /**
@@ -111,7 +119,7 @@ abstract class mr_server_abstract {
      *
      * @return boolean
      */
-    public function is_success() {
+    public function is_successful() {
         foreach ($this->server->getHeaders() as $header) {
             if (strpos($header, ' 400 ') !== false or strpos($header, ' 404 ') !== false) {
                 return false;
@@ -133,7 +141,7 @@ abstract class mr_server_abstract {
             require_once($CFG->dirroot.'/local/mr/framework/helper.php');
 
             $helper = new mr_helper();
-            $helper->testwebservice->document($this->class, $this->get_request()->getParam('method'), $response);
+            $helper->testwebservice->document($this->serviceclass, $this->get_request()->getParam('method'), $response);
         }
         return $this;
     }
@@ -152,7 +160,7 @@ abstract class mr_server_abstract {
 
             $helper = new mr_helper();
             $helper->testwebservice->simpletest_report(
-                $this->class,
+                $this->serviceclass,
                 $this->get_request()->getParam('method'),
                 $this->get_request()->getParams(),
                 $response
@@ -172,6 +180,19 @@ abstract class mr_server_abstract {
             $this->request = new Zend_Controller_Request_Http();
         }
         return $this->request;
+    }
+
+    /**
+     * Get the response instance
+     *
+     * @return mr_server_response_abstract
+     */
+    protected function get_response() {
+        if (!$this->response instanceof mr_server_response_abstract) {
+            $reflection     = new reflectionClass($this->responseclass);
+            $this->response = $reflection->newInstance($this, $this->serviceclass);
+        }
+        return $this->response;
     }
 
     /**
@@ -199,7 +220,7 @@ abstract class mr_server_abstract {
         $dom = $this->server->fault(new Exception($message), $code);
 
         // Allow response to override fault DOM
-        if ($faultdom = $this->response->fault($message)) {
+        if ($faultdom = $this->get_response()->fault($message)) {
             $dom = $faultdom;
         }
         return $dom->saveXML();
@@ -248,7 +269,7 @@ abstract class mr_server_abstract {
             $this->security();
 
             // Server setup
-            $this->server->setClass($this->class, '', array($this, $this->response));
+            $this->server->setClass($this->serviceclass, '', array($this, $this->get_response()));
             $this->server->returnResponse(true);
 
             // Output buffer when not testing (ensures clean response)
@@ -264,7 +285,7 @@ abstract class mr_server_abstract {
             }
 
             // Allow response class to look at the response
-            $response = $this->response->post_handle($response);
+            $response = $this->get_response()->post_handle($response);
 
         } catch (Exception $e) {
             $response = $this->fault($e->getMessage());

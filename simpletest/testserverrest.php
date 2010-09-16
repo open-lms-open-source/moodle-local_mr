@@ -39,6 +39,11 @@ require_once($CFG->dirroot.'/local/mr/framework/server/service/abstract.php');
 require_once($CFG->dirroot.'/local/mr/framework/server/response/abstract.php');
 
 /**
+ * @see mr_server_validate_test
+ */
+require_once($CFG->dirroot.'/local/mr/framework/server/validate/test.php');
+
+/**
  * @see Zend_Validate
  */
 require_once 'Zend/Validate.php';
@@ -145,12 +150,6 @@ class mr_server_response_test extends mr_server_response_abstract {
             )
         );
         return $this->standard($response);
-    }
-}
-
-class mr_server_validate_test extends Zend_Validate_Abstract {
-    public function isValid($request) {
-        return true;
     }
 }
 
