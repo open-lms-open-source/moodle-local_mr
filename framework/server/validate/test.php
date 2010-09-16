@@ -43,6 +43,14 @@ require_once 'Zend/Validate.php';
  */
 require_once 'Zend/Validate/Abstract.php';
 
+/**
+ * MR Server Validate Test
+ *
+ * Only use this for unit testing.
+ *
+ * @author Mark Nielsen
+ * @package mr
+ */
 class mr_server_validate_test extends Zend_Validate_Abstract {
     /**
      * Error constants
