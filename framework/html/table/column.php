@@ -82,6 +82,7 @@ class mr_html_table_column {
         $this->config->set(array(
             'name' => $name,          // Column name - this is what the resulting SQL field will be
             'heading' => $heading,    // Column heading
+            'display' => true,        // Display the column in the table rendering.  Set to false when you want the field fetched in the SQL but not displayed (EG: id)
             'suppress' => false,      // Column supression, if true and rows contain same data, first will be shown
             'sortable' => true,       // Allow column to be sorted
             'sorting' => array(),     // Sorting rules, override to do multi column sorting, EG: array($name => NULL, 'nothercolumn' => SORT_ASC)
@@ -145,6 +146,9 @@ class mr_html_table_column {
      * @return boolean
      */
     public function has_heading() {
+        if (!$this->config->display) {
+            return false;
+        }
         return !empty($this->config->heading);
     }
 

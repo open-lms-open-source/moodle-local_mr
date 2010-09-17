@@ -260,7 +260,7 @@ class mr_html_table extends mr_readonly implements renderable {
     public function set_export($export) {
         if ($export->is_exporting()) {
             $headers = array();
-            foreach ($this->columns as $column) {
+            foreach ($this->get_columns(true) as $column) {
                 $column->add_heading($headers);
             }
             $export->instance()->set_headers($headers);
@@ -299,9 +299,10 @@ class mr_html_table extends mr_readonly implements renderable {
      * include all of the returned columns
      * into the standard set.
      *
+     * @param boolean $visible Return only columns that are visible to the user
      * @return array
      */
-    public function get_columns() {
+    public function get_columns($visible = false) {
         $return = array();
         foreach ($this->columns as $name => $column) {
             if ($column instanceof mr_html_table_column_dynamic) {
@@ -310,6 +311,14 @@ class mr_html_table extends mr_readonly implements renderable {
                 $return[$name] = $column;
             }
         }
+        if ($visible) {
+            foreach ($return as $name => $column) {
+                if (!$column->get_config()->display) {
+                    unset($return[$name]);
+                }
+            }
+        }
+
         return $return;
     }
 
@@ -337,7 +346,7 @@ class mr_html_table extends mr_readonly implements renderable {
     public function get_sql_sort() {
         if (!empty($this->sort)) {
             // Find our column that we are sorting by
-            $columns = $this->get_columns();
+            $columns = $this->get_columns(true);
             if (!array_key_exists($this->sort, $columns)) {
                 throw new coding_exception('Invalid column sorting');
             }
@@ -476,7 +485,7 @@ class mr_html_table extends mr_readonly implements renderable {
         }
 
         $data    = array();
-        $columns = $this->get_columns();
+        $columns = $this->get_columns(true);
 
         // Try our best with html_table_row
         if ($row instanceof html_table_row) {

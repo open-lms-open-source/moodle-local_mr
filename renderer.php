@@ -177,7 +177,7 @@ class local_mr_renderer extends plugin_renderer_base {
     protected function render_mr_html_table(mr_html_table $table) {
         $tag     = new mr_html_tag();
         $rows    = $table->get_rows();
-        $columns = $table->get_columns();
+        $columns = $table->get_columns(true);
 
         // Table setup
         $htmltable       = new html_table();
