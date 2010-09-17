@@ -67,7 +67,7 @@ abstract class mr_controller_block extends mr_controller {
      * @throws coding_exception
      */
     public function setup() {
-        global $CFG, $COURSE, $PAGE;
+        global $DB;
 
         // Run parent routine
         parent::setup();
