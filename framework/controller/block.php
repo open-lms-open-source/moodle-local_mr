@@ -72,14 +72,11 @@ abstract class mr_controller_block extends mr_controller {
         // Run parent routine
         parent::setup();
 
-        // Block instance record ID
-        $instanceid = optional_param('instanceid', 0, PARAM_INT);
-
         // Derive blockname from plugin path
         $this->blockname = str_replace('blocks/', '', $this->plugin);
 
-        // Attempt to get the block instance
-        if ($instanceid) {
+        // Attempt to get the block instance record
+        if ($instanceid = optional_param('instanceid', 0, PARAM_INT)) {
             $this->instance = $DB->get_record('block_instances', array('id' => $instanceid), '*', MUST_EXIST);
         }
     }
@@ -91,7 +88,7 @@ abstract class mr_controller_block extends mr_controller {
      */
     public function new_url($extraparams = array()) {
         if ($this->instance) {
-            $extraparams['instanceid'] = $instance->id;
+            $extraparams['instanceid'] = $this->instance->id;
         }
         return parent::new_url($extraparams);
     }
