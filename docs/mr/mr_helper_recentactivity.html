@@ -3,7 +3,7 @@
   <html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
 			<!-- template designed by Marco Von Ballmoos  -->
-			<title>Docs For Class mr_readonly</title>
+			<title>Docs For Class mr_helper_recentactivity</title>
 			<link rel="stylesheet" href="../media/stylesheet.css" />
 						<script src="../media/lib/classTree.js"></script>
 												<script language="javascript" type="text/javascript">
@@ -85,83 +85,36 @@
 					</head>
 		<body>
 			<div class="page-body">			
-<h2 class="class-name">Class mr_readonly</h2>
+<h2 class="class-name">Class mr_helper_recentactivity</h2>
 
 <a name="sec-description"></a>
 <div class="info-box">
 	<div class="info-box-title">Description</div>
 	<div class="nav-bar">
 					<span class="disabled">Description</span> |
-							<a href="#sec-descendents">Descendents</a>
-			|													<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+													<a href="#sec-vars">Vars</a>
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
 						
 					</div>
 	<div class="info-box-body">
         		<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">MR Read Only</p>
-<p class="description"><p>If a class extends this class, and has a data member  named $foo, then one can get $foo with get_foo()</p><p>It is handy to extend this class for classes  that implement renderable so that the rendering  method can access variables without being able  to manipulate them.</p></p>
+<p class="short-description">MR Helper Recent Activity</p>
+<p class="description"><p>This helper is used to get recent activity after  time X for a course or for a list of courses.</p></p>
 	<ul class="tags">
 				<li><span class="field">author:</span> Mark Nielsen</li>
-				<li><span class="field">abstract:</span> </li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_framework---readonly.php.html">/framework/readonly.php</a> (line <span class="field">40</span>)
+			Located in <a class="field" href="_framework---helper---recentactivity.php.html">/framework/helper/recentactivity.php</a> (line <span class="field">40</span>)
 		</p>
 		
 				
-		<pre></pre>
+		<pre><a href="../mr/mr_helper_abstract.html">mr_helper_abstract</a>
+   |
+   --mr_helper_recentactivity</pre>
 	
 			</div>
 </div>
 
-	<a name="sec-descendents"></a>
-	<div class="info-box">
-		<div class="info-box-title">Direct descendents</div>
-		<div class="nav-bar">
-			<a href="#sec-description">Description</a> |
-			<span class="disabled">Descendents</span>
-			|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
-							
-								</div>
-		<div class="info-box-body">
-			<table cellpadding="2" cellspacing="0" class="class-table">
-				<tr>
-					<th class="class-table-header">Class</th>
-					<th class="class-table-header">Description</th>
-				</tr>
-								<tr>
-					<td style="padding-right: 2em"><a href="../mr/mr_controller.html">mr_controller</a></td>
-					<td>
-											MR Controller
-										</td>
-				</tr>
-								<tr>
-					<td style="padding-right: 2em"><a href="../mr/mr_html_filter.html">mr_html_filter</a></td>
-					<td>
-											MR HTML Filter
-										</td>
-				</tr>
-								<tr>
-					<td style="padding-right: 2em"><a href="../mr/mr_html_paging.html">mr_html_paging</a></td>
-					<td>
-											MR HTML Paging
-										</td>
-				</tr>
-								<tr>
-					<td style="padding-right: 2em"><a href="../mr/mr_html_table.html">mr_html_table</a></td>
-					<td>
-											MR HTML Table
-										</td>
-				</tr>
-								<tr>
-					<td style="padding-right: 2em"><a href="../mr/mr_report_abstract.html">mr_report_abstract</a></td>
-					<td>
-											MR Report Abstract
-										</td>
-				</tr>
-							</table>
-		</div>
-	</div>
 
 
 
@@ -170,75 +123,103 @@
 		<div class="info-box-title">Method Summary</span></div>
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
-							<a href="#sec-descendents">Descendents</a> |
-												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+																		<a href="#sec-vars">Vars</a>
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
 																						
 				<div class="method-definition">
-											<span class="method-result">mixed</span>
-										<a href="#__call" title="details" class="method-name">__call</a>
-											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$arguments</span>)
+											<span class="method-result">array</span>
+										<a href="#direct" title="details" class="method-name">direct</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$timestart</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$courses</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$userid</span> = <span class="var-default">NULL</span>])
 									</div>
 											</div>
 		</div>
 	</div>		
 
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../mr/mr_helper_abstract.html">mr_helper_abstract</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_helper_abstract.html#var$_helper_namespace">mr_helper_abstract::$_helper_namespace</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
 	
 	<a name="sec-methods"></a>
 	<div class="info-box">
 		<div class="info-box-title">Methods</div>
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
-							<a href="#sec-descendents">Descendents</a> |
-																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+															<a href="#sec-vars">Vars</a>
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
 						
 		</div>
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
-<a name="method__call" id="__call"><!-- --></a>
-<div class="oddrow">
+<a name="methoddirect" id="direct"><!-- --></a>
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">__call</span> (line <span class="line-number">49</span>)
+		<span class="method-title">direct</span> (line <span class="line-number">49</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Provides dynamic get_{dataMember}() method access</p>
+<p class="short-description">Get recent activity for course(s)</p>
 	<ul class="tags">
-				<li><span class="field">throws:</span> coding_exception</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">mixed</span>
+		<span class="method-result">array</span>
 		<span class="method-name">
-			__call
+			direct
 		</span>
-					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$arguments</span>)
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$timestart</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$courses</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$userid</span> = <span class="var-default">NULL</span>])
 			</div>
 	
 			<ul class="parameters">
 					<li>
-				<span class="var-type">string</span>
-				<span class="var-name">$name</span><span class="var-description">: Method name which should be get_{dataMember}()</span>			</li>
+				<span class="var-type">int</span>
+				<span class="var-name">$timestart</span><span class="var-description">: Look for activity after this time</span>			</li>
 					<li>
 				<span class="var-type">array</span>
-				<span class="var-name">$arguments</span><span class="var-description">: Should be empty, no args needed</span>			</li>
+				<span class="var-name">$courses</span><span class="var-description">: An array of course objects or a single course object</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$userid</span><span class="var-description">: The user who will view the list of activity</span>			</li>
 				</ul>
 		
 			
-			<hr class="separator" />
-		<div class="notes">Redefined in descendants as:</div>
-		<ul class="redefinitions">
-					<li>
-				<a href="../mr/mr_html_filter.html#method__call">mr_html_filter::__call()</a>
-								: Use this to add new filters to the filter model
-							</li>
-				</ul>
 	</div>
-						
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../mr/mr_helper_abstract.html">mr_helper_abstract</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../mr/mr_helper_abstract.html#method_set_helper_namespace">mr_helper_abstract::_set_helper_namespace()</a></span><br>
+											</blockquote>
+										
 		</div>
 	</div>
 
