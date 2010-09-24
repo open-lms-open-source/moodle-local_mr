@@ -41,6 +41,9 @@ class mr_helper_recentactivity extends mr_helper_abstract {
     /**
      * Get recent activity for course(s)
      *
+     * The passed course(s) will get populated with recent activity
+     * and returned.  EG: $course->recentactivity = array(...of activity...);
+     *
      * @param int $timestart Look for activity after this time
      * @param array $courses An array of course objects or a single course object
      * @param int $userid The user who will view the list of activity
@@ -79,6 +82,9 @@ class mr_helper_recentactivity extends mr_helper_abstract {
             $viewfullnames = has_capability('moodle/site:viewfullnames', get_context_instance(CONTEXT_COURSE, $course->id), $userid);
             $activities    = array();
             $index         = 0;
+
+            $recentactivity[$course->id] = $course;
+            $recentactivity[$course->id]->recentactivity = array();
 
             $logs = $DB->get_records_sql("SELECT l.*, u.firstname, u.lastname, u.picture
                                             FROM {log} l
@@ -187,7 +193,7 @@ class mr_helper_recentactivity extends mr_helper_abstract {
                     }
                 }
                 // Add to main recentactivity array
-                $recentactivity[$course->id] = array_values($changelist);
+                $recentactivity[$course->id]->recentactivity = array_values($changelist);
             }
 
             foreach ($modinfo->cms as $cm) {
@@ -220,17 +226,15 @@ class mr_helper_recentactivity extends mr_helper_abstract {
                     if (empty($activity->timestamp)) {
                         $activity->timestamp = 0;
                     }
-                    $recentactivity[$course->id][] = $activity;
+                    $recentactivity[$course->id]->recentactivity[] = $activity;
                 }
             }
         }
 
-        //order the recent activity
-        foreach ($recentactivity as $courseid => $activities) {
-            // Reorder
-            uasort($activities, create_function('$a, $b', 'return ($a->timestamp == $b->timestamp) ? 0 : (($a->timestamp > $b->timestamp) ? -1 : 1);'));
-
-            $recentactivity[$courseid] = array_values($activities);
+        // Sort recent activity
+        foreach ($recentactivity as $courseid => $course) {
+            uasort($course->recentactivity, create_function('$a, $b', 'return ($a->timestamp == $b->timestamp) ? 0 : (($a->timestamp > $b->timestamp) ? -1 : 1);'));
+            $recentactivity[$courseid]->recentactivity = array_values($course->recentactivity);
         }
         return $recentactivity;
     }
