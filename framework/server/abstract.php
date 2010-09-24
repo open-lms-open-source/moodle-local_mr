@@ -273,14 +273,14 @@ abstract class mr_server_abstract {
             $this->server->returnResponse(true);
 
             // Output buffer when not testing (ensures clean response)
-            if (!empty($UNITTEST->running)) {
+            if (empty($UNITTEST->running)) {
                 ob_start();
             }
             // Run the server
             $response = $this->server->handle($request);
 
             // Close output buffer if needed
-            if (!empty($UNITTEST->running)) {
+            if (empty($UNITTEST->running)) {
                 ob_end_clean();
             }
 
