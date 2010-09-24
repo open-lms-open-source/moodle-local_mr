@@ -24,7 +24,7 @@
 defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
 /**
- * Helper Abstraction
+ * MR Helper Abstraction
  *
  * Implement a function named "direct" to support direct calling of the helper.
  *

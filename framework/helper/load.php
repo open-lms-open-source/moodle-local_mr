@@ -29,7 +29,7 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 require_once($CFG->dirroot.'/local/mr/framework/helper/abstract.php');
 
 /**
- * Load Helper
+ * MR Helper Load
  *
  * This helper assists with dynamically including
  * class files and also with dynamically instantiating

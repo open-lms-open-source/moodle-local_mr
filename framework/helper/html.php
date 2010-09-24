@@ -29,7 +29,7 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 require_once($CFG->dirroot.'/local/mr/framework/helper/abstract.php');
 
 /**
- * HTML Helper
+ * MR Helper HTML
  *
  * Similar to lib/weblib.php, provide methods that
  * assist with generating HTML.

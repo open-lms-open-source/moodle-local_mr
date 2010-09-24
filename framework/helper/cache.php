@@ -34,7 +34,7 @@ require_once($CFG->dirroot.'/local/mr/framework/helper/abstract.php');
 require_once($CFG->dirroot.'/local/mr/framework/cache.php');
 
 /**
- * Cache Helper
+ * MR Helper Cache
  *
  * This helper is used for quick and easy access
  * to mr_cache.  Automatic setup of mr_cache and

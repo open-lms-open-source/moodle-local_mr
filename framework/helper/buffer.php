@@ -29,7 +29,7 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 require_once($CFG->dirroot.'/local/mr/framework/helper/abstract.php');
 
 /**
- * Buffer Helper
+ * MR Helper Buffer
  *
  * This helper is used to buffer functions that
  * do not return their output.

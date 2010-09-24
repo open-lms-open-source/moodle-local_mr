@@ -34,7 +34,7 @@ require_once($CFG->dirroot.'/local/mr/framework/helper/abstract.php');
 require_once($CFG->dirroot.'/local/mr/framework/html/tag.php');
 
 /**
- * Tag Helper
+ * MR Tag Helper
  *
  * This helper is used for quick and easy access
  * to mr_html_tag.  Automatic setup of mr_html_tag and
