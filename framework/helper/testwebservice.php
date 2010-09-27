@@ -57,7 +57,7 @@ class mr_helper_testwebservice extends mr_helper_abstract {
      */
     public function __destruct() {
         if (!empty($this->markup)) {
-            echo $this->markup;
+            echo trim($this->markup);
         }
     }
 
@@ -129,7 +129,7 @@ class mr_helper_testwebservice extends mr_helper_abstract {
                 $dom = dom_import_simplexml($simplexml)->ownerDocument;
                 $dom->formatOutput = true;
                 $markup .= "{code:xml}\n";
-                $markup .= $dom->saveXML();
+                $markup .= trim($dom->saveXML());
                 $markup .= "\n{code}\n";
             } else if (($json = json_decode($response)) !== NULL) {
                 $markup .= "{noformat}\n";
@@ -137,17 +137,17 @@ class mr_helper_testwebservice extends mr_helper_abstract {
                 $markup .= "\n{noformat}\n\n";
                 $markup .= "*Example Response (decoded JSON):*\n";
                 $markup .= "{noformat}\n";
-                $markup .= print_r($json, true);
+                $markup .= trim(print_r($json, true));
                 $markup .= "\n{noformat}\n";
             } else {
                 $markup .= "{noformat}\n";
-                $markup .= $response;
+                $markup .= trim($response);
                 $markup .= "\n{noformat}\n";
             }
             $markup = $this->generalize_text($markup);
 
             // Add to overall markup string
-            $this->markup .= $markup;
+            $this->markup .= "$markup\n\n";
         }
         return $markup;
     }
