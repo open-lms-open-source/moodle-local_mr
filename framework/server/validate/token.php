@@ -63,9 +63,9 @@ class mr_server_validate_token extends Zend_Validate_Abstract {
      * @var array
      */
     protected $_messageTemplates = array(
-        self::TOKEN_EMPTY => "No token configured, web services disabled (The configured token value is empty)",
-        self::TOKEN_NO_MATCH => "Passed token is invalid: %value%",
-        self::TOKEN_NOT_PASSED => "Passed token is invalid: NOT PASSED",
+        self::TOKEN_EMPTY => "No __token__ configured, web services disabled (The configured __token__ value is empty)",
+        self::TOKEN_NO_MATCH => "Passed __token__ is invalid: %value%",
+        self::TOKEN_NOT_PASSED => "Passed __token__ is invalid: NOT PASSED",
     );
 
     /**
@@ -91,6 +91,10 @@ class mr_server_validate_token extends Zend_Validate_Abstract {
     public function __construct($token, $paramname = 'token') {
         $this->_token     = $token;
         $this->_paramname = $paramname;
+
+        foreach ($this->_messageTemplates as $key => $template) {
+            $this->_messageTemplates[$key] = str_replace('__token__', $paramname, $template);
+        }
     }
 
     /**
