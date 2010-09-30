@@ -86,7 +86,7 @@ class mr_html_heading implements renderable {
     /**
      * Constructor
      *
-     * @param string $module Default get string module key
+     * @param string $component Get string component
      */
     public function __construct($component) {
         $this->component = $component;
@@ -96,7 +96,7 @@ class mr_html_heading implements renderable {
      * Set heading
      *
      * @param string $identifier String key to pass to get_string()
-     * @param string $helpidentifier Help button identifier (EG: help file's name without extension)
+     * @param string $helpidentifier Help button identifier.  If you define "{$identifier}_help" then this will automatically be set for you.
      * @param string $a Additional variables to pass to get_string()
      * @return void
      */
@@ -104,6 +104,9 @@ class mr_html_heading implements renderable {
         $this->text = get_string($identifier, $this->component, $a);
         $this->helpidentifier = $helpidentifier;
 
+        if (empty($helpidentifier) and get_string_manager()->string_exists("{$identifier}_help", $this->component)) {
+            $this->helpidentifier = $identifier;
+        }
         if (!empty($helpidentifier) and strpos($this->classes, 'help') === false) {
             $this->classes .= ' help';
         }

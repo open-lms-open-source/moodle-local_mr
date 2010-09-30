@@ -382,7 +382,7 @@ class mr_html_table extends mr_readonly implements renderable {
         $this->order = $this->defaultorder;
 
         // Save
-        $this->set_sortorder();
+        $this->save_sortorder();
 
         return $this;
     }
