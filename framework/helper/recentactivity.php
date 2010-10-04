@@ -132,7 +132,7 @@ class mr_helper_recentactivity extends mr_helper_abstract {
                         // unfortunately we do not know if the mod was visible
                         if (!array_key_exists($log->info, $newgones)) {
                             if ($a) {
-                                $strdeleted = get_string('deletedactivity', 'block_joulemobile', $a);
+                                $strdeleted = get_string('deletedactivity', 'local_mr', $a);
                             } else {
                                 $strdeleted = get_string('deletedactivity', 'moodle', get_string('modulename', $modname));
                             }
@@ -161,7 +161,7 @@ class mr_helper_recentactivity extends mr_helper_abstract {
 
                         if ($log->action == 'add mod') {
                             if ($a) {
-                                $stradded = get_string('addedactivity', 'block_joulemobile', $a);
+                                $stradded = get_string('addedactivity', 'local_mr', $a);
                             } else {
                                 $stradded = get_string('added', 'moodle', get_string('modulename', $modname));
                             }
@@ -176,7 +176,7 @@ class mr_helper_recentactivity extends mr_helper_abstract {
                             );
                         } else if ($log->action == 'update mod' and empty($changelist[$log->info])) {
                             if ($a) {
-                                $strupdated = get_string('updatedactivity', 'block_joulemobile', $a);
+                                $strupdated = get_string('updatedactivity', 'local_mr', $a);
                             } else {
                                 $strupdated = get_string('updated', 'moodle', get_string('modulename', $modname));
                             }
