@@ -115,6 +115,7 @@ class mr_helper_recentactivity extends mr_helper_abstract {
                     $instanceid = $info[1];
 
                     $userinfo = new stdClass;
+                    $userinfo->id       = $log->userid;
                     $userinfo->userid   = $log->userid;
                     $userinfo->fullname = '';
                     $userinfo->picture  = $log->picture;
@@ -140,6 +141,7 @@ class mr_helper_recentactivity extends mr_helper_abstract {
                                 'cmid' => $log->cmid,
                                 'type' => $modname,
                                 'name' => '',
+                                'action' => 'delete',
                                 'timestamp' => $log->time,
                                 'description_html' => $strdeleted,
                                 'description_text' => $strdeleted,
@@ -169,6 +171,7 @@ class mr_helper_recentactivity extends mr_helper_abstract {
                                 'cmid' => $cm->id,
                                 'type' => $modname,
                                 'name' => $cm->name,
+                                'action' => 'add',
                                 'timestamp' => $log->time,
                                 'description_html' => "$stradded:<br /><a href=\"$CFG->wwwroot/mod/$cm->modname/view.php?id={$cm->id}\">".format_string($cm->name, true).'</a>',
                                 'description_text' => "$stradded: ".format_string($cm->name, true),
@@ -184,6 +187,7 @@ class mr_helper_recentactivity extends mr_helper_abstract {
                                 'cmid' => $cm->id,
                                 'type' => $modname,
                                 'name' => $cm->name,
+                                'action' => 'update',
                                 'timestamp' => $log->time,
                                 'description_html' => "$strupdated:<br /><a href=\"$CFG->wwwroot/mod/$cm->modname/view.php?id={$cm->id}\">".format_string($cm->name, true).'</a>',
                                 'description_text' => "$strupdated: ".format_string($cm->name, true),
