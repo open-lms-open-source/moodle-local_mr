@@ -46,10 +46,10 @@ class mr_helper_recentactivity extends mr_helper_abstract {
      *
      * @param int $timestart Look for activity after this time
      * @param array $courses An array of course objects or a single course object
-     * @param int $userid The user who will view the list of activity
+     * @param mixed $otheruser The user who will view the list of activity.  If NULL, then currently logged in user is used.
      * @return array
      */
-    public function direct($timestart, $courses, $userid = NULL) {
+    public function direct($timestart, $courses, $otheruser = NULL) {
         global $DB, $CFG, $USER;
 
         $recentactivity = array();
@@ -61,8 +61,11 @@ class mr_helper_recentactivity extends mr_helper_abstract {
         if (!is_array($courses)) {
             $courses = array($courses->id => $courses);
         }
-        if (is_null($userid)) {
-            $userid = $USER->id;
+        if (!is_null($otheruser)) {
+            $currentuser = clone($USER);
+            session_set_user($otheruser);
+        } else {
+            $currentuser = false;
         }
         $timestart = clean_param($timestart, PARAM_INT);
 
@@ -78,8 +81,8 @@ class mr_helper_recentactivity extends mr_helper_abstract {
 
         // Gather recent activity
         foreach ($courses as $course) {
-            $modinfo       = get_fast_modinfo($course, $userid);
-            $viewfullnames = has_capability('moodle/site:viewfullnames', get_context_instance(CONTEXT_COURSE, $course->id), $userid);
+            $modinfo       = get_fast_modinfo($course);
+            $viewfullnames = has_capability('moodle/site:viewfullnames', get_context_instance(CONTEXT_COURSE, $course->id));
             $activities    = array();
             $index         = 0;
 
@@ -239,6 +242,9 @@ class mr_helper_recentactivity extends mr_helper_abstract {
         foreach ($recentactivity as $courseid => $course) {
             uasort($course->recentactivity, create_function('$a, $b', 'return ($a->timestamp == $b->timestamp) ? 0 : (($a->timestamp > $b->timestamp) ? -1 : 1);'));
             $recentactivity[$courseid]->recentactivity = array_values($course->recentactivity);
+        }
+        if ($currentuser !== false) {
+            session_set_user($currentuser);
         }
         return $recentactivity;
     }
