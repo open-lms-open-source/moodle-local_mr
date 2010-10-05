@@ -405,10 +405,14 @@ class local_mr_renderer extends plugin_renderer_base {
                     $sql .= s(var_export($params, true))."\n\n\n";
                 }
             }
-            $output .= $this->output->box(
-                $this->output->heading(get_string('reportsql', 'local_mr'), 4).
+            $output  = print_collapsible_region(
                 $this->output->box('<pre>'.trim($sql).'</pre>', ''),
-                'generalbox mr_report_sql'
+                'generalbox mr_report_sql',
+                'mr_report_sql_id',
+                get_string('reportsql', 'local_mr'),
+                'mr_report_sql_toggle',
+                false,
+                true
             );
         }
         return $output;
