@@ -10,8 +10,12 @@ div.paging div.singleselect {
 }
 
 /* mr_file_export styles */
-div.mr_file_export .singleselect {
+div.mr_file_export .urlselect {
     text-align: center;
+}
+
+div.mr_file_export .urlselect label {
+    padding-right: 5px;
 }
 
 /* mr_report_abstract styles */

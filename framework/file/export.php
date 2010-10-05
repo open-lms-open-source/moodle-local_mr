@@ -311,4 +311,19 @@ class mr_file_export implements renderable {
         }
         return $options;
     }
+
+    /**
+     * Get URL select options for the currently available exporters
+     *
+     * @return array
+     */
+    public function get_url_select_options() {
+        $options = array();
+        foreach ($this->exporters as $type => $exporter) {
+            $url = clone($this->get_url());
+            $url->param('mrexporter', $type);
+            $options[$url->out(false)] = $exporter->name();
+        }
+        return $options;
+    }
 }
