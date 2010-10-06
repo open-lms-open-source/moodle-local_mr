@@ -63,6 +63,9 @@ class mr_helper_html extends mr_helper_abstract {
 
         if (!$init) {
             $sheet = $CFG->wwwroot.'/lib/yui/autocomplete/assets/skins/sam/autocomplete.css';
+            if (!isset($CFG->stylesheets)) {
+                $CFG->stylesheets = array();
+            }
             if (!in_array($sheet, $CFG->stylesheets)) {
                 array_unshift($CFG->stylesheets, $sheet);
             }
