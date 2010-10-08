@@ -1,15 +1,36 @@
 <?php
+
 /**
- * Filter Number range
+ * Moodlerooms Framework
  *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see http://opensource.org/licenses/gpl-3.0.html.
+ *
+ * @copyright Copyright (c) 2009 Moodlerooms Inc. (http://www.moodlerooms.com)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License
+ * @package mr
+ * @author Mark Nielsen
  * @author Sam Chaffee
- * @version $Id$
- * @package blocks/reports
- **/
+ */
 
-require_once($CFG->dirroot.'/blocks/reports/model/filter/abstract.php');
+defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
-class block_reports_model_filter_numberrange extends block_reports_model_filter_abstract {
+/**
+ * @see mr_html_filter_abstract
+ */
+require_once($CFG->dirroot.'/local/mr/framework/html/filter/abstract.php');
+
+class mr_html_filter_numberrange extends mr_html_filter_abstract {
 
     /**
      * The low value default
@@ -111,35 +132,23 @@ class block_reports_model_filter_numberrange extends block_reports_model_filter_
      */
     public function sql() {
         $sql = array();
+        $params = array();
 
         $preference = $this->preferences_get($this->name.'_lv');
         if (!empty($preference)) {
-            $sql[] = "$this->field >= $preference";
+            $sql[] = "$this->field >= ?";
+            $params[] = $preference;
         }
         $preference = $this->preferences_get($this->name.'_hv');
         if (!empty($preference)) {
             // Note, we may want "$this->field > 0 AND " added to the following
-            $sql[] = "$this->field <= $preference";
+            $sql[] = "$this->field <= ?";
+            $params[] = $preference;
         }
 
         if (!empty($sql)) {
-            return implode(' AND ', $sql);
+            return array(implode(' AND ', $sql), $params);
         }
         return false;
     }
-
-    /**
-     * Hook into MoodleQuickForm setHelpButton method
-     *
-     * @param MoodleQuickForm $mform
-     * @return block_reports_model_filter_abstract
-     */
-    public function set_helpbutton($mform) {
-        if (isset($this->helpbutton) and is_array($this->helpbutton)) {
-            $mform->setHelpButton($this->name . '_grp', $this->helpbutton);
-        }
-        return $this;
-    }
 }
-
-?>
