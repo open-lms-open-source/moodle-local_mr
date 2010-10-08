@@ -185,6 +185,7 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
      *
      * @return void
      */
+
     protected function _init() {
         $this->init();
         $this->table_init();
@@ -406,6 +407,9 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
     public function get_recordset($filter = array(), $sort = '', $limitfrom = '', $limitnum = '') {
         global $DB;
 
+        if (empty($filter)) {
+            $filter = array('1 = 1', array());
+        }
         list($filtersql, $filterparams) = $filter;
         list($sql, $params) = $this->get_sql($this->table->get_sql_select(), $filtersql, $filterparams);
 
