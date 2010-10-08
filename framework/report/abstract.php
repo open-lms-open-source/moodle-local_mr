@@ -190,7 +190,9 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
         $this->table_init();
         $this->filter_init();
 
-        $this->filter->set_report($this);
+        if ($this->filter instanceof mr_html_filter) {
+            $this->filter->set_report($this);
+        }
 
         // Override settings based on other global settings
         $this->config->ajax = ($this->config->ajax and ajaxenabled());
@@ -470,9 +472,11 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
     }
 
     /**
-     * A hook into the defifintion of the mform
+     * A hook into the filter's form definition, called after all filters have been added.
+     * This is handy for adding help buttons, disabledIfs, etc.  For major filter form customizations,
+     * define your own filter form class and pass the path to your new form to the mr_html_form constructor.
      * 
      * @param MoodleQuickForm $mform
      */
-    public function mform_hook(MoodleQuickForm &$mform) {}
+    public function filter_definition_hook(MoodleQuickForm &$mform) {}
 }

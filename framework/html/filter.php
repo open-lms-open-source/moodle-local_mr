@@ -182,7 +182,7 @@ class mr_html_filter extends mr_readonly implements renderable {
      */
     public function mform_hook(MoodleQuickForm &$mform) {
         if ($this->report instanceof mr_report_abstract) {
-            $this->report->mform_hook($mform);
+            $this->report->filter_definition_hook($mform);
         }
         return $this;
     }
