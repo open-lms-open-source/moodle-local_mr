@@ -190,6 +190,8 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
         $this->table_init();
         $this->filter_init();
 
+        $this->filter->set_report($this);
+
         // Override settings based on other global settings
         $this->config->ajax = ($this->config->ajax and ajaxenabled());
 
@@ -402,9 +404,6 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
     public function get_recordset($filter = array(), $sort = '', $limitfrom = '', $limitnum = '') {
         global $DB;
 
-        if (empty($filter)) {
-            $filter = array('1 = 1', array());
-        }
         list($filtersql, $filterparams) = $filter;
         list($sql, $params) = $this->get_sql($this->table->get_sql_select(), $filtersql, $filterparams);
 
@@ -469,4 +468,11 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
     public function output_wrapper($tablehtml) {
         return $tablehtml;
     }
+
+    /**
+     * A hook into the defifintion of the mform
+     * 
+     * @param MoodleQuickForm $mform
+     */
+    public function mform_hook(MoodleQuickForm &$mform) {}
 }

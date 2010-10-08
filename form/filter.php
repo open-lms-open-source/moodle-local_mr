@@ -36,9 +36,11 @@ class local_mr_form_filter extends moodleform {
 
         $mform->addElement('header', 'filterheader', get_string('filter', 'local_mr'));
 
-        foreach ($this->_customdata as $filter) {
+        foreach ($this->_customdata->get_filters() as $filter) {
             $filter->add_element($mform);
         }
+
+        $this->_customdata->mform_hook($mform);
 
         $buttons = array();
         $buttons[] = &$mform->createElement('submit', 'submitbutton', get_string('filter', 'local_mr'));

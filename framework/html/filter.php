@@ -83,6 +83,13 @@ class mr_html_filter extends mr_readonly implements renderable {
     protected $helper;
 
     /**
+     * Report
+     * 
+     * @var mr_report_abstract
+     */
+    protected $report;
+
+    /**
      * Construct
      *
      * @param mr_preferences Preferences model
@@ -110,7 +117,7 @@ class mr_html_filter extends mr_readonly implements renderable {
             throw new coding_exception('Must add filters');
         }
         if (empty($this->mform)) {
-            $this->mform = $this->helper->load($this->formpath, array($this->url, $this->filters), false);
+            $this->mform = $this->helper->load($this->formpath, array($this->url, $this), false);
 
             if ($data = $this->mform->get_data()) {
                 if (!empty($data->resetbutton)) {
@@ -166,6 +173,26 @@ class mr_html_filter extends mr_readonly implements renderable {
         $filter->preferences_init($this->preferences);
         $this->filters[] = $filter;
         return $this;
+    }
+
+    /**
+     * Hook from
+     * @param MoodleQuickForm $mform
+     * @return mr_html_filter
+     */
+    public function mform_hook(MoodleQuickForm &$mform) {
+        if ($this->report instanceof mr_report_abstract) {
+            $this->report->mform_hook($mform);
+        }
+        return $this;
+    }
+
+    /**
+     * Set a report to the filters
+     * @param mr_report_abstract $report
+     */
+    public function set_report(mr_report_abstract $report) {
+        $this->report = $report;
     }
 
     /**
