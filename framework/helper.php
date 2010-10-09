@@ -115,6 +115,25 @@ class mr_helper {
     }
 
     /**
+     * Static interface for getting an instance of mr_helper
+     *
+     * This is useful when you need to quickly call a single
+     * helper method.  Example:
+     *
+     * <code>
+     * <?php
+     *      $return = mr_helper::get('blocks/helloworld')->world();
+     * ?>
+     * </code>
+     *
+     * @param string $namespace Current namespace, EG: blocks/reports
+     * @return mr_helper
+     */
+    public static function get($namespace = NULL) {
+        return new mr_helper($namespace);
+    }
+
+    /**
      * Get a helper
      *
      * @param string $name Helper name
