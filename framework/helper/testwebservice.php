@@ -220,4 +220,32 @@ class mr_helper_testwebservice extends mr_helper_abstract {
             return '<pre class="notifytiny">'.s($response).'</pre>';
         }
     }
+
+    /**
+     * Generate debugging information for a web service request
+     *
+     * This can be handy to throw into exceptions.
+     *
+     * @param string $request The last request
+     * @param Zend_Http_Response $response The last response
+     * @return string
+     */
+    public function debuginfo($request, $response) {
+        if (!$response instanceof Zend_Http_Response) {
+            throw new coding_exception('Passed invalid response');
+        }
+        $output  = "LAST REQUEST\n\n$request\n\n";
+        $output .= "LAST RESPONSE\n\n";
+
+        if ($simplexml = @simplexml_load_string($response->getBody())) {
+            $dom = dom_import_simplexml($simplexml)->ownerDocument;
+            $dom->formatOutput = true;
+            $output .= $dom->saveXML();
+        } else if (($json = json_decode($response->getBody())) !== NULL) {
+            $output .= print_r($json, true);
+        } else {
+            $output .= $response->getBody();
+        }
+        return $output;
+    }
 }
