@@ -67,6 +67,20 @@ abstract class mr_html_filter_abstract {
     protected $preferences;
 
     /**
+     * Element help button parameters
+     *
+     * @var array
+     */
+    protected $helpbutton = array();
+
+    /**
+     * Element disabledIf parameters
+     *
+     * @var array
+     */
+    protected $disabledif = array();
+
+    /**
      * Construct
      *
      * @param string $name Filter name
@@ -106,6 +120,18 @@ abstract class mr_html_filter_abstract {
      */
     public function get_name() {
         return $this->name;
+    }
+
+    /**
+     * Get the filter's primary form element's name
+     *
+     * This is used to attach help buttons, disabledIfs,
+     * etc to the filter's element.
+     *
+     * @return string
+     */
+    public function get_element_name() {
+        return $this->get_name();
     }
 
     /**
@@ -181,6 +207,68 @@ abstract class mr_html_filter_abstract {
         }
         foreach ($names as $name) {
             $this->preferences->delete($name);
+        }
+        return $this;
+    }
+
+    /**
+     * Add a help button to this filter
+     *
+     * @param string $identifier Help button text identifier
+     * @param string $component The plugin component
+     * @return mr_html_filter_abstract
+     */
+    public function add_helpbutton($identifier, $component = 'moodle') {
+        $this->helpbutton = array(
+            'identifier' => $identifier,
+            'component'  => $component,
+        );
+        return $this;
+    }
+
+    /**
+     * Add disabledIf to this filter
+     *
+     * @param string $dependenton The name of the element whose state will be checked for condition
+     * @param string $condition The condition to check
+     * @param string $value Used in conjunction with condition.
+     * @return mr_html_filter_abstract
+     */
+    public function add_disabledif($dependenton, $condition = 'notchecked', $value = '1') {
+        $this->disabledif = array(
+            'dependenton' => $dependenton,
+            'condition'   => $condition,
+            'value'       => $value,
+        );
+        return $this;
+    }
+
+    /**
+     * Add all elements for this filter
+     *
+     * @param MoodleQuickForm $mform The filter form
+     * @return mr_html_filter_abstract
+     */
+    public function add_elements($mform) {
+        $this->add_element($mform);
+
+        // Add help button
+        if (!empty($this->helpbutton)) {
+            $mform->addHelpButton(
+                $this->get_element_name(),
+                $this->helpbutton['identifier'],
+                $this->helpbutton['component']
+            );
+        }
+
+        // Add disabledIf
+        if (!empty($this->disabledif)) {
+            $mform->disabledIf(
+                $this->get_element_name(),
+                $this->disabledif['dependenton'],
+                $this->disabledif['condition'],
+                $this->disabledif['value']
+            );
         }
         return $this;
     }

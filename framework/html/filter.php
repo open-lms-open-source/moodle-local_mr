@@ -171,7 +171,42 @@ class mr_html_filter extends mr_readonly implements renderable {
      */
     public function add(mr_html_filter_abstract $filter) {
         $filter->preferences_init($this->preferences);
-        $this->filters[] = $filter;
+        $this->filters[$filter->get_name()] = $filter;
+        return $this;
+    }
+
+    /**
+     * Add a help button to a filter
+     *
+     * @param string $filtername The filter's name
+     * @param string $identifier Help button text identifier
+     * @param string $component The plugin component
+     * @return mr_html_filter
+     * @throws coding_exception
+     */
+    public function add_helpbutton($filtername, $identifier, $component = 'moodle') {
+        if (!array_key_exists($filtername, $this->filters)) {
+            throw new coding_exception("Cannot add filter help button because filter '$filtername' does not exist");
+        }
+        $this->filters[$filtername]->add_helpbutton($identifier, $component);
+        return $this;
+    }
+
+    /**
+     * Add disabledIf to a filter
+     *
+     * @param string $filtername The filter's name
+     * @param string $dependenton The name of the element whose state will be checked for condition
+     * @param string $condition The condition to check
+     * @param string $value Used in conjunction with condition.
+     * @return mr_html_filter
+     * @throws coding_exception
+     */
+    public function add_disabledif($filtername, $dependenton, $condition = 'notchecked', $value = '1') {
+        if (!array_key_exists($filtername, $this->filters)) {
+            throw new coding_exception("Cannot add filter disabled if because filter '$filtername' does not exist");
+        }
+        $this->filters[$filtername]->add_disabledif($dependenton, $condition, $value);
         return $this;
     }
 

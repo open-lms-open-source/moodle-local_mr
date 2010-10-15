@@ -35,6 +35,12 @@ require_once($CFG->dirroot.'/local/mr/framework/html/filter/abstract.php');
  * @package mr
  */
 class mr_html_filter_daterange extends mr_html_filter_abstract {
+    /**
+     * Return the group element
+     */
+    public function get_element_name() {
+        return $this->name.'_grp';
+    }
 
     /**
      * Defaults for two fields

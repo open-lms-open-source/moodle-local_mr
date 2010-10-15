@@ -30,6 +30,12 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  */
 require_once($CFG->dirroot.'/local/mr/framework/html/filter/abstract.php');
 
+/**
+ * MR HTML Filter Number Range
+ *
+ * @author Sam Chaffee
+ * @package mr
+ */
 class mr_html_filter_numberrange extends mr_html_filter_abstract {
 
     /**
@@ -61,6 +67,13 @@ class mr_html_filter_numberrange extends mr_html_filter_abstract {
 
         $this->lv_default = $lv_default;
         $this->hv_default = $hv_default;
+    }
+
+    /**
+     * Return the group element
+     */
+    public function get_element_name() {
+        return $this->name.'_grp';
     }
 
     /**

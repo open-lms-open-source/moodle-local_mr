@@ -184,22 +184,22 @@ abstract class mr_controller extends mr_readonly {
         // Run base controller setup
         $this->setup();
 
-        // Load up renderers
-        try {
-            $this->output = $PAGE->get_renderer($this->component);
-        } catch (moodle_exception $e) {
-            $this->output = $PAGE->get_renderer('core'); // Should this be $OUTPUT ?
-        }
-        $this->mroutput = $PAGE->get_renderer('local_mr');
-
         // Get URL
         $this->url = $this->new_url();
 
         // Build tab structure
         $this->init_tabs();
 
-        // ALWAYS called last for constructor customizations
+        // Controller specific constructor customizations
         $this->init();
+
+        // Load up renderers (Last, otherwise cannot customize layout)
+        try {
+            $this->output = $PAGE->get_renderer($this->component);
+        } catch (moodle_exception $e) {
+            $this->output = $PAGE->get_renderer('core'); // Should this be $OUTPUT ?
+        }
+        $this->mroutput = $PAGE->get_renderer('local_mr');
     }
 
     /**
@@ -236,10 +236,17 @@ abstract class mr_controller extends mr_readonly {
      *
      * Override if your controller needs to
      * do specific setup before running. Everything
-     * should be setup at this point.
+     * should be setup at this point except for $this->output and
+     * $this->mroutput.
+     *
+     * Example tasks to do in init():
+     *      - Override defaults: title, tab selection, etc
+     *      - Change layout: $PAGE->set_pagelayout(...)
      *
      * @return void
      * @see $action
+     * @see $output
+     * @see $mroutput
      */
     protected function init() {
     }

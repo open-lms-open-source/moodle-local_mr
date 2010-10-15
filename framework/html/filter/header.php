@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Moodlerooms Framework
  *
@@ -30,18 +29,37 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  */
 require_once($CFG->dirroot.'/local/mr/framework/html/filter/abstract.php');
 
-
+/**
+ * MR HTML Filter Header
+ *
+ * @author Sam Chaffee
+ * @package mr
+ */
 class mr_html_filter_header extends mr_html_filter_abstract {
 
+    /**
+     * Header "filter" constructor
+     *
+     * @param string $name - name for the filter instance
+     * @param string $label - label to the left of the checkbox
+     */
     public function __construct($name, $label) {
         parent::__construct($name, $label, false, '');
     }
 
+    /**
+     * Add a header element to the form
+     *
+     * @param MoodleQuickForm $mform
+     * @return block_reports_model_filter_header
+     */
     public function add_element($mform) {
         $mform->addElement('header', $this->name, $this->label);
-
         return $this;
     }
 
+    /**
+     * Stub method to override abstract method
+     */
     public function sql() {}
 }

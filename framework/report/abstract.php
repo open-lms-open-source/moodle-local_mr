@@ -185,7 +185,6 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
      *
      * @return void
      */
-
     protected function _init() {
         $this->init();
 
@@ -484,9 +483,12 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
     }
 
     /**
-     * A hook into the filter's form definition, called after all filters have been added.
-     * This is handy for adding help buttons, disabledIfs, etc.  For major filter form customizations,
-     * define your own filter form class and pass the path to your new form to the mr_html_form constructor.
+     * A hook into the filter's form definition, called after all
+     * filters have been added.
+     *
+     * This is handy for form customizations, etc.  For major filter
+     * form customizations, define your own filter form class and pass
+     * the path to your new form to the mr_html_form constructor.
      * 
      * @param MoodleQuickForm $mform
      */
