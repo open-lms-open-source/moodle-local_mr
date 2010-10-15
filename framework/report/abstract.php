@@ -188,12 +188,6 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
 
     protected function _init() {
         $this->init();
-        $this->table_init();
-        $this->filter_init();
-
-        if ($this->filter instanceof mr_html_filter) {
-            $this->filter->set_report($this);
-        }
 
         // Override settings based on other global settings
         $this->config->ajax = ($this->config->ajax and ajaxenabled());
@@ -245,6 +239,13 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
      * @return void
      */
     public function run() {
+        // Initialize the tables and the filters
+        $this->table_init();
+        $this->filter_init();
+
+        if ($this->filter instanceof mr_html_filter) {
+            $this->filter->set_report($this);
+        }
         // Fill the report rows (can send to exporter)
         $this->table_fill();
 
@@ -328,6 +329,13 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
      * @return string The file path
      */
     public function export($exporter, $filename = NULL) {
+        // Initialize the table and the filters
+        $this->table_init();
+        $this->filter_init();
+
+        if ($this->filter instanceof mr_html_filter) {
+            $this->filter->set_report($this);
+        }
         // Set the exporter
         $this->export->init($exporter, $filename);
 
