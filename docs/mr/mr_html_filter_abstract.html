@@ -155,9 +155,21 @@
 										</td>
 				</tr>
 								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_html_filter_header.html">mr_html_filter_header</a></td>
+					<td>
+											MR HTML Filter Header
+										</td>
+				</tr>
+								<tr>
 					<td style="padding-right: 2em"><a href="../mr/mr_html_filter_hidden.html">mr_html_filter_hidden</a></td>
 					<td>
 											MR HTML Filter hidden
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_html_filter_numberrange.html">mr_html_filter_numberrange</a></td>
+					<td>
+											MR HTML Filter Number Range
 										</td>
 				</tr>
 								<tr>
@@ -202,13 +214,21 @@
 								</div>
 		<div class="info-box-body">
 			<div class="var-summary">
-																																																								<div class="var-title">
+																																																																								<div class="var-title">
 					<span class="var-type">boolean</span>
 					<a href="#$advanced" title="details" class="var-name">$advanced</a>
 				</div>
 																<div class="var-title">
+					<span class="var-type">array</span>
+					<a href="#$disabledif" title="details" class="var-name">$disabledif</a>
+				</div>
+																<div class="var-title">
 					<span class="var-type">string</span>
 					<a href="#$field" title="details" class="var-name">$field</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">array</span>
+					<a href="#$helpbutton" title="details" class="var-name">$helpbutton</a>
 				</div>
 																<div class="var-title">
 					<span class="var-type">string</span>
@@ -239,7 +259,7 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																																																																																						
+																																																																																																																																						
 				<div class="method-definition">
 											<span class="method-result">mr_html_filter_abstract</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
@@ -248,8 +268,32 @@
 														
 				<div class="method-definition">
 											<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+										<a href="#add_disabledif" title="details" class="method-name">add_disabledif</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$dependenton</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$condition</span> = <span class="var-default">'notchecked'</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$value</span> = <span class="var-default">'1'</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
 										<a href="#add_element" title="details" class="method-name">add_element</a>
 											(<span class="var-type">MoodleQuickForm</span>&nbsp;<span class="var-name">$mform</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+										<a href="#add_elements" title="details" class="method-name">add_elements</a>
+											(<span class="var-type">MoodleQuickForm</span>&nbsp;<span class="var-name">$mform</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+										<a href="#add_helpbutton" title="details" class="method-name">add_helpbutton</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$identifier</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$component</span> = <span class="var-default">'moodle'</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#get_element_name" title="details" class="method-name">get_element_name</a>
+										()
 									</div>
 														
 				<div class="method-definition">
@@ -346,8 +390,30 @@
 		
 
 </div>
-<a name="var$field" id="$field"><!-- --></A>
+<a name="var$disabledif" id="$disabledif"><!-- --></A>
 <div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$disabledif</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">81</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Element disabledIf parameters</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$field" id="$field"><!-- --></A>
+<div class="oddrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -359,6 +425,28 @@
 
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">SQL field name (if different from $name)</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$helpbutton" id="$helpbutton"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$helpbutton</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">74</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Element help button parameters</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> protected</li>
 			</ul>
@@ -454,7 +542,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">77</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">91</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -503,7 +591,15 @@
 								: Checkbox filter constructor
 							</li>
 					<li>
+				<a href="../mr/mr_html_filter_header.html#method__construct">mr_html_filter_header::__construct()</a>
+								: Header &quot;filter&quot; constructor
+							</li>
+					<li>
 				<a href="../mr/mr_html_filter_hidden.html#method__construct">mr_html_filter_hidden::__construct()</a>
+								: Construct
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_numberrange.html#method__construct">mr_html_filter_numberrange::__construct()</a>
 								: Construct
 							</li>
 					<li>
@@ -516,11 +612,46 @@
 							</li>
 				</ul>
 	</div>
-<a name="methodadd_element" id="add_element"><!-- --></a>
+<a name="methodadd_disabledif" id="add_disabledif"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">add_element</span> (line <span class="line-number">194</span>)
+		<span class="method-title">add_disabledif</span> (line <span class="line-number">237</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add disabledIf to this filter</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+		<span class="method-name">
+			add_disabledif
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$dependenton</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$condition</span> = <span class="var-default">'notchecked'</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$value</span> = <span class="var-default">'1'</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$dependenton</span><span class="var-description">: The name of the element whose state will be checked for condition</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$condition</span><span class="var-description">: The condition to check</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$value</span><span class="var-description">: Used in conjunction with condition.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodadd_element" id="add_element"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">add_element</span> (line <span class="line-number">282</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -565,8 +696,16 @@
 								: Add date fields and checkboxes to enable/disable
 							</li>
 					<li>
+				<a href="../mr/mr_html_filter_header.html#methodadd_element">mr_html_filter_header::add_element()</a>
+								: Add a header element to the form
+							</li>
+					<li>
 				<a href="../mr/mr_html_filter_hidden.html#methodadd_element">mr_html_filter_hidden::add_element()</a>
 								: Add hidden field
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_numberrange.html#methodadd_element">mr_html_filter_numberrange::add_element()</a>
+								: Add text fields and checkboxes to enable/disable
 							</li>
 					<li>
 				<a href="../mr/mr_html_filter_recent.html#methodadd_element">mr_html_filter_recent::add_element()</a>
@@ -586,11 +725,109 @@
 							</li>
 				</ul>
 	</div>
+<a name="methodadd_elements" id="add_elements"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">add_elements</span> (line <span class="line-number">252</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add all elements for this filter</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+		<span class="method-name">
+			add_elements
+		</span>
+					(<span class="var-type">MoodleQuickForm</span>&nbsp;<span class="var-name">$mform</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">MoodleQuickForm</span>
+				<span class="var-name">$mform</span><span class="var-description">: The filter form</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodadd_helpbutton" id="add_helpbutton"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">add_helpbutton</span> (line <span class="line-number">221</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add a help button to this filter</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+		<span class="method-name">
+			add_helpbutton
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$identifier</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$component</span> = <span class="var-default">'moodle'</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$identifier</span><span class="var-description">: Help button text identifier</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$component</span><span class="var-description">: The plugin component</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodget_element_name" id="get_element_name"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_element_name</span> (line <span class="line-number">133</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the filter's primary form element's name</p>
+<p class="description"><p>This is used to attach help buttons, disabledIfs,  etc to the filter's element.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			get_element_name
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../mr/mr_html_filter_daterange.html#methodget_element_name">mr_html_filter_daterange::get_element_name()</a>
+								: Return the group element
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_numberrange.html#methodget_element_name">mr_html_filter_numberrange::get_element_name()</a>
+								: Return the group element
+							</li>
+				</ul>
+	</div>
 <a name="methodget_field" id="get_field"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">get_field</span> (line <span class="line-number">116</span>)
+		<span class="method-title">get_field</span> (line <span class="line-number">142</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -614,7 +851,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">get_name</span> (line <span class="line-number">107</span>)
+		<span class="method-title">get_name</span> (line <span class="line-number">121</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -638,7 +875,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">preferences_defaults</span> (line <span class="line-number">125</span>)
+		<span class="method-title">preferences_defaults</span> (line <span class="line-number">151</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -677,6 +914,10 @@
 								: Defaults to value
 							</li>
 					<li>
+				<a href="../mr/mr_html_filter_numberrange.html#methodpreferences_defaults">mr_html_filter_numberrange::preferences_defaults()</a>
+								: Defaults for two fields
+							</li>
+					<li>
 				<a href="../mr/mr_html_filter_recent.html#methodpreferences_defaults">mr_html_filter_recent::preferences_defaults()</a>
 								: Default is zero
 							</li>
@@ -694,7 +935,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">preferences_delete</span> (line <span class="line-number">176</span>)
+		<span class="method-title">preferences_delete</span> (line <span class="line-number">202</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -723,7 +964,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">preferences_get</span> (line <span class="line-number">147</span>)
+		<span class="method-title">preferences_get</span> (line <span class="line-number">173</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -752,7 +993,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">preferences_init</span> (line <span class="line-number">135</span>)
+		<span class="method-title">preferences_init</span> (line <span class="line-number">161</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -784,7 +1025,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">preferences_update</span> (line <span class="line-number">159</span>)
+		<span class="method-title">preferences_update</span> (line <span class="line-number">185</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -816,6 +1057,10 @@
 								: Enforce checkboxes - if not set
 							</li>
 					<li>
+				<a href="../mr/mr_html_filter_numberrange.html#methodpreferences_update">mr_html_filter_numberrange::preferences_update()</a>
+								: Enforce checkboxes - if not set
+							</li>
+					<li>
 				<a href="../mr/mr_html_filter_selectmulti.html#methodpreferences_update">mr_html_filter_selectmulti::preferences_update()</a>
 								: Enforce checkboxes - if not set
 							</li>
@@ -825,7 +1070,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">sql</span> (line <span class="line-number">201</span>)
+		<span class="method-title">sql</span> (line <span class="line-number">289</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -865,8 +1110,16 @@
 								: Set limits on field
 							</li>
 					<li>
+				<a href="../mr/mr_html_filter_header.html#methodsql">mr_html_filter_header::sql()</a>
+								: Stub method to override abstract method
+							</li>
+					<li>
 				<a href="../mr/mr_html_filter_hidden.html#methodsql">mr_html_filter_hidden::sql()</a>
 								: Set field to value
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_numberrange.html#methodsql">mr_html_filter_numberrange::sql()</a>
+								: Set limits on field
 							</li>
 					<li>
 				<a href="../mr/mr_html_filter_recent.html#methodsql">mr_html_filter_recent::sql()</a>
@@ -890,7 +1143,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">__toString</span> (line <span class="line-number">94</span>)
+		<span class="method-title">__toString</span> (line <span class="line-number">108</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -916,7 +1169,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Tue, 05 Oct 2010 15:07:05 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Mon, 18 Oct 2010 09:52:23 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
