@@ -81,8 +81,7 @@ class mr_html_filter_autocomplete extends mr_html_filter_abstract {
 
         $preference = $this->preferences_get($this->name);
         if (!empty($preference)) {
-            $ilike = $DB->sql_ilike();
-            return array("$this->field $ilike ?", "%$preference%");
+            return array($DB->sql_like($this->field, '?'), "%$preference%");
         }
         return false;
     }
