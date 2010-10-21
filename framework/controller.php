@@ -199,7 +199,11 @@ abstract class mr_controller extends mr_readonly {
         } catch (moodle_exception $e) {
             $this->output = $PAGE->get_renderer('core'); // Should this be $OUTPUT ?
         }
-        $this->mroutput = $PAGE->get_renderer('local_mr');
+        try {
+            $this->mroutput = $PAGE->get_renderer('local_mr', 'extended');
+        } catch (moodle_exception $e) {
+            $this->mroutput = $PAGE->get_renderer('local_mr');
+        }
     }
 
     /**

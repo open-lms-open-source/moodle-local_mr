@@ -154,6 +154,7 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
         $this->config->set(array(
             'cache' => false,                // Enable report caching
             'ajax' => false,                 // Allow AJAX table view
+            'ajaxdefault' => 1,              // Default for AJAX view
             'export' => false,               // Export options, an array of export formats or true for all
             'maxrows' => 65000,              // The maximum number of rows the report can report on
             'perpage' => false,              // Can the page size be changed?
@@ -188,7 +189,10 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
     protected function _init() {
         $this->init();
 
-        // Override settings based on other global settings
+        // Determine if we can turn ajax on
+        if (($forceajax = optional_param('forceajax', -1, PARAM_INT)) != -1) {
+            $this->preferences->set('forceajax', $forceajax);
+        }
         $this->config->ajax = ($this->config->ajax and ajaxenabled());
 
         // Setup Paging
@@ -245,8 +249,16 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
         if ($this->filter instanceof mr_html_filter) {
             $this->filter->set_report($this);
         }
-        // Fill the report rows (can send to exporter)
-        $this->table_fill();
+        // Determine if we are doing AJAX
+        if ($this->config->ajax and $this->preferences->get('forceajax', $this->config->ajaxdefault)) {
+            if (optional_param('tjson', 0, PARAM_BOOL)) {
+                // Filling on AJAX request
+                $this->table_fill();
+            }
+        } else {
+            // Normal fill...
+            $this->table_fill();
+        }
 
         // If exporting, send it to the browser
         if ($this->export instanceof mr_file_export and $this->export->is_exporting()) {

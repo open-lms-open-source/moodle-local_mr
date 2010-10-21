@@ -29,6 +29,16 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 require_once($CFG->dirroot.'/local/mr/framework/html/tag.php');
 
 /**
+ * Include if available
+ */
+if (file_exists($CFG->dirroot.'/local/mr/extended/renderer.php')) {
+    /**
+     * @see local_mr_extended_renderer
+     */
+    require_once($CFG->dirroot.'/local/mr/extended/renderer.php');
+}
+
+/**
  * MR Renderer
  *
  * Default renderer for the framework.
@@ -211,19 +221,17 @@ class local_mr_renderer extends plugin_renderer_base {
                 // Figure out column sort controls
                 if ($config->sortable) {
                     $icon    = '';
-                    $torder  = 'asc';
                     $sortstr = get_string('asc');
 
                     if ($table->get_sort() == $column->get_name()) {
                         if ($table->get_order() == SORT_ASC) {
                             $icon    = $tag->img()->src($this->output->pix_url('t/down'))->alt(get_string('asc'));
                             $sortstr = get_string('asc');
-                            $torder  = 'desc';
                         } else {
                             $icon = $tag->img()->src($this->output->pix_url('t/up'))->alt(get_string('desc'));
                         }
                     }
-                    $url     = $table->get_url()->out(false, array('tsort' => $config->name, 'torder' => $torder));
+                    $url     = $table->get_url()->out(false, array('tsort' => $config->name, 'torder' => $table->get_sort()));
                     $heading = get_string('sortby').' '.$config->heading.' '.$sortstr;
                     $heading = $config->heading.get_accesshide($heading);
                     $heading = $tag->a($heading)->href($url).$icon;
@@ -242,60 +250,7 @@ class local_mr_renderer extends plugin_renderer_base {
             $cell->colspan = count($htmltable->head);
             $htmltable->data[] = new html_table_row(array($cell));
         } else {
-            $suppress = array();
-            foreach ($rows as $row) {
-                // Generate a html_table_row
-                if ($row instanceof html_table_row) {
-                    $htmlrow = $row;
-                } else {
-                    $htmlrow = new html_table_row();
-                    foreach ($columns as $column) {
-                        $cell = $column->get_cell($row);
-
-                        if ($cell instanceof html_table_cell) {
-                            $htmlrow->cells[] = $cell;
-                        } else {
-                            $cell = new html_table_cell($cell);
-                            foreach ($column->get_config()->attributes as $name => $value) {
-                                if (property_exists($cell, $name)) {
-                                    $cell->$name = $value;
-                                } else {
-                                    $cell->attributes[$name] = $value;
-                                }
-                            }
-                            $htmlrow->cells[] = $cell;
-                        }
-                    }
-                }
-
-                // Apply column suppression to the row
-                $position = -1;
-                foreach ($columns as $column) {
-                    $position++;
-
-                    if (!$column->get_config()->suppress or !array_key_exists($position, $htmlrow->cells)) {
-                        continue;
-                    }
-                    $cell = $htmlrow->cells[$position];
-
-                    if (isset($suppress[$position]) and $suppress[$position] == $cell->text) {
-                        $htmlrow->cells[$position]->text = '';  // Suppressed
-                    } else {
-                        // If a cell changes, reset suppression for all cells after it (left to right)
-                        if (isset($suppress[$position]) and $suppress[$position] != $cell->text) {
-                            foreach ($suppress as $key => $value) {
-                                if ($key > $position) {
-                                    unset($suppress[$key]);
-                                }
-                            }
-                        }
-                        $suppress[$position] = $cell->text;
-                    }
-                }
-
-                // Add the row to the table
-                $htmltable->data[] = $htmlrow;
-            }
+            $htmltable->data = $this->convert_to_htmlrows($table);
         }
         return html_writer::tag('div', html_writer::table($htmltable), array('class' => 'mr_html_table'));
     }
@@ -318,9 +273,7 @@ class local_mr_renderer extends plugin_renderer_base {
      *
      * @param mr_report_abstract $report mr_report_abstract instance
      * @return string
-     * @todo Perhaps wrap everything in a div to control layout?  Then other render methods don't do align, etc
      * @todo Render in heading with help button?
-     * @todo How to toggle report SQL on/off?
      */
     public function render_mr_report_abstract(mr_report_abstract $report) {
         // Wrapper DIV
@@ -329,19 +282,20 @@ class local_mr_renderer extends plugin_renderer_base {
         // Heading
         // $output .= $this->output->heading($report->name());
 
-        // Report SQL
+        // Render report SQL
         $output .= $this->help_render_mr_report_sql($report);
 
-        // Description
+        // Render description
         if ($description = $report->get_description()) {
             $output .= $this->output->box($description, 'generalbox boxwidthnormal boxaligncenter mr_report_description');
         }
 
-        // Filter
+        // Render filter
         if ($report->get_filter() instanceof mr_html_filter) {
             $output .= $this->render($report->get_filter());
         }
-        // Render Paging top
+
+        // Render paging top
         $output .= $this->render($report->get_paging());
 
         // Render table and allow report to wrap it with w/e
@@ -349,32 +303,18 @@ class local_mr_renderer extends plugin_renderer_base {
             $this->render($report->get_table())
         );
 
-        // Render Paging bottom
-        $output .= $this->render($report->get_paging());
+        // Render paging bottom
+        if ($report->get_paging()->get_total() > $report->get_paging()->get_perpage()) {
+            $output .= $this->render($report->get_paging());
+        }
 
-        // Export
+        // Render export
         if ($report->get_export() instanceof mr_file_export) {
             $output .= $this->render($report->get_export());
         }
 
         // Close wrapper DIV
         $output .= $this->output->box_end();
-
-        // AJAX DISPLAY: internal only
-        // if ($this->config->ajax) {
-        //     if ($this->preferences->get('ajax', self::$ajaxdefault)) {
-        //         $newajax = 0;
-        //         $label   = get_string('basichtml', 'local_mr');
-        //     } else {
-        //         $newajax = 1;
-        //         $label   = get_string('standard', 'local_mr');
-        //     }
-        //     $title = s($label);
-        //     $url   = $this->url->out(false, array('setajax' => $newajax));
-        // 
-        //     return "<p class=\"toggleajax\"><a href=\"$url\" title=\"$title\">$label</a></p>";
-        // }
-        // return '';
 
         return $output;
     }
@@ -416,5 +356,70 @@ class local_mr_renderer extends plugin_renderer_base {
             );
         }
         return $output;
+    }
+
+    /**
+     * Convert a mr_html_table into an array of html_table_row instances
+     *
+     * @param mr_html_table $table Instance
+     * @return array
+     */
+    protected function convert_to_htmlrows(mr_html_table $table) {
+        $rows     = $table->get_rows();
+        $columns  = $table->get_columns(true);
+        $suppress = array();
+        $htmlrows = array();
+        foreach ($rows as $row) {
+            // Generate a html_table_row
+            if ($row instanceof html_table_row) {
+                $htmlrow = $row;
+            } else {
+                $htmlrow = new html_table_row();
+                foreach ($columns as $column) {
+                    $cell = $column->get_cell($row);
+
+                    if ($cell instanceof html_table_cell) {
+                        $htmlrow->cells[] = $cell;
+                    } else {
+                        $cell = new html_table_cell($cell);
+                        foreach ($column->get_config()->attributes as $name => $value) {
+                            if (property_exists($cell, $name)) {
+                                $cell->$name = $value;
+                            } else {
+                                $cell->attributes[$name] = $value;
+                            }
+                        }
+                        $htmlrow->cells[] = $cell;
+                    }
+                }
+            }
+
+            // Apply column suppression to the row
+            $position = -1;
+            foreach ($columns as $column) {
+                $position++;
+
+                if (!$column->get_config()->suppress or !array_key_exists($position, $htmlrow->cells)) {
+                    continue;
+                }
+                $cell = $htmlrow->cells[$position];
+
+                if (isset($suppress[$position]) and $suppress[$position] == $cell->text) {
+                    $htmlrow->cells[$position]->text = '';  // Suppressed
+                } else {
+                    // If a cell changes, reset suppression for all cells after it (left to right)
+                    if (isset($suppress[$position]) and $suppress[$position] != $cell->text) {
+                        foreach ($suppress as $key => $value) {
+                            if ($key > $position) {
+                                unset($suppress[$key]);
+                            }
+                        }
+                    }
+                    $suppress[$position] = $cell->text;
+                }
+            }
+            $htmlrows[] = $htmlrow;
+        }
+        return $htmlrows;
     }
 }

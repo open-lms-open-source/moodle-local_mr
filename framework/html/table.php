@@ -183,7 +183,7 @@ class mr_html_table extends mr_readonly implements renderable {
         $this->order = $preferences->get('order', $order);
 
         if ($orderp = optional_param($this->REQUEST_ORDER, '', PARAM_SAFEDIR)) {
-            if ($orderp == 'asc') {
+            if ($orderp == SORT_ASC) {
                 $this->order = SORT_ASC;
             } else {
                 $this->order = SORT_DESC;

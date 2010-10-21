@@ -29,6 +29,7 @@
  */
 
 $string['addedactivity'] = 'Added {$a->modname} by {$a->fullname}';
+$string['basichtml'] = 'Basic HTML';
 $string['cachecleaned'] = 'Cache Cleaned';
 $string['cache_heading'] = '';
 $string['cache_headingdesc'] = 'This component provides speedy caching services for plugins that use Moodlerooms Framework.  Please use the following link if you wish to clear the entire site cache now: <a href="{$a}">Clear entire site cache now</a>.';
@@ -38,6 +39,7 @@ $string['cleansitecache'] = '';
 $string['deletedactivity'] = 'Deleted {$a->modname} by {$a->fullname}';
 $string['export'] = 'Export: ';
 $string['filter'] = 'Filter';
+$string['loadingdotdotdot'] = 'Loading...';
 $string['local_mr_docs'] = 'Docs';
 $string['moodleroomsframework'] = 'Moodlerooms Framework';
 $string['mrcache'] = 'Cache';
@@ -55,10 +57,10 @@ $string['popupdocs'] = 'Open docs in a new window';
 $string['popuperrors'] = 'Open doc errors in a new window';
 $string['reportsql'] = 'Report SQL';
 $string['reset'] = 'Reset';
+$string['standard'] = 'Standard';
 $string['updatedactivity'] = 'Updated {$a->modname} by {$a->fullname}';
 $string['xdays'] = '{$a} days';
 $string['xhours'] = '{$a} hours';
 $string['xminutes'] = '{$a} minutes';
 $string['xmonths'] = '{$a} months';
 $string['xweeks'] = '{$a} weeks';
-
