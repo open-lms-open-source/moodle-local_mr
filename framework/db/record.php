@@ -68,12 +68,24 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
     protected $_delete = false;
 
     /**
+     * If true, then checks for column exists are bypassed.
+     * Only use when performance is an issue (EG: processing hundreds
+     * of thousands) and that you KNOW all columns are correct
+     *
+     * @var boolean
+     */
+    protected $trustcolumns = false;
+
+    /**
      * Constructor
      *
      * @param mixed $table The table name or an instance of mr_db_table
      * @param mixed $default The default record data - just setting this will not trigger a save
+     * @param boolean $trustcolumns If true, then checks for column exists are bypassed.
+     *                             Only use when performance is an issue (EG: processing hundreds
+     *                             of thousands) and that you KNOW all columns are correct
      */
-    public function __construct($table, $default = NULL) {
+    public function __construct($table, $default = NULL, $trustcolumns = false) {
         global $CFG, $db;
 
         if ($table instanceof mr_db_table) {
@@ -81,8 +93,9 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
         } else {
             $this->_table = new mr_db_table($table);
         }
-        $this->_change = new stdClass;
-        $this->_record = new stdClass;
+        $this->_change      = new stdClass;
+        $this->_record      = new stdClass;
+        $this->trustcolumns = $trustcolumns;
 
         // Apply default to _record
         if (!is_null($default)) {
@@ -91,10 +104,13 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
             }
             $this->_record = $default;
 
-            // Remove values that are not in the table
-            foreach ($this->_record as $name => $value) {
-                if (!$this->_table->column_exists($name)) {
-                    unset($this->_record->$name);
+            if (!$this->trustcolumns) {
+                // Remove values that are not in the table
+                $columns = $this->_table->get_metacolumns();
+                foreach ($this->_record as $name => $value) {
+                    if (!array_key_exists($name, $columns)) {
+                        unset($this->_record->$name);
+                    }
                 }
             }
         }
@@ -107,7 +123,7 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      * @throws coding_exception
      */
     public function __set($name, $value) {
-        if (!$this->_table->column_exists($name)) {
+        if (!$this->trustcolumns and !$this->_table->column_exists($name)) {
             throw new coding_exception("Column $name does not exist in table $this->_table");
         }
         if (!property_exists($this->_record, $name) or $this->_record->$name != $value) {

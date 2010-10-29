@@ -180,7 +180,7 @@ class mr_db_table {
      * @throws coding_exception
      */
     public function column_exists($name) {
-        return array_key_exists($name, $this->get_columns());
+        return array_key_exists($name, $this->get_metacolumns());
     }
 
     /**
