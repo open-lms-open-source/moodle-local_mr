@@ -33,7 +33,6 @@ require_once($CFG->dirroot.'/local/mr/framework/html/filter/abstract.php');
  *
  * @author Mark Nielsen
  * @package mr
- * @todo Make this work again
  */
 class mr_html_filter_autocompleteid extends mr_html_filter_abstract {
 
@@ -72,17 +71,9 @@ class mr_html_filter_autocompleteid extends mr_html_filter_abstract {
         $helper = new mr_helper();
 
         $textfieldname = "{$this->name}_autocompletetext";
-
-        // Attempt to load relavent display text
-        $text = $this->preferences_get($textfieldname);
-        $key  = $this->preferences_get($this->name);
-        if (!empty($key) and isset($this->options[$key])) {
-            $text = $this->options[$key];
-        }
-
         $mform->addElement('text', $textfieldname, $this->label);
         $mform->setType($textfieldname, PARAM_TEXT);
-        $mform->setDefault($textfieldname, $text);
+        $mform->setDefault($textfieldname, $this->preferences_get($textfieldname));
 
         $mform->addElement('hidden', $this->name, $this->preferences_get($this->name));
         $mform->setType('name', PARAM_INT);

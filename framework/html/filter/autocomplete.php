@@ -33,7 +33,6 @@ require_once($CFG->dirroot.'/local/mr/framework/html/filter/abstract.php');
  *
  * @author Mark Nielsen
  * @package mr
- * @todo Make this work again
  */
 class mr_html_filter_autocomplete extends mr_html_filter_abstract {
 

@@ -39,3 +39,8 @@ div.mr_ajax_table_forceajax {
 .mr_ajax_table .yui-pg-container {
     text-align: center;
 }
+
+/* mr_html_filter styles */
+.mr_html_filter .yui-ac {
+    position: inherit;
+}

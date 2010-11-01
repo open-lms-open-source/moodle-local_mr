@@ -12,9 +12,6 @@ M.local_mr = M.local_mr || {};
  * @param {object} args
  */
 M.local_mr.init_mr_html_table = function(Y, args) {
-    // Set body class to have the appropriate skin
-    YAHOO.util.Dom.addClass(document.getElementsByTagName('body')[0], 'yui-skin-sam');
-
     // Table's DataSource
     var myDataSource             = new YAHOO.util.DataSource(args.url);
     myDataSource.responseType    = YAHOO.util.DataSource.TYPE_JSON;
@@ -76,9 +73,6 @@ M.local_mr.init_mr_html_table = function(Y, args) {
 
     // Update totalRecords and empty message on the fly with value from server
     myDataTable.handleDataReturnPayload = function(oRequest, oResponse, oPayload) {
-        // console.log(oResponse);
-        // console.log('payload');
-        // console.log(oPayload);
         oPayload.totalRecords = oResponse.meta.totalRecords;
         myDataTable.set('MSG_EMPTY', oResponse.meta.emptyMessage);
 

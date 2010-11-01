@@ -57,107 +57,59 @@ class mr_helper_html extends mr_helper_abstract {
      * @link http://developer.yahoo.com/yui/examples/autocomplete/ac_itemselect.html What you get with $hiddenfieldname
      */
     public function mform_autocomplete($mform, $options, $textfieldname, $hiddenfieldname = '', $width = '300') {
-        global $CFG;
+        global $PAGE;
 
-        static $init = false;
-
-        if (!$init) {
-            $sheet = $CFG->wwwroot.'/lib/yui/autocomplete/assets/skins/sam/autocomplete.css';
-            if (!isset($CFG->stylesheets)) {
-                $CFG->stylesheets = array();
-            }
-            if (!in_array($sheet, $CFG->stylesheets)) {
-                array_unshift($CFG->stylesheets, $sheet);
-            }
-
-            require_js(array(
-                'yui_dom-event',
-                'yui_datasource',
-                'yui_get',
-                'yui_animation',
-                'yui_autocomplete',
-            ));
-            $init = true;
-        }
+        $url  = NULL;
+        $data = NULL;
 
         // Generate data source
-        $data  = array();
-        foreach ($options as $optionid => $option) {
-            if (empty($hiddenfieldname)) {
-                $data[] = '\''.addslashes_js($option).'\'';
-            } else {
-                $data[] = '{text:\''.addslashes_js($option)."', id: $optionid}";
+        if ($options instanceof moodle_url) {
+            $url = $options->out(false);
+        } else {
+            $data  = array();
+            foreach ($options as $optionid => $option) {
+                if (empty($hiddenfieldname)) {
+                    $data[] = $option;
+                } else {
+                    $data[] = (object) array('text' => $option, 'id' => $optionid);
+                }
             }
         }
-        $data = implode(',', $data);
 
-        if (empty($hiddenfieldname)) {
-            $fields = "['text']";
-        } else {
-            $fields = "['text', 'id']";
+        $fields = array('text');
+        if (!empty($hiddenfieldname)) {
+            $fields[] = 'id';
         }
 
-        $javascript = <<<HTML
-<script type="text/javascript">
-    (function() {
-        // Add class for skinning
-        YAHOO.util.Dom.addClass(document.getElementsByTagName('body')[0], 'yui-skin-sam');
-
-        var myInputField = document.getElementById('id_$textfieldname');
-
-        // Surround input field in a div to control width
-        var myWrapperDiv = document.createElement('div');
-        myWrapperDiv.setAttribute('style', 'width: {$width}px;');
-        myInputField.parentNode.appendChild(myWrapperDiv);
-        myWrapperDiv.appendChild(myInputField);
-
-        // Add container div for the autocomplete list
-        var myContainerDiv = document.createElement('div');
-        myContainerDiv.setAttribute('id', 'id_autocontainer_$textfieldname');
-        myWrapperDiv.appendChild(myContainerDiv);
-
-        // Use a LocalDataSource
-        var myDataSource = new YAHOO.util.LocalDataSource([ $data ]);
-        myDataSource.responseSchema = {fields : $fields};
-
-        // Instantiate the AutoComplete
-        var myAutoComplete = new YAHOO.widget.AutoComplete('id_$textfieldname', 'id_autocontainer_$textfieldname', myDataSource);
-        myAutoComplete.useShadow           = true;
-        myAutoComplete.maxResultsDisplayed = 20;
-        myAutoComplete.applyLocalFilter    = true;
-        myAutoComplete.queryMatchContains  = true;
-
-        var hiddenName = '$hiddenfieldname';
-        if (hiddenName != '') {
-            var myHiddenField = YAHOO.util.Dom.get('id_' + hiddenName);
-            var mySelectHandler = function(sType, aArgs) {
-                // Selected item's result data
-                var oData = aArgs[2];
-
-                // Update hidden form field with the selected item's ID
-                myHiddenField.value = oData[1];
-            };
-            var myEnforceHandler = function() {
-                myHiddenField.value = 0;
-            };
-            var unmatchedItemSelectHandler = function(oSelf , sSelection) {
-                // Instead of using myAutoComplete.forceSelection
-                // need to use this otherwise defaults get cleared onfocus/unfocus
-                if (myAutoComplete._sInitInputValue != myInputField.value) {
-                    myAutoComplete._clearSelection();
-                }
-            };
-            myAutoComplete.itemSelectEvent.subscribe(mySelectHandler);
-            myAutoComplete.selectionEnforceEvent.subscribe(myEnforceHandler);
-            myAutoComplete.unmatchedItemSelectEvent.subscribe(unmatchedItemSelectHandler);
-        }
-    })();
-</script>
-HTML;
+        $module = array(
+            'name'      => 'local_mr_framework',
+            'fullpath'  => '/local/mr/framework/assets/javascript.js',
+            'requires'  => array(
+                'yui2-yahoo',
+                'yui2-dom',
+                'yui2-event',
+                'yui2-datasource',
+                'yui2-json',
+                'yui2-connection',
+                'yui2-get',
+                'yui2-animation',
+                'yui2-autocomplete',
+            ),
+        );
+        $arguments = array((object) array(
+            'fieldname' => $textfieldname,
+            'hiddenfieldname' => $hiddenfieldname,
+            'width' => $width,
+            'url' => $url,
+            'data' => $data,
+            'fields' => $fields,
+        ));
+        $PAGE->requires->js_init_call('M.local_mr.init_mr_html_autocomplete', $arguments, true, $module);
+        // $PAGE->requires->css('/lib/yui/2.8.1/build/autocomplete/assets/autocomplete-core.css');
+        // $PAGE->requires->css('/lib/yui/2.8.1/build/autocomplete/assets/skins/sam/autocomplete.css');
 
         // Update form - need to force some attributes and add the javascript
         $mform->updateElementAttr($textfieldname, array('autocomplete' => 'off', 'style' => "width: {$width}px;"));
-        $mform->addElement('html', $javascript);
 
         // Add ID to hidden field so javascript can find it
         if (!empty($hiddenfieldname)) {
