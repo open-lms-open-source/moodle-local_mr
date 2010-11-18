@@ -44,19 +44,9 @@ class mr_file_lock_test extends UnitTestCase {
         $this->assertFalse(file_exists("$CFG->dataroot/mr_file_lock_test_lock.txt"));
     }
 
-    public function test_double_lock() {
-        global $CFG;
-
-        $lock  = new mr_file_lock('mr_file_lock_test');
-        $lock2 = new mr_file_lock('mr_file_lock_test');
-
-        $this->assertTrue($lock->get());
-        $this->assertTrue(file_exists("$CFG->dataroot/mr_file_lock_test_lock.txt"));
-
-        $this->assertFalse($lock2->get());
-
-        $lock->release();
-        $this->assertFalse(file_exists("$CFG->dataroot/mr_file_lock_test_lock.txt"));
+    public function test_bad_uniquekey() {
+        $this->expectException('coding_exception');
+        $lock = new mr_file_lock('&*^@(!');
     }
 
     public function test_destruct() {
@@ -79,8 +69,27 @@ class mr_file_lock_test extends UnitTestCase {
         $this->assertFalse(file_exists("$CFG->dataroot/mr_file_lock_test_lock.txt"));
     }
 
-    public function test_bad_uniquekey() {
-        $this->expectException('coding_exception');
-        $lock = new mr_file_lock('&*^@(!');
+    public function test_multiple_lock() {
+        global $CFG;
+
+        $lock  = new mr_file_lock('mr_file_lock_test');
+        $lock2 = new mr_file_lock('mr_file_lock_test');
+        $lock3 = new mr_file_lock('mr_file_lock_test');
+
+        $this->assertTrue($lock->get());
+        $this->assertTrue(file_exists("$CFG->dataroot/mr_file_lock_test_lock.txt"));
+
+        // Trying to mimic another script trying to get a lock and then going away
+        $this->assertFalse($lock2->get());
+        unset($lock2);
+        $this->assertTrue(file_exists("$CFG->dataroot/mr_file_lock_test_lock.txt"));
+
+        // Try again, make sure $lock2 didn't distroy anything
+        $this->assertFalse($lock3->get());
+        unset($lock3);
+        $this->assertTrue(file_exists("$CFG->dataroot/mr_file_lock_test_lock.txt"));
+
+        $lock->release();
+        $this->assertFalse(file_exists("$CFG->dataroot/mr_file_lock_test_lock.txt"));
     }
 }

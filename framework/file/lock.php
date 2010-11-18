@@ -48,7 +48,6 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  * @author Mark Nielsen
  */
 class mr_file_lock {
-
     /**
      * File handle
      *
@@ -110,13 +109,12 @@ class mr_file_lock {
             if (flock($this->handle, LOCK_EX | LOCK_NB)) {
                 ftruncate($this->handle, 0);
                 fwrite($this->handle, getmypid());
-
                 return true;
+            } else {
+                fclose($this->handle);
+                $this->handle = false;
             }
         }
-        // Failed to get lock, release any resources
-        $this->release();
-
         return false;
     }
 
@@ -132,9 +130,10 @@ class mr_file_lock {
             flock($this->handle, LOCK_UN);
             fclose($this->handle);
             $this->handle = false;
-        }
-        if (file_exists($this->file)) {
-            unlink($this->file);
+
+            if (file_exists($this->file)) {
+                unlink($this->file);
+            }
         }
     }
 }
