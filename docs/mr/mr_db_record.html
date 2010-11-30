@@ -133,7 +133,11 @@
 								</div>
 		<div class="info-box-body">
 			<div class="var-summary">
-																																																<div class="var-title">
+																																																								<div class="var-title">
+					<span class="var-type">boolean</span>
+					<a href="#$trustcolumns" title="details" class="var-name">$trustcolumns</a>
+				</div>
+																<div class="var-title">
 					<span class="var-type">object</span>
 					<a href="#$_change" title="details" class="var-name">$_change</a>
 				</div>
@@ -169,7 +173,7 @@
 				<div class="method-definition">
 											<span class="method-result">mr_db_record</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
-											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$table</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$default</span> = <span class="var-default">NULL</span>])
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$table</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$default</span> = <span class="var-default">NULL</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$trustcolumns</span> = <span class="var-default">false</span>])
 									</div>
 														
 				<div class="method-definition">
@@ -179,7 +183,7 @@
 									</div>
 														
 				<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result"><a href="../mr/mr_db_record.html">mr_db_record</a></span>
 										<a href="#delete" title="details" class="method-name">delete</a>
 										()
 									</div>
@@ -257,7 +261,7 @@
 									</div>
 														
 				<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result"><a href="../mr/mr_db_record.html">mr_db_record</a></span>
 										<a href="#save" title="details" class="method-name">save</a>
 											([<span class="var-type">boolean</span>&nbsp;<span class="var-name">$bulk</span> = <span class="var-default">false</span>])
 									</div>
@@ -309,8 +313,31 @@
 					</div>
 		<div class="info-box-body">
 			
-<a name="var$_change" id="$_change"><!-- --></A>
+<a name="var$trustcolumns" id="$trustcolumns"><!-- --></A>
 <div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">boolean</span>
+			<span class="var-name">$trustcolumns</span>
+			 = <span class="var-default"> false</span>			(line <span class="line-number">77</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">If true, then checks for column exists are bypassed.</p>
+<p class="description"><p>Only use when performance is an issue (EG: processing hundreds  of thousands) and that you KNOW all columns are correct</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_change" id="$_change"><!-- --></A>
+<div class="oddrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -332,7 +359,7 @@
 
 </div>
 <a name="var$_delete" id="$_delete"><!-- --></A>
-<div class="oddrow">
+<div class="evenrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -354,7 +381,7 @@
 
 </div>
 <a name="var$_record" id="$_record"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -376,7 +403,7 @@
 
 </div>
 <a name="var$_table" id="$_table"><!-- --></A>
-<div class="oddrow">
+<div class="evenrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -413,10 +440,10 @@
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
 <a name="method__construct" id="__construct"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">76</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">88</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -430,7 +457,7 @@
 		<span class="method-name">
 			__construct
 		</span>
-					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$table</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$default</span> = <span class="var-default">NULL</span>])
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$table</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$default</span> = <span class="var-default">NULL</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$trustcolumns</span> = <span class="var-default">false</span>])
 			</div>
 	
 			<ul class="parameters">
@@ -440,15 +467,18 @@
 					<li>
 				<span class="var-type">mixed</span>
 				<span class="var-name">$default</span><span class="var-description">: The default record data - just setting this will not trigger a save</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$trustcolumns</span><span class="var-description">: If true, then checks for column exists are bypassed.                              Only use when performance is an issue (EG: processing hundreds                              of thousands) and that you KNOW all columns are correct</span>			</li>
 				</ul>
 		
 			
 	</div>
 <a name="methodcount" id="count"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">count</span> (line <span class="line-number">216</span>)
+		<span class="method-title">count</span> (line <span class="line-number">232</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -475,10 +505,10 @@
 			
 	</div>
 <a name="methoddelete" id="delete"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">delete</span> (line <span class="line-number">356</span>)
+		<span class="method-title">delete</span> (line <span class="line-number">373</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -489,7 +519,7 @@
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../mr/mr_db_record.html">mr_db_record</a></span>
 		<span class="method-name">
 			delete
 		</span>
@@ -500,10 +530,10 @@
 			
 	</div>
 <a name="methodgetIterator" id="getIterator"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getIterator</span> (line <span class="line-number">205</span>)
+		<span class="method-title">getIterator</span> (line <span class="line-number">221</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -530,10 +560,10 @@
 			
 	</div>
 <a name="methodget_columns" id="get_columns"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">get_columns</span> (line <span class="line-number">252</span>)
+		<span class="method-title">get_columns</span> (line <span class="line-number">268</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -554,10 +584,10 @@
 			
 	</div>
 <a name="methodget_table" id="get_table"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">get_table</span> (line <span class="line-number">243</span>)
+		<span class="method-title">get_table</span> (line <span class="line-number">259</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -578,10 +608,10 @@
 			
 	</div>
 <a name="methodis_changed" id="is_changed"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">is_changed</span> (line <span class="line-number">310</span>)
+		<span class="method-title">is_changed</span> (line <span class="line-number">314</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -603,10 +633,10 @@
 			
 	</div>
 <a name="methodis_delete" id="is_delete"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">is_delete</span> (line <span class="line-number">298</span>)
+		<span class="method-title">is_delete</span> (line <span class="line-number">302</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -627,10 +657,10 @@
 			
 	</div>
 <a name="methodis_insert" id="is_insert"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">is_insert</span> (line <span class="line-number">286</span>)
+		<span class="method-title">is_insert</span> (line <span class="line-number">290</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -651,10 +681,10 @@
 			
 	</div>
 <a name="methodis_update" id="is_update"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">is_update</span> (line <span class="line-number">274</span>)
+		<span class="method-title">is_update</span> (line <span class="line-number">278</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -675,10 +705,10 @@
 			
 	</div>
 <a name="methodoffsetExists" id="offsetExists"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">offsetExists</span> (line <span class="line-number">159</span>)
+		<span class="method-title">offsetExists</span> (line <span class="line-number">175</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -710,10 +740,10 @@
 			
 	</div>
 <a name="methodoffsetGet" id="offsetGet"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">offsetGet</span> (line <span class="line-number">171</span>)
+		<span class="method-title">offsetGet</span> (line <span class="line-number">187</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -745,10 +775,10 @@
 			
 	</div>
 <a name="methodoffsetSet" id="offsetSet"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">offsetSet</span> (line <span class="line-number">183</span>)
+		<span class="method-title">offsetSet</span> (line <span class="line-number">199</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -783,10 +813,10 @@
 			
 	</div>
 <a name="methodoffsetUnset" id="offsetUnset"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">offsetUnset</span> (line <span class="line-number">194</span>)
+		<span class="method-title">offsetUnset</span> (line <span class="line-number">210</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -818,10 +848,10 @@
 			
 	</div>
 <a name="methodqueue_delete" id="queue_delete"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">queue_delete</span> (line <span class="line-number">264</span>)
+		<span class="method-title">queue_delete</span> (line <span class="line-number">362</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -843,23 +873,22 @@
 			
 	</div>
 <a name="methodsave" id="save"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">save</span> (line <span class="line-number">330</span>)
+		<span class="method-title">save</span> (line <span class="line-number">333</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Save the record.</p>
 <p class="description"><p>The record can either be deleted, updated  or inserted based on record ID and current  state.  Only performs these actions if actually  necessary.</p></p>
 	<ul class="tags">
-				<li><span class="field">see:</span> mr_db_record::addslashes()</li>
 				<li><span class="field">throws:</span> coding_exception</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../mr/mr_db_record.html">mr_db_record</a></span>
 		<span class="method-name">
 			save
 		</span>
@@ -875,10 +904,10 @@
 			
 	</div>
 <a name="methodset" id="set"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">set</span> (line <span class="line-number">229</span>)
+		<span class="method-title">set</span> (line <span class="line-number">245</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -905,10 +934,10 @@
 			
 	</div>
 <a name="method__get" id="__get"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">__get</span> (line <span class="line-number">125</span>)
+		<span class="method-title">__get</span> (line <span class="line-number">141</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -935,10 +964,10 @@
 			
 	</div>
 <a name="method__isset" id="__isset"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">__isset</span> (line <span class="line-number">137</span>)
+		<span class="method-title">__isset</span> (line <span class="line-number">153</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -964,10 +993,10 @@
 			
 	</div>
 <a name="method__set" id="__set"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">__set</span> (line <span class="line-number">109</span>)
+		<span class="method-title">__set</span> (line <span class="line-number">125</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -997,10 +1026,10 @@
 			
 	</div>
 <a name="method__unset" id="__unset"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">__unset</span> (line <span class="line-number">146</span>)
+		<span class="method-title">__unset</span> (line <span class="line-number">162</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1031,7 +1060,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Thu, 21 Oct 2010 14:02:21 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Tue, 30 Nov 2010 09:07:11 -0800 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
