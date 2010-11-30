@@ -290,6 +290,7 @@ abstract class mr_controller extends mr_readonly {
      *
      * @return object
      * @example settings.php See how to save global config to work with this method
+     * @todo This should use $this->component instead of $this->plugin.  This will break mod/assignment/efolio
      */
     public function get_config() {
         if (!mr_var::instance()->exists($this->plugin)) {

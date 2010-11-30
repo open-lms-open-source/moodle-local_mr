@@ -129,6 +129,9 @@ class mr_db_table {
             case 'get_field_select':
             case 'get_records_menu':
             case 'get_records_select_menu':
+            case 'get_recordset':
+            case 'get_recordset_select':
+            case 'get_recordset_list':
             case 'record_exists':
             case 'record_exists_select':
             case 'set_field':
@@ -215,26 +218,24 @@ class mr_db_table {
      * Generate a record model for this table
      *
      * @param mixed $default Default record attributes
+     * @param boolean $trustcolumns If true, then checks for column exists are bypassed.
+     *                              Only use when performance is an issue (EG: processing hundreds
+     *                              of thousands) and that you KNOW all columns are correct
      * @return mr_db_record
      */
-    public function record($default = array()) {
-        return new mr_db_record($this, $default);
+    public function record($default = NULL, $trustcolumns = false) {
+        return new mr_db_record($this, $default, $trustcolumns);
     }
 
     /**
      * Save data to the table
      *
      * @param mixed $data Array or object of record data
-     * @param boolean $addslashes To add slashes to the data or not
-     * @return void
+     * @return mr_db_record
      * @throws coding_exception
      */
-    public function save($data, $addslashes = false) {
-        if ($addslashes) {
-            $this->record()->set($data)->addslashes()->save();
-        } else {
-            $this->record()->set($data)->save();
-        }
+    public function save($data) {
+        return $this->record()->set($data)->save();
     }
 
     /**

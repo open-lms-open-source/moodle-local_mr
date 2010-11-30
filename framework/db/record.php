@@ -244,7 +244,7 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      */
     public function set($data) {
         foreach ($data as $name => $value) {
-            if ($this->_table->column_exists($name)) {
+            if ($this->trustcolumns or $this->_table->column_exists($name)) {
                 $this->__set($name, $value);
             }
         }
@@ -268,18 +268,6 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
     public function get_columns() {
         $columns = array_keys(get_object_vars($this->_record));
         return array_combine($columns, $columns);
-    }
-
-    /**
-     * Flag the record for deletion, but don't actually delete it yet
-     *
-     * This is mostly used in conjunction with mr_db_queue
-     *
-     * @return mr_db_record
-     */
-    public function queue_delete() {
-        $this->_delete = true;
-        return $this;
     }
 
     /**
@@ -339,9 +327,8 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      * necessary.
      *
      * @param boolean $bulk Bulk flag which gets passed to inserts and updates
-     * @return void
+     * @return mr_db_record
      * @throws coding_exception
-     * @see mr_db_record::addslashes()
      */
     public function save($bulk = false) {
         // Check for delete
@@ -361,16 +348,32 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
         }
         // Reset change state
         $this->_change = new stdClass;
+
+        return $this;
+    }
+
+    /**
+     * Flag the record for deletion, but don't actually delete it yet
+     *
+     * This is mostly used in conjunction with mr_db_queue
+     *
+     * @return mr_db_record
+     */
+    public function queue_delete() {
+        $this->_delete = true;
+        return $this;
     }
 
     /**
      * Delete the record.
      *
-     * @return void
+     * @return mr_db_record
      * @throws coding_exception
      */
     public function delete() {
         $this->queue_delete();
         $this->save();
+
+        return $this;
     }
 }
