@@ -277,7 +277,7 @@ class local_mr_renderer extends plugin_renderer_base {
      */
     public function render_mr_report_abstract(mr_report_abstract $report) {
         // Wrapper DIV
-        $output = $this->output->box_start('boxwidthnormal boxaligncenter mr_report');
+        $output = $this->output->box_start('boxwidthwide boxaligncenter mr_report');
 
         // Heading
         // $output .= $this->output->heading($report->name());

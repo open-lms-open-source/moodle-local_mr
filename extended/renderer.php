@@ -50,7 +50,7 @@ class local_mr_extended_renderer extends local_mr_renderer {
         );
 
         // Wrapper DIV
-        $output = $this->output->box_start('boxwidthnormal boxaligncenter mr_report');
+        $output = $this->output->box_start('boxwidthwide boxaligncenter mr_report');
 
         // Heading
         // $output .= $this->output->heading($report->name());
