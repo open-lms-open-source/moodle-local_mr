@@ -348,9 +348,13 @@ class mr_html_table extends mr_readonly implements renderable {
             // Find our column that we are sorting by
             $columns = $this->get_columns(true);
             if (!array_key_exists($this->sort, $columns)) {
-                throw new coding_exception('Invalid column sorting');
+                if (!array_key_exists($this->defaultsort, $columns)) {
+                    throw new coding_exception('Invalid column sorting');
+                }
+                $column = $columns[$this->defaultsort];
+            } else {
+                $column = $columns[$this->sort];
             }
-            $column = $columns[$this->sort];
 
             $sort = array();
             foreach ($column->get_sorting() as $column => $order) {
