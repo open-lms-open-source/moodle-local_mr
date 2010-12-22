@@ -250,7 +250,7 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
             $this->filter->set_report($this);
         }
         // Determine if we are doing AJAX
-        if ($this->config->ajax and $this->preferences->get('forceajax', $this->config->ajaxdefault)) {
+        if (!$this->is_exporting() and $this->config->ajax and $this->preferences->get('forceajax', $this->config->ajaxdefault)) {
             if (optional_param('tjson', 0, PARAM_BOOL)) {
                 // Filling on AJAX request
                 $this->table_fill();
@@ -261,7 +261,7 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
         }
 
         // If exporting, send it to the browser
-        if ($this->export instanceof mr_file_export and $this->export->is_exporting()) {
+        if ($this->is_exporting()) {
             $this->export->send();
         }
     }
@@ -322,6 +322,21 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
     }
 
     /**
+     * Determine if the report is currently exporting
+     *
+     * This method must be called after _init() because the
+     * export is setup during _init().
+     *
+     * @return boolean
+     */
+    public function is_exporting() {
+        if ($this->export instanceof mr_file_export and $this->export->is_exporting()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Export report
      *
      * Example Code:
@@ -375,7 +390,7 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
      * @return void
      */
     public function table_fill() {
-        if ($this->export instanceof mr_file_export and $this->export->is_exporting()) {
+        if ($this->is_exporting()) {
             $this->table->set_export($this->export);
             $this->paging->set_export($this->export);
         }
