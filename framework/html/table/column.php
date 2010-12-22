@@ -90,6 +90,7 @@ class mr_html_table_column {
             'group' => NULL,          // Future feature I guess, group columns together
             'field' => $field,        // The actual SQL select field, can be "something AS newname" etc...
             'editor' => false,        // YUI inline editor, shortcut value "textbox", see also http://developer.yahoo.com/yui/examples/datatable/dt_cellediting.html
+            'export' => true,         // If set to false, then this column is not exported
         ));
 
         // Override defaults with passed configs

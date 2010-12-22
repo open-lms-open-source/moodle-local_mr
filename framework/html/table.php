@@ -261,7 +261,9 @@ class mr_html_table extends mr_readonly implements renderable {
         if ($export->is_exporting()) {
             $headers = array();
             foreach ($this->get_columns(true) as $column) {
-                $column->add_heading($headers);
+                if ($column->get_config()->export) {
+                    $column->add_heading($headers);
+                }
             }
             $export->instance()->set_headers($headers);
         }
@@ -502,6 +504,9 @@ class mr_html_table extends mr_readonly implements renderable {
             }
         } else {
             foreach ($columns as $column) {
+                if ($this->export instanceof mr_file_export and $this->export->is_exporting() and !$column->get_config()->export) {
+                    continue;
+                }
                 $cell = $column->get_cell($row);
 
                 if ($cell instanceof html_table_cell) {
