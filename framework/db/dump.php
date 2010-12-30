@@ -24,12 +24,12 @@
 /**
  * @see mr_db_table
  */
-require_once($CFG->libdir.'/mr/db/table.php');
+require_once($CFG->dirroot.'/local/mr/framework/db/table.php');
 
 /**
  * @see mr_db_queue
  */
-require_once($CFG->libdir.'/mr/db/queue.php');
+require_once($CFG->dirroot.'/local/mr/framework/db/queue.php');
 
 /**
  * MR DB Dump
@@ -43,7 +43,7 @@ require_once($CFG->libdir.'/mr/db/queue.php');
  *      // Create a new instance
  *      $dump = new mr_db_dump("$CFG->dataroot/archive/plugin/logs.sql");
  *      // Get a resultset
- *      $rs = get_recordset_sql('SELECT * FROM tablename');
+ *      $rs = $DB->get_recordset_sql('SELECT * FROM tablename');
  *      // Run the dump and zip it up
  *      $zipfile = $dump->run('tablename', $rs)->zip();
  *
@@ -106,17 +106,13 @@ class mr_db_dump {
      * @throws coding_exception
      */
     protected function validate_file() {
-        global $CFG;
-
-        require_once($CFG->libdir.'/filelib.php');
-
         if (empty($this->file)) {
             throw new coding_exception('File is not set');
         }
         if (pathinfo($this->file, PATHINFO_EXTENSION) != 'sql') {
             throw new coding_exception("File extension must be 'sql': $this->file");
         }
-        if (!check_dir_exists(pathinfo($this->file, PATHINFO_DIRNAME), true, true)) {
+        if (!check_dir_exists(pathinfo($this->file, PATHINFO_DIRNAME))) {
             throw new coding_exception("File's directory does not exist and cannot be created: $this->file");
         }
         if (!file_exists($this->file) and !touch($this->file)) {
@@ -137,7 +133,7 @@ class mr_db_dump {
      * One of the primary entry points.
      *
      * @param mixed $table The table name or an instance of mr_db_table
-     * @param ADORecordSet $rs The recordset to iterate over and add to the dump file
+     * @param moodle_recordset $rs The recordset to iterate over and add to the dump file
      * @return mr_db_dump
      * @throws coding_exception
      */
@@ -154,7 +150,7 @@ class mr_db_dump {
      * remove the rows.
      *
      * @param mixed $table The table name or an instance of mr_db_table
-     * @param ADORecordSet $rs The recordset to iterate over and add to the dump file
+     * @param moodle_recordset $rs The recordset to iterate over and add to the dump file
      * @return mr_db_dump
      * @throws coding_exception
      */
@@ -166,7 +162,7 @@ class mr_db_dump {
      * Actually runs the dump and optionally the archive
      *
      * @param mixed $table The table name or an instance of mr_db_table
-     * @param ADORecordSet $rs The recordset to iterate over and add to the dump file
+     * @param moodle_recordset $rs The recordset to iterate over and add to the dump file
      * @return mr_db_dump
      * @throws coding_exception
      */
@@ -185,12 +181,15 @@ class mr_db_dump {
             $queue = new mr_db_queue();
         }
 
-        if ($rs and !rs_EOF($rs)) {
+        if ($rs->valid()) {
             $started   = true;
             $fp        = fopen($this->file, 'a');
             $tablename = $CFG->prefix.$table->get_name();
 
-            while ($row = rs_fetch_next_record($rs)) {
+            while ($rs->valid()) {
+                $row = $rs->current();
+                $rs->next();
+
                 if ($started) {
                     $started   = false;
                     $columns   = array_keys((array) $row);
@@ -216,7 +215,7 @@ class mr_db_dump {
                         if (mb_detect_encoding($value) != 'UTF-8') {
                             $value = mb_convert_encoding($value, 'UTF-8');
                         }
-                        $values[] = $db->quote($value);
+                        $values[] = '\''.mysql_escape_string($value).'\'';
                     }
                 }
                 $values = implode(',', $values);
@@ -224,7 +223,7 @@ class mr_db_dump {
                 fwrite($fp, "($values)");
 
                 // If not the last row, then prep for next row
-                if (!rs_EOF($rs)) {
+                if ($rs->valid()) {
                     fwrite($fp, ",\n");
                 }
 
@@ -235,7 +234,7 @@ class mr_db_dump {
                 }
                 $this->rowsdumped++;
             }
-            rs_close($rs);
+            $rs->close();
 
             if ($archive) {
                 $queue->flush();
@@ -263,13 +262,18 @@ class mr_db_dump {
      * @throws coding_exception
      */
     public function zip() {
+        global $CFG;
+
+        require_once($CFG->libdir.'/filestorage/zip_packer.php');
+
         $this->validate_file();
         $zipfile = $this->get_zip_file();
+        $packer  = new zip_packer();
 
         if (file_exists($zipfile)) {
             throw new coding_exception("Destination for zip file already exists: $zip");
         }
-        if (!zip_files(array($this->file), $zipfile)) {
+        if (!$packer->archive_to_pathname(array($this->file), $zipfile)) {
             throw new coding_exception("Failed to zip file: $this->file");
         }
         return $zipfile;
