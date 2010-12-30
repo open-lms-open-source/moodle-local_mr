@@ -53,6 +53,8 @@ require_once($CFG->dirroot.'/local/mr/framework/db/queue.php');
  * ?>
  * </code>
  *
+ * WARNING: Works only with mysqli
+ *
  * @author Mark Nielsen
  * @package mr
  **/
@@ -167,7 +169,7 @@ class mr_db_dump {
      * @throws coding_exception
      */
     protected function dump($table, $rs, $archive = false) {
-        global $CFG, $db;
+        global $CFG, $DB;
 
         $this->validate_file();
 
@@ -185,7 +187,12 @@ class mr_db_dump {
             $started   = true;
             $fp        = fopen($this->file, 'a');
             $tablename = $CFG->prefix.$table->get_name();
+            $config    = $DB->export_dbconfig();
+            $mysqli    = new mysqli($config->dbhost, $config->dbuser, $config->dbpass, $config->dbname);
 
+            if ($mysqli->connect_error) {
+                throw new coding_exception("Failed to connect to the database: ($mysqli->connect_errno) $mysqli->connect_error");
+            }
             while ($rs->valid()) {
                 $row = $rs->current();
                 $rs->next();
@@ -215,7 +222,7 @@ class mr_db_dump {
                         if (mb_detect_encoding($value) != 'UTF-8') {
                             $value = mb_convert_encoding($value, 'UTF-8');
                         }
-                        $values[] = '\''.mysql_escape_string($value).'\'';
+                        $values[] = '\''.$mysqli->real_escape_string($value).'\'';
                     }
                 }
                 $values = implode(',', $values);
@@ -235,6 +242,7 @@ class mr_db_dump {
                 $this->rowsdumped++;
             }
             $rs->close();
+            $mysqli->close();
 
             if ($archive) {
                 $queue->flush();
