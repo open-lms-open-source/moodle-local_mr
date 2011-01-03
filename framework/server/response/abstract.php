@@ -76,7 +76,7 @@ abstract class mr_server_response_abstract {
         $this->serviceclass = $serviceclass;
 
         $method = $this->server->get_request()->getParam('method', '');
-        $method = eregi_replace('[^a-zA-Z_]', '', $method);
+        $method = clean_param($method, PARAM_ALPHAEXT);
 
         if (empty($method)) {
             $method = 'unknown';
