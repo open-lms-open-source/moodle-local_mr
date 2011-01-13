@@ -222,16 +222,18 @@ class local_mr_renderer extends plugin_renderer_base {
                 if ($config->sortable) {
                     $icon    = '';
                     $sortstr = get_string('asc');
+                    $sortord = SORT_ASC;
 
                     if ($table->get_sort() == $column->get_name()) {
                         if ($table->get_order() == SORT_ASC) {
                             $icon    = $tag->img()->src($this->output->pix_url('t/down'))->alt(get_string('asc'));
                             $sortstr = get_string('asc');
+                            $sortord = SORT_DESC;
                         } else {
                             $icon = $tag->img()->src($this->output->pix_url('t/up'))->alt(get_string('desc'));
                         }
                     }
-                    $url     = $table->get_url()->out(false, array('tsort' => $config->name, 'torder' => $table->get_sort()));
+                    $url     = $table->get_url()->out(false, array('tsort' => $config->name, 'torder' => $sortord));
                     $heading = get_string('sortby').' '.$config->heading.' '.$sortstr;
                     $heading = $config->heading.get_accesshide($heading);
                     $heading = $tag->a($heading)->href($url).$icon;
