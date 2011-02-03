@@ -263,7 +263,7 @@ class mr_file_export implements renderable {
 
             // Send contents for download (only for exports that generate a file)
             if (!empty($content)) {
-                send_file($content, pathinfo($file, PATHINFO_BASENAME), 'default', 0, true, true);
+                send_file($content, pathinfo($file, PATHINFO_BASENAME), 0, 0, true, true);
             }
             die;
         }
