@@ -88,7 +88,11 @@ class mr_db_queue {
      * @return void
      */
     public function __destruct() {
-        $this->flush();
+        global $DB;
+
+        if ($DB instanceof moodle_database) {
+            $this->flush();
+        }
     }
 
     /**
@@ -176,7 +180,13 @@ class mr_db_queue {
             return;
         }
 
-        $columns     = $this->inserts[$table]['columns'];
+        $columns = $this->inserts[$table]['columns'];
+        $records = $this->inserts[$table]['records'];
+
+        // We clear the queue now so if there is an error, we don't try to
+        // clear again on the __destruct()
+        unset($this->inserts[$table]);
+
         $mrtable     = new mr_db_table($table);
         $metacolumns = $mrtable->get_columns();
 
@@ -185,7 +195,7 @@ class mr_db_queue {
             $params = array();
             $filler = array_fill(0, count($columns), '?');
             $filler = implode(',', $filler);
-            foreach ($this->inserts[$table]['records'] as $record) {
+            foreach ($records as $record) {
                 // Get the record values in order of our columns
                 foreach ($columns as $column) {
                     if (!array_key_exists($column, $metacolumns)) {
@@ -216,8 +226,6 @@ class mr_db_queue {
                 $DB->execute("INSERT INTO {$CFG->prefix}$table ($columns) VALUES ($values)", $params);
             }
         }
-        // Clear the queue
-        unset($this->inserts[$table]);
     }
 
     /**
@@ -230,11 +238,12 @@ class mr_db_queue {
         global $DB;
 
         if (!empty($this->deletes[$table])) {
-            if (!$DB->delete_records_select($table, 'id IN('.implode(',', $this->deletes[$table]).')')) {
+            $deletes = $this->deletes[$table];
+            unset($this->deletes[$table]);  // Clear it before we send to DB
+
+            if (!$DB->delete_records_select($table, 'id IN('.implode(',', $deletes).')')) {
                 throw new coding_exception('Failed to perform bulk delete');
             }
-            // Clear the queue
-            unset($this->deletes[$table]);
         }
     }
 }
