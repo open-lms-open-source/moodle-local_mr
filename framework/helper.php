@@ -154,6 +154,9 @@ class mr_helper {
                     throw $e;
                 }
             }
+            if (!self::$instances[$this->namespace][$name] instanceof mr_helper_abstract) {
+                throw new coding_exception("Helper '$name' does not extend mr_helper_abstract");
+            }
             self::$instances[$this->namespace][$name]->_set_helper_namespace($this->namespace);
         }
         return self::$instances[$this->namespace][$name];
