@@ -119,4 +119,24 @@ class mr_bootstrap {
             self::$zend = true;
         }
     }
+
+    /**
+     * Bootstrap Redis
+     *
+     * This will create a Redis instance and
+     * connect it to the Redis server.  The
+     * code calling this is responsible for calling
+     * the close() method to close the connection.
+     *
+     * @return Redis
+     * @see https://github.com/owlient/phpredis
+     */
+    public static function redis() {
+        global $CFG;
+
+        $redis = new Redis();
+        $redis->connect($CFG->local_mr_redis_server);
+
+        return $redis;
+    }
 }

@@ -69,4 +69,19 @@ class mr_bootstrap_test extends UnitTestCase {
         }
         $this->assertFalse($found);
     }
+
+    public function test_redis_connect_ping_close() {
+        $redis = mr_bootstrap::redis();
+        $this->assertIsA($redis, 'Redis');
+        $this->assertEqual($redis->ping(), '+PONG');
+        $this->assertTrue($redis->close());
+    }
+
+    public function test_redis_set_get_delete() {
+        $redis = mr_bootstrap::redis();
+        $this->assertTrue($redis->set('simpletest', 'foo'));
+        $this->assertEqual($redis->get('simpletest'), 'foo');
+        $this->assertEqual($redis->delete('simpletest'), 1);
+        $this->assertTrue($redis->close());
+    }
 }
