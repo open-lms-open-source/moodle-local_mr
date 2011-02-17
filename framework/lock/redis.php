@@ -60,7 +60,7 @@ class mr_lock_redis extends mr_lock_abstract {
             $ttl   = (time() + $this->timetolive + 1);
 
             // Attempt to obtain lock
-            if ($result = $redis->setnx($this->uniquekey, $ttl)) {
+            if ($redis->setnx($this->uniquekey, $ttl)) {
                 $result = true;
             } else if ($value = $redis->get($this->uniquekey)) {
                 // Check if the key has expired or is otherwise invalid
