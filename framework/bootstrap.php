@@ -130,6 +130,7 @@ class mr_bootstrap {
      *
      * @return Redis
      * @see https://github.com/owlient/phpredis
+     * @throws RedisException On connection errors
      */
     public static function redis() {
         global $CFG;
