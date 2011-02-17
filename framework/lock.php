@@ -72,7 +72,7 @@ class mr_lock {
 
         if (is_null($backend)) {
             if (!empty($CFG->mr_lock_default_backend)) {
-                $backend = $CFG->mr_lock_default_backend;
+                $backend = $CFG->local_mr_lock_default_backend;
             } else {
                 $backend = 'redis';
             }

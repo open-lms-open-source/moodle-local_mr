@@ -37,8 +37,6 @@ class mr_lock_test extends UnitTestCase {
     );
 
     public function test_lock_and_release() {
-        global $CFG;
-
         $lock = new mr_lock('mr_lock_simpletest');
 
         $this->assertTrue($lock->get());
@@ -51,8 +49,6 @@ class mr_lock_test extends UnitTestCase {
     }
 
     public function test_destruct() {
-        global $CFG;
-
         $lock = new mr_lock('mr_lock_simpletest');
 
         $this->assertTrue($lock->get());
@@ -67,8 +63,6 @@ class mr_lock_test extends UnitTestCase {
     }
 
     public function test_multiple_lock() {
-        global $CFG;
-
         $lock  = new mr_lock('mr_lock_simpletest');
         $lock2 = new mr_lock('mr_lock_simpletest');
         $lock3 = new mr_lock('mr_lock_simpletest');
