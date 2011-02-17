@@ -3,7 +3,7 @@
   <html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
 			<!-- template designed by Marco Von Ballmoos  -->
-			<title>Docs For Class mr_helper_tag</title>
+			<title>Docs For Class mr_lock_abstract</title>
 			<link rel="stylesheet" href="../media/stylesheet.css" />
 						<script src="../media/lib/classTree.js"></script>
 												<script language="javascript" type="text/javascript">
@@ -85,37 +85,61 @@
 					</head>
 		<body>
 			<div class="page-body">			
-<h2 class="class-name">Class mr_helper_tag</h2>
+<h2 class="class-name">Class mr_lock_abstract</h2>
 
 <a name="sec-description"></a>
 <div class="info-box">
 	<div class="info-box-title">Description</div>
 	<div class="nav-bar">
 					<span class="disabled">Description</span> |
-													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+							<a href="#sec-descendents">Descendents</a>
+			|											<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
 						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
 						
 					</div>
 	<div class="info-box-body">
         		<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">MR Tag Helper</p>
-<p class="description"><p>This helper is used for quick and easy access  to mr_html_tag.  Automatic setup of mr_html_tag and  access to all of mr_html_tag methods.</p></p>
+<p class="short-description">MR Lock Abstract</p>
+<p class="description"><p>This is the abstract class for classes  that actually implement the locking  mechanisms.</p></p>
 	<ul class="tags">
 				<li><span class="field">author:</span> Mark Nielsen</li>
-				<li><span class="field">example:</span> <a href="../__examplesource/exsource_-staging2_blocks_helloworld_controller_default.php_16947db7cacb24abb796886faf74d01d.html">See this in action</a></li>
+				<li><span class="field">abstract:</span> </li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_helper---tag.php.html">/helper/tag.php</a> (line <span class="field">47</span>)
+			Located in <a class="field" href="_lock---abstract.php.html">/lock/abstract.php</a> (line <span class="field">36</span>)
 		</p>
 		
 				
-		<pre><a href="../mr/mr_helper_abstract.html">mr_helper_abstract</a>
-   |
-   --mr_helper_tag</pre>
+		<pre></pre>
 	
 			</div>
 </div>
 
+	<a name="sec-descendents"></a>
+	<div class="info-box">
+		<div class="info-box-title">Direct descendents</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Descendents</span>
+			|												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+								|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_lock_redis.html">mr_lock_redis</a></td>
+					<td>
+											MR Lock Redis
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
 
 
 	<a name="sec-var-summary"></a>
@@ -123,6 +147,7 @@
 		<div class="info-box-title">Variable Summary</span></div>
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
 						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
 							| 
 									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
@@ -130,9 +155,13 @@
 								</div>
 		<div class="info-box-body">
 			<div class="var-summary">
-																								<div class="var-title">
-					<span class="var-type"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
-					<a href="#$tag" title="details" class="var-name">$tag</a>
+																																<div class="var-title">
+					<span class="var-type">int</span>
+					<a href="#$timetolive" title="details" class="var-name">$timetolive</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$uniquekey" title="details" class="var-name">$uniquekey</a>
 				</div>
 											</div>
 		</div>
@@ -143,6 +172,7 @@
 		<div class="info-box-title">Method Summary</span></div>
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
 																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
 				 
 				|
@@ -150,23 +180,29 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																						
+																																														
 				<div class="method-definition">
-											<span class="method-result">mr_helper_tag</span>
+											<span class="method-result">mr_lock_abstract</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$uniquekey</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$timetolive</span> = <span class="var-default">NULL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#__destruct" title="details" class="method-name">__destruct</a>
 										()
 									</div>
 														
 				<div class="method-definition">
-											<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
-										<a href="#direct" title="details" class="method-name">direct</a>
+											<span class="method-result">boolean</span>
+										<a href="#get" title="details" class="method-name">get</a>
 										()
 									</div>
 														
 				<div class="method-definition">
-											<span class="method-result">mixed</span>
-										<a href="#__call" title="details" class="method-name">__call</a>
-											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$arguments</span>)
+											<span class="method-result">boolean</span>
+										<a href="#release" title="details" class="method-name">release</a>
+										()
 									</div>
 											</div>
 		</div>
@@ -177,6 +213,7 @@
 		<div class="info-box-title">Variables</div>
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
 										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
 						
 			
@@ -186,19 +223,19 @@
 					</div>
 		<div class="info-box-body">
 			
-<a name="var$tag" id="$tag"><!-- --></A>
-<div class="oddrow">
+<a name="var$timetolive" id="$timetolive"><!-- --></A>
+<div class="evenrow">
 
 	<div class="var-header">
 		<span class="var-title">
-			<span class="var-type"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
-			<span class="var-name">$tag</span>
-						(line <span class="line-number">53</span>)
+			<span class="var-type">int</span>
+			<span class="var-name">$timetolive</span>
+						(line <span class="line-number">49</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">HTML tag</p>
+<p class="short-description">Lock's time to live</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> protected</li>
 			</ul>
@@ -208,15 +245,29 @@
 		
 
 </div>
-							<h4>Inherited Variables</h4>
-				<A NAME='inherited_vars'><!-- --></A>
-									<p>Inherited from <span class="classname"><a href="../mr/mr_helper_abstract.html">mr_helper_abstract</a></span></p>
-					<blockquote>
-													<span class="var-title">
-								<span class="var-name"><a href="../mr/mr_helper_abstract.html#var$_helper_namespace">mr_helper_abstract::$_helper_namespace</a></span><br>
-							</span>
-											</blockquote> 
-										
+<a name="var$uniquekey" id="$uniquekey"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$uniquekey</span>
+						(line <span class="line-number">42</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The unique key used to identify the lock</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
 		</div>
 	</div>
 	
@@ -225,6 +276,7 @@
 		<div class="info-box-title">Methods</div>
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
 															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
 																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
 						
@@ -239,93 +291,126 @@
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Create new instance of mr_html_tag</p>
+<p class="short-description">Lock setup</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">mr_helper_tag</span>
+		<span class="method-result">mr_lock_abstract</span>
 		<span class="method-name">
 			__construct
 		</span>
-				()
-			</div>
-	
-		
-			
-	</div>
-<a name="methoddirect" id="direct"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<span class="method-title">direct</span> (line <span class="line-number">67</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Get an instance of mr_html_tag</p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
-		<span class="method-name">
-			direct
-		</span>
-				()
-			</div>
-	
-		
-			
-	</div>
-<a name="method__call" id="__call"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<span class="method-title">__call</span> (line <span class="line-number">79</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Direct all other calls to mr_html_tag</p>
-	<ul class="tags">
-				<li><span class="field">throws:</span> coding_exception</li>
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">mixed</span>
-		<span class="method-name">
-			__call
-		</span>
-					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$arguments</span>)
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$uniquekey</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$timetolive</span> = <span class="var-default">NULL</span>])
 			</div>
 	
 			<ul class="parameters">
 					<li>
 				<span class="var-type">string</span>
-				<span class="var-name">$name</span><span class="var-description">: A method in mr_html_tag</span>			</li>
+				<span class="var-name">$uniquekey</span><span class="var-description">: This key is used to generate the key for the lock.                          Example values: mod_quiz_cron, admin_cron, etc.</span>			</li>
 					<li>
-				<span class="var-type">array</span>
-				<span class="var-name">$arguments</span><span class="var-description">: The args to pass to the mr_html_tag method</span>			</li>
+				<span class="var-type">int</span>
+				<span class="var-name">$timetolive</span><span class="var-description">: The number of seconds until the lock expires completely.  Default is 8 hours.</span>			</li>
 				</ul>
 		
 			
 	</div>
-							<h4>Inherited Methods</h4>
-				<a name='inherited_methods'><!-- --></a>	
-									<!-- =========== Summary =========== -->
-					<p>Inherited From <span class="classname"><a href="../mr/mr_helper_abstract.html">mr_helper_abstract</a></span></p>
-					<blockquote>
-													<span class="method-name"><a href="../mr/mr_helper_abstract.html#method_set_helper_namespace">mr_helper_abstract::_set_helper_namespace()</a></span><br>
-											</blockquote>
-										
+<a name="method__destruct" id="__destruct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Destructor __destruct</span> (line <span class="line-number">88</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Release the lock on destruct.</p>
+<p class="description"><p>May need to override to check if dependent resources  are still available and have not already been destroyed.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			__destruct
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget" id="get"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get</span> (line <span class="line-number">101</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Try to aquire the lock</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			get
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../mr/mr_lock_redis.html#methodget">mr_lock_redis::get()</a>
+							</li>
+				</ul>
+	</div>
+<a name="methodrelease" id="release"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">release</span> (line <span class="line-number">108</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Release the lock</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			release
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../mr/mr_lock_redis.html#methodrelease">mr_lock_redis::release()</a>
+							</li>
+				</ul>
+	</div>
+						
 		</div>
 	</div>
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Thu, 17 Feb 2011 14:26:27 -0800 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Thu, 17 Feb 2011 14:26:19 -0800 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

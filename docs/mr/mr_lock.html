@@ -3,7 +3,7 @@
   <html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
 			<!-- template designed by Marco Von Ballmoos  -->
-			<title>Docs For Class mr_helper_tag</title>
+			<title>Docs For Class mr_lock</title>
 			<link rel="stylesheet" href="../media/stylesheet.css" />
 						<script src="../media/lib/classTree.js"></script>
 												<script language="javascript" type="text/javascript">
@@ -85,7 +85,7 @@
 					</head>
 		<body>
 			<div class="page-body">			
-<h2 class="class-name">Class mr_helper_tag</h2>
+<h2 class="class-name">Class mr_lock</h2>
 
 <a name="sec-description"></a>
 <div class="info-box">
@@ -98,20 +98,26 @@
 					</div>
 	<div class="info-box-body">
         		<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">MR Tag Helper</p>
-<p class="description"><p>This helper is used for quick and easy access  to mr_html_tag.  Automatic setup of mr_html_tag and  access to all of mr_html_tag methods.</p></p>
+<p class="short-description">MR Lock</p>
+<p class="description"><p>This class is used to get a process safe lock.  Basic use case for this is to prevent code  from running at the same time in different requests,  like running a cron on top of itself.</p><p>Example usage:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$lock&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_lock.html">mr_lock</a></span><span class="src-sym">(</span><span class="src-str">'admin_cron'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-var">$lock</span><span class="src-sym">-&gt;</span><a href="../mr/mr_lock.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">))&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Do&nbsp;work&nbsp;here&nbsp;that&nbsp;requires&nbsp;a&nbsp;lock</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Release&nbsp;the&nbsp;lock&nbsp;when&nbsp;done</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$lock</span><span class="src-sym">-&gt;</span><a href="../mr/mr_lock.html#methodrelease">release</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-php">?&gt;</span></div></li>
+</ol></div></p></p>
 	<ul class="tags">
 				<li><span class="field">author:</span> Mark Nielsen</li>
-				<li><span class="field">example:</span> <a href="../__examplesource/exsource_-staging2_blocks_helloworld_controller_default.php_16947db7cacb24abb796886faf74d01d.html">See this in action</a></li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_helper---tag.php.html">/helper/tag.php</a> (line <span class="field">47</span>)
+			Located in <a class="field" href="_lock.php.html">/lock.php</a> (line <span class="field">54</span>)
 		</p>
 		
 				
-		<pre><a href="../mr/mr_helper_abstract.html">mr_helper_abstract</a>
-   |
-   --mr_helper_tag</pre>
+		<pre></pre>
 	
 			</div>
 </div>
@@ -131,8 +137,8 @@
 		<div class="info-box-body">
 			<div class="var-summary">
 																								<div class="var-title">
-					<span class="var-type"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
-					<a href="#$tag" title="details" class="var-name">$tag</a>
+					<span class="var-type"><a href="../mr/mr_lock_abstract.html">mr_lock_abstract</a></span>
+					<a href="#$backend" title="details" class="var-name">$backend</a>
 				</div>
 											</div>
 		</div>
@@ -152,21 +158,21 @@
 			<div class="method-summary">
 																																						
 				<div class="method-definition">
-											<span class="method-result">mr_helper_tag</span>
+											<span class="method-result">mr_lock</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$uniquekey</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$timetolive</span> = <span class="var-default">NULL</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$backend</span> = <span class="var-default">NULL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#get" title="details" class="method-name">get</a>
 										()
 									</div>
 														
 				<div class="method-definition">
-											<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
-										<a href="#direct" title="details" class="method-name">direct</a>
+											<span class="method-result">boolean</span>
+										<a href="#release" title="details" class="method-name">release</a>
 										()
-									</div>
-														
-				<div class="method-definition">
-											<span class="method-result">mixed</span>
-										<a href="#__call" title="details" class="method-name">__call</a>
-											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$arguments</span>)
 									</div>
 											</div>
 		</div>
@@ -186,19 +192,19 @@
 					</div>
 		<div class="info-box-body">
 			
-<a name="var$tag" id="$tag"><!-- --></A>
+<a name="var$backend" id="$backend"><!-- --></A>
 <div class="oddrow">
 
 	<div class="var-header">
 		<span class="var-title">
-			<span class="var-type"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
-			<span class="var-name">$tag</span>
-						(line <span class="line-number">53</span>)
+			<span class="var-type"><a href="../mr/mr_lock_abstract.html">mr_lock_abstract</a></span>
+			<span class="var-name">$backend</span>
+						(line <span class="line-number">60</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">HTML tag</p>
+<p class="short-description">The mechanism used for acquiring the lock</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> protected</li>
 			</ul>
@@ -208,15 +214,7 @@
 		
 
 </div>
-							<h4>Inherited Variables</h4>
-				<A NAME='inherited_vars'><!-- --></A>
-									<p>Inherited from <span class="classname"><a href="../mr/mr_helper_abstract.html">mr_helper_abstract</a></span></p>
-					<blockquote>
-													<span class="var-title">
-								<span class="var-name"><a href="../mr/mr_helper_abstract.html#var$_helper_namespace">mr_helper_abstract::$_helper_namespace</a></span><br>
-							</span>
-											</blockquote> 
-										
+						
 		</div>
 	</div>
 	
@@ -235,97 +233,92 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">58</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">70</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Create new instance of mr_html_tag</p>
+<p class="short-description">Lock setup</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">mr_helper_tag</span>
+		<span class="method-result">mr_lock</span>
 		<span class="method-name">
 			__construct
 		</span>
-				()
-			</div>
-	
-		
-			
-	</div>
-<a name="methoddirect" id="direct"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<span class="method-title">direct</span> (line <span class="line-number">67</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Get an instance of mr_html_tag</p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
-		<span class="method-name">
-			direct
-		</span>
-				()
-			</div>
-	
-		
-			
-	</div>
-<a name="method__call" id="__call"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<span class="method-title">__call</span> (line <span class="line-number">79</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Direct all other calls to mr_html_tag</p>
-	<ul class="tags">
-				<li><span class="field">throws:</span> coding_exception</li>
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">mixed</span>
-		<span class="method-name">
-			__call
-		</span>
-					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$arguments</span>)
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$uniquekey</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$timetolive</span> = <span class="var-default">NULL</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$backend</span> = <span class="var-default">NULL</span>])
 			</div>
 	
 			<ul class="parameters">
 					<li>
 				<span class="var-type">string</span>
-				<span class="var-name">$name</span><span class="var-description">: A method in mr_html_tag</span>			</li>
+				<span class="var-name">$uniquekey</span><span class="var-description">: This key is used to generate the key for the lock.                          Example values: mod_quiz_cron, admin_cron, etc.</span>			</li>
 					<li>
-				<span class="var-type">array</span>
-				<span class="var-name">$arguments</span><span class="var-description">: The args to pass to the mr_html_tag method</span>			</li>
+				<span class="var-type">int</span>
+				<span class="var-name">$timetolive</span><span class="var-description">: The number of seconds until the lock expires completely.  Default is 8 hours.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$backend</span><span class="var-description">: The backend to use for the locking mechanism.  Generally, don't pass this.</span>			</li>
 				</ul>
 		
 			
 	</div>
-							<h4>Inherited Methods</h4>
-				<a name='inherited_methods'><!-- --></a>	
-									<!-- =========== Summary =========== -->
-					<p>Inherited From <span class="classname"><a href="../mr/mr_helper_abstract.html">mr_helper_abstract</a></span></p>
-					<blockquote>
-													<span class="method-name"><a href="../mr/mr_helper_abstract.html#method_set_helper_namespace">mr_helper_abstract::_set_helper_namespace()</a></span><br>
-											</blockquote>
-										
+<a name="methodget" id="get"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get</span> (line <span class="line-number">91</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Try to aquire the lock</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			get
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodrelease" id="release"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">release</span> (line <span class="line-number">100</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Release the lock</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			release
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+						
 		</div>
 	</div>
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Thu, 17 Feb 2011 14:26:27 -0800 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Thu, 17 Feb 2011 14:26:23 -0800 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
