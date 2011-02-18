@@ -188,7 +188,7 @@ class mr_db_queue {
         unset($this->inserts[$table]);
 
         $mrtable     = new mr_db_table($table);
-        $metacolumns = $mrtable->get_columns();
+        $metacolumns = $mrtable->get_metacolumns();
 
         if (!empty($columns)) {
             $values = array();  // Holds our CSVs

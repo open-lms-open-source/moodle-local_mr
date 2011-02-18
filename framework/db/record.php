@@ -105,6 +105,11 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
             $this->_record = $default;
 
             if (!$this->trustcolumns) {
+                // Remove ID field if it is invalid
+                if (empty($this->_record->id) or !is_number($this->_record->id)) {
+                    unset($this->_record->id);
+                }
+
                 // Remove values that are not in the table
                 $columns = $this->_table->get_metacolumns();
                 foreach ($this->_record as $name => $value) {
@@ -125,6 +130,9 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
     public function __set($name, $value) {
         if (!$this->trustcolumns and !$this->_table->column_exists($name)) {
             throw new coding_exception("Column $name does not exist in table $this->_table");
+        }
+        if ($name == 'id' and (!is_number($value) or $value <= 0)) {
+            throw new coding_exception("Must set the id column to an integer greater than zero.  Value given: $value");
         }
         if (!property_exists($this->_record, $name) or $this->_record->$name != $value) {
             $this->_record->$name = $value;
