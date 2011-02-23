@@ -503,8 +503,9 @@ class mr_html_table extends mr_readonly implements renderable {
                 }
             }
         } else {
-            foreach ($columns as $column) {
+            foreach ($columns as $key => $column) {
                 if ($this->export instanceof mr_file_export and $this->export->is_exporting() and !$column->get_config()->export) {
+                    unset($columns[$key]);
                     continue;
                 }
                 $cell = $column->get_cell($row);
@@ -518,7 +519,7 @@ class mr_html_table extends mr_readonly implements renderable {
         }
         // Make sure we return even number of columns
         if (count($data) < count($columns)) {
-            $data = array_pad($data, $columns, '');
+            $data = array_pad($data, count($columns), '');
         }
         return $data;
     }

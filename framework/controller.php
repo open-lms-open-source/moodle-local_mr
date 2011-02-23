@@ -212,14 +212,18 @@ abstract class mr_controller extends mr_readonly {
      * @return void
      */
     public function setup() {
-        global $COURSE, $PAGE;
+        global $CFG, $COURSE, $PAGE;
 
         require_login(optional_param('courseid', SITEID, PARAM_INT));
+
+        // We want to send relative URL to $PAGE so $PAGE can set it to https or not
+        $moodleurl   = $this->new_url(array('action' => $this->action));
+        $relativeurl = str_replace($CFG->wwwroot, '', $moodleurl->out_omit_querystring());
 
         $PAGE->set_title(format_string($COURSE->fullname));
         $PAGE->set_heading(format_string($COURSE->fullname));
         $PAGE->set_context($this->get_context());
-        $PAGE->set_url($this->new_url(array('action' => $this->action)));
+        $PAGE->set_url($relativeurl, $moodleurl->params());
         $this->heading->set($this->identifier);
     }
 
@@ -230,9 +234,9 @@ abstract class mr_controller extends mr_readonly {
      * @return moodle_url
      */
     public function new_url($extraparams = array()) {
-        global $CFG, $COURSE;
+        global $COURSE;
 
-        return new moodle_url("$CFG->wwwroot/$this->plugin/view.php", array_merge(array('controller' => $this->name, 'courseid' => $COURSE->id), $extraparams));
+        return new moodle_url("/$this->plugin/view.php", array_merge(array('controller' => $this->name, 'courseid' => $COURSE->id), $extraparams));
     }
 
     /**
