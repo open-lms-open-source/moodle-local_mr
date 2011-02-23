@@ -95,9 +95,7 @@ abstract class mr_controller_mod extends mr_controller {
      * Include course module ID in the URL
      */
     public function new_url($extraparams = array()) {
-        global $CFG;
-
-        return new moodle_url("$CFG->wwwroot/$this->plugin/view.php", array_merge(array('controller' => $this->name, 'id' => $this->cm->id), $extraparams));
+        return new moodle_url("/$this->plugin/view.php", array_merge(array('controller' => $this->name, 'id' => $this->cm->id), $extraparams));
     }
 
     /**
