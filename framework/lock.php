@@ -71,9 +71,11 @@ class mr_lock {
         global $CFG;
 
         // @todo Remove once redis is installed - this prevents users from running the cron via the web browser
-        if (!preg_match("/^10\./", $_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            mtrace('Running the cron via the browser has been temporarily disabled.  It will be re-enabled in the near future. Please send an email to support@moodlerooms.com with this message if you are having an issue.');
-            die;
+        if (isset($_SERVER['HTTP_HOST'])) {
+            if (empty($_SERVER['HTTP_X_FORWARDED_FOR']) or !preg_match("/^10\./", $_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                mtrace('Running the cron via the browser has been temporarily disabled.  It will be re-enabled in the near future. Please send an email to support@moodlerooms.com with this message if you are having an issue.');
+                die;
+            }
         }
         if (is_null($backend)) {
             if (!empty($CFG->mr_lock_default_backend)) {
