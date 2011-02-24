@@ -31,6 +31,7 @@ require_once($CFG->dirroot.'/local/mr/framework/lock.php');
 class mr_lock_test extends UnitTestCase {
 
     public static $includecoverage = array(
+        'local/mr/framework/bootstrap.php',
         'local/mr/framework/lock.php',
         'local/mr/framework/lock/abstract.php',
         'local/mr/framework/lock/redis.php',
@@ -99,5 +100,18 @@ class mr_lock_test extends UnitTestCase {
         $this->assertFalse($lock->get());
 
         $this->assertTrue($lock2->release());
+    }
+
+    public function test_misconfigured_site() {
+        global $CFG;
+
+        $old = $CFG->local_mr_redis_server;
+        $CFG->local_mr_redis_server = '';
+
+        $lock  = new mr_lock('mr_lock_simpletest');
+        $this->assertTrue($lock->get());
+        $this->assertTrue($lock->release());
+
+        $CFG->local_mr_redis_server = $old;
     }
 }

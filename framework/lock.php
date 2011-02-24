@@ -84,7 +84,7 @@ class mr_lock {
     }
 
     /**
-     * Try to aquire the lock
+     * Try to acquire the lock
      *
      * @return boolean
      */

@@ -79,6 +79,9 @@ class mr_lock_redis extends mr_lock_abstract {
             $redis->close();
         } catch (RedisException $e) {
             debugging("RedisException caught with message: {$e->getMessage()}", DEBUG_DEVELOPER);
+        } catch (Exception $e) {
+            debugging("Redis lock acquire granted, Redis locking disabled because {$e->getMessage()}.", DEBUG_DEVELOPER);
+            return true;
         }
         return $result;
     }

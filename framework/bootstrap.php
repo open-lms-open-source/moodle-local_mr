@@ -131,10 +131,17 @@ class mr_bootstrap {
      * @return Redis
      * @see https://github.com/owlient/phpredis
      * @throws RedisException On connection errors
+     * @throws Exception On configuration/setup errors
      */
     public static function redis() {
         global $CFG;
 
+        if (!class_exists('Redis')) {
+            throw new Exception('Redis class not found, Redis PHP Extension is probably not installed');
+        }
+        if (empty($CFG->local_mr_redis_server)) {
+            throw new Exception('Redis connection string is not configured in $CFG->local_mr_redis_server');
+        }
         $redis = new Redis();
         $redis->connect($CFG->local_mr_redis_server);
 
