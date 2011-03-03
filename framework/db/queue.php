@@ -60,6 +60,13 @@ class mr_db_queue {
     protected $deletes = array();
 
     /**
+     * Stores the number of inserts and updates through lifetime of queue
+     *
+     * @var array
+     */
+    protected $counts = array('inserts' => 0, 'updates' => 0, 'deletes' => 0);
+
+    /**
      * Queue size
      *
      * @var int
@@ -112,10 +119,16 @@ class mr_db_queue {
                 throw new coding_exception('Invalid object passed');
 
             } else if ($record->is_update()) {
+                //update counter
+                $this->counts['updates']++;
+
                 // Its an update, just save it
                 $record->save(true);
 
             } else if ($record->is_insert()) {
+                //update counter
+                $this->counts['inserts']++;
+
                 // Its an insert, add to queue for bulk insert
                 $table = $record->get_table()->get_name();
 
@@ -130,6 +143,9 @@ class mr_db_queue {
                     $this->_flush_inserts($table);
                 }
             } else if ($record->is_delete()) {
+                //update counter
+                $this->counts['deletes']++;
+                
                 // Its a delete, add to queue for bulk delete
                 $table = $record->get_table()->get_name();
 
@@ -165,6 +181,21 @@ class mr_db_queue {
             $this->_flush_deletes($table);
         }
         return $this;
+    }
+
+    /**
+     * Returns the count of inserts, updates, and deletes for the queue
+     * either independently if $type is specified or all together if not
+     *
+     * @param string $type - the count type to return count for
+     * @return mixed - count of specified type or array of counts
+     */
+    public function get_counts($type = NULL) {
+        if (!is_null($type)) {
+            return $this->counts[$type];
+        }
+
+        return $this->counts;
     }
 
     /**
