@@ -80,6 +80,12 @@ class mr_lock_redis extends mr_lock_abstract {
         } catch (RedisException $e) {
             debugging("RedisException caught with message: {$e->getMessage()}", DEBUG_DEVELOPER);
         } catch (Exception $e) {
+            if (isset($_SERVER['HTTP_HOST'])) {
+                if (empty($_SERVER['HTTP_X_FORWARDED_FOR']) or !preg_match("/^10\./", $_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                    mtrace('Running the cron via the browser has been temporarily disabled.  It will be re-enabled in the near future. Please send an email to support@moodlerooms.com with this message if you are having an issue.');
+                    die;
+                }
+            }
             debugging("Redis lock acquire granted, Redis locking disabled because {$e->getMessage()}.", DEBUG_DEVELOPER);
             return true;
         }
