@@ -3,7 +3,7 @@
   <html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
 			<!-- template designed by Marco Von Ballmoos  -->
-			<title>Docs For Class mr_controller_block</title>
+			<title>Docs For Class mr_controller_admin</title>
 			<link rel="stylesheet" href="../media/stylesheet.css" />
 						<script src="../media/lib/classTree.js"></script>
 												<script language="javascript" type="text/javascript">
@@ -85,26 +85,26 @@
 					</head>
 		<body>
 			<div class="page-body">			
-<h2 class="class-name">Class mr_controller_block</h2>
+<h2 class="class-name">Class mr_controller_admin</h2>
 
 <a name="sec-description"></a>
 <div class="info-box">
 	<div class="info-box-title">Description</div>
 	<div class="nav-bar">
 					<span class="disabled">Description</span> |
-													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+													<a href="#sec-vars">Vars</a>
 						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
 						
 					</div>
 	<div class="info-box-body">
         		<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">MR Controller for Blocks</p>
+<p class="short-description">MR Controller for Administrative Settings Pages</p>
 	<ul class="tags">
 				<li><span class="field">author:</span> Mark Nielsen</li>
 				<li><span class="field">abstract:</span> </li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_controller---block.php.html">/controller/block.php</a> (line <span class="field">37</span>)
+			Located in <a class="field" href="_controller---admin.php.html">/controller/admin.php</a> (line <span class="field">42</span>)
 		</p>
 		
 				
@@ -112,50 +112,33 @@
    |
    --<a href="../mr/mr_controller.html">mr_controller</a>
       |
-      --mr_controller_block</pre>
+      --mr_controller_admin</pre>
 	
 			</div>
 </div>
 
 
 
-	<a name="sec-var-summary"></a>
-	<div class="info-box">
-		<div class="info-box-title">Variable Summary</span></div>
-		<div class="nav-bar">
-			<a href="#sec-description">Description</a> |
-						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
-							| 
-									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
-							
-								</div>
-		<div class="info-box-body">
-			<div class="var-summary">
-																																<div class="var-title">
-					<span class="var-type">string</span>
-					<a href="#$blockname" title="details" class="var-name">$blockname</a>
-				</div>
-																<div class="var-title">
-					<span class="var-type">object</span>
-					<a href="#$instance" title="details" class="var-name">$instance</a>
-				</div>
-											</div>
-		</div>
-	</div>
 
 	<a name="sec-method-summary"></a>
 	<div class="info-box">
 		<div class="info-box-title">Method Summary</span></div>
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
-																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																		<a href="#sec-vars">Vars</a>
 				 
 				|
 						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																						
+																																														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#admin_setup" title="details" class="method-name">admin_setup</a>
+										()
+									</div>
+														
 				<div class="method-definition">
 											<span class="method-result">object</span>
 										<a href="#get_context" title="details" class="method-name">get_context</a>
@@ -163,9 +146,9 @@
 									</div>
 														
 				<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result">moodle_url</span>
 										<a href="#new_url" title="details" class="method-name">new_url</a>
-											([<span class="var-type"></span>&nbsp;<span class="var-name">$extraparams</span> = <span class="var-default">array()</span>])
+											([<span class="var-type">array</span>&nbsp;<span class="var-name">$extraparams</span> = <span class="var-default">array()</span>])
 									</div>
 														
 				<div class="method-definition">
@@ -191,51 +174,6 @@
 					</div>
 		<div class="info-box-body">
 			
-<a name="var$blockname" id="$blockname"><!-- --></A>
-<div class="evenrow">
-
-	<div class="var-header">
-		<span class="var-title">
-			<span class="var-type">string</span>
-			<span class="var-name">$blockname</span>
-			 = <span class="var-default"> 'UNKNOWN'</span>			(line <span class="line-number">55</span>)
-		</span>
-	</div>
-
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">The block name</p>
-	<ul class="tags">
-				<li><span class="field">access:</span> protected</li>
-			</ul>
-	
-	
-		
-		
-
-</div>
-<a name="var$instance" id="$instance"><!-- --></A>
-<div class="oddrow">
-
-	<div class="var-header">
-		<span class="var-title">
-			<span class="var-type">object</span>
-			<span class="var-name">$instance</span>
-			 = <span class="var-default"> false</span>			(line <span class="line-number">48</span>)
-		</span>
-	</div>
-
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Block instance record</p>
-<p class="description"><p>This is NOT an instance of your block,  EG NOT: new block_blockname()</p><p>This can be false if not found in the course.</p></p>
-	<ul class="tags">
-				<li><span class="field">access:</span> protected</li>
-			</ul>
-	
-	
-		
-		
-
-</div>
 							<h4>Inherited Variables</h4>
 				<A NAME='inherited_vars'><!-- --></A>
 									<p>Inherited from <span class="classname"><a href="../mr/mr_controller.html">mr_controller</a></span></p>
@@ -286,22 +224,48 @@
 		<div class="info-box-title">Methods</div>
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
-															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+															<a href="#sec-vars">Vars</a>
 																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
 						
 		</div>
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
+<a name="methodadmin_setup" id="admin_setup"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">admin_setup</span> (line <span class="line-number">64</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Generate a call to admin_externalpage_setup()</p>
+<p class="description"><p>One will most likely want to override this for  specific actions.</p></p>
+	<ul class="tags">
+				<li><span class="field">see:</span> admin_externalpage_setup</li>
+				<li><span class="field">see:</span> <a href="../mr/mr_controller.html#var$action">mr_controller::$action</a></li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			admin_setup
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
 <a name="methodget_context" id="get_context"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">get_context</span> (line <span class="line-number">104</span>)
+		<span class="method-title">get_context</span> (line <span class="line-number">73</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Get controller context</p>
-<p class="description"><p>Get block context if we have block instance, otherwise  use default context</p></p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -327,28 +291,27 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">new_url</span> (line <span class="line-number">89</span>)
+		<span class="method-title">new_url</span> (line <span class="line-number">83</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Generate a new URL to this controller</p>
-<p class="description"><p>Only include block instance ID if it is passed.</p></p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result">moodle_url</span>
 		<span class="method-name">
 			new_url
 		</span>
-					([<span class="var-type"></span>&nbsp;<span class="var-name">$extraparams</span> = <span class="var-default">array()</span>])
+					([<span class="var-type">array</span>&nbsp;<span class="var-name">$extraparams</span> = <span class="var-default">array()</span>])
 			</div>
 	
 			<ul class="parameters">
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$extraparams</span>			</li>
+				<span class="var-type">array</span>
+				<span class="var-name">$extraparams</span><span class="var-description">: Extra parameters to add to the URL</span>			</li>
 				</ul>
 		
 			<hr class="separator" />
@@ -363,15 +326,13 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">setup</span> (line <span class="line-number">69</span>)
+		<span class="method-title">setup</span> (line <span class="line-number">50</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Controller setup</p>
-<p class="description"><p>Set $blockname and $instance.  For best results  pass an instanceid URL param.  Getting  the instance is not required and is usually  not necessary.</p></p>
+<p class="description"><p>Setup specific to admin setting pages.</p></p>
 	<ul class="tags">
-				<li><span class="field">see:</span> <a href="../mr/mr_controller_block.html#var$blockname">mr_controller_block::$blockname</a>, <a href="../mr/mr_controller_block.html#var$instance">mr_controller_block::$instance</a></li>
-				<li><span class="field">throws:</span> coding_exception</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
