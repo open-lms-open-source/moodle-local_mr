@@ -138,6 +138,30 @@ abstract class mr_server_response_abstract {
     }
 
     /**
+     * Send server headers
+     *
+     * @param Zend_Server_* object
+     * @return void
+     */
+    public function send_headers($server) {
+        if (!headers_sent()) {
+            $current = headers_list();
+            $headers = $server->getHeaders();
+            foreach ($headers as $header) {
+                // Check to see if a header has already been set
+                foreach ($current as $set) {
+                    $set = explode(':', strtolower($set));
+                    $new = explode(':', strtolower($header));
+                    if (count($set) > 1 and count($new) > 1 and $set[0] == $new[0]) {
+                        continue 2;
+                    }
+                }
+                header($header);
+            }
+        }
+    }
+
+    /**
      * Standard response structure
      *
      * @param mixed $response An array or string of response data

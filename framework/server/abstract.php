@@ -232,21 +232,7 @@ abstract class mr_server_abstract {
      * @return void
      */
     protected function send_headers() {
-        if (!headers_sent()) {
-            $current = headers_list();
-            $headers = $this->server->getHeaders();
-            foreach ($headers as $header) {
-                // Check to see if a header has already been set
-                foreach ($current as $set) {
-                    $set = explode(':', strtolower($set));
-                    $new = explode(':', strtolower($header));
-                    if (count($set) > 1 and count($new) > 1 and $set[0] == $new[0]) {
-                        continue 2;
-                    }
-                }
-                header($header);
-            }
-        }
+        $this->get_response()->send_headers($this->server);
     }
 
     /**
