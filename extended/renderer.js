@@ -3,6 +3,7 @@
  */
 M.local_mr = M.local_mr || {};
 
+M.local_mr.myDataTable = null;
 /**
  * Render mr_html_table and mr_html_paging with YUI
  *
@@ -15,7 +16,7 @@ M.local_mr.init_mr_html_table = function(Y, args) {
     // Table's DataSource
     var myDataSource             = new YAHOO.util.DataSource(args.url);
     myDataSource.responseType    = YAHOO.util.DataSource.TYPE_JSON;
-    myDataSource.maxCacheEntries = 5;
+    myDataSource.maxCacheEntries = 0;
     myDataSource.responseSchema  = {
         resultsList: "records",
         fields: args.columns,
@@ -49,7 +50,7 @@ M.local_mr.init_mr_html_table = function(Y, args) {
         if (page != 0) {
             page = (page / perpage);
         }
-        return  "tsort=" + sort +
+        return  "&tsort=" + sort +
                 "&torder=" + dir +
                 "&tpage=" + page +
                 "&tperpage=" + perpage;
@@ -69,12 +70,12 @@ M.local_mr.init_mr_html_table = function(Y, args) {
     };
 
     // DataTable instance
-    var myDataTable = new YAHOO.widget.DataTable(args.id, args.columns, myDataSource, myDataTableConfigs);
+    M.local_mr.myDataTable = new YAHOO.widget.DataTable(args.id, args.columns, myDataSource, myDataTableConfigs);
 
     // Update totalRecords and empty message on the fly with value from server
-    myDataTable.handleDataReturnPayload = function(oRequest, oResponse, oPayload) {
+    M.local_mr.myDataTable.handleDataReturnPayload = function(oRequest, oResponse, oPayload) {
         oPayload.totalRecords = oResponse.meta.totalRecords;
-        myDataTable.set('MSG_EMPTY', oResponse.meta.emptyMessage);
+        M.local_mr.myDataTable.set('MSG_EMPTY', oResponse.meta.emptyMessage);
 
         return oPayload;
     }
