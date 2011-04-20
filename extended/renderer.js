@@ -3,7 +3,6 @@
  */
 M.local_mr = M.local_mr || {};
 
-M.local_mr.myDataTable = null;
 /**
  * Render mr_html_table and mr_html_paging with YUI
  *
@@ -70,12 +69,12 @@ M.local_mr.init_mr_html_table = function(Y, args) {
     };
 
     // DataTable instance
-    M.local_mr.myDataTable = new YAHOO.widget.DataTable(args.id, args.columns, myDataSource, myDataTableConfigs);
+    var myDataTable = new YAHOO.widget.DataTable(args.id, args.columns, myDataSource, myDataTableConfigs);
 
     // Update totalRecords and empty message on the fly with value from server
-    M.local_mr.myDataTable.handleDataReturnPayload = function(oRequest, oResponse, oPayload) {
+    myDataTable.handleDataReturnPayload = function(oRequest, oResponse, oPayload) {
         oPayload.totalRecords = oResponse.meta.totalRecords;
-        M.local_mr.myDataTable.set('MSG_EMPTY', oResponse.meta.emptyMessage);
+        myDataTable.set('MSG_EMPTY', oResponse.meta.emptyMessage);
 
         return oPayload;
     }
