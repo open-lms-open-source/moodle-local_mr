@@ -134,7 +134,7 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
         if ($name == 'id' and (!is_number($value) or $value <= 0)) {
             throw new coding_exception("Must set the id column to an integer greater than zero.  Value given: $value");
         }
-        if (!property_exists($this->_record, $name) or $this->_record->$name != $value) {
+        if (!property_exists($this->_record, $name) or $this->_record->$name !== $value) {
             $this->_record->$name = $value;
             $this->_change->$name = $value;
         }
