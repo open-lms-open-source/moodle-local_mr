@@ -129,6 +129,11 @@ class mr_html_paging extends mr_readonly implements renderable {
         return $this;
     }
 
+    public function set_page($page){
+        $this->page = $page;
+        return $this;
+    }
+    
     /**
      * Set perpage
      *

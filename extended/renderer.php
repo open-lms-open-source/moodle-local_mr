@@ -131,7 +131,7 @@ class local_mr_extended_renderer extends local_mr_renderer {
      * @param mr_html_paging $paging Paging instance
      * @return string
      */
-    public function mr_html_table_ajax(mr_html_table $table, mr_html_paging $paging) {
+    public function mr_html_table_ajax(mr_html_table $table, mr_html_paging $paging, $autoload = true, $id = null) {
         global $PAGE;
 
         // Columns
@@ -165,7 +165,10 @@ class local_mr_extended_renderer extends local_mr_renderer {
         }
 
         // Place holder div's ID
-        $id         = html_writer::random_id();
+        if(empty($id)){
+            $id = html_writer::random_id();
+        }
+        
         $loadingmsg = $this->output->pix_icon('i/ajaxloader', get_string('loadingdotdotdot', 'local_mr')).
                       '&nbsp;'.get_string('loadingdotdotdot', 'local_mr');
 
@@ -198,6 +201,7 @@ class local_mr_extended_renderer extends local_mr_renderer {
             'columns'     => $columns,
             'asc'         => SORT_ASC,
             'desc'        => SORT_DESC,
+            'autoload' => $autoload,
         ));
         $PAGE->requires->js_init_call('M.local_mr.init_mr_html_table', $arguments, false, $module);
 

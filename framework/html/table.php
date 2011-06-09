@@ -225,6 +225,16 @@ class mr_html_table extends mr_readonly implements renderable {
         }
     }
 
+    public function set_sort($sort){
+        $this->sort = $sort;
+        $this->save_sortorder();
+    }
+    
+    public function set_order($order){
+        $this->order = $order;
+        $this->save_sortorder();
+    }
+    
     /**
      * Add or override table attributes
      *
