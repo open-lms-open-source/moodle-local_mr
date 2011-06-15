@@ -12,20 +12,19 @@ M.local_mr = M.local_mr || {};
  * @param {object} args
  */
 M.local_mr.init_mr_html_table = function(Y, args) {
-    if(!args.autoload){
+    if (!args.autoload) {
         var thisInstance = this;
         var theseArgs = arguments;
-        
+
         args.autoload = true;
-        
-        //Create a function reference so this can be called later to load the table
-        var loadFunction = window[args.id + "_load"] = function(){
+
+        // Create a function reference so this can be called later to load the table
+        var loadFunction = window[args.id + "_load"] = function() {
             thisInstance.init_mr_html_table.apply(thisInstance, theseArgs);
         }
-        
         return;
     }
-    
+
     // Table's DataSource
     var myDataSource             = new YAHOO.util.DataSource(args.url);
     myDataSource.responseType    = YAHOO.util.DataSource.TYPE_JSON;
@@ -43,7 +42,7 @@ M.local_mr.init_mr_html_table = function(Y, args) {
     var myPaginatorConfig = {
         rowsPerPage:   args.perpage,
         alwaysVisible: false,
-        totalRecords: Number.MAX_VALUE, //Setting totalRecords arbitrarily high so that the initialPage setting will work. This doesn't affect behavior as it is overwritten when actual data is loaded.
+        totalRecords: Number.MAX_VALUE, // Setting totalRecords arbitrarily high so that the initialPage setting will work. This doesn't affect behavior as it is overwritten when actual data is loaded.
         initialPage: args.page + 1
     };
 
@@ -61,14 +60,11 @@ M.local_mr.init_mr_html_table = function(Y, args) {
         var page    = (oState.pagination) ? oState.pagination.recordOffset : (args.page * args.perpage);
         var perpage = (oState.pagination) ? oState.pagination.rowsPerPage : args.perpage;
 
-        if(oState.sortedBy){
+        if (oState.sortedBy) {
             var dir = oState.sortedBy.dir === YAHOO.widget.DataTable.CLASS_DESC ? args.desc : args.asc;
+        } else {
+            var dir = args.order;
         }
-        else{
-            //Use the passed in order for the initial request
-            dir = args.order;
-        }
-        
         if (page != 0) {
             page = (page / perpage);
         }
@@ -98,10 +94,10 @@ M.local_mr.init_mr_html_table = function(Y, args) {
     myDataTable.handleDataReturnPayload = function(oRequest, oResponse, oPayload) {
         oPayload.totalRecords = oResponse.meta.totalRecords;
         myDataTable.set('MSG_EMPTY', oResponse.meta.emptyMessage);
-        
+
         return oPayload;
     }
-    
+
     //Store a reference to the table so it can be accessed easily later
     window[args.id] = myDataTable;
 };
