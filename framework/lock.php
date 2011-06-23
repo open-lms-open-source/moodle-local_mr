@@ -71,7 +71,7 @@ class mr_lock {
         global $CFG;
 
         if (is_null($backend)) {
-            if (!empty($CFG->mr_lock_default_backend)) {
+            if (!empty($CFG->local_mr_lock_default_backend)) {
                 $backend = $CFG->local_mr_lock_default_backend;
             } else {
                 $backend = 'redis';
@@ -84,12 +84,25 @@ class mr_lock {
     }
 
     /**
+     * Release the lock on shutdown.
+     *
+     * @return void
+     */
+    public function shutdown() {
+        $this->backend->__destruct();
+    }
+
+    /**
      * Try to acquire the lock
      *
      * @return boolean
      */
     public function get() {
-        return $this->backend->get();
+        $result = $this->backend->get();
+        if ($result) {
+            register_shutdown_function(array($this, 'shutdown'));
+        }
+        return $result;
     }
 
     /**

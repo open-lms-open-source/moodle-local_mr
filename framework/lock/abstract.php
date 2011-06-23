@@ -42,17 +42,24 @@ abstract class mr_lock_abstract {
     protected $uniquekey;
 
     /**
-     * Lock's time to live
+     * The timestamp of when the lock expires or zero for no expiration
      *
      * @var int
      */
-    protected $timetolive;
+    protected $timetolive = 0;
+
+    /**
+     * Flag for if we have acquired the lock or not
+     *
+     * @var bool
+     */
+    protected $lockaquired = false;
 
     /**
      * Lock setup
      *
      * @param string $uniquekey This key is used to generate the key for the lock.
-      *                         Example values: mod_quiz_cron, admin_cron, etc.
+     *                          Example values: mod_quiz_cron, admin_cron, etc.
      * @param int $timetolive The number of seconds until the lock expires completely.  Default is 8 hours.
      */
     public function __construct($uniquekey, $timetolive = NULL) {
@@ -65,10 +72,11 @@ abstract class mr_lock_abstract {
         if (empty($uniquekey)) {
             throw new coding_exception('Passed unique key is empty (after cleaning)');
         }
-        if (empty($timetolive)) {
-            $this->timetolive = (HOURSECS * 8);
-        } else {
-            $this->timetolive = $timetolive;
+        if (!empty($CFG->local_mr_lock_default_timetolive)) {
+            if (empty($timetolive)) {
+                $timetolive = $CFG->local_mr_lock_default_timetolive;
+            }
+            $this->timetolive = (time() + $timetolive + 1);
         }
         if (!empty($CFG->MR_SHORT_NAME)) {
             $this->uniquekey = $CFG->MR_SHORT_NAME.'_'.$uniquekey;
@@ -94,7 +102,60 @@ abstract class mr_lock_abstract {
     }
 
     /**
-     * Try to aquire the lock
+     * Set if the lock has been acquired or not
+     *
+     * @param boolean $lockaquired
+     * @return mr_lock_abstract
+     */
+    protected function set_lockaquired($lockaquired) {
+        $this->lockaquired = $lockaquired;
+        return $this;
+    }
+
+    /**
+     * Determine we currently have a lock or not
+     *
+     * @return boolean
+     */
+    public function has_lock() {
+        return $this->lockaquired;
+    }
+
+    /**
+     * Get the value that should be used for the lock
+     *
+     * @return string
+     */
+    public function get_lock_value() {
+        return http_build_query(array(
+            'timetolive' => $this->timetolive,
+            'hostname' => gethostname(),
+            'processid' => getmypid(),
+        ), null, '&');
+    }
+
+    /**
+     * Parse the lock value and return the time to live timestamp
+     *
+     * @param mixed $lockvalue
+     * @return int
+     */
+    public function parse_timetolive($lockvalue) {
+        // Legacy check
+        if (is_number($lockvalue)) {
+            return (int) $lockvalue;
+        }
+        $params = array();
+        parse_str($lockvalue, $params);
+
+        if (array_key_exists('timetolive', $params)) {
+            return (int) $params['timetolive'];
+        }
+        return 0; // AKA Invalid/No TTL
+    }
+
+    /**
+     * Try to acquire the lock
      *
      * @return boolean
      */

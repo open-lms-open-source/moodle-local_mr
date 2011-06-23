@@ -43,76 +43,73 @@ require_once($CFG->dirroot.'/local/mr/framework/lock/abstract.php');
  * @author Mark Nielsen
  */
 class mr_lock_redis extends mr_lock_abstract {
-    /**
-     * Holds the value we set to the key
-     *
-     * @var string
-     */
-    protected $keyvalue = NULL;
 
     public function get() {
-
-        $result = false;
-        $this->keyvalue = NULL;
+        global $UNITTEST;
 
         try {
             $redis = mr_bootstrap::redis();
-            $ttl   = (time() + $this->timetolive + 1);
 
             // Attempt to obtain lock
-            if ($redis->setnx($this->uniquekey, $ttl)) {
-                $result = true;
-            } else if ($value = $redis->get($this->uniquekey)) {
-                // Check if the key has expired or is otherwise invalid
-                if (!is_number($value) or $value < time()) {
-                    $replaced = $redis->getset($this->uniquekey, $ttl);
+            if ($redis->setnx($this->uniquekey, $this->get_lock_value())) {
+                $this->set_lockaquired(true);
+
+            // If we have an expire time, then see if it has expired or is invalid
+            } else if (!empty($this->timetolive) and $value = $redis->get($this->uniquekey)) {
+                if ($this->parse_timetolive($value) < time()) {
+                    $replaced = $redis->getset($this->uniquekey, $this->get_lock_value());
 
                     // If this is not equal, it means another process beat us to the getset
                     if ($replaced == $value) {
-                        $result = true;
+                        $this->set_lockaquired(true);
                     }
                 }
-            }
-            if ($result) {
-                $this->keyvalue = $ttl;
             }
             $redis->close();
         } catch (RedisException $e) {
             debugging("RedisException caught with message: {$e->getMessage()}", DEBUG_DEVELOPER);
         } catch (Exception $e) {
-            if (isset($_SERVER['HTTP_HOST'])) {
+            if (empty($UNITTEST->running) and isset($_SERVER['HTTP_HOST'])) {
                 if (empty($_SERVER['HTTP_X_FORWARDED_FOR']) or !preg_match("/^10\./", $_SERVER['HTTP_X_FORWARDED_FOR'])) {
                     mtrace('Running the cron via the browser has been temporarily disabled.  It will be re-enabled in the near future. Please send an email to support@moodlerooms.com with this message if you are having an issue.');
                     die;
                 }
             }
             debugging("Redis lock acquire granted, Redis locking disabled because {$e->getMessage()}.", DEBUG_DEVELOPER);
-            return true;
+            $this->set_lockaquired(true);
         }
-        return $result;
+        return $this->has_lock();
     }
 
     public function release() {
-        // Clear this regardless of what happens
-        $keyvalue = $this->keyvalue;
-        $this->keyvalue = NULL;
 
         $result = 1;
 
         try {
-            // If we have the key value, then we did get the lock
-            if (!is_null($keyvalue)) {
+            if ($this->has_lock()) {
                 $redis = mr_bootstrap::redis();
 
-                // We check to value to make sure the key hasn't expired and been re-aquired by another process
-                if ($redis->get($this->uniquekey) == $keyvalue and $keyvalue > time()) {
+                if (empty($this->timetolive)) {
                     $result = $redis->delete($this->uniquekey);
+                } else {
+                    $timetolive = $this->parse_timetolive(
+                        $redis->get($this->uniquekey)
+                    );
+
+                    // We check to value to make sure the key hasn't expired and been re-acquired by another process
+                    if ($timetolive == $this->timetolive and $timetolive > time()) {
+                        $result = $redis->delete($this->uniquekey);
+                    }
                 }
                 $redis->close();
             }
         } catch (RedisException $e) {
             debugging("RedisException caught with message: {$e->getMessage()}", DEBUG_DEVELOPER);
+        } catch (Exception $e) {
+            debugging("Exception caught with message: {$e->getMessage()}", DEBUG_DEVELOPER);
         }
+        $this->set_lockaquired(false);
+
         return ($result == 1);
     }
 }
