@@ -53,7 +53,7 @@ abstract class mr_lock_abstract {
      *
      * @var bool
      */
-    protected $lockaquired = false;
+    protected $lockacquired = false;
 
     /**
      * Lock setup
@@ -104,11 +104,11 @@ abstract class mr_lock_abstract {
     /**
      * Set if the lock has been acquired or not
      *
-     * @param boolean $lockaquired
+     * @param boolean $lockacquired
      * @return mr_lock_abstract
      */
-    protected function set_lockaquired($lockaquired) {
-        $this->lockaquired = $lockaquired;
+    protected function set_lockacquired($lockacquired) {
+        $this->lockacquired = $lockacquired;
         return $this;
     }
 
@@ -118,7 +118,7 @@ abstract class mr_lock_abstract {
      * @return boolean
      */
     public function has_lock() {
-        return $this->lockaquired;
+        return $this->lockacquired;
     }
 
     /**

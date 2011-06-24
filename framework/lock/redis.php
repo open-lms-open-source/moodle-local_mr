@@ -52,7 +52,7 @@ class mr_lock_redis extends mr_lock_abstract {
 
             // Attempt to obtain lock
             if ($redis->setnx($this->uniquekey, $this->get_lock_value())) {
-                $this->set_lockaquired(true);
+                $this->set_lockacquired(true);
 
             // If we have an expire time, then see if it has expired or is invalid
             } else if (!empty($this->timetolive) and $value = $redis->get($this->uniquekey)) {
@@ -61,7 +61,7 @@ class mr_lock_redis extends mr_lock_abstract {
 
                     // If this is not equal, it means another process beat us to the getset
                     if ($replaced == $value) {
-                        $this->set_lockaquired(true);
+                        $this->set_lockacquired(true);
                     }
                 }
             }
@@ -76,7 +76,7 @@ class mr_lock_redis extends mr_lock_abstract {
                 }
             }
             debugging("Redis lock acquire granted, Redis locking disabled because {$e->getMessage()}.", DEBUG_DEVELOPER);
-            $this->set_lockaquired(true);
+            $this->set_lockacquired(true);
         }
         return $this->has_lock();
     }
@@ -108,7 +108,7 @@ class mr_lock_redis extends mr_lock_abstract {
         } catch (Exception $e) {
             debugging("Exception caught with message: {$e->getMessage()}", DEBUG_DEVELOPER);
         }
-        $this->set_lockaquired(false);
+        $this->set_lockacquired(false);
 
         return ($result == 1);
     }

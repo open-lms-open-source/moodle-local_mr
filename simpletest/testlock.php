@@ -80,7 +80,7 @@ class mr_lock_test extends UnitTestCase {
 
         unset($lock);
 
-        // Make sure we can re-aquire
+        // Make sure we can re-acquire
         $lock = new mr_lock('mr_lock_simpletest');
 
         $this->assertTrue($lock->get());
