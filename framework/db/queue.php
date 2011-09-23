@@ -145,7 +145,7 @@ class mr_db_queue {
             } else if ($record->is_delete()) {
                 //update counter
                 $this->counts['deletes']++;
-                
+
                 // Its a delete, add to queue for bulk delete
                 $table = $record->get_table()->get_name();
 
@@ -233,19 +233,11 @@ class mr_db_queue {
                         throw new coding_exception("Using an non-existant column ($column) for table ($table)");
 
                     } else if (isset($record->$column)) {
-                        $params[] = $record->$column;
+                        $params[] = $this->normalise_value($mrtable, $metacolumns[$column], $record->$column);
 
                     } else {
                         // Not set, use field's default - lookup in meta data
-                        $meta = $metacolumns[$column];
-
-                        if (!empty($meta->has_default)) {
-                            $params[] = $meta->default_value;
-                        } else if (empty($meta->not_null)) {
-                            $params[] = NULL;
-                        } else {
-                            throw new coding_exception('Default not handled');
-                        }
+                        $params[] = $mrtable->get_column_default($metacolumns[$column]);
                     }
                 }
                 $values[] = $filler;
@@ -276,5 +268,42 @@ class mr_db_queue {
                 throw new coding_exception('Failed to perform bulk delete');
             }
         }
+    }
+
+    /**
+     * Mostly copied from mysqli_native_moodle_database.  Main change
+     * is that it defaults the numeric value to the table's default
+     * value instead of zero
+     *
+     * @throws dml_write_exception
+     * @param mr_db_table $table
+     * @param $column
+     * @param $value
+     * @return int|null|string
+     */
+    protected function normalise_value(mr_db_table $table, $column, $value) {
+        if (is_bool($value)) { // Always, convert boolean to int
+            $value = (int)$value;
+
+        } else if ($value === '') {
+            if ($column->meta_type == 'I' or $column->meta_type == 'F' or $column->meta_type == 'N') {
+                $value = $table->get_column_default($column); // prevent '' problems in numeric fields
+            }
+        // Any float value being stored in varchar or text field is converted to string to avoid
+        // any implicit conversion by MySQL
+        } else if (is_float($value) and ($column->meta_type == 'C' or $column->meta_type == 'X')) {
+            $value = "$value";
+        }
+        // workaround for problem with wrong enums in mysql - TODO: Out in Moodle 2.1
+        if (!empty($column->enums)) {
+            if (is_null($value) and !$column->not_null) {
+                // ok - nulls allowed
+            } else {
+                if (!in_array((string)$value, $column->enums)) {
+                    throw new dml_write_exception('Enum value '.s($value).' not allowed in field '.$column->name.'.');
+                }
+            }
+        }
+        return $value;
     }
 }

@@ -161,6 +161,21 @@ class mr_db_table {
     }
 
     /**
+     * Get meta data for a specific column
+     *
+     * @throws coding_exception
+     * @param $name
+     * @return object
+     */
+    public function get_metacolumn($name) {
+        $metacolumns = $this->get_metacolumns();
+        if (!array_key_exists($name, $metacolumns)) {
+            throw new coding_exception("Column $name does not exist in $this->table");
+        }
+        return $metacolumns[$name];
+    }
+
+    /**
      * Get meta column data for the table
      *
      * @return array
@@ -184,6 +199,25 @@ class mr_db_table {
      */
     public function column_exists($name) {
         return array_key_exists($name, $this->get_metacolumns());
+    }
+
+    /**
+     * Get the default for a column
+     *
+     * @throws coding_exception
+     * @param string|object $column The column name or the column object from get_metacolumn(s)
+     * @return mixed
+     */
+    public function get_column_default($column) {
+        if (is_string($column)) {
+            $column = $this->get_metacolumn($column);
+        }
+        if (!empty($column->has_default)) {
+            return $column->default_value;
+        } else if (empty($column->not_null)) {
+            return NULL;
+        }
+        throw new coding_exception('Default not handled');
     }
 
     /**
