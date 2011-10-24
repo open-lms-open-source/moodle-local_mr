@@ -41,7 +41,7 @@ require_once($CFG->dirroot.'/local/mr/framework/server/abstract.php');
  * @author Mark Nielsen
  * @package mr
  * @example webservices.php Example usage with the server
- * @example model/response.php Example class definition
+ * @example lib/server/response.php Example class definition
  */
 abstract class mr_server_response_abstract {
     /**

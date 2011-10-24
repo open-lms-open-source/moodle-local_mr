@@ -92,7 +92,7 @@
 	<div class="info-box-title">Description</div>
 	<div class="nav-bar">
 					<span class="disabled">Description</span> |
-													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+													<a href="#sec-vars">Vars</a>
 						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
 						
 					</div>
@@ -117,32 +117,13 @@
 
 
 
-	<a name="sec-var-summary"></a>
-	<div class="info-box">
-		<div class="info-box-title">Variable Summary</span></div>
-		<div class="nav-bar">
-			<a href="#sec-description">Description</a> |
-						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
-							| 
-									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
-							
-								</div>
-		<div class="info-box-body">
-			<div class="var-summary">
-																								<div class="var-title">
-					<span class="var-type">string</span>
-					<a href="#$keyvalue" title="details" class="var-name">$keyvalue</a>
-				</div>
-											</div>
-		</div>
-	</div>
 
 	<a name="sec-method-summary"></a>
 	<div class="info-box">
 		<div class="info-box-title">Method Summary</span></div>
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
-																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																		<a href="#sec-vars">Vars</a>
 				 
 				|
 						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
@@ -179,32 +160,13 @@
 					</div>
 		<div class="info-box-body">
 			
-<a name="var$keyvalue" id="$keyvalue"><!-- --></A>
-<div class="oddrow">
-
-	<div class="var-header">
-		<span class="var-title">
-			<span class="var-type">string</span>
-			<span class="var-name">$keyvalue</span>
-			 = <span class="var-default"> NULL</span>			(line <span class="line-number">51</span>)
-		</span>
-	</div>
-
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Holds the value we set to the key</p>
-	<ul class="tags">
-				<li><span class="field">access:</span> protected</li>
-			</ul>
-	
-	
-		
-		
-
-</div>
 							<h4>Inherited Variables</h4>
 				<A NAME='inherited_vars'><!-- --></A>
 									<p>Inherited from <span class="classname"><a href="../mr/mr_lock_abstract.html">mr_lock_abstract</a></span></p>
 					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_lock_abstract.html#var$lockacquired">mr_lock_abstract::$lockacquired</a></span><br>
+							</span>
 													<span class="var-title">
 								<span class="var-name"><a href="../mr/mr_lock_abstract.html#var$timetolive">mr_lock_abstract::$timetolive</a></span><br>
 							</span>
@@ -221,17 +183,17 @@
 		<div class="info-box-title">Methods</div>
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
-															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+															<a href="#sec-vars">Vars</a>
 																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
 						
 		</div>
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
 <a name="methodget" id="get"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">get</span> (line <span class="line-number">53</span>)
+		<span class="method-title">get</span> (line <span class="line-number">47</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -252,15 +214,15 @@
 		<div class="notes">Redefinition of:</div>
 		<dl>
 			<dt><a href="../mr/mr_lock_abstract.html#methodget">mr_lock_abstract::get()</a></dt>
-						<dd>Try to aquire the lock</dd>
+						<dd>Try to acquire the lock</dd>
 					</dl>
 			
 	</div>
 <a name="methodrelease" id="release"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">release</span> (line <span class="line-number">95</span>)
+		<span class="method-title">release</span> (line <span class="line-number">84</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -292,7 +254,11 @@
 					<blockquote>
 													<span class="method-name"><a href="../mr/mr_lock_abstract.html#method__construct">mr_lock_abstract::__construct()</a></span><br>
 													<span class="method-name"><a href="../mr/mr_lock_abstract.html#methodget">mr_lock_abstract::get()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_lock_abstract.html#methodget_lock_value">mr_lock_abstract::get_lock_value()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_lock_abstract.html#methodhas_lock">mr_lock_abstract::has_lock()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_lock_abstract.html#methodparse_timetolive">mr_lock_abstract::parse_timetolive()</a></span><br>
 													<span class="method-name"><a href="../mr/mr_lock_abstract.html#methodrelease">mr_lock_abstract::release()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_lock_abstract.html#methodset_lockacquired">mr_lock_abstract::set_lockacquired()</a></span><br>
 													<span class="method-name"><a href="../mr/mr_lock_abstract.html#method__destruct">mr_lock_abstract::__destruct()</a></span><br>
 											</blockquote>
 										
@@ -301,7 +267,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 07 Mar 2011 11:02:02 -0800 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Mon, 24 Oct 2011 13:41:35 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

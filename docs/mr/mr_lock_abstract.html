@@ -155,7 +155,11 @@
 								</div>
 		<div class="info-box-body">
 			<div class="var-summary">
-																																<div class="var-title">
+																																								<div class="var-title">
+					<span class="var-type">bool</span>
+					<a href="#$lockacquired" title="details" class="var-name">$lockacquired</a>
+				</div>
+																<div class="var-title">
 					<span class="var-type">int</span>
 					<a href="#$timetolive" title="details" class="var-name">$timetolive</a>
 				</div>
@@ -180,7 +184,7 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																														
+																																																																														
 				<div class="method-definition">
 											<span class="method-result">mr_lock_abstract</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
@@ -200,9 +204,33 @@
 									</div>
 														
 				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#get_lock_value" title="details" class="method-name">get_lock_value</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#has_lock" title="details" class="method-name">has_lock</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#parse_timetolive" title="details" class="method-name">parse_timetolive</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$lockvalue</span>)
+									</div>
+														
+				<div class="method-definition">
 											<span class="method-result">boolean</span>
 										<a href="#release" title="details" class="method-name">release</a>
 										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_lock_abstract.html">mr_lock_abstract</a></span>
+										<a href="#set_lockacquired" title="details" class="method-name">set_lockacquired</a>
+											(<span class="var-type">boolean</span>&nbsp;<span class="var-name">$lockacquired</span>)
 									</div>
 											</div>
 		</div>
@@ -223,6 +251,28 @@
 					</div>
 		<div class="info-box-body">
 			
+<a name="var$lockacquired" id="$lockacquired"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">bool</span>
+			<span class="var-name">$lockacquired</span>
+			 = <span class="var-default"> false</span>			(line <span class="line-number">56</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Flag for if we have acquired the lock or not</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
 <a name="var$timetolive" id="$timetolive"><!-- --></A>
 <div class="oddrow">
 
@@ -230,12 +280,12 @@
 		<span class="var-title">
 			<span class="var-type">int</span>
 			<span class="var-name">$timetolive</span>
-						(line <span class="line-number">49</span>)
+			 = <span class="var-default"> 0</span>			(line <span class="line-number">49</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Lock's time to live</p>
+<p class="short-description">The timestamp of when the lock expires or zero for no expiration</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> protected</li>
 			</ul>
@@ -287,7 +337,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">58</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">65</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -307,7 +357,7 @@
 			<ul class="parameters">
 					<li>
 				<span class="var-type">string</span>
-				<span class="var-name">$uniquekey</span><span class="var-description">: This key is used to generate the key for the lock.                          Example values: mod_quiz_cron, admin_cron, etc.</span>			</li>
+				<span class="var-name">$uniquekey</span><span class="var-description">: This key is used to generate the key for the lock.                           Example values: mod_quiz_cron, admin_cron, etc.</span>			</li>
 					<li>
 				<span class="var-type">int</span>
 				<span class="var-name">$timetolive</span><span class="var-description">: The number of seconds until the lock expires completely.  Default is 8 hours.</span>			</li>
@@ -319,7 +369,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Destructor __destruct</span> (line <span class="line-number">88</span>)
+		<span class="method-title">Destructor __destruct</span> (line <span class="line-number">96</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -344,11 +394,11 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">get</span> (line <span class="line-number">101</span>)
+		<span class="method-title">get</span> (line <span class="line-number">162</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Try to aquire the lock</p>
+<p class="short-description">Try to acquire the lock</p>
 	<ul class="tags">
 				<li><span class="field">abstract:</span> </li>
 				<li><span class="field">access:</span> public</li>
@@ -372,11 +422,88 @@
 							</li>
 				</ul>
 	</div>
-<a name="methodrelease" id="release"><!-- --></a>
+<a name="methodget_lock_value" id="get_lock_value"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">release</span> (line <span class="line-number">108</span>)
+		<span class="method-title">get_lock_value</span> (line <span class="line-number">129</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the value that should be used for the lock</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			get_lock_value
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodhas_lock" id="has_lock"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">has_lock</span> (line <span class="line-number">120</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Determine we currently have a lock or not</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			has_lock
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodparse_timetolive" id="parse_timetolive"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">parse_timetolive</span> (line <span class="line-number">143</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Parse the lock value and return the time to live timestamp</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			parse_timetolive
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$lockvalue</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$lockvalue</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrelease" id="release"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">release</span> (line <span class="line-number">169</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -404,13 +531,42 @@
 							</li>
 				</ul>
 	</div>
+<a name="methodset_lockacquired" id="set_lockacquired"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_lockacquired</span> (line <span class="line-number">110</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set if the lock has been acquired or not</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_lock_abstract.html">mr_lock_abstract</a></span>
+		<span class="method-name">
+			set_lockacquired
+		</span>
+					(<span class="var-type">boolean</span>&nbsp;<span class="var-name">$lockacquired</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$lockacquired</span>			</li>
+				</ul>
+		
+			
+	</div>
 						
 		</div>
 	</div>
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 07 Mar 2011 11:01:57 -0800 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Mon, 24 Oct 2011 13:41:29 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

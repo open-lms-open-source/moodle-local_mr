@@ -103,8 +103,8 @@
 	<ul class="tags">
 				<li><span class="field">author:</span> Mark Nielsen</li>
 				<li><span class="field">abstract:</span> </li>
-				<li><span class="field">example:</span> <a href="../__examplesource/exsource_ites_mr-staging2_blocks_helloworld_webservices.php_07638d3d1ef882c55eb33fcf048c76e6.html">Example usage with the server</a></li>
-				<li><span class="field">example:</span> <a href="../__examplesource/exsource_s_mr-staging2_blocks_helloworld_model_response.php_ab9b3825ea3b6a6e7cfb02b7aca1c0b7.html">Example class definition</a></li>
+				<li><span class="field">example:</span> <a href="../__examplesource/exsource_tes_mr-23staging_blocks_helloworld_webservices.php_ccc6704f7ab3268604d3392f56564a03.html">Example usage with the server</a></li>
+				<li><span class="field">example:</span> <a href="../__examplesource/exsource_3staging_blocks_helloworld_lib_server_response.php_269ef9d8d4759659da2c339b1ac0a98b.html">Example class definition</a></li>
 			</ul>
 		<p class="notes">
 			Located in <a class="field" href="_server---response---abstract.php.html">/server/response/abstract.php</a> (line <span class="field">46</span>)
@@ -158,7 +158,7 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																																																														
+																																																																																						
 				<div class="method-definition">
 											<span class="method-result">mr_server_response_abstract</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
@@ -196,6 +196,12 @@
 									</div>
 														
 				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#send_headers" title="details" class="method-name">send_headers</a>
+											(<span class="var-type">Zend_Server_*</span>&nbsp;<span class="var-name">$server</span>)
+									</div>
+														
+				<div class="method-definition">
 											<span class="method-result">DOMDocument</span>
 										<a href="#standard" title="details" class="method-name">standard</a>
 											([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$response</span> = <span class="var-default">NULL</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$status</span> = <span class="var-default">true</span>])
@@ -225,7 +231,7 @@
 		<div class="info-box-body">
 			
 <a name="var$server" id="$server"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -247,7 +253,7 @@
 
 </div>
 <a name="var$serviceclass" id="$serviceclass"><!-- --></A>
-<div class="oddrow">
+<div class="evenrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -269,7 +275,7 @@
 
 </div>
 <a name="var$servicemethod" id="$servicemethod"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -306,7 +312,7 @@
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
 <a name="method__construct" id="__construct"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<span class="method-title">Constructor __construct</span> (line <span class="line-number">74</span>)
@@ -338,10 +344,10 @@
 			
 	</div>
 <a name="methodarray_to_dom" id="array_to_dom"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">array_to_dom</span> (line <span class="line-number">177</span>)
+		<span class="method-title">array_to_dom</span> (line <span class="line-number">201</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -373,7 +379,7 @@
 			
 	</div>
 <a name="methodfault" id="fault"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<span class="method-title">fault</span> (line <span class="line-number">123</span>)
@@ -402,7 +408,7 @@
 			
 	</div>
 <a name="methodinit" id="init"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<span class="method-title">init</span> (line <span class="line-number">94</span>)
@@ -426,7 +432,7 @@
 			
 	</div>
 <a name="methodnew_dom" id="new_dom"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<span class="method-title">new_dom</span> (line <span class="line-number">102</span>)
@@ -450,7 +456,7 @@
 			
 	</div>
 <a name="methodpost_handle" id="post_handle"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<span class="method-title">post_handle</span> (line <span class="line-number">136</span>)
@@ -479,11 +485,40 @@
 		
 			
 	</div>
+<a name="methodsend_headers" id="send_headers"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">send_headers</span> (line <span class="line-number">146</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Send server headers</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			send_headers
+		</span>
+					(<span class="var-type">Zend_Server_*</span>&nbsp;<span class="var-name">$server</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">Zend_Server_*</span>
+				<span class="var-name">$server</span><span class="var-description">: object</span>			</li>
+				</ul>
+		
+			
+	</div>
 <a name="methodstandard" id="standard"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">standard</span> (line <span class="line-number">147</span>)
+		<span class="method-title">standard</span> (line <span class="line-number">171</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -515,7 +550,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">__call</span> (line <span class="line-number">208</span>)
+		<span class="method-title">__call</span> (line <span class="line-number">232</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -549,7 +584,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 07 Mar 2011 11:01:57 -0800 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Mon, 24 Oct 2011 13:41:30 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
