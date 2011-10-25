@@ -86,8 +86,6 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      *                             of thousands) and that you KNOW all columns are correct
      */
     public function __construct($table, $default = NULL, $trustcolumns = false) {
-        global $CFG, $db;
-
         if ($table instanceof mr_db_table) {
             $this->_table = $table;
         } else {

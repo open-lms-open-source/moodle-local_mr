@@ -24,6 +24,11 @@
 defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
 /**
+ * @see mr_db_table
+ */
+require_once($CFG->dirroot.'/local/mr/framework/db/table.php');
+
+/**
  * @see mr_repository_recordset
  */
 require_once($CFG->dirroot.'/local/mr/framework/repository/recordset.php');
@@ -52,6 +57,7 @@ require_once($CFG->dirroot.'/local/mr/framework/model/record/abstract.php');
  * @package mr
  * @example controller/model.php See this class in action
  * @see http://martinfowler.com/eaaCatalog/dataMapper.html
+ * @throws coding_exception
  */
 abstract class mr_repository_abstract {
     /**
@@ -61,10 +67,6 @@ abstract class mr_repository_abstract {
      * @var mr_db_table
      */
     protected $table;
-
-    public function __construct() {
-        $this->table = new mr_db_table($this->get_table_name());
-    }
 
     /**
      * Get a new instance of the model that the repository uses
@@ -83,6 +85,40 @@ abstract class mr_repository_abstract {
     abstract public function get_table_name();
 
     /**
+     * Set the table that this repository mapper
+     * uses.  Generally you do not want to use this.
+     *
+     * @param mr_db_table|string $table
+     * @return mr_repository_abstract
+     * @throws coding_exception
+     */
+    public function set_table($table) {
+        if (is_string($table)) {
+            $this->table = new mr_db_table($table);
+        } else if ($table instanceof mr_db_table) {
+            $this->table = $table;
+        } else {
+            throw new coding_exception('Invalid: table must be a string or an instance of mr_db_table');
+        }
+        return $this;
+    }
+
+    /**
+     * Get the table that this repository mapper uses
+     *
+     * Warning: this method WILL set the table property
+     * if it's not set already.
+     *
+     * @return mr_db_table
+     */
+    public function get_table() {
+        if (!$this->table instanceof mr_db_table) {
+            $this->set_table($this->get_table_name());
+        }
+        return $this->table;
+    }
+
+    /**
      * Convert the model to a record
      *
      * If the default implementation doesn't work,
@@ -93,7 +129,7 @@ abstract class mr_repository_abstract {
      */
     public function model_to_record(mr_model_record_abstract $model) {
         $record = new stdClass;
-        foreach ($this->table->get_metacolumns() as $name => $meta) {
+        foreach ($this->get_table()->get_metacolumns() as $name => $meta) {
             if ($name == 'id') {
                 $id = $model->get_id();
                 if (!empty($id)) {
@@ -136,7 +172,7 @@ abstract class mr_repository_abstract {
     public function get(array $conditions, $strictness = MUST_EXIST) {
         global $DB;
 
-        if (!$record = $DB->get_record($this->table->get_name(), $conditions, '*', $strictness)) {
+        if (!$record = $DB->get_record($this->get_table()->get_name(), $conditions, '*', $strictness)) {
             return false;
         }
         return $this->record_to_model($record);
@@ -156,7 +192,7 @@ abstract class mr_repository_abstract {
     public function get_recordset($conditions = null, $sort = '', $limitfrom = 0, $limitnum = 0) {
         global $DB;
 
-        $rs = $DB->get_recordset($this->table->get_name(), $conditions, $sort, '*', $limitfrom, $limitnum);
+        $rs = $DB->get_recordset($this->get_table()->get_name(), $conditions, $sort, '*', $limitfrom, $limitnum);
 
         return new mr_repository_recordset($this, $rs);
     }
@@ -179,10 +215,10 @@ abstract class mr_repository_abstract {
         $record = $this->model_to_record($model);
 
         if (isset($record->id)) {
-            $DB->update_record($this->table->get_name(), $record, $bulk);
+            $DB->update_record($this->get_table()->get_name(), $record, $bulk);
         } else {
             $model->set_id(
-                $DB->insert_record($this->table->get_name(), $record, true, $bulk)
+                $DB->insert_record($this->get_table()->get_name(), $record, true, $bulk)
             );
         }
         return $this;
@@ -205,7 +241,7 @@ abstract class mr_repository_abstract {
         if (empty($id)) {
             throw new coding_exception('The passed model cannot be deleted because it doesn\'t have an ID');
         }
-        $DB->delete_records($this->table->get_name(), array('id' => $id));
+        $DB->delete_records($this->get_table()->get_name(), array('id' => $id));
 
         // Clear out ID
         $model->set_id(null);

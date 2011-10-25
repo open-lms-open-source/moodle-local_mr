@@ -28,6 +28,7 @@
  * @package local/mr
  */
 
+$string['pluginname'] = 'Moodlerooms Framework';
 $string['addedactivity'] = 'Added {$a->modname} by {$a->fullname}';
 $string['basichtml'] = 'Basic HTML';
 $string['cachecleaned'] = 'Cache Cleaned';
