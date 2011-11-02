@@ -104,10 +104,11 @@
 				<li><span class="field">author:</span> Mark Nielsen</li>
 				<li><span class="field">see:</span> <a href="http://martinfowler.com/eaaCatalog/dataMapper.html">http://martinfowler.com/eaaCatalog/dataMapper.html</a></li>
 				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">throws:</span> coding_exception</li>
 				<li><span class="field">example:</span> <a href="../__examplesource/exsource_r-23staging_blocks_helloworld_controller_model.php_81959b6e8703ac2b86ce86ad788b07ff.html">See this class in action</a></li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_repository---abstract.php.html">/repository/abstract.php</a> (line <span class="field">56</span>)
+			Located in <a class="field" href="_repository---abstract.php.html">/repository/abstract.php</a> (line <span class="field">62</span>)
 		</p>
 		
 				
@@ -150,13 +151,7 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																																																																						
-				<div class="method-definition">
-											<span class="method-result">mr_repository_abstract</span>
-										<a href="#__construct" title="details" class="method-name">__construct</a>
-										()
-									</div>
-														
+																																																																																														
 				<div class="method-definition">
 											<span class="method-result"><a href="../mr/mr_repository_abstract.html">mr_repository_abstract</a></span>
 										<a href="#delete" title="details" class="method-name">delete</a>
@@ -182,6 +177,12 @@
 									</div>
 														
 				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_db_table.html">mr_db_table</a></span>
+										<a href="#get_table" title="details" class="method-name">get_table</a>
+										()
+									</div>
+														
+				<div class="method-definition">
 											<span class="method-result">string</span>
 										<a href="#get_table_name" title="details" class="method-name">get_table_name</a>
 										()
@@ -203,6 +204,12 @@
 											<span class="method-result"><a href="../mr/mr_repository_abstract.html">mr_repository_abstract</a></span>
 										<a href="#save" title="details" class="method-name">save</a>
 											(<span class="var-type"><a href="../mr/mr_model_record_abstract.html">mr_model_record_abstract</a></span>&nbsp;<span class="var-name">$model</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$bulk</span> = <span class="var-default">false</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_repository_abstract.html">mr_repository_abstract</a></span>
+										<a href="#set_table" title="details" class="method-name">set_table</a>
+											(<span class="var-type"><a href="../mr/mr_db_table.html">mr_db_table</a>|string</span>&nbsp;<span class="var-name">$table</span>)
 									</div>
 											</div>
 		</div>
@@ -229,7 +236,7 @@
 		<span class="var-title">
 			<span class="var-type"><a href="../mr/mr_db_table.html">mr_db_table</a></span>
 			<span class="var-name">$table</span>
-						(line <span class="line-number">63</span>)
+						(line <span class="line-number">69</span>)
 		</span>
 	</div>
 
@@ -259,34 +266,11 @@
 		</div>
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
-<a name="method__construct" id="__construct"><!-- --></a>
+<a name="methoddelete" id="delete"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">65</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">mr_repository_abstract</span>
-		<span class="method-name">
-			__construct
-		</span>
-				()
-			</div>
-	
-		
-			
-	</div>
-<a name="methoddelete" id="delete"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<span class="method-title">delete</span> (line <span class="line-number">201</span>)
+		<span class="method-title">delete</span> (line <span class="line-number">237</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -314,10 +298,10 @@
 			
 	</div>
 <a name="methodget" id="get"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">get</span> (line <span class="line-number">136</span>)
+		<span class="method-title">get</span> (line <span class="line-number">172</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -346,10 +330,10 @@
 			
 	</div>
 <a name="methodget_new_model" id="get_new_model"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">get_new_model</span> (line <span class="line-number">75</span>)
+		<span class="method-title">get_new_model</span> (line <span class="line-number">77</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -371,10 +355,10 @@
 			
 	</div>
 <a name="methodget_recordset" id="get_recordset"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">get_recordset</span> (line <span class="line-number">156</span>)
+		<span class="method-title">get_recordset</span> (line <span class="line-number">192</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -409,11 +393,36 @@
 		
 			
 	</div>
+<a name="methodget_table" id="get_table"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_table</span> (line <span class="line-number">114</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the table that this repository mapper uses</p>
+<p class="description"><p>Warning: this method WILL set the table property  if it's not set already.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_db_table.html">mr_db_table</a></span>
+		<span class="method-name">
+			get_table
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
 <a name="methodget_table_name" id="get_table_name"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">get_table_name</span> (line <span class="line-number">83</span>)
+		<span class="method-title">get_table_name</span> (line <span class="line-number">85</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -438,7 +447,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">model_to_record</span> (line <span class="line-number">94</span>)
+		<span class="method-title">model_to_record</span> (line <span class="line-number">130</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -468,7 +477,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">record_to_model</span> (line <span class="line-number">121</span>)
+		<span class="method-title">record_to_model</span> (line <span class="line-number">157</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -498,7 +507,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">save</span> (line <span class="line-number">176</span>)
+		<span class="method-title">save</span> (line <span class="line-number">212</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -527,13 +536,43 @@
 		
 			
 	</div>
+<a name="methodset_table" id="set_table"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_table</span> (line <span class="line-number">95</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set the table that this repository mapper  uses.  Generally you do not want to use this.</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_repository_abstract.html">mr_repository_abstract</a></span>
+		<span class="method-name">
+			set_table
+		</span>
+					(<span class="var-type"><a href="../mr/mr_db_table.html">mr_db_table</a>|string</span>&nbsp;<span class="var-name">$table</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_db_table.html">mr_db_table</a>|string</span>
+				<span class="var-name">$table</span>			</li>
+				</ul>
+		
+			
+	</div>
 						
 		</div>
 	</div>
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 24 Oct 2011 13:41:29 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Wed, 02 Nov 2011 13:06:16 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
