@@ -51,13 +51,11 @@ require_once($CFG->dirroot.'/local/mr/framework/html/table/column/dynamic.php');
 class mr_html_table extends mr_readonly implements renderable {
     /**
      * Sort request param
-     * @todo This is stupid
      */
     public $REQUEST_SORT = 'tsort';
 
     /**
      * Sort order request param
-     * @todo This is stupid
      */
     public $REQUEST_ORDER = 'torder';
 

@@ -40,13 +40,11 @@ require_once($CFG->dirroot.'/local/mr/framework/readonly.php');
 class mr_html_paging extends mr_readonly implements renderable {
     /**
      * Page request param
-     * @todo This is stupid
      */
     public $REQUEST_PAGE = 'tpage';
 
     /**
      * Page request param
-     * @todo This is stupid
      */
     public $REQUEST_PERPAGE = 'tperpage';
 
