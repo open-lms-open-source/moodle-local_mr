@@ -59,7 +59,7 @@ class mr_html_filter_text extends mr_html_filter_abstract {
 
         $preference = $this->preferences_get($this->name);
         if (!empty($preference)) {
-            return array($DB->sql_like($this->field, '?'), "%$preference%");
+            return array($DB->sql_like($this->field, '?', false, false), "%$preference%");
         }
         return false;
     }
