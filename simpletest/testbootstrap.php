@@ -84,4 +84,33 @@ class mr_bootstrap_test extends UnitTestCase {
         $this->assertEqual($redis->delete('simpletest'), 1);
         $this->assertTrue($redis->close());
     }
+
+    public function test_zend_include_path() {
+        global $CFG;
+
+        mr_bootstrap::zend();
+
+        $files = array(
+            $CFG->dirroot.'/lib/zend/Zend/Validate/Barcode/Ean13.php',
+        );
+        if (is_dir($CFG->dirroot.'/lib/zendmr')) {
+            $files[] = $CFG->dirroot.'/lib/zendmr/Zend/Controller/Request/Http.php';
+        }
+        if (is_dir($CFG->dirroot.'/search')) {
+            $files[] = $CFG->dirroot.'/search/Zend/Exception.php';
+        }
+        $included = get_included_files();
+        foreach ($files as $file) {
+            $this->assertFalse(in_array($file, $included));
+        }
+
+        include_once 'Zend/Exception.php';
+        include_once 'Zend/Controller/Request/Http.php';
+        include_once 'Zend/Validate/Barcode/Ean13.php';
+
+        $included = get_included_files();
+        foreach ($files as $file) {
+            $this->assertTrue(in_array($file, $included));
+        }
+    }
 }
