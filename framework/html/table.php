@@ -280,6 +280,8 @@ class mr_html_table extends mr_readonly implements renderable {
      * @return mr_html_table
      */
     public function set_export($export) {
+        $this->export = $export;
+        
         if ($export->is_exporting()) {
             $headers = array();
             foreach ($this->get_columns(true) as $column) {
@@ -287,9 +289,13 @@ class mr_html_table extends mr_readonly implements renderable {
                     $column->add_heading($headers);
                 }
             }
-            $export->instance()->set_headers($headers);
+            foreach ($headers as $header) {
+                if (!empty($header)) {
+                    $export->instance()->set_headers($headers);
+                    break;
+                }
+            }
         }
-        $this->export = $export;
         return $this;
     }
 
