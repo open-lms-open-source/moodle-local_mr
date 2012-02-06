@@ -100,7 +100,7 @@ class mr_server_validate_login extends Zend_Validate_Abstract {
      * @return boolean
      */
     public function isValid($request) {
-        global $USER, $UNITTEST;
+        global $UNITTEST;
 
         // No cookies !
         if (empty($UNITTEST->running)) {
@@ -129,6 +129,7 @@ class mr_server_validate_login extends Zend_Validate_Abstract {
         }
 
         // Set the user to the session
+        enrol_check_plugins($user);
         session_set_user($user);
 
         return true;
