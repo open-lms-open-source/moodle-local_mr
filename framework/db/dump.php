@@ -47,7 +47,7 @@ require_once($CFG->dirroot.'/local/mr/framework/db/queue.php');
  *      // Run the dump and zip it up
  *      $zipfile = $dump->run('tablename', $rs)->zip();
  *
- *      // Later, call clean in some way if you want 
+ *      // Later, call clean in some way if you want
  *      // to delete any of the files...
  *      $dump->clean();
  * ?>
@@ -277,11 +277,12 @@ class mr_db_dump {
         $this->validate_file();
         $zipfile = $this->get_zip_file();
         $packer  = new zip_packer();
+        $zipname = pathinfo($this->file, PATHINFO_BASENAME);
 
         if (file_exists($zipfile)) {
             throw new coding_exception("Destination for zip file already exists: $zip");
         }
-        if (!$packer->archive_to_pathname(array($this->file), $zipfile)) {
+        if (!$packer->archive_to_pathname(array($zipname => $this->file), $zipfile)) {
             throw new coding_exception("Failed to zip file: $this->file");
         }
         return $zipfile;
