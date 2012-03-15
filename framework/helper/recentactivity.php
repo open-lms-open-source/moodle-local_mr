@@ -63,6 +63,7 @@ class mr_helper_recentactivity extends mr_helper_abstract {
         }
         if (!is_null($otheruser)) {
             $currentuser = clone($USER);
+            enrol_check_plugins($otheruser);
             session_set_user($otheruser);
         } else {
             $currentuser = false;
