@@ -4,6 +4,100 @@
 M.local_mr = M.local_mr || {};
 
 /**
+ *
+ * @param Y
+ * @param args
+ */
+M.local_mr.init_filter_selectmultiplus = function(Y, args) {
+    if (Y.Lang.isObject(args.selectname)) {
+        var selectfield = args.selectname;
+    } else {
+        var selectfield = Y.one('#id_' + args.selectname);
+    }
+
+    if (Y.Lang.isObject(args.textname)) {
+        var actextfield = args.textname;
+    } else {
+        var actextfield = Y.one('#id_' + args.textname);
+    }
+
+    if (!actextfield || !selectfield) {
+        return;
+    }
+
+    // add a container for putting selected items in
+//    var listdiv = Y.Node.create('<div><ul></ul></div>')
+//        .appendTo(selectfield.get('parentNode'));
+//
+//    // move the container to where the select box should be
+//    var xy = selectfield.getXY();
+//    listdiv.setXY(xy[0], xy[1]);
+//
+//    // get the list
+//    var list = listdiv.one('ul');
+
+
+    // plug the autocomplete widget
+    actextfield.plug(Y.Plugin.AutoComplete, {
+        resultTextLocator: 'text',
+        activateFirstItem: true,
+        minimumQueryLength: 0,
+        queryDelay: 0,
+        source: selectfield,
+        resultFilters: [
+            function(query, results) {
+                return Y.Array.filter(results, function(result) {
+                    // only include results that are NOT already selected in the multiselect
+                    return !result.raw.selected;
+                });
+            },
+            'charMatch',
+            'subWordMatch'
+        ]
+    });
+
+    // Send an empty request on spacebar key to show entire list
+    actextfield.on('key', function(e) {
+        if (!actextfield.get('value').match(/^\s*?$/)) {
+            return;
+        }
+
+        e.preventDefault();
+
+        //Send an empty query to trigger all results
+        actextfield.ac.sendRequest('');
+
+    }, '32');
+
+    // wire the autocomplete select event
+    actextfield.ac.on('select', function(e) {
+        // get the result
+        var result = e.result;
+
+        // prevent the default behavoir
+        e.preventDefault();
+
+        // hide the autocomplete list
+        actextfield.ac.hide();
+
+        // select the item in the selectbox
+        var optionidx = result.raw.index;
+        var options = selectfield.get('options');
+        options.item(optionidx).set('selected', 'selected');
+
+        // check to see if it's already in the list
+//        var existingli = list.one('#id_' + args.selectname + 'li_' + result.raw.value);
+//        if (!existingli) {
+//            list.append('<li id="id_' + args.selectname + 'li_' + result.raw.value + '">' + result.raw.text + '</li>');
+//        }
+
+        // remove the text from the textbox
+        actextfield.set('value', '');
+        actextfield.focus();
+    });
+}
+
+/**
  * Generate YUI autocomplete for Moodle form elements
  *
  * @namespace M.local_mr

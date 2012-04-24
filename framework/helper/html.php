@@ -116,4 +116,30 @@ class mr_helper_html extends mr_helper_abstract {
             $mform->updateElementAttr($hiddenfieldname, array('id' => "id_$hiddenfieldname"));
         }
     }
+
+
+    public function filter_selectmultiplus_init($selectname) {
+        global $PAGE;
+
+        $textname = $selectname . '_autocomplete';
+
+        $module = array(
+            'name' => 'local_mr_framework',
+            'fullpath' => '/local/mr/framework/assets/javascript.js',
+            'requires' => array(
+                'node',
+                'event-key',
+                'autocomplete',
+                'autocomplete-filters',
+            ),
+        );
+
+        $arguments = array((object) array(
+            'selectname' => $selectname,
+            'textname' => $textname,
+        ));
+
+        $PAGE->requires->js_init_call('M.local_mr.init_filter_selectmultiplus', $arguments, true, $module);
+
+    }
 }
