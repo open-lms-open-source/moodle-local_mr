@@ -21,21 +21,64 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
         var actextfield = Y.one('#id_' + args.textname);
     }
 
-    if (!actextfield || !selectfield) {
+    if (Y.Lang.isObject(args.uldivid)) {
+        var uldiv = args.uldivid;
+    } else {
+        var uldiv = Y.one('#' + args.uldivid);
+    }
+
+    if (!actextfield || !selectfield || !uldiv) {
         return;
     }
 
-    // add a container for putting selected items in
-//    var listdiv = Y.Node.create('<div><ul></ul></div>')
-//        .appendTo(selectfield.get('parentNode'));
-//
-//    // move the container to where the select box should be
-//    var xy = selectfield.getXY();
-//    listdiv.setXY(xy[0], xy[1]);
-//
-//    // get the list
-//    var list = listdiv.one('ul');
+    var selectid = selectfield.get('id');
 
+    // hide the selectfield mform fitem
+    var selfitem = selectfield.ancestor('div.fitem');
+    selfitem.setStyle('display', 'none');
+
+    // stuffs for adding a selected item to our div
+    var deleteimg = '<a href="#"><img src="' + M.util.image_url('t/delete', 'moodle') + '" alt="Remove" /></a>';
+    var addselected = function(idx, text) {
+        uldiv.append('<div id="' + selectid + 'smpidx_smpidx' + idx + '" class="selectmultiplusitem"><div class="optiontext">' + text + '</div><div class="deletebtn">' + deleteimg  +'</div></div>')
+    }
+
+    // prepopulate div with already selected options
+    var seloptions = selectfield.get('options');
+    if (!seloptions.isEmpty()) {
+        var selectedoptions = Y.Array.filter(seloptions, function(opt) {
+            return opt.selected;
+        });
+
+        selectedoptions.each(function(selopt) {
+            addselected(selopt.get('index'), selopt.get('innerHTML'));
+        });
+    }
+
+    // onclick event for remove links
+    uldiv.delegate('click', function(e) {
+        // prevent default event action
+        e.preventDefault();
+
+        // get the div for the select item entry
+        var selectitemdiv = e.target.ancestor('div.selectmultiplusitem');
+        var sidid = selectitemdiv.get('id');
+
+        // get the option value
+        var optionidx = sidid.split('smpidx_smpidx').pop();
+
+        // deselect that option in our selectbox
+        if (!seloptions.isEmpty()) {
+            var selectedoption = seloptions.item(optionidx);
+            if (selectedoption) {
+                selectedoption.set('selected', '');
+            }
+        }
+
+        // remove from list
+        selectitemdiv.remove();
+
+    }, 'div.deletebtn a');
 
     // plug the autocomplete widget
     actextfield.plug(Y.Plugin.AutoComplete, {
@@ -86,10 +129,7 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
         options.item(optionidx).set('selected', 'selected');
 
         // check to see if it's already in the list
-//        var existingli = list.one('#id_' + args.selectname + 'li_' + result.raw.value);
-//        if (!existingli) {
-//            list.append('<li id="id_' + args.selectname + 'li_' + result.raw.value + '">' + result.raw.text + '</li>');
-//        }
+        addselected(optionidx, result.raw.text);
 
         // remove the text from the textbox
         actextfield.set('value', '');

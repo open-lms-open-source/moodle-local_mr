@@ -122,6 +122,7 @@ class mr_helper_html extends mr_helper_abstract {
         global $PAGE;
 
         $textname = $selectname . '_autocomplete';
+        $uldivid  = 'id_' . $selectname . '_addedlist';
 
         $module = array(
             'name' => 'local_mr_framework',
@@ -137,6 +138,7 @@ class mr_helper_html extends mr_helper_abstract {
         $arguments = array((object) array(
             'selectname' => $selectname,
             'textname' => $textname,
+            'uldivid' => $uldivid
         ));
 
         $PAGE->requires->js_init_call('M.local_mr.init_filter_selectmultiplus', $arguments, true, $module);
