@@ -118,6 +118,15 @@ class mr_helper_html extends mr_helper_abstract {
     }
 
 
+    /**
+     * Javascript initialization for selectmultiplus filter
+     *
+     * @param string $selectname - name of the select element
+     * @return void
+     *
+     * @link http://yuilibrary.com/yui/docs/autocomplete/
+     * @link http://yuilibrary.com/yui/docs/autocomplete/#select-node
+     */
     public function filter_selectmultiplus_init($selectname) {
         global $PAGE;
 
