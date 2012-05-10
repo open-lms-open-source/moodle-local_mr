@@ -7,10 +7,11 @@
  */
 
 class mr_html_filter_selectmultiplus extends mr_html_filter_abstract {
-    public function __construct($name, $label, $options = array(), $advanced = false, $field = NULL) {
+    public function __construct($name, $label, $textlabel, $options = array(), $advanced = false, $field = NULL) {
         parent::__construct($name, $label, $advanced, $field);
 
         $this->options = $options;
+        $this->textlabel = $textlabel;
     }
 
     /**
@@ -22,7 +23,6 @@ class mr_html_filter_selectmultiplus extends mr_html_filter_abstract {
     public function add_element($mform) {
         //add div and empty unordered list to the form
         $mform->addElement('static', $this->name . '_addedlist', $this->label, '<div id="id_' . $this->name . '_addedlist" class="selectmultiplus addedlist"></div>');
-        $mform->addHelpButton($this->name . '_addedlist', 'filteractivity', 'block_reports');
 
         // Add the select element setting multiple
         $mform->addElement('select', $this->name, $this->label, $this->options, 'class="selectmultiplus"')->setMultiple(true);
@@ -37,7 +37,7 @@ class mr_html_filter_selectmultiplus extends mr_html_filter_abstract {
         }
 
         // add the input field for autocomplete
-        $mform->addElement('text', $this->name . '_autocomplete', '', 'class="selectmultiplus"');
+        $mform->addElement('text', $this->name . '_autocomplete', $this->textlabel, 'class="selectmultiplus"');
 
         // initialize the javascript
         $helper = new mr_helper();
