@@ -96,7 +96,8 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
             },
             'charMatch',
             'subWordMatch'
-        ]
+        ],
+        width: 'auto'
     });
 
     // Send an empty request on spacebar key to show entire list
