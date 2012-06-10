@@ -47,6 +47,65 @@ class mr_html_filter_selectmultiplus extends mr_html_filter_abstract {
     }
 
     /**
+     * Overridden so that multiple help buttons can be added to the filter
+     * 
+     * @param string $identifier
+     * @param string $component
+     */
+    public function add_helpbutton($identifier, $component) {
+        $this->helpbutton[] = array(
+            'identifier' => $identifier,
+            'component' => $component,
+        );
+    }
+
+    /**
+     * Overidden to add the help buttons in a different way
+     *
+     * @param $mform
+     */
+    public function add_elements($mform) {
+        $this->add_element($mform);
+
+        // Add help buttons
+        if (!empty($this->helpbutton) && is_array($this->helpbutton)) {
+            // added list (static element) help first
+            if (!empty($this->helpbutton[0]) && !empty($this->helpbutton[0]['identifier']) && !empty($this->helpbutton[0]['component'])) {
+                $mform->addHelpButton(
+                    $this->name . '_addedlist',
+                    $this->helpbutton[0]['identifier'],
+                    $this->helpbutton[0]['component']
+                );
+            }
+
+            // selector element and autocomplete element
+            if (!empty($this->helpbutton[1]) && !empty($this->helpbutton[1]['identifier']) && !empty($this->helpbutton[1]['component'])) {
+                $mform->addHelpButton(
+                    $this->name,
+                    $this->helpbutton[1]['identifier'],
+                    $this->helpbutton[1]['component']
+                );
+
+                $mform->addHelpButton(
+                    $this->name . '_autocomplete',
+                    $this->helpbutton[1]['identifier'],
+                    $this->helpbutton[1]['component']
+                );
+            }
+        }
+
+        // Add disabledIf
+        if (!empty($this->disabledif)) {
+            $mform->disabledIf(
+                $this->get_element_name(),
+                $this->disabledif['dependenton'],
+                $this->disabledif['condition'],
+                $this->disabledif['value']
+            );
+        }
+    }
+
+    /**
      * @param $data
      * @return mr_html_filter_abstract
      */
