@@ -53,6 +53,11 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
         selectedoptions.each(function(selopt) {
             addselected(selopt.get('index'), selopt.get('innerHTML'));
         });
+
+        // add the addedlist class to the uldiv
+        if (!selectedoptions.isEmpty() && !uldiv.hasClass('addedlist')) {
+            uldiv.addClass('addedlist');
+        }
     }
 
     // onclick event for remove links
@@ -77,6 +82,11 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
 
         // remove from list
         selectitemdiv.remove();
+
+        // check to see if there are any items left/ if not remove added list class
+        if (!uldiv.one('.selectmultiplusitem')) {
+            uldiv.removeClass('addedlist');
+        }
 
     }, 'div.deletebtn a');
 
@@ -135,6 +145,10 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
         // remove the text from the textbox
         actextfield.set('value', '');
         actextfield.focus();
+
+        if (!uldiv.hasClass('addedlist')) {
+            uldiv.addClass('addedlist');
+        }
     });
 }
 
