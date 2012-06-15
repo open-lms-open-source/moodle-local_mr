@@ -76,8 +76,8 @@ class mr_fixture_course extends mr_fixture_abstract {
             if (!property_exists($course, 'fullname')) {
                 $course->fullname = '';
             }
-            $course        = create_course($course);
-            $this->results = $DB->get_record('course', array('id' => $course->id), '*', MUST_EXIST);
+            $course = create_course($course);
+            $this->set_results($DB->get_record('course', array('id' => $course->id), '*', MUST_EXIST));
         }
     }
 
@@ -93,7 +93,7 @@ class mr_fixture_course extends mr_fixture_abstract {
         if ($this->exists()) {
             delete_course($this->results, false);
         }
-        $this->results = new stdClass;
+        $this->set_results(new stdClass);
     }
 
     /**

@@ -64,7 +64,7 @@ class mr_fixture_role extends mr_fixture_abstract {
         global $DB;
 
         if (!$this->exists()) {
-            $this->results = $DB->get_record('role', array('shortname' => $this->get_shortname()), '*', MUST_EXIST);
+            $this->set_results($DB->get_record('role', array('shortname' => $this->get_shortname()), '*', MUST_EXIST));
         }
     }
 
@@ -77,7 +77,7 @@ class mr_fixture_role extends mr_fixture_abstract {
      * @throws moodle_exception
      */
     public function destroy() {
-        $this->results = new stdClass;
+        $this->set_results(new stdClass);
     }
 
     /**

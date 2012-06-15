@@ -114,8 +114,8 @@ class mr_fixture_enrollment extends mr_fixture_abstract {
                 $this->get_option('timeend', 0),
                 $this->get_option('status')
             );
-            $conditions    = array('enrolid' => $instance->id, 'userid' => $this->get_user()->get('id'));
-            $this->results = $DB->get_record('user_enrolments', $conditions, '*', MUST_EXIST);
+            $conditions = array('enrolid' => $instance->id, 'userid' => $this->get_user()->get('id'));
+            $this->set_results($DB->get_record('user_enrolments', $conditions, '*', MUST_EXIST));
         }
     }
 
@@ -134,7 +134,7 @@ class mr_fixture_enrollment extends mr_fixture_abstract {
             $instance = $DB->get_record('enrol', array('id' => $this->results->enrolid), '*', MUST_EXIST);
             $this->get_enroll()->unenrol_user($instance, $this->get_user()->get('id'));
         }
-        $this->results = new stdClass;
+        $this->set_results(new stdClass);
     }
 
     /**

@@ -50,6 +50,19 @@ interface mr_fixture_interface {
     public function get_results();
 
     /**
+     * Set the build results
+     *
+     * This value is highly dependent upon the fixture
+     * class that you are using.  Be sure to know which
+     * type of fixture you are using.
+     *
+     * @abstract
+     * @param stdClass $results The results to set
+     * @return void
+     */
+    public function set_results($results);
+
+    /**
      * Create the fixture
      *
      * This method must be safe to call multiple times.

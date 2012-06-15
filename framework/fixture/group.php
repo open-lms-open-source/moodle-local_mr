@@ -79,7 +79,7 @@ class mr_fixture_group extends mr_fixture_abstract {
             }
 
             $groupid = groups_create_group($group);
-            $this->results = $DB->get_record('groups', array('id' => $groupid), '*', MUST_EXIST);
+            $this->set_results($DB->get_record('groups', array('id' => $groupid), '*', MUST_EXIST));
         }
     }
 
@@ -95,7 +95,7 @@ class mr_fixture_group extends mr_fixture_abstract {
         if ($this->exists() and $this->get_course()->exists()) {
             groups_delete_group($this->results);
         }
-        $this->results = new stdClass;
+        $this->set_results(new stdClass);
     }
 
     /**

@@ -69,8 +69,8 @@ class mr_fixture_user extends mr_fixture_abstract {
             if (!empty($user->idnumber) and $record = $DB->get_record('user', array('idnumber' => $user->idnumber))) {
                 $this->delete_user($record);
             }
-            $userid        = user_create_user($user);
-            $this->results = $DB->get_record('user', array('id' => $userid), '*', MUST_EXIST);
+            $userid = user_create_user($user);
+            $this->set_results($DB->get_record('user', array('id' => $userid), '*', MUST_EXIST));
         }
     }
 
@@ -86,7 +86,7 @@ class mr_fixture_user extends mr_fixture_abstract {
         if ($this->exists()) {
             $this->delete_user($this->results);
         }
-        $this->results = new stdClass;
+        $this->set_results(new stdClass);
     }
 
     /**

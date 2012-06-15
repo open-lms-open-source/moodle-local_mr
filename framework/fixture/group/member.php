@@ -72,8 +72,8 @@ class mr_fixture_group_member extends mr_fixture_abstract {
                 $this->get_group()->get_results(),
                 $this->get_user()->get_results()
             );
-            $conditions    = array('groupid' => $this->get_group()->get('id'), 'userid' => $this->get_user()->get('id'));
-            $this->results = $DB->get_record('groups_members', $conditions, '*', MUST_EXIST);
+            $conditions = array('groupid' => $this->get_group()->get('id'), 'userid' => $this->get_user()->get('id'));
+            $this->set_results($DB->get_record('groups_members', $conditions, '*', MUST_EXIST));
         }
     }
 
@@ -92,7 +92,7 @@ class mr_fixture_group_member extends mr_fixture_abstract {
                 $this->get_user()->get_results()
             );
         }
-        $this->results = new stdClass;
+        $this->set_results(new stdClass);
     }
 
     /**
