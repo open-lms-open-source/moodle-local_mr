@@ -35,7 +35,7 @@ abstract class mr_fixture_abstract implements mr_fixture_interface {
     protected $results;
 
     public function __construct() {
-        $this->results = new stdClass;
+        $this->set_results(new stdClass);
     }
 
     /**
@@ -74,5 +74,19 @@ abstract class mr_fixture_abstract implements mr_fixture_interface {
      */
     public function get_results() {
         return $this->results;
+    }
+
+    /**
+     * Set the build results
+     *
+     * This value is highly dependent upon the fixture
+     * class that you are using.  Be sure to know which
+     * type of fixture you are using.
+     *
+     * @param stdClass $results The results to set
+     * @return void
+     */
+    public function set_results($results) {
+        $this->results = $results;
     }
 }

@@ -92,7 +92,7 @@ class mr_fixture_role_assignment extends mr_fixture_abstract {
                 $this->get_option('itemid', 0),
                 $this->get_option('timemodified', '')
             );
-            $this->results = $DB->get_record('role_assignments', array('id' => $raid), '*', MUST_EXIST);
+            $this->set_results($DB->get_record('role_assignments', array('id' => $raid), '*', MUST_EXIST));
         }
     }
 
@@ -114,7 +114,7 @@ class mr_fixture_role_assignment extends mr_fixture_abstract {
                 $this->get_option('itemid', 0)
             );
         }
-        $this->results = new stdClass;
+        $this->set_results(new stdClass);
     }
 
     /**
