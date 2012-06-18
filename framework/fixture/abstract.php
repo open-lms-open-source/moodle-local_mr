@@ -84,9 +84,10 @@ abstract class mr_fixture_abstract implements mr_fixture_interface {
      * type of fixture you are using.
      *
      * @param stdClass $results The results to set
-     * @return void
+     * @return mr_fixture_interface
      */
     public function set_results($results) {
         $this->results = $results;
+        return $this;
     }
 }
