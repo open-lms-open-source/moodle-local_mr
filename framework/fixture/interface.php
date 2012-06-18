@@ -58,7 +58,7 @@ interface mr_fixture_interface {
      *
      * @abstract
      * @param stdClass $results The results to set
-     * @return void
+     * @return mr_fixture_interface
      */
     public function set_results($results);
 

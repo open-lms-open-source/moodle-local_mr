@@ -57,7 +57,7 @@ class mr_fixture_user extends mr_fixture_abstract {
      * @throws moodle_exception
      */
     public function build() {
-        global $DB;
+        global $CFG, $DB;
 
         if (!$this->exists()) {
             $user = (object) $this->get_options();
@@ -68,6 +68,9 @@ class mr_fixture_user extends mr_fixture_abstract {
             }
             if (!empty($user->idnumber) and $record = $DB->get_record('user', array('idnumber' => $user->idnumber))) {
                 $this->delete_user($record);
+            }
+            if (!property_exists($user, 'mnethostid')) {
+                $user->mnethostid = $CFG->mnet_localhost_id;
             }
             $userid = user_create_user($user);
             $this->set_results($DB->get_record('user', array('id' => $userid), '*', MUST_EXIST));
