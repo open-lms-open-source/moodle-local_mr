@@ -7,11 +7,10 @@
  */
 
 class mr_html_filter_selectmultiplus extends mr_html_filter_abstract {
-    public function __construct($name, $label, $textlabel, $options = array(), $advanced = false, $field = NULL) {
+    public function __construct($name, $label, $options = array(), $advanced = false, $field = NULL) {
         parent::__construct($name, $label, $advanced, $field);
 
         $this->options = $options;
-        $this->textlabel = $textlabel;
     }
 
     /**
@@ -22,7 +21,7 @@ class mr_html_filter_selectmultiplus extends mr_html_filter_abstract {
      */
     public function add_element($mform) {
         //add div and empty unordered list to the form
-        $mform->addElement('static', $this->name . '_addedlist', $this->label, '<div id="id_' . $this->name . '_addedlist" class="selectmultiplus"></div>');
+        $mform->addElement('static', $this->name . '_addedlist', null, '<div id="id_' . $this->name . '_addedlist" class="selectmultiplus"></div>');
 
         // Add the select element setting multiple
         $mform->addElement('select', $this->name, $this->label, $this->options, 'class="selectmultiplus"')->setMultiple(true);
@@ -37,26 +36,13 @@ class mr_html_filter_selectmultiplus extends mr_html_filter_abstract {
         }
 
         // add the input field for autocomplete
-        $mform->addElement('text', $this->name . '_autocomplete', $this->textlabel, 'class="selectmultiplus"');
+        $mform->addElement('text', $this->name . '_autocomplete', $this->label, 'class="selectmultiplus"');
 
         // initialize the javascript
         $helper = new mr_helper();
         $helper->html->filter_selectmultiplus_init($this->name);
 
         return $this;
-    }
-
-    /**
-     * Overridden so that multiple help buttons can be added to the filter
-     *
-     * @param string $identifier
-     * @param string $component
-     */
-    public function add_helpbutton($identifier, $component) {
-        $this->helpbutton[] = array(
-            'identifier' => $identifier,
-            'component' => $component,
-        );
     }
 
     /**
@@ -69,27 +55,18 @@ class mr_html_filter_selectmultiplus extends mr_html_filter_abstract {
 
         // Add help buttons
         if (!empty($this->helpbutton) && is_array($this->helpbutton)) {
-            // added list (static element) help first
-            if (!empty($this->helpbutton[0]) && !empty($this->helpbutton[0]['identifier']) && !empty($this->helpbutton[0]['component'])) {
-                $mform->addHelpButton(
-                    $this->name . '_addedlist',
-                    $this->helpbutton[0]['identifier'],
-                    $this->helpbutton[0]['component']
-                );
-            }
-
             // selector element and autocomplete element
-            if (!empty($this->helpbutton[1]) && !empty($this->helpbutton[1]['identifier']) && !empty($this->helpbutton[1]['component'])) {
+            if (!empty($this->helpbutton) && !empty($this->helpbutton['identifier']) && !empty($this->helpbutton['component'])) {
                 $mform->addHelpButton(
                     $this->name,
-                    $this->helpbutton[1]['identifier'],
-                    $this->helpbutton[1]['component']
+                    $this->helpbutton['identifier'],
+                    $this->helpbutton['component']
                 );
 
                 $mform->addHelpButton(
                     $this->name . '_autocomplete',
-                    $this->helpbutton[1]['identifier'],
-                    $this->helpbutton[1]['component']
+                    $this->helpbutton['identifier'],
+                    $this->helpbutton['component']
                 );
             }
         }
