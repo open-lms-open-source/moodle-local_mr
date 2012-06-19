@@ -88,6 +88,13 @@ class mr_file_export implements renderable {
      *
      *      // Load all spreadsheet and text/csv exporters
      *      $export = new mr_file_export(array('text/csv', 'spreadsheet/*'));
+     *
+     *      // Load an instance of a class that extends mr_file_export_abstract
+     *      $export = new mr_file_export(new blocks_dummy_file_export_csv());
+     *
+     *      // Load an instance and all text exporters
+     *      $export = new mr_file_export(array('text/*', new blocks_dummy_file_export_csv()));
+     *
      * ?>
      * </code>
      *
@@ -108,6 +115,14 @@ class mr_file_export implements renderable {
         // Load exporters
         $helper = new mr_helper();
         foreach ($exporters as $exporter) {
+            //check to see if $exporter is an instance of mr_file_export_absract
+            if ($exporter instanceof mr_file_export_abstract) {
+                //add the exporter instance the exporters data member
+                $this->exporters[$exporter->type()] = $exporter;
+
+                //next exporter
+                continue;
+            }
             $plugins = $helper->load("file/export/$exporter");
 
             // Might return a single plugin
