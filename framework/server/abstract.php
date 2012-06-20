@@ -67,7 +67,7 @@ abstract class mr_server_abstract {
     /**
      * Server instance
      *
-     * @var Zend_*
+     * @var Zend_Server_Interface
      */
     protected $server;
 
@@ -238,9 +238,9 @@ abstract class mr_server_abstract {
     /**
      * Handle web service request
      *
-     * @param array $request The requst (Really only used for testing)
+     * @param array|bool $request The request (Really only used for testing)
      * @param boolean $return Return the response or not (Really only used for testing)
-     * @return void
+     * @return void|string
      */
     public function handle($request = false, $return = false) {
         global $UNITTEST;
