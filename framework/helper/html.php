@@ -116,4 +116,41 @@ class mr_helper_html extends mr_helper_abstract {
             $mform->updateElementAttr($hiddenfieldname, array('id' => "id_$hiddenfieldname"));
         }
     }
+
+
+    /**
+     * Javascript initialization for selectmultiplus filter
+     *
+     * @param string $selectname - name of the select element
+     * @return void
+     *
+     * @link http://yuilibrary.com/yui/docs/autocomplete/
+     * @link http://yuilibrary.com/yui/docs/autocomplete/#select-node
+     */
+    public function filter_selectmultiplus_init($selectname) {
+        global $PAGE;
+
+        $textname = $selectname . '_autocomplete';
+        $uldivid  = 'id_' . $selectname . '_addedlist';
+
+        $module = array(
+            'name' => 'local_mr_framework',
+            'fullpath' => '/local/mr/framework/assets/javascript.js',
+            'requires' => array(
+                'node',
+                'event-key',
+                'autocomplete',
+                'autocomplete-filters',
+            ),
+        );
+
+        $arguments = array((object) array(
+            'selectname' => $selectname,
+            'textname' => $textname,
+            'uldivid' => $uldivid
+        ));
+
+        $PAGE->requires->js_init_call('M.local_mr.init_filter_selectmultiplus', $arguments, true, $module);
+
+    }
 }

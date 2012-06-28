@@ -4,6 +4,155 @@
 M.local_mr = M.local_mr || {};
 
 /**
+ *
+ * @param Y
+ * @param args
+ */
+M.local_mr.init_filter_selectmultiplus = function(Y, args) {
+    if (Y.Lang.isObject(args.selectname)) {
+        var selectfield = args.selectname;
+    } else {
+        var selectfield = Y.one('#id_' + args.selectname);
+    }
+
+    if (Y.Lang.isObject(args.textname)) {
+        var actextfield = args.textname;
+    } else {
+        var actextfield = Y.one('#id_' + args.textname);
+    }
+
+    if (Y.Lang.isObject(args.uldivid)) {
+        var uldiv = args.uldivid;
+    } else {
+        var uldiv = Y.one('#' + args.uldivid);
+    }
+
+    if (!actextfield || !selectfield || !uldiv) {
+        return;
+    }
+
+    var selectid = selectfield.get('id');
+
+    // hide the selectfield mform fitem
+    var selfitem = selectfield.ancestor('div.fitem');
+    selfitem.setStyle('display', 'none');
+
+    // stuffs for adding a selected item to our div
+    var deleteimg = '<a href="#"><img src="' + M.util.image_url('t/delete', 'moodle') + '" alt="Remove" /></a>';
+    var addselected = function(idx, text) {
+        uldiv.append('<div id="' + selectid + 'smpidx_smpidx' + idx + '" class="selectmultiplusitem"><div class="optiontext">' + text + '</div><div class="deletebtn">' + deleteimg  +'</div></div>')
+    }
+
+    // prepopulate div with already selected options
+    var seloptions = selectfield.get('options');
+    if (!seloptions.isEmpty()) {
+        var selectedoptions = Y.Array.filter(seloptions, function(opt) {
+            return opt.selected;
+        });
+
+        selectedoptions.each(function(selopt) {
+            addselected(selopt.get('index'), selopt.get('innerHTML'));
+        });
+
+        // add the addedlist class to the uldiv
+        if (!selectedoptions.isEmpty() && !uldiv.hasClass('addedlist')) {
+            uldiv.addClass('addedlist');
+        }
+    }
+
+    // onclick event for remove links
+    uldiv.delegate('click', function(e) {
+        // prevent default event action
+        e.preventDefault();
+
+        // get the div for the select item entry
+        var selectitemdiv = e.target.ancestor('div.selectmultiplusitem');
+        var sidid = selectitemdiv.get('id');
+
+        // get the option value
+        var optionidx = sidid.split('smpidx_smpidx').pop();
+
+        // deselect that option in our selectbox
+        if (!seloptions.isEmpty()) {
+            var selectedoption = seloptions.item(optionidx);
+            if (selectedoption) {
+                selectedoption.set('selected', '');
+            }
+        }
+
+        // remove from list
+        selectitemdiv.remove();
+
+        // check to see if there are any items left/ if not remove added list class
+        if (!uldiv.one('.selectmultiplusitem')) {
+            uldiv.removeClass('addedlist');
+        }
+
+    }, 'div.deletebtn a');
+
+    // plug the autocomplete widget
+    actextfield.plug(Y.Plugin.AutoComplete, {
+        resultTextLocator: 'text',
+        activateFirstItem: true,
+        minimumQueryLength: 0,
+        queryDelay: 0,
+        source: selectfield,
+        resultFilters: [
+            function(query, results) {
+                return Y.Array.filter(results, function(result) {
+                    // only include results that are NOT already selected in the multiselect
+                    return !result.raw.selected;
+                });
+            },
+            'charMatch',
+            'subWordMatch'
+        ],
+        width: 'auto'
+    });
+
+    // Send an empty request on spacebar key to show entire list
+    actextfield.on('key', function(e) {
+        if (!actextfield.get('value').match(/^\s*?$/)) {
+            return;
+        }
+
+        e.preventDefault();
+
+        //Send an empty query to trigger all results
+        actextfield.ac.sendRequest('');
+
+    }, '32');
+
+    // wire the autocomplete select event
+    actextfield.ac.on('select', function(e) {
+        // get the result
+        var result = e.result;
+
+        // prevent the default behavoir
+        e.preventDefault();
+
+        // hide the autocomplete list
+        actextfield.ac.hide();
+
+        // select the item in the selectbox
+        var optionidx = result.raw.index;
+        var options = selectfield.get('options');
+        options.item(optionidx).set('selected', 'selected');
+
+        // check to see if it's already in the list
+        addselected(optionidx, result.raw.text);
+
+        // remove the text from the textbox
+        actextfield.set('value', '');
+        actextfield.focus();
+
+        if (!uldiv.hasClass('addedlist')) {
+            uldiv.addClass('addedlist');
+        }
+    });
+}
+
+/**
  * Generate YUI autocomplete for Moodle form elements
  *
  * @namespace M.local_mr
