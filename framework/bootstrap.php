@@ -109,7 +109,7 @@ class mr_bootstrap {
             $includepath = get_include_path();
             $searchpath  = $CFG->dirroot.'/search';
             $zendpath    = $CFG->libdir.'/zend';
-            $zendmrpath  = $CFG->libdir.'/zendmr';
+            $zendmrpath  = $CFG->dirroot.'/local/mr/vendor/zend';
             $paths       = array($zendmrpath, $zendpath, $searchpath);
 
             if (is_dir($searchpath) or is_dir($zendmrpath)) {

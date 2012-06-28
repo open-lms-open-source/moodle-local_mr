@@ -93,8 +93,8 @@ class mr_bootstrap_test extends UnitTestCase {
         $files = array(
             $CFG->dirroot.'/lib/zend/Zend/Validate/Barcode/Ean13.php',
         );
-        if (is_dir($CFG->dirroot.'/lib/zendmr')) {
-            $files[] = $CFG->dirroot.'/lib/zendmr/Zend/Controller/Request/Http.php';
+        if (is_dir($CFG->dirroot.'/local/mr/vendor/zend')) {
+            $files[] = $CFG->dirroot.'/local/mr/vendor/zend/Zend/Controller/Request/Http.php';
         }
         if (is_dir($CFG->dirroot.'/search')) {
             $files[] = $CFG->dirroot.'/search/Zend/Exception.php';
