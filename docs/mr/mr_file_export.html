@@ -102,7 +102,7 @@
 <p class="description"><p>Manages exporting of data to  files and the different export  formats.</p></p>
 	<ul class="tags">
 				<li><span class="field">author:</span> Mark Nielsen</li>
-				<li><span class="field">example:</span> <a href="../__examplesource/exsource_r-23staging_blocks_helloworld_controller_table.php_99a664704f66261702e4d10ee0d0d135.html">See how to use this class</a></li>
+				<li><span class="field">example:</span> <a href="../__examplesource/exsource_oule2-maint_blocks_helloworld_controller_table.php_69f093d72103b85451a8ad3f71467993.html">See how to use this class</a></li>
 			</ul>
 		<p class="notes">
 			Located in <a class="field" href="_file---export.php.html">/file/export.php</a> (line <span class="field">37</span>)
@@ -249,7 +249,7 @@
 		<div class="info-box-body">
 			
 <a name="var$exporters" id="$exporters"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -271,7 +271,7 @@
 
 </div>
 <a name="var$exporting" id="$exporting"><!-- --></A>
-<div class="oddrow">
+<div class="evenrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -293,7 +293,7 @@
 
 </div>
 <a name="var$filename" id="$filename"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -315,7 +315,7 @@
 
 </div>
 <a name="var$instance" id="$instance"><!-- --></A>
-<div class="oddrow">
+<div class="evenrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -337,7 +337,7 @@
 
 </div>
 <a name="var$url" id="$url"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -374,10 +374,10 @@
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
 <a name="method__construct" id="__construct"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">99</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">107</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -391,9 +391,17 @@
 <li><div class="src-line">&nbsp;</div></li>
 <li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Load&nbsp;all&nbsp;spreadsheet&nbsp;and&nbsp;text/csv&nbsp;exporters</span></div></li>
 <li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$export&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_file_export.html">mr_file_export</a></span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'text/csv'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'spreadsheet/*'</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Load&nbsp;an&nbsp;instance&nbsp;of&nbsp;a&nbsp;class&nbsp;that&nbsp;extends&nbsp;mr_file_export_abstract</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$export&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_file_export.html">mr_file_export</a></span><span class="src-sym">(</span><span class="src-key">new&nbsp;</span><span class="src-id">blocks_dummy_file_export_csv</span><span class="src-sym">(</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Load&nbsp;an&nbsp;instance&nbsp;and&nbsp;all&nbsp;text&nbsp;exporters</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$export&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_file_export.html">mr_file_export</a></span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'text/*'</span><span class="src-sym">,&nbsp;</span><span class="src-key">new&nbsp;</span><span class="src-id">blocks_dummy_file_export_csv</span><span class="src-sym">(</span><span class="src-sym">)))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
 <li><div class="src-line">&nbsp;<span class="src-php">?&gt;</span></div></li>
 </ol></div></p></p>
 	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
@@ -423,10 +431,10 @@
 			
 	</div>
 <a name="methodcleanup" id="cleanup"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">cleanup</span> (line <span class="line-number">232</span>)
+		<span class="method-title">cleanup</span> (line <span class="line-number">249</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -448,10 +456,10 @@
 			
 	</div>
 <a name="methodclose" id="close"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">close</span> (line <span class="line-number">209</span>)
+		<span class="method-title">close</span> (line <span class="line-number">226</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -473,10 +481,10 @@
 			
 	</div>
 <a name="methodget_select_options" id="get_select_options"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">get_select_options</span> (line <span class="line-number">307</span>)
+		<span class="method-title">get_select_options</span> (line <span class="line-number">324</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -497,10 +505,10 @@
 			
 	</div>
 <a name="methodget_url" id="get_url"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">get_url</span> (line <span class="line-number">295</span>)
+		<span class="method-title">get_url</span> (line <span class="line-number">312</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -522,10 +530,10 @@
 			
 	</div>
 <a name="methodget_url_select_options" id="get_url_select_options"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">get_url_select_options</span> (line <span class="line-number">320</span>)
+		<span class="method-title">get_url_select_options</span> (line <span class="line-number">337</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -546,10 +554,10 @@
 			
 	</div>
 <a name="methodinit" id="init"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">init</span> (line <span class="line-number">176</span>)
+		<span class="method-title">init</span> (line <span class="line-number">193</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -580,15 +588,16 @@
 			
 	</div>
 <a name="methodinstance" id="instance"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">instance</span> (line <span class="line-number">150</span>)
+		<span class="method-title">instance</span> (line <span class="line-number">167</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Once an export has started, you can get access  to the current exporter through this method.</p>
 	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
@@ -604,10 +613,10 @@
 			
 	</div>
 <a name="methodis_exporting" id="is_exporting"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">is_exporting</span> (line <span class="line-number">162</span>)
+		<span class="method-title">is_exporting</span> (line <span class="line-number">179</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -628,10 +637,10 @@
 			
 	</div>
 <a name="methodsend" id="send"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">send</span> (line <span class="line-number">247</span>)
+		<span class="method-title">send</span> (line <span class="line-number">264</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -653,10 +662,10 @@
 			
 	</div>
 <a name="methodset_filename" id="set_filename"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">set_filename</span> (line <span class="line-number">279</span>)
+		<span class="method-title">set_filename</span> (line <span class="line-number">296</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -688,7 +697,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Wed, 02 Nov 2011 13:06:19 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Thu, 28 Jun 2012 16:33:48 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

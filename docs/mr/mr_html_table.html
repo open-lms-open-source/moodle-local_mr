@@ -103,7 +103,7 @@
 	<ul class="tags">
 				<li><span class="field">author:</span> Mark Nielsen</li>
 				<li><span class="field">todo:</span> Make html_table class available through this class?</li>
-				<li><span class="field">example:</span> <a href="../__examplesource/exsource_r-23staging_blocks_helloworld_controller_table.php_99a664704f66261702e4d10ee0d0d135.html">See how to use this class</a></li>
+				<li><span class="field">example:</span> <a href="../__examplesource/exsource_oule2-maint_blocks_helloworld_controller_table.php_69f093d72103b85451a8ad3f71467993.html">See how to use this class</a></li>
 			</ul>
 		<p class="notes">
 			Located in <a class="field" href="_html---table.php.html">/html/table.php</a> (line <span class="field">51</span>)
@@ -140,7 +140,7 @@
 					<a href="#$cachekey" title="details" class="var-name">$cachekey</a>
 				</div>
 																<div class="var-title">
-					<span class="var-type">array</span>
+					<span class="var-type">mr_html_table_column[]</span>
 					<a href="#$columns" title="details" class="var-name">$columns</a>
 				</div>
 																<div class="var-title">
@@ -180,7 +180,7 @@
 					<a href="#$REQUEST_SORT" title="details" class="var-name">$REQUEST_SORT</a>
 				</div>
 																<div class="var-title">
-					<span class="var-type">arrat</span>
+					<span class="var-type">array</span>
 					<a href="#$rows" title="details" class="var-name">$rows</a>
 				</div>
 																<div class="var-title">
@@ -215,7 +215,7 @@
 				<div class="method-definition">
 											<span class="method-result">mr_html_table</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
-											(<span class="var-type"><a href="../mr/mr_preferences.html">mr_preferences</a></span>&nbsp;<span class="var-name">$preferences</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$url</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$sort</span> = <span class="var-default">''</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$order</span> = <span class="var-default">SORT_ASC</span>])
+											(<span class="var-type"><a href="../mr/mr_preferences.html">mr_preferences</a></span>&nbsp;<span class="var-name">$preferences</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$url</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$sort</span> = <span class="var-default">''</span>], [<span class="var-type">int|string</span>&nbsp;<span class="var-name">$order</span> = <span class="var-default">SORT_ASC</span>])
 									</div>
 														
 				<div class="method-definition">
@@ -261,7 +261,7 @@
 									</div>
 														
 				<div class="method-definition">
-											<span class="method-result">array</span>
+											<span class="method-result">mr_html_table_column[]</span>
 										<a href="#get_columns" title="details" class="method-name">get_columns</a>
 											([<span class="var-type">boolean</span>&nbsp;<span class="var-name">$visible</span> = <span class="var-default">false</span>])
 									</div>
@@ -392,7 +392,7 @@
 
 	<div class="var-header">
 		<span class="var-title">
-			<span class="var-type">array</span>
+			<span class="var-type">mr_html_table_column[]</span>
 			<span class="var-name">$columns</span>
 			 = <span class="var-default">array()</span>			(line <span class="line-number">74</span>)
 		</span>
@@ -613,7 +613,7 @@
 
 	<div class="var-header">
 		<span class="var-title">
-			<span class="var-type">arrat</span>
+			<span class="var-type">array</span>
 			<span class="var-name">$rows</span>
 			 = <span class="var-default">array()</span>			(line <span class="line-number">81</span>)
 		</span>
@@ -729,7 +729,7 @@
 		<span class="method-name">
 			__construct
 		</span>
-					(<span class="var-type"><a href="../mr/mr_preferences.html">mr_preferences</a></span>&nbsp;<span class="var-name">$preferences</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$url</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$sort</span> = <span class="var-default">''</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$order</span> = <span class="var-default">SORT_ASC</span>])
+					(<span class="var-type"><a href="../mr/mr_preferences.html">mr_preferences</a></span>&nbsp;<span class="var-name">$preferences</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$url</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$sort</span> = <span class="var-default">''</span>], [<span class="var-type">int|string</span>&nbsp;<span class="var-name">$order</span> = <span class="var-default">SORT_ASC</span>])
 			</div>
 	
 			<ul class="parameters">
@@ -743,7 +743,7 @@
 				<span class="var-type">string</span>
 				<span class="var-name">$sort</span><span class="var-description">: Sorting field</span>			</li>
 					<li>
-				<span class="var-type">string</span>
+				<span class="var-type">int|string</span>
 				<span class="var-name">$order</span><span class="var-description">: Sorting order</span>			</li>
 				</ul>
 		
@@ -753,7 +753,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">add_column</span> (line <span class="line-number">428</span>)
+		<span class="method-title">add_column</span> (line <span class="line-number">434</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -788,7 +788,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">add_column_type</span> (line <span class="line-number">450</span>)
+		<span class="method-title">add_column_type</span> (line <span class="line-number">456</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -826,7 +826,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">add_format</span> (line <span class="line-number">465</span>)
+		<span class="method-title">add_format</span> (line <span class="line-number">471</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -862,7 +862,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">add_row</span> (line <span class="line-number">488</span>)
+		<span class="method-title">add_row</span> (line <span class="line-number">494</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -891,7 +891,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">cached</span> (line <span class="line-number">312</span>)
+		<span class="method-title">cached</span> (line <span class="line-number">318</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -915,7 +915,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">disable_sort</span> (line <span class="line-number">404</span>)
+		<span class="method-title">disable_sort</span> (line <span class="line-number">410</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -939,7 +939,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">extract_data</span> (line <span class="line-number">510</span>)
+		<span class="method-title">extract_data</span> (line <span class="line-number">516</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -968,7 +968,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">get_columns</span> (line <span class="line-number">329</span>)
+		<span class="method-title">get_columns</span> (line <span class="line-number">335</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -979,7 +979,7 @@
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">array</span>
+		<span class="method-result">mr_html_table_column[]</span>
 		<span class="method-name">
 			get_columns
 		</span>
@@ -998,7 +998,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">get_sql_select</span> (line <span class="line-number">354</span>)
+		<span class="method-title">get_sql_select</span> (line <span class="line-number">360</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1022,7 +1022,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">get_sql_sort</span> (line <span class="line-number">370</span>)
+		<span class="method-title">get_sql_sort</span> (line <span class="line-number">376</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1100,7 +1100,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">set_cachekey</span> (line <span class="line-number">302</span>)
+		<span class="method-title">set_cachekey</span> (line <span class="line-number">308</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1279,7 +1279,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Wed, 02 Nov 2011 13:06:22 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Thu, 28 Jun 2012 16:33:52 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

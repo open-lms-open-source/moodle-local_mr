@@ -104,8 +104,8 @@
 	<ul class="tags">
 				<li><span class="field">author:</span> Mark Nielsen</li>
 				<li><span class="field">abstract:</span> </li>
-				<li><span class="field">example:</span> <a href="../__examplesource/exsource_tes_mr-23staging_blocks_helloworld_webservices.php_ccc6704f7ab3268604d3392f56564a03.html">Example server usage</a></li>
-				<li><span class="field">example:</span> <a href="../__examplesource/exsource_-23staging_blocks_helloworld_controller_server.php_297abc88acf4f18d9b92f8a971970b19.html">Example client</a></li>
+				<li><span class="field">example:</span> <a href="../__examplesource/exsource_tes_joule2-maint_blocks_helloworld_webservices.php_c1a862a8922f2c4590de2cdacca66e16.html">Example server usage</a></li>
+				<li><span class="field">example:</span> <a href="../__examplesource/exsource_ule2-maint_blocks_helloworld_controller_server.php_a4df7da15f0287015b6305b4c2b86e1b.html">Example client</a></li>
 			</ul>
 		<p class="notes">
 			Located in <a class="field" href="_server---abstract.php.html">/server/abstract.php</a> (line <span class="field">52</span>)
@@ -170,7 +170,7 @@
 					<a href="#$responseclass" title="details" class="var-name">$responseclass</a>
 				</div>
 																<div class="var-title">
-					<span class="var-type">Zend_*</span>
+					<span class="var-type">Zend_Server_Interface</span>
 					<a href="#$server" title="details" class="var-name">$server</a>
 				</div>
 																<div class="var-title">
@@ -230,9 +230,9 @@
 									</div>
 														
 				<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result">void|string</span>
 										<a href="#handle" title="details" class="method-name">handle</a>
-											([<span class="var-type">array</span>&nbsp;<span class="var-name">$request</span> = <span class="var-default">false</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$return</span> = <span class="var-default">false</span>])
+											([<span class="var-type">array|bool</span>&nbsp;<span class="var-name">$request</span> = <span class="var-default">false</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$return</span> = <span class="var-default">false</span>])
 									</div>
 														
 				<div class="method-definition">
@@ -284,7 +284,7 @@
 		<div class="info-box-body">
 			
 <a name="var$request" id="$request"><!-- --></A>
-<div class="oddrow">
+<div class="evenrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -306,7 +306,7 @@
 
 </div>
 <a name="var$response" id="$response"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -328,7 +328,7 @@
 
 </div>
 <a name="var$responseclass" id="$responseclass"><!-- --></A>
-<div class="oddrow">
+<div class="evenrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -350,11 +350,11 @@
 
 </div>
 <a name="var$server" id="$server"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="var-header">
 		<span class="var-title">
-			<span class="var-type">Zend_*</span>
+			<span class="var-type">Zend_Server_Interface</span>
 			<span class="var-name">$server</span>
 						(line <span class="line-number">72</span>)
 		</span>
@@ -372,7 +372,7 @@
 
 </div>
 <a name="var$serviceclass" id="$serviceclass"><!-- --></A>
-<div class="oddrow">
+<div class="evenrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -394,7 +394,7 @@
 
 </div>
 <a name="var$validator" id="$validator"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -432,7 +432,7 @@
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
 <a name="method__construct" id="__construct"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<span class="method-title">Constructor __construct</span> (line <span class="line-number">102</span>)
@@ -467,7 +467,7 @@
 			
 	</div>
 <a name="methoddocument" id="document"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<span class="method-title">document</span> (line <span class="line-number">137</span>)
@@ -496,10 +496,10 @@
 			
 	</div>
 <a name="methodfault" id="fault"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">fault</span> (line <span class="line-number">218</span>)
+		<span class="method-title">fault</span> (line <span class="line-number">219</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -528,7 +528,7 @@
 			
 	</div>
 <a name="methodget_request" id="get_request"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<span class="method-title">get_request</span> (line <span class="line-number">177</span>)
@@ -552,7 +552,7 @@
 			
 	</div>
 <a name="methodget_response" id="get_response"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<span class="method-title">get_response</span> (line <span class="line-number">190</span>)
@@ -576,10 +576,10 @@
 			
 	</div>
 <a name="methodhandle" id="handle"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">handle</span> (line <span class="line-number">245</span>)
+		<span class="method-title">handle</span> (line <span class="line-number">246</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -589,17 +589,17 @@
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result">void|string</span>
 		<span class="method-name">
 			handle
 		</span>
-					([<span class="var-type">array</span>&nbsp;<span class="var-name">$request</span> = <span class="var-default">false</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$return</span> = <span class="var-default">false</span>])
+					([<span class="var-type">array|bool</span>&nbsp;<span class="var-name">$request</span> = <span class="var-default">false</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$return</span> = <span class="var-default">false</span>])
 			</div>
 	
 			<ul class="parameters">
 					<li>
-				<span class="var-type">array</span>
-				<span class="var-name">$request</span><span class="var-description">: The requst (Really only used for testing)</span>			</li>
+				<span class="var-type">array|bool</span>
+				<span class="var-name">$request</span><span class="var-description">: The request (Really only used for testing)</span>			</li>
 					<li>
 				<span class="var-type">boolean</span>
 				<span class="var-name">$return</span><span class="var-description">: Return the response or not (Really only used for testing)</span>			</li>
@@ -608,7 +608,7 @@
 			
 	</div>
 <a name="methodis_successful" id="is_successful"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<span class="method-title">is_successful</span> (line <span class="line-number">122</span>)
@@ -632,7 +632,7 @@
 			
 	</div>
 <a name="methodnew_server" id="new_server"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<span class="method-title">new_server</span> (line <span class="line-number">115</span>)
@@ -665,15 +665,16 @@
 				</ul>
 	</div>
 <a name="methodsecurity" id="security"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">security</span> (line <span class="line-number">203</span>)
+		<span class="method-title">security</span> (line <span class="line-number">204</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Security checks</p>
 	<ul class="tags">
+				<li><span class="field">throws:</span> Exception</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
@@ -689,10 +690,10 @@
 			
 	</div>
 <a name="methodsend_headers" id="send_headers"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">send_headers</span> (line <span class="line-number">234</span>)
+		<span class="method-title">send_headers</span> (line <span class="line-number">235</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -713,7 +714,7 @@
 			
 	</div>
 <a name="methodsimpletest_report" id="simpletest_report"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<span class="method-title">simpletest_report</span> (line <span class="line-number">155</span>)
@@ -747,7 +748,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Wed, 02 Nov 2011 13:06:16 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Thu, 28 Jun 2012 16:33:45 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

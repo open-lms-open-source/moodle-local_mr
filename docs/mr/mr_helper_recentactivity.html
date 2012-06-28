@@ -134,7 +134,7 @@
 				<div class="method-definition">
 											<span class="method-result">array</span>
 										<a href="#direct" title="details" class="method-name">direct</a>
-											(<span class="var-type">int</span>&nbsp;<span class="var-name">$timestart</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$courses</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$otheruser</span> = <span class="var-default">NULL</span>])
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$timestart</span>, <span class="var-type">array|stdClass</span>&nbsp;<span class="var-name">$courses</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$otheruser</span> = <span class="var-default">NULL</span>])
 									</div>
 											</div>
 		</div>
@@ -178,16 +178,17 @@
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
 <a name="methoddirect" id="direct"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">direct</span> (line <span class="line-number">52</span>)
+		<span class="method-title">direct</span> (line <span class="line-number">53</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Get recent activity for course(s)</p>
 <p class="description"><p>The passed course(s) will get populated with recent activity  and returned.  EG: $course-&gt;recentactivity = array(...of activity...);</p></p>
 	<ul class="tags">
+				<li><span class="field">throws:</span> Exception</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
@@ -196,7 +197,7 @@
 		<span class="method-name">
 			direct
 		</span>
-					(<span class="var-type">int</span>&nbsp;<span class="var-name">$timestart</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$courses</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$otheruser</span> = <span class="var-default">NULL</span>])
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$timestart</span>, <span class="var-type">array|stdClass</span>&nbsp;<span class="var-name">$courses</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$otheruser</span> = <span class="var-default">NULL</span>])
 			</div>
 	
 			<ul class="parameters">
@@ -204,7 +205,7 @@
 				<span class="var-type">int</span>
 				<span class="var-name">$timestart</span><span class="var-description">: Look for activity after this time</span>			</li>
 					<li>
-				<span class="var-type">array</span>
+				<span class="var-type">array|stdClass</span>
 				<span class="var-name">$courses</span><span class="var-description">: An array of course objects or a single course object</span>			</li>
 					<li>
 				<span class="var-type">mixed</span>
@@ -226,7 +227,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Wed, 02 Nov 2011 13:06:21 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Thu, 28 Jun 2012 16:33:50 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
