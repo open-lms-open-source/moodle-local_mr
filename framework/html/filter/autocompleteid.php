@@ -66,8 +66,6 @@ class mr_html_filter_autocompleteid extends mr_html_filter_abstract {
      * Add text input for autocomplete and hidden field to store ID
      */
     public function add_element($mform) {
-        global $CFG;
-
         $helper = new mr_helper();
 
         $textfieldname = "{$this->name}_autocompletetext";

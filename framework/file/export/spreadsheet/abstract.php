@@ -50,7 +50,7 @@ abstract class mr_file_export_spreadsheet_abstract extends mr_file_export_abstra
     /**
      * Current worksheet
      *
-     * @var object
+     * @var MoodleExcelWorksheet
      */
     protected $writer;
 
@@ -91,7 +91,7 @@ abstract class mr_file_export_spreadsheet_abstract extends mr_file_export_abstra
     public function init($name) {
         $this->name = $name;
         $filename   = clean_filename($this->name);
-        $filename   = trim($this->name, '_');
+        $filename   = trim($filename, '_');
 
         $this->workbook = $this->new_workbook();
         $this->workbook->send("$filename.".$this->get_extension());

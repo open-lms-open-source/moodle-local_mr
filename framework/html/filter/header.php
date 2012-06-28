@@ -48,10 +48,10 @@ class mr_html_filter_header extends mr_html_filter_abstract {
     }
 
     /**
-     * Add a header element to the form
+     * Add filter form element
      *
-     * @param MoodleQuickForm $mform
-     * @return block_reports_model_filter_header
+     * @param MoodleQuickForm $mform Filter form
+     * @return mr_html_filter_abstract
      */
     public function add_element($mform) {
         $mform->addElement('header', $this->name, $this->label);

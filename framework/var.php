@@ -78,6 +78,7 @@ class mr_var extends stdClass {
     /**
      * Set values
      *
+     * @throws coding_exception
      * @param mixed $param Pass an array(name => value, etc) or ($name, $value)
      * @return mr_var
      */
@@ -105,6 +106,7 @@ class mr_var extends stdClass {
      * Get a value at index
      *
      * @param string $index The index's value to fetch
+     * @throws coding_exception
      * @return mr_var
      * @todo allow the passing of a default?
      */

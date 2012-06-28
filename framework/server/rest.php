@@ -40,7 +40,7 @@ class mr_server_rest extends mr_server_abstract {
     /**
      * Use a Zend_Rest_Server
      *
-     * @return Zend_Rest_Server
+     * @return object|\Zend_Rest_Server
      */
     public function new_server() {
         require_once('Zend/Rest/Server.php');

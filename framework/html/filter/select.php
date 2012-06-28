@@ -57,6 +57,7 @@ class mr_html_filter_select extends mr_html_filter_abstract {
         foreach ($this->options as $value => $option) {
             return array($this->name => $value);
         }
+        return parent::preferences_defaults();
     }
 
     /**

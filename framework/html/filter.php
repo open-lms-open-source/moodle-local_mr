@@ -43,7 +43,7 @@ class mr_html_filter extends mr_readonly implements renderable {
     /**
      * Added filters
      *
-     * @var array
+     * @var mr_html_filter_abstract[]
      */
     protected $filters = array();
 
@@ -84,7 +84,7 @@ class mr_html_filter extends mr_readonly implements renderable {
 
     /**
      * Report
-     * 
+     *
      * @var mr_report_abstract
      */
     protected $report;
@@ -92,7 +92,7 @@ class mr_html_filter extends mr_readonly implements renderable {
     /**
      * Construct
      *
-     * @param mr_preferences Preferences model
+     * @param mr_preferences $preferences Preferences model
      * @param moodle_url $url Base URL
      * @param string $formpath The patch to the form class, passed to mr_helper_load
      */
@@ -111,8 +111,6 @@ class mr_html_filter extends mr_readonly implements renderable {
      * @throws coding_exception
      */
     public function init() {
-        global $CFG;
-
         if (empty($this->filters)) {
             throw new coding_exception('Must add filters');
         }
@@ -238,8 +236,7 @@ class mr_html_filter extends mr_readonly implements renderable {
      *
      * @param string $name The name of the filter
      * @param array $arguments Filter args
-     * @return mr_html_filter
-     * @throws coding_exception
+     * @return mixed|mr_html_filter
      */
     public function __call($name, $arguments) {
         $parts = explode('_', $name);

@@ -164,7 +164,7 @@ abstract class mr_controller extends mr_readonly {
      * @param string $action Set the current action of the controller
      */
     public function __construct($plugin, $identifier, $component, $action) {
-        global $CFG, $OUTPUT, $PAGE;
+        global $PAGE;
 
         // Controller name
         $this->name = end(explode('_', get_class($this)));

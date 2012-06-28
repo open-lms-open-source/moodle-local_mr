@@ -139,8 +139,6 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
      *                         retrieve rows for rendering or exporting
      */
     public function __construct(moodle_url $url, $courseid = NULL, $autorun = true) {
-        global $CFG;
-
         if (is_null($courseid) or $courseid == 0) {
             $courseid = SITEID;
         }
@@ -436,7 +434,7 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
      * @param string $sort Sort SQL
      * @param string $limitfrom Limit from SQL
      * @param string $limitnum Limit number SQL
-     * @return recordset
+     * @return moodle_recordset
      */
     public function get_recordset($filter = array(), $sort = '', $limitfrom = '', $limitnum = '') {
         global $DB;
@@ -516,7 +514,7 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
      * This is handy for form customizations, etc.  For major filter
      * form customizations, define your own filter form class and pass
      * the path to your new form to the mr_html_form constructor.
-     * 
+     *
      * @param MoodleQuickForm $mform
      */
     public function filter_definition_hook(MoodleQuickForm &$mform) {}

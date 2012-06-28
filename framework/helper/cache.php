@@ -69,7 +69,7 @@ class mr_helper_cache extends mr_helper_abstract {
      *
      * @param string $data The data to be saved, currently ONLY strings accepted
      * @param string $id Cache id (if not set, the last cache id will be used)
-     * @return void
+     * @return boolean
      * @throws coding_exception
      */
     public function direct($data, $id = null) {

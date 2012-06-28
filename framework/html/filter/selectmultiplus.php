@@ -1,11 +1,35 @@
 <?php
 /**
+ * Moodlerooms Framework
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see http://opensource.org/licenses/gpl-3.0.html.
+ *
+ * @copyright Copyright (c) 2009 Moodlerooms Inc. (http://www.moodlerooms.com)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License
+ * @package mr
+ * @author Mark Nielsen
+ * @author Sam Chaffee
+ */
+
+defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
+
+/**
  * Multi-select plus filter
  *
  * @author Sam Chaffee
- * @package local/mr
+ * @package mr
  */
-
 class mr_html_filter_selectmultiplus extends mr_html_filter_abstract {
     public function __construct($name, $label, $options = array(), $advanced = false, $field = NULL) {
         parent::__construct($name, $label, $advanced, $field);
@@ -14,10 +38,10 @@ class mr_html_filter_selectmultiplus extends mr_html_filter_abstract {
     }
 
     /**
-     * Add form elements to the form
+     * Add filter form element
      *
-     * @param $mform - the moodleform for the filters
-     * @return selectmultiplus
+     * @param MoodleQuickForm $mform Filter form
+     * @return mr_html_filter_abstract
      */
     public function add_element($mform) {
         //add div and empty unordered list to the form
@@ -46,9 +70,10 @@ class mr_html_filter_selectmultiplus extends mr_html_filter_abstract {
     }
 
     /**
-     * Overidden to add the help buttons in a different way
+     * Add all elements for this filter
      *
-     * @param $mform
+     * @param MoodleQuickForm $mform The filter form
+     * @return mr_html_filter_abstract
      */
     public function add_elements($mform) {
         $this->add_element($mform);
@@ -80,6 +105,7 @@ class mr_html_filter_selectmultiplus extends mr_html_filter_abstract {
                 $this->disabledif['value']
             );
         }
+        return $this;
     }
 
     /**
@@ -96,9 +122,6 @@ class mr_html_filter_selectmultiplus extends mr_html_filter_abstract {
         return parent::preferences_update($data);
     }
 
-    /**
-     * @return array|bool
-     */
     public function sql() {
         global $DB;
 

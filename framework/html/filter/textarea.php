@@ -44,8 +44,9 @@ class mr_html_filter_textarea extends mr_html_filter_abstract {
      *
      * @param string $name Filter name
      * @param string $label Filter label
-     * @param string $advanced Filter advanced form setting
+     * @param bool $advanced Filter advanced form setting
      * @param string $field SQL field, defaults to $name
+     * @param array $attributes
      */
     public function __construct($name, $label, $advanced = false, $field = NULL, $attributes = array()) {
         $this->attributes = $attributes;

@@ -85,7 +85,7 @@ abstract class mr_html_filter_abstract {
      *
      * @param string $name Filter name
      * @param string $label Filter label
-     * @param string $advanced Filter advanced form setting
+     * @param bool $advanced Filter advanced form setting
      * @param string $field SQL field, defaults to $name
      */
     public function __construct($name, $label, $advanced = false, $field = NULL) {
@@ -155,7 +155,7 @@ abstract class mr_html_filter_abstract {
     /**
      * Preferences init
      *
-     * @param string $prefix Unique prefix
+     * @param mr_preferences $preferences
      * @return mr_html_filter_abstract
      */
     public function preferences_init($preferences) {

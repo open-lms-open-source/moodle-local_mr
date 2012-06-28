@@ -105,8 +105,9 @@ class mr_db_queue {
     /**
      * Add record(s)
      *
-     * @param mixed $records Can be a single record or an array of records
+     * @param mr_db_record|mr_db_record[] $records Can be a single record or an array of records
      *                       Records must be of type mr_db_record
+     * @throws coding_exception
      * @return mr_db_queue
      */
     public function add($records) {
@@ -202,6 +203,7 @@ class mr_db_queue {
      * Flushes inserts
      *
      * @param string $table The table to flush
+     * @throws coding_exception
      * @return void
      */
     protected function _flush_inserts($table) {
@@ -255,6 +257,7 @@ class mr_db_queue {
      * Flushes deletes
      *
      * @param string $table The table to flush
+     * @throws coding_exception
      * @return void
      */
     protected function _flush_deletes($table) {

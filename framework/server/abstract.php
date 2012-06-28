@@ -198,6 +198,7 @@ abstract class mr_server_abstract {
     /**
      * Security checks
      *
+     * @throws Exception
      * @return void
      */
     public function security() {

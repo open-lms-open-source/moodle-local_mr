@@ -31,6 +31,9 @@ require_once($CFG->dirroot.'/group/lib.php');
 
 /**
  * MR Fixture Group Member
+ *
+ * @author Mark Nielsen
+ * @package mr
  */
 class mr_fixture_group_member extends mr_fixture_abstract {
     /**

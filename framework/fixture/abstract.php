@@ -28,6 +28,12 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  */
 require_once($CFG->dirroot.'/local/mr/framework/fixture/interface.php');
 
+/**
+ * MR Fixture Abstract
+ *
+ * @author Mark Nielsen
+ * @package mr
+ */
 abstract class mr_fixture_abstract implements mr_fixture_interface {
     /**
      * @var stdClass

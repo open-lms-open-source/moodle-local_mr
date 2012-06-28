@@ -40,14 +40,14 @@ class mr_html_filter_numberrange extends mr_html_filter_abstract {
 
     /**
      * The low value default
-     * 
+     *
      * @var mixed
      */
     protected $lv_default;
 
     /**
      * The high value default
-     * 
+     *
      * @var mixed
      */
     protected $hv_default;
@@ -57,7 +57,7 @@ class mr_html_filter_numberrange extends mr_html_filter_abstract {
      *
      * @param string $name Filter name
      * @param string $label Filter label
-     * @param string $advanced Filter advanced form setting
+     * @param bool $advanced Filter advanced form setting
      * @param string $field SQL field, defaults to $name
      * @param int $lv_default Low value default
      * @param int $hv_default High value default

@@ -203,7 +203,7 @@ class mr_html_table_column {
     /**
      * Derive cell value from row
      *
-     * @param object $row Generally database record object
+     * @param array $row Generally database record object
      * @return mixed
      * @throws coding_exception
      */

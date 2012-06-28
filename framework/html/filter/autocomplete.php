@@ -55,8 +55,6 @@ class mr_html_filter_autocomplete extends mr_html_filter_abstract {
      * Add text input
      */
     public function add_element($mform) {
-        global $CFG;
-
         $helper = new mr_helper();
 
         $mform->addElement('text', $this->name, $this->label);

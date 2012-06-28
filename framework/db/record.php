@@ -122,8 +122,10 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Set a value to the record.  Records changes.
      *
-     * @return void
+     * @param string $name
+     * @param mixed $value
      * @throws coding_exception
+     * @return void
      */
     public function __set($name, $value) {
         if (!$this->trustcolumns and !$this->_table->column_exists($name)) {
@@ -141,8 +143,9 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Get a record value
      *
-     * @return void
+     * @param string $name
      * @throws coding_exception
+     * @return mixed
      */
     public function __get($name) {
         if (property_exists($this->_record, $name)) {
@@ -154,7 +157,8 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * If a record value isset
      *
-     * @return boolean
+     * @param string $name
+     * @return bool
      */
     public function __isset($name) {
         return isset($this->_record->$name);
@@ -163,6 +167,7 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Unset a record value
      *
+     * @param string $name
      * @return void
      */
     public function __unset($name) {
@@ -188,7 +193,7 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      * Required by the ArrayAccess implementation
      *
      * @param string $offset
-     * @return string
+     * @return mixed
      */
     public function offsetGet($offset) {
         return $this->__get($offset);
@@ -222,7 +227,7 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      *
      * Required by the IteratorAggregate implementation
      *
-     * @return ArrayIterator
+     * @return ArrayIterator|Traversable
      */
     public function getIterator() {
         return new ArrayIterator($this->_record);

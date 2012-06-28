@@ -41,7 +41,7 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
     var deleteimg = '<a href="#"><img src="' + M.util.image_url('t/delete', 'moodle') + '" alt="Remove" /></a>';
     var addselected = function(idx, text) {
         uldiv.append('<div id="' + selectid + 'smpidx_smpidx' + idx + '" class="selectmultiplusitem"><div class="optiontext">' + text + '</div><div class="deletebtn">' + deleteimg  +'</div></div>')
-    }
+    };
 
     // prepopulate div with already selected options
     var seloptions = selectfield.get('options');
@@ -150,7 +150,7 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
             uldiv.addClass('addedlist');
         }
     });
-}
+};
 
 /**
  * Generate YUI autocomplete for Moodle form elements
@@ -235,4 +235,4 @@ M.local_mr.init_mr_html_autocomplete = function(Y, args) {
         myAutoComplete.selectionEnforceEvent.subscribe(myEnforceHandler);
         myAutoComplete.unmatchedItemSelectEvent.subscribe(unmatchedItemSelectHandler);
     }
-}
+};

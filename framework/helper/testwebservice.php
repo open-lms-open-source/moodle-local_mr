@@ -67,7 +67,7 @@ class mr_helper_testwebservice extends mr_helper_abstract {
      * @param string $classname The service class name
      * @param string $methodname The service method name
      * @param string $response The server response
-     * @return void
+     * @return string
      * @author Mark Nielsen
      */
     public function document($classname, $methodname, $response) {
@@ -94,6 +94,7 @@ class mr_helper_testwebservice extends mr_helper_abstract {
             $markup .= "*Parameters:*\n";
             $markup .= "* _string_ *method*: (Required) Must be set to '$methodname'\n";
 
+            /** @var $params Zend_Reflection_Parameter[] */
             foreach ($params as $param) {
                 $name = $param->getName();
                 $tags = $phpdoc->getTags('param');
@@ -228,6 +229,7 @@ class mr_helper_testwebservice extends mr_helper_abstract {
      *
      * @param string $request The last request
      * @param Zend_Http_Response $response The last response
+     * @throws coding_exception
      * @return string
      */
     public function debuginfo($request, $response) {

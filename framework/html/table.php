@@ -69,14 +69,14 @@ class mr_html_table extends mr_readonly implements renderable {
     /**
      * Columns
      *
-     * @var array
+     * @var mr_html_table_column[]
      */
     protected $columns = array();
 
     /**
      * Table rows
      *
-     * @var arrat
+     * @var array
      */
     protected $rows = array();
 
@@ -166,7 +166,7 @@ class mr_html_table extends mr_readonly implements renderable {
      * @param mr_preferences $preferences User preferences
      * @param moodle_url $url Base url
      * @param string $sort Sorting field
-     * @param string $order Sorting order
+     * @param int|string $order Sorting order
      */
     public function __construct($preferences, moodle_url $url, $sort = '', $order = SORT_ASC) {
         $this->url          = $url;
@@ -281,7 +281,7 @@ class mr_html_table extends mr_readonly implements renderable {
      */
     public function set_export($export) {
         $this->export = $export;
-        
+
         if ($export->is_exporting()) {
             $headers = array();
             foreach ($this->get_columns(true) as $column) {
@@ -330,7 +330,7 @@ class mr_html_table extends mr_readonly implements renderable {
      * into the standard set.
      *
      * @param boolean $visible Return only columns that are visible to the user
-     * @return array
+     * @return mr_html_table_column[]
      */
     public function get_columns($visible = false) {
         $return = array();

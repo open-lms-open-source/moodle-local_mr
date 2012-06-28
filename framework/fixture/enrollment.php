@@ -30,6 +30,9 @@ require_once($CFG->dirroot.'/local/mr/framework/fixture/abstract.php');
 
 /**
  * MR Fixture Enrollment
+ *
+ * @author Mark Nielsen
+ * @package mr
  */
 class mr_fixture_enrollment extends mr_fixture_abstract {
     /**

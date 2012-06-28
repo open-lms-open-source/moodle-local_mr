@@ -137,7 +137,7 @@ class mr_helper {
      * Get a helper
      *
      * @param string $name Helper name
-     * @return block_notify_model_helper_abstract
+     * @return mr_helper_abstract
      * @throws coding_exception
      */
     public function __get($name) {

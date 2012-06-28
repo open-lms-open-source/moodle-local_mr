@@ -167,7 +167,7 @@ abstract class mr_repository_abstract {
      * @param int $strictness IGNORE_MISSING means compatible mode, false returned if record not found, debug message if more found;
      *                        IGNORE_MULTIPLE means return first, ignore multiple records found(not recommended);
      *                        MUST_EXIST means throw exception if no record or multiple records found
-     * @return false|mr_model_record_abstract
+     * @return boolean|mr_model_record_abstract
      */
     public function get(array $conditions, $strictness = MUST_EXIST) {
         global $DB;

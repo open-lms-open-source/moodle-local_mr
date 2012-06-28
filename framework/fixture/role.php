@@ -35,6 +35,9 @@ require_once($CFG->dirroot.'/local/mr/framework/fixture/abstract.php');
  * it depends on the system default roles.  Therefore,
  * it does not actually create new roles nor does it
  * delete any roles.
+ *
+ * @author Mark Nielsen
+ * @package mr
  */
 class mr_fixture_role extends mr_fixture_abstract {
     /**

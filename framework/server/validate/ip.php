@@ -76,7 +76,7 @@ class mr_server_validate_ip extends Zend_Validate_Abstract {
     /**
      * Constructor
      *
-     * @param string $ipAddresses IP Address schema to validate against
+     * @param string $ipaddresses IP Address schema to validate against
      */
     public function __construct($ipaddresses) {
         $this->_ipAddresses = $ipaddresses;

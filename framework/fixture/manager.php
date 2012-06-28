@@ -31,6 +31,9 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  *
  * Also, this class helps to delete all of your
  * created fixtures.
+ *
+ * @author Mark Nielsen
+ * @package mr
  */
 class mr_fixture_manager {
     /**

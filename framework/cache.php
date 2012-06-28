@@ -154,7 +154,7 @@ class mr_cache {
      *                    You then must unserialize it when it is retrieved from cache or call the load method
      *                    like so: $cache->load('cacheId', true);
      * @param string $id Cache id (if not set, the last cache id will be used)
-     * @return void
+     * @return boolean
      * @throws coding_exception
      */
     public function save($data, $id = null) {

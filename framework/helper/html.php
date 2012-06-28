@@ -42,8 +42,8 @@ class mr_helper_html extends mr_helper_abstract {
     /**
      * Add autocomplete to a form text field
      *
-     * @param object $mform Moodle form
-     * @param array $options Array of autocomplete options, if $hiddenfieldname is
+     * @param MoodleQuickForm $mform Moodle form
+     * @param array|moodle_url $options Array of autocomplete options, if $hiddenfieldname is
      *                       passed, array indexes are considered record IDs
      * @param string $textfieldname The text field's name
      * @param string $hiddenfieldname The hidden field's name.  If passed,

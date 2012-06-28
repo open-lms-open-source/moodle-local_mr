@@ -91,7 +91,7 @@ class mr_html_tabs implements renderable {
      *
      * @param string $toptab The toptab index key
      * @param string $subtab The subtab index key
-     * @return mr_tab
+     * @return mr_html_tabs
      */
     public function set($toptab = '', $subtab = '') {
         $this->toptab = $toptab;

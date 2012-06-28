@@ -193,9 +193,9 @@ abstract class mr_server_response_abstract {
     /**
      * Converts an array into DOMDocument
      *
-     * @param array $array The array to convert
+     * @param array|object $array The array to convert
      * @param DOMDocument $dom The document
-     * @param DOMElement $parent Parent element in the $dom
+     * @param DOMElement|DOMNodeList $parent Parent element in the $dom
      * @return void
      */
     protected function array_to_dom($array, $dom, $parent) {
@@ -227,6 +227,7 @@ abstract class mr_server_response_abstract {
      *
      * @param string $name Method name
      * @param array $arguments Method args
+     * @throws coding_exception
      * @return DOMDocument
      */
     public function __call($name, $arguments) {

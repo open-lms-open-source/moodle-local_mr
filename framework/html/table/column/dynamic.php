@@ -42,7 +42,7 @@ class mr_html_table_column_dynamic extends mr_html_table_column {
     /**
      * The dynamic columns
      *
-     * @var array
+     * @var mr_html_table_column[]
      */
     private $columns = array();
 
@@ -61,7 +61,7 @@ class mr_html_table_column_dynamic extends mr_html_table_column {
      * Get a column
      *
      * @param string $name The column name
-     * @return mixed
+     * @return mr_html_table_column|boolean
      */
     public function get_column($name) {
         if (array_key_exists($name, $this->columns)) {
@@ -73,7 +73,7 @@ class mr_html_table_column_dynamic extends mr_html_table_column {
     /**
      * Get all columns
      *
-     * @return array
+     * @return mr_html_table_column[]
      */
     public function get_columns() {
         return $this->columns;
@@ -93,7 +93,7 @@ class mr_html_table_column_dynamic extends mr_html_table_column {
     }
 
     /**
-     * Add headings of all dynamci columns
+     * Add headings of all dynamic columns
      */
     public function add_heading(&$headings) {
         foreach ($this->columns as $column) {

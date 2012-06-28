@@ -45,8 +45,9 @@ class mr_helper_recentactivity extends mr_helper_abstract {
      * and returned.  EG: $course->recentactivity = array(...of activity...);
      *
      * @param int $timestart Look for activity after this time
-     * @param array $courses An array of course objects or a single course object
+     * @param array|stdClass $courses An array of course objects or a single course object
      * @param mixed $otheruser The user who will view the list of activity.  If NULL, then currently logged in user is used.
+     * @throws Exception
      * @return array
      */
     public function direct($timestart, $courses, $otheruser = NULL) {
@@ -101,7 +102,6 @@ class mr_helper_recentactivity extends mr_helper_abstract {
 
             if ($logs) {
                 $changelist = array();
-                $actions    = array('add mod', 'update mod', 'delete mod');
                 $newgones   = array(); // added and later deleted items
                 foreach ($logs as $key => $log) {
                     $info = explode(' ', $log->info);

@@ -23,6 +23,16 @@
 
 defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
+/**
+ * MR Fixture Interface
+ *
+ * A class implementing this interface can be managed by the
+ * mr_fixture_manager class.
+ *
+ * @author Mark Nielsen
+ * @package mr
+ * @see mr_fixture_manager
+ */
 interface mr_fixture_interface {
     /**
      * Get a property from the build results

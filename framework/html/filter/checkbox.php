@@ -67,12 +67,14 @@ class mr_html_filter_checkbox extends mr_html_filter_abstract {
     /**
      * Checkbox filter constructor
      *
-     * @param string $name - name for the filter instance
-     * @param string $label - label to the left of the checkbox
-     * @param string $rightlabel - label to the right of the checkbox
-     * @param int $default - the default state of the checkbox (0, 1)
-     * @param bool $advanced - whether or not the form element should be an advanced option
-     * @param string $field - the field to be used in the filter
+     * @param string $name Name for the filter instance
+     * @param string $label Label to the left of the checkbox
+     * @param string $rightlabel Label to the right of the checkbox
+     * @param int $default The default state of the checkbox (0, 1)
+     * @param array $checkedsql SQL to use when checked
+     * @param array $uncheckedsql SQL to use when not checked
+     * @param bool $advanced Whether or not the form element should be an advanced option
+     * @param string $field The field to be used in the filter
      */
     public function __construct($name, $label, $rightlabel = '', $default = 0, $checkedsql = array(), $uncheckedsql = array(), $advanced = false, $field = NULL) {
         parent::__construct($name, $label, $advanced, $field);
@@ -116,6 +118,5 @@ class mr_html_filter_checkbox extends mr_html_filter_abstract {
         } else {
             return $this->uncheckedsql;
         }
-        return false;
     }
 }

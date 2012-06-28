@@ -163,10 +163,11 @@ class mr_db_dump {
     /**
      * Actually runs the dump and optionally the archive
      *
-     * @param mixed $table The table name or an instance of mr_db_table
+     * @param string|mr_db_table $table The table name or an instance of mr_db_table
      * @param moodle_recordset $rs The recordset to iterate over and add to the dump file
-     * @return mr_db_dump
+     * @param bool $archive  If true, then records dumped will also be deleted
      * @throws coding_exception
+     * @return mr_db_dump
      */
     protected function dump($table, $rs, $archive = false) {
         global $CFG, $DB;
@@ -280,7 +281,7 @@ class mr_db_dump {
         $zipname = pathinfo($this->file, PATHINFO_BASENAME);
 
         if (file_exists($zipfile)) {
-            throw new coding_exception("Destination for zip file already exists: $zip");
+            throw new coding_exception("Destination for zip file already exists: $zipfile");
         }
         if (!$packer->archive_to_pathname(array($zipname => $this->file), $zipfile)) {
             throw new coding_exception("Failed to zip file: $this->file");

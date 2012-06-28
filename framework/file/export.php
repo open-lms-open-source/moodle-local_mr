@@ -102,6 +102,7 @@ class mr_file_export implements renderable {
      * @param boolean $requirefile If true, then no export plugin will be included that cannot generate a file
      * @param moodle_url $url Moodle URL for current page, used for rendering only
      * @param string $filename The exported file's name
+     * @throws coding_exception
      */
     public function __construct($exporters = '**', $requirefile = false, moodle_url $url = NULL, $filename = 'export') {
         // Store params
@@ -160,6 +161,7 @@ class mr_file_export implements renderable {
      * Once an export has started, you can get access
      * to the current exporter through this method.
      *
+     * @throws coding_exception
      * @return mr_file_export_abstract
      */
     public function instance() {
