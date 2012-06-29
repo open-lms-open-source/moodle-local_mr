@@ -33,7 +33,7 @@ require_once($CFG->dirroot.'/local/mr/renderer.php');
  *
  * Proprietary Renderings
  *
- * @package local/mr
+ * @package local_mr
  */
 class local_mr_extended_renderer extends local_mr_renderer {
     /**
@@ -168,7 +168,7 @@ class local_mr_extended_renderer extends local_mr_renderer {
         if(empty($id)){
             $id = html_writer::random_id();
         }
-        
+
         $loadingmsg = $this->output->pix_icon('i/ajaxloader', get_string('loadingdotdotdot', 'local_mr')).
                       '&nbsp;'.get_string('loadingdotdotdot', 'local_mr');
 

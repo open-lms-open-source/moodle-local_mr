@@ -17,7 +17,7 @@
  *
  * @copyright Copyright (c) 2009 Moodlerooms Inc. (http://www.moodlerooms.com)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License
- * @package local/mr
+ * @package local_mr
  * @author Mark Nielsen
  */
 
@@ -25,7 +25,7 @@
  * View renderer
  *
  * @author Mark Nielsen
- * @package local/mr
+ * @package local_mr
  */
 
 require_once('../../config.php');

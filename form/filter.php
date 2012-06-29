@@ -17,7 +17,7 @@
  *
  * @copyright Copyright (c) 2009 Moodlerooms Inc. (http://www.moodlerooms.com)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License
- * @package local/mr
+ * @package local_mr
  * @author Mark Nielsen
  */
 
@@ -27,7 +27,7 @@ require_once($CFG->libdir.'/formslib.php');
  * Filter form
  *
  * @author Mark Nielsen
- * @package local/mr
+ * @package local_mr
  */
 class local_mr_form_filter extends moodleform {
 

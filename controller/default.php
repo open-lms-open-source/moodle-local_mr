@@ -17,7 +17,7 @@
  *
  * @copyright Copyright (c) 2009 Moodlerooms Inc. (http://www.moodlerooms.com)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License
- * @package local/mr
+ * @package local_mr
  * @author Mark Nielsen
  */
 
@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  * Default controller
  *
  * @author Mark Nielsen
- * @package local/mr
+ * @package local_mr
  */
 class local_mr_controller_default extends mr_controller_block {
     /**
