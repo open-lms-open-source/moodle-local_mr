@@ -91,7 +91,7 @@ class mr_fixture_course extends mr_fixture_abstract {
      */
     public function destroy() {
         if ($this->exists()) {
-            delete_course($this->results, false);
+            delete_course($this->get_results(), false);
         }
         $this->set_results(new stdClass);
     }

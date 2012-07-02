@@ -27,32 +27,27 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  * @see mr_fixture_abstract
  */
 require_once($CFG->dirroot.'/local/mr/framework/fixture/abstract.php');
-require_once($CFG->dirroot.'/group/lib.php');
 
 /**
- * MR Fixture Group
+ * MR Fixture User Profile Field Category
+ *
+ * @author Mark Nielsen
+ * @package mr
  */
-class mr_fixture_group extends mr_fixture_abstract {
+class mr_fixture_user_profile_category extends mr_fixture_abstract {
     /**
-     * @var mr_fixture_course
-     */
-    protected $course;
-
-    /**
-     * Parameters used to create the group
+     * The category name
      *
-     * @var array
+     * @var string
      */
-    protected $options = array();
+    protected $name;
 
     /**
-     * @param mr_fixture_course $course The course to create the group in
-     * @param array|object $options Parameters to use to create the group
+     * @param string $name The category name
      */
-    public function __construct(mr_fixture_course $course, $options = array()) {
+    public function __construct($name = 'simpletest') {
         parent::__construct();
-        $this->set_course($course)
-            ->set_options($options);
+        $this->set_name($name);
     }
 
     /**
@@ -67,19 +62,16 @@ class mr_fixture_group extends mr_fixture_abstract {
         global $DB;
 
         if (!$this->exists()) {
-            // Dependents
-            $this->get_course()->build();
+            if ($record = $DB->get_record('user_info_category', array('name' => $this->get_name()))) {
+                $this->set_results($record);
+            } else {
+                $fixture            = new stdClass;
+                $fixture->name      = $this->get_name();
+                $fixture->sortorder = $DB->count_records('user_info_category') + 1;
 
-            $group = (object) $this->get_options();
-            $group->courseid = $this->get_course()->get('id');
-
-            // Helping...!?!
-            if (!property_exists($group, 'name')) {
-                $group->name = '';
+                $fixture->id = $DB->insert_record('user_info_category', $fixture);
+                $this->set_results($fixture);
             }
-
-            $groupid = groups_create_group($group);
-            $this->set_results($DB->get_record('groups', array('id' => $groupid), '*', MUST_EXIST));
         }
     }
 
@@ -92,8 +84,15 @@ class mr_fixture_group extends mr_fixture_abstract {
      * @throws moodle_exception
      */
     public function destroy() {
-        if ($this->exists() and $this->get_course()->exists()) {
-            groups_delete_group($this->get_results());
+        global $DB;
+
+        if ($this->exists()) {
+            $fieldids = $DB->get_records_menu('user_info_field', array('categoryid' => $this->get('id')), '', 'id, id');
+            if (!empty($fieldids)) {
+                $DB->delete_records_list('user_info_data', 'fieldid', $fieldids);
+                $DB->delete_records('user_info_field', array('categoryid' => $this->get('id')));
+            }
+            $DB->delete_records('user_info_category', array('id' => $this->get('id')));
         }
         $this->set_results(new stdClass);
     }
@@ -110,42 +109,22 @@ class mr_fixture_group extends mr_fixture_abstract {
         if (empty($fixture) or empty($fixture->id)) {
             return false;
         }
-        return $DB->record_exists('groups', array('id' => $fixture->id));
+        return $DB->record_exists('user_info_category', array('id' => $fixture->id));
     }
 
     /**
-     * @param \mr_fixture_course $course
-     * @return mr_fixture_group
+     * @param string $name
+     * @return mr_fixture_user_profile_category
      */
-    public function set_course($course) {
-        $this->course = $course;
+    public function set_name($name) {
+        $this->name = $name;
         return $this;
     }
 
     /**
-     * @return \mr_fixture_course
+     * @return string
      */
-    public function get_course() {
-        return $this->course;
-    }
-
-    /**
-     * Set properties to use for the enrollment
-     *
-     * @param array|object $options
-     * @return mr_fixture_user
-     */
-    public function set_options($options) {
-        $this->options = (array) $options;
-        return $this;
-    }
-
-    /**
-     * Get the properties used for the enrollment
-     *
-     * @return array
-     */
-    public function get_options() {
-        return $this->options;
+    public function get_name() {
+        return $this->name;
     }
 }
