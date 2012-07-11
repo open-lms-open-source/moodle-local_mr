@@ -281,7 +281,7 @@ class mr_html_table extends mr_readonly implements renderable {
      */
     public function set_export($export) {
         $this->export = $export;
-        
+
         if ($export->is_exporting()) {
             $headers = array();
             foreach ($this->get_columns(true) as $column) {
@@ -378,8 +378,11 @@ class mr_html_table extends mr_readonly implements renderable {
             // Find our column that we are sorting by
             $columns = $this->get_columns(true);
             if (!array_key_exists($this->sort, $columns)) {
+                if (empty($this->defaultsort)) {
+                    return ''; // Nothing to fallback on
+                }
                 if (!array_key_exists($this->defaultsort, $columns)) {
-                    throw new coding_exception('Invalid column sorting');
+                    throw new coding_exception('Invalid column sorting ('.$this->defaultsort.')');
                 }
                 $column = $columns[$this->defaultsort];
             } else {
