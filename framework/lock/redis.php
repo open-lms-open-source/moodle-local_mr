@@ -47,6 +47,9 @@ class mr_lock_redis extends mr_lock_abstract {
     public function get() {
         global $UNITTEST;
 
+        if ($this->has_lock()) {
+            return true; // Don't attempt to re-acquire
+        }
         try {
             $redis = mr_bootstrap::redis();
 

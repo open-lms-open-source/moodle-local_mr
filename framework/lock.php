@@ -98,6 +98,9 @@ class mr_lock {
      * @return boolean
      */
     public function get() {
+        if ($this->backend->has_lock()) {
+            return true; // Don't attempt to re-acquire
+        }
         $result = $this->backend->get();
         if ($result) {
             register_shutdown_function(array($this, 'shutdown'));
