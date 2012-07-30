@@ -144,6 +144,7 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
 
         // remove the text from the textbox
         actextfield.set('value', '');
+        actextfield.ac.set('value', '');
         actextfield.focus();
 
         if (!uldiv.hasClass('addedlist')) {
