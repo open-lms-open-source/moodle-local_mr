@@ -152,25 +152,27 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
         }
     });
 
-    // May need to resize the report content div based on size of the auto complete list
     var pagecontent = Y.one('#report-content');
-    actextfield.ac.after('results', function(e) {
-        var pagecontentypos;
-        if (pagecontent) {
+    // May need to resize the report content div based on size of the auto complete list
+    actextfield.ac.on('visibleChange', function(e) {
+        if (pagecontent && !e.newVal && e.prevVal) {
+            // visible to hidden
+            pagecontent.setStyle('min-height', 600);
+        } else if (pagecontent && e.newVal && !e.prevVal) {
+            // hidden to visible
+            var pagecontentypos;
             var pagecontentypos = pagecontent.getY();
             var pagecontentheight = pagecontent.get('offsetHeight');
-        } else {
-            return;
-        }
-        var acheight = actextfield.ac.get('boundingBox').get('offsetHeight');
-        var acy = actextfield.ac.get('y');
+            var acheight = actextfield.ac.get('boundingBox').get('offsetHeight');
+            var acy = actextfield.ac.get('y');
 
-        var acybottom = acy + acheight;
-        var pagecontentbottom = pagecontentypos + pagecontentheight;
+            var acybottom = acy + acheight;
+            var pagecontentbottom = pagecontentypos + pagecontentheight;
 
-        if (acybottom > pagecontentbottom) {
-            var heightdiff = acybottom - pagecontentbottom;
-            pagecontent.setStyle('height', pagecontentheight + heightdiff);
+            if (acybottom > pagecontentbottom) {
+                var heightdiff = acybottom - pagecontentbottom;
+                pagecontent.setStyle('min-height', pagecontentheight + heightdiff);
+            }
         }
     });
 }
