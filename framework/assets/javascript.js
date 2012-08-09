@@ -144,10 +144,35 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
 
         // remove the text from the textbox
         actextfield.set('value', '');
+        actextfield.ac.set('value', '');
         actextfield.focus();
 
         if (!uldiv.hasClass('addedlist')) {
             uldiv.addClass('addedlist');
+        }
+    });
+
+    var pagecontent = Y.one('#report-content');
+    // May need to resize the report content div based on size of the auto complete list
+    actextfield.ac.on('visibleChange', function(e) {
+        if (pagecontent && !e.newVal && e.prevVal) {
+            // visible to hidden
+            pagecontent.setStyle('min-height', 600);
+        } else if (pagecontent && e.newVal && !e.prevVal) {
+            // hidden to visible
+            var pagecontentypos;
+            var pagecontentypos = pagecontent.getY();
+            var pagecontentheight = pagecontent.get('offsetHeight');
+            var acheight = actextfield.ac.get('boundingBox').get('offsetHeight');
+            var acy = actextfield.ac.get('y');
+
+            var acybottom = acy + acheight;
+            var pagecontentbottom = pagecontentypos + pagecontentheight;
+
+            if (acybottom > pagecontentbottom) {
+                var heightdiff = acybottom - pagecontentbottom;
+                pagecontent.setStyle('min-height', pagecontentheight + heightdiff);
+            }
         }
     });
 }
