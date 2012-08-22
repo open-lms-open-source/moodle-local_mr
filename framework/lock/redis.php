@@ -74,7 +74,7 @@ class mr_lock_redis extends mr_lock_abstract {
         } catch (Exception $e) {
             if (empty($UNITTEST->running) and isset($_SERVER['HTTP_HOST'])) {
                 if (empty($_SERVER['HTTP_X_FORWARDED_FOR']) or !preg_match("/^10\./", $_SERVER['HTTP_X_FORWARDED_FOR'])) {
-                    mtrace('Running the cron via the browser has been temporarily disabled.  It will be re-enabled in the near future. Please send an email to support@moodlerooms.com with this message if you are having an issue.');
+                    mtrace('Cron is unable to begin running at this time. Please try again in a few minutes. If this message persists, please contact Support through the support portal.');
                     die;
                 }
             }
