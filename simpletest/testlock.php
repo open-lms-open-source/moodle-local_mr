@@ -136,8 +136,7 @@ class mr_lock_test extends UnitTestCase {
         $CFG->local_mr_redis_server = '';
 
         $lock = new mr_lock('mr_lock_simpletest');
-        $this->assertTrue($lock->get());
-        $this->assertTrue($lock->release());
+        $this->assertFalse($lock->get());
     }
 
     public function test_get_twice() {
