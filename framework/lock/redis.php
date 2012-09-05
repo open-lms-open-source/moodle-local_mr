@@ -72,14 +72,14 @@ class mr_lock_redis extends mr_lock_abstract {
         } catch (RedisException $e) {
             debugging("RedisException caught on host {$this->get_hostname()} with message: {$e->getMessage()}");
         } catch (Exception $e) {
+            debugging("Redis lock denied on host {$this->get_hostname()}, Redis locking disabled because {$e->getMessage()}.");
+
             if (empty($UNITTEST->running) and isset($_SERVER['HTTP_HOST'])) {
                 if (empty($_SERVER['HTTP_X_FORWARDED_FOR']) or !preg_match("/^10\./", $_SERVER['HTTP_X_FORWARDED_FOR'])) {
                     mtrace('Cron is unable to begin running at this time. Please try again in a few minutes. If this message persists, please contact Support through the support portal.');
                     die;
                 }
             }
-            debugging("Redis lock acquire granted on host {$this->get_hostname()}, Redis locking disabled because {$e->getMessage()}.");
-            $this->set_lockacquired(true);
         }
         return $this->has_lock();
     }
