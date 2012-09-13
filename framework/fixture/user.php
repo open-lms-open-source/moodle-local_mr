@@ -90,7 +90,7 @@ class mr_fixture_user extends mr_fixture_abstract {
      */
     public function destroy() {
         if ($this->exists()) {
-            $this->delete_user($this->results);
+            $this->delete_user($this->get_results());
         }
         $this->set_results(new stdClass);
     }

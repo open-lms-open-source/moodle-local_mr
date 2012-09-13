@@ -29,25 +29,25 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 require_once($CFG->dirroot.'/local/mr/framework/fixture/abstract.php');
 
 /**
- * MR Fixture Course
+ * MR Fixture User Profile Field Category
  *
  * @author Mark Nielsen
  * @package mr
  */
-class mr_fixture_course extends mr_fixture_abstract {
+class mr_fixture_user_profile_category extends mr_fixture_abstract {
     /**
-     * Properties to use for the course
+     * The category name
      *
-     * @var array
+     * @var string
      */
-    protected $options = array();
+    protected $name;
 
     /**
-     * @param array|object $options Properties to use for the course
+     * @param string $name The category name
      */
-    public function __construct($options = array()) {
+    public function __construct($name = 'simpletest') {
         parent::__construct();
-        $this->set_options($options);
+        $this->set_name($name);
     }
 
     /**
@@ -62,25 +62,16 @@ class mr_fixture_course extends mr_fixture_abstract {
         global $DB;
 
         if (!$this->exists()) {
-            $course = (object) $this->get_options();
+            if ($record = $DB->get_record('user_info_category', array('name' => $this->get_name()))) {
+                $this->set_results($record);
+            } else {
+                $fixture            = new stdClass;
+                $fixture->name      = $this->get_name();
+                $fixture->sortorder = $DB->count_records('user_info_category') + 1;
 
-            // Clean course table - can happen when unit tests fail...
-            if (!empty($course->shortname) and $record = $DB->get_record('course', array('shortname' => $course->shortname))) {
-                delete_course($record, false);
+                $fixture->id = $DB->insert_record('user_info_category', $fixture);
+                $this->set_results($fixture);
             }
-            if (!empty($course->idnumber) and $record = $DB->get_record('course', array('idnumber' => $course->idnumber))) {
-                delete_course($record, false);
-            }
-
-            // Try to help folks out...
-            if (!property_exists($course, 'category')) {
-                $course->category = get_course_category()->id;
-            }
-            if (!property_exists($course, 'fullname')) {
-                $course->fullname = '';
-            }
-            $course = create_course($course);
-            $this->set_results($DB->get_record('course', array('id' => $course->id), '*', MUST_EXIST));
         }
     }
 
@@ -93,8 +84,15 @@ class mr_fixture_course extends mr_fixture_abstract {
      * @throws moodle_exception
      */
     public function destroy() {
+        global $DB;
+
         if ($this->exists()) {
-            delete_course($this->get_results(), false);
+            $fieldids = $DB->get_records_menu('user_info_field', array('categoryid' => $this->get('id')), '', 'id, id');
+            if (!empty($fieldids)) {
+                $DB->delete_records_list('user_info_data', 'fieldid', $fieldids);
+                $DB->delete_records('user_info_field', array('categoryid' => $this->get('id')));
+            }
+            $DB->delete_records('user_info_category', array('id' => $this->get('id')));
         }
         $this->set_results(new stdClass);
     }
@@ -111,26 +109,22 @@ class mr_fixture_course extends mr_fixture_abstract {
         if (empty($fixture) or empty($fixture->id)) {
             return false;
         }
-        return $DB->record_exists('course', array('id' => $fixture->id));
+        return $DB->record_exists('user_info_category', array('id' => $fixture->id));
     }
 
     /**
-     * Set properties to use for the course
-     *
-     * @param array|object $options
-     * @return mr_fixture_course
+     * @param string $name
+     * @return mr_fixture_user_profile_category
      */
-    public function set_options($options) {
-        $this->options = (array) $options;
+    public function set_name($name) {
+        $this->name = $name;
         return $this;
     }
 
     /**
-     * Get the properties used for the course
-     *
-     * @return array
+     * @return string
      */
-    public function get_options() {
-        return $this->options;
+    public function get_name() {
+        return $this->name;
     }
 }

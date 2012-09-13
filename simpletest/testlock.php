@@ -98,7 +98,7 @@ class mr_lock_test extends UnitTestCase {
         $this->assertFalse($lock2->get());
         unset($lock2);
 
-        // Try again, make sure $lock2 didn't distroy anything
+        // Try again, make sure $lock2 didn't destroy anything
         $this->assertFalse($lock3->get());
         unset($lock3);
 
@@ -135,7 +135,15 @@ class mr_lock_test extends UnitTestCase {
 
         $CFG->local_mr_redis_server = '';
 
-        $lock  = new mr_lock('mr_lock_simpletest');
+        $lock = new mr_lock('mr_lock_simpletest');
+        $this->assertTrue($lock->get());
+        $this->assertTrue($lock->release());
+    }
+
+    public function test_get_twice() {
+        $lock = new mr_lock('mr_lock_simpletest');
+
+        $this->assertTrue($lock->get());
         $this->assertTrue($lock->get());
         $this->assertTrue($lock->release());
     }

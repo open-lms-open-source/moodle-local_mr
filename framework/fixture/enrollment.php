@@ -134,7 +134,7 @@ class mr_fixture_enrollment extends mr_fixture_abstract {
         global $DB;
 
         if ($this->exists() and $this->get_user()->exists() and $this->get_course()->exists()) {
-            $instance = $DB->get_record('enrol', array('id' => $this->results->enrolid), '*', MUST_EXIST);
+            $instance = $DB->get_record('enrol', array('id' => $this->get('enrolid')), '*', MUST_EXIST);
             $this->get_enroll()->unenrol_user($instance, $this->get_user()->get('id'));
         }
         $this->set_results(new stdClass);

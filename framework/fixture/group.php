@@ -96,7 +96,7 @@ class mr_fixture_group extends mr_fixture_abstract {
      */
     public function destroy() {
         if ($this->exists() and $this->get_course()->exists()) {
-            groups_delete_group($this->results);
+            groups_delete_group($this->get_results());
         }
         $this->set_results(new stdClass);
     }

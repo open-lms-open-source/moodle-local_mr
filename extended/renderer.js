@@ -50,6 +50,7 @@ M.local_mr.init_mr_html_table = function(Y, args) {
     if (args.perpageopts.length > 0) {
         myPaginatorConfig.template = YAHOO.widget.Paginator.TEMPLATE_ROWS_PER_PAGE;
         myPaginatorConfig.rowsPerPageOptions = args.perpageopts;
+        myPaginatorConfig.alwaysVisible = true;
     }
 
     // Build custom requests
