@@ -51,6 +51,10 @@ div.mr_ajax_table_forceajax {
     background-color: white;
 }
 
+.mr_html_filter .selectmultiplus-ieshim {
+    visibility: hidden;
+}
+
 .mr_html_filter .selectmultiplusitem div {
     display: inline-block;
 }
