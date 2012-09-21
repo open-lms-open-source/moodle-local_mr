@@ -92,9 +92,7 @@ class local_mr_extended_renderer extends local_mr_renderer {
             );
 
             // Render paging bottom
-            if ($report->get_paging()->get_total() > $report->get_paging()->get_perpage()) {
-                $output .= $this->render($report->get_paging());
-            }
+            $output .= $this->render($report->get_paging());
         }
 
         // Render export
