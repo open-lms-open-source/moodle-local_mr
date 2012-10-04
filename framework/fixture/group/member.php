@@ -105,7 +105,7 @@ class mr_fixture_group_member extends mr_fixture_abstract {
      */
     public function exists() {
         $fixture = $this->get_results();
-        if (empty($fixture) or empty($fixture->id)) {
+        if (empty($fixture) or empty($fixture->id) or !$this->get_group()->exists() or !$this->get_user()->exists()) {
             return false;
         }
         return groups_is_member(
