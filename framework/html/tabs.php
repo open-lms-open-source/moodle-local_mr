@@ -110,11 +110,19 @@ class mr_html_tabs implements renderable {
 
         if (!empty($this->toptab) and !empty($this->tabs['__parents__'])) {
             foreach ($this->tabs['__parents__'] as $parents) {
-                $toptabs = array_merge($toptabs, $parents);
+                foreach ($parents as $key => $parent) {
+                    if ($parent instanceof tabobject) {
+                        $toptabs[$key] = $parent;
+                    }
+                }
             }
             if (!empty($this->tabs[$this->toptab])) {
                 foreach ($this->tabs[$this->toptab] as $children) {
-                    $subtabs = array_merge($subtabs, $children);
+                    foreach ($children as $key => $child) {
+                        if ($child instanceof tabobject) {
+                            $subtabs[$key] = $child;
+                        }
+                    }
                 }
             }
 
@@ -157,28 +165,26 @@ class mr_html_tabs implements renderable {
      * @throws coding_exception
      */
     public function add_subtab($parentid, $id, $url, $name = NULL, $weight = 0, $visible = true, $title = '', $linkedwhenselected = true) {
-        if ($visible) {
-            if ($parentid == '__parents__') {
-                $this->lasttoptabid = $id;
-            }
-            if (is_array($url)) {
-                if (is_null($this->url)) {
-                    throw new coding_exception('Must pass a moodle_url to constructor to pass an array of URL params');
-                }
-                $url = $this->url->out(false, $url);
-            }
-            if (empty($name)) {
-                if ($parentid != '__parents__') {
-                    $prefix = $parentid;
-                } else {
-                    $prefix = '';
-                }
-                $name = get_string("$prefix{$id}tab", $this->component);
-            }
-
-            $this->tabs[$parentid][$weight][$id] = new tabobject($id, $url, $name, $title, $linkedwhenselected);
-            ksort($this->tabs[$parentid]);
+        if ($parentid == '__parents__') {
+            $this->lasttoptabid = $id;
         }
+        if (is_array($url)) {
+            if (is_null($this->url)) {
+                throw new coding_exception('Must pass a moodle_url to constructor to pass an array of URL params');
+            }
+            $url = $this->url->out(false, $url);
+        }
+        if (empty($name)) {
+            if ($parentid != '__parents__') {
+                $prefix = $parentid;
+            } else {
+                $prefix = '';
+            }
+            $name = get_string("$prefix{$id}tab", $this->component);
+        }
+
+        $this->tabs[$parentid][$weight][$id] = ($visible ? new tabobject($id, $url, $name, $title, $linkedwhenselected) : false);
+        ksort($this->tabs[$parentid]);
         return $this;
     }
 

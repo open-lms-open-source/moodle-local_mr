@@ -70,16 +70,16 @@ class mr_lock_redis extends mr_lock_abstract {
             }
             $redis->close();
         } catch (RedisException $e) {
-            debugging("RedisException caught with message: {$e->getMessage()}", DEBUG_DEVELOPER);
+            debugging("RedisException caught on host {$this->get_hostname()} with message: {$e->getMessage()}");
         } catch (Exception $e) {
+            debugging("Redis lock denied on host {$this->get_hostname()}, Redis locking disabled because {$e->getMessage()}.");
+
             if (empty($UNITTEST->running) and isset($_SERVER['HTTP_HOST'])) {
                 if (empty($_SERVER['HTTP_X_FORWARDED_FOR']) or !preg_match("/^10\./", $_SERVER['HTTP_X_FORWARDED_FOR'])) {
-                    mtrace('Running the cron via the browser has been temporarily disabled.  It will be re-enabled in the near future. Please send an email to support@moodlerooms.com with this message if you are having an issue.');
+                    mtrace('Cron is unable to begin running at this time. Please try again in a few minutes. If this message persists, please contact Support through the support portal.');
                     die;
                 }
             }
-            debugging("Redis lock acquire granted, Redis locking disabled because {$e->getMessage()}.", DEBUG_DEVELOPER);
-            $this->set_lockacquired(true);
         }
         return $this->has_lock();
     }
@@ -107,12 +107,24 @@ class mr_lock_redis extends mr_lock_abstract {
                 $redis->close();
             }
         } catch (RedisException $e) {
-            debugging("RedisException caught with message: {$e->getMessage()}", DEBUG_DEVELOPER);
+            debugging("RedisException caught on host {$this->get_hostname()} with message: {$e->getMessage()}");
         } catch (Exception $e) {
-            debugging("Exception caught with message: {$e->getMessage()}", DEBUG_DEVELOPER);
+            debugging("Exception caught on host {$this->get_hostname()} with message: {$e->getMessage()}");
         }
         $this->set_lockacquired(false);
 
         return ($result == 1);
+    }
+
+    /**
+     * Get the server host name
+     *
+     * @return string
+     */
+    protected function get_hostname() {
+        if (($hostname = gethostname()) === false) {
+            $hostname = 'UNKOWN';
+        }
+        return $hostname;
     }
 }
