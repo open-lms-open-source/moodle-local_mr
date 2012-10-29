@@ -45,7 +45,8 @@ class mr_html_filter_selectmultiplus extends mr_html_filter_abstract {
      */
     public function add_element($mform) {
         //add div and empty unordered list to the form
-        $mform->addElement('static', $this->name . '_addedlist', null, '<div id="id_' . $this->name . '_addedlist" class="selectmultiplus"></div>');
+        $ieshim = '<div class="selectmultiplus-ieshim">.</div>';
+        $mform->addElement('static', $this->name . '_addedlist', $ieshim, '<div id="id_' . $this->name . '_addedlist" class="selectmultiplus"></div>');
 
         // Add the select element setting multiple
         $mform->addElement('select', $this->name, $this->label, $this->options, 'class="selectmultiplus"')->setMultiple(true);

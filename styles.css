@@ -42,13 +42,17 @@ div.mr_ajax_table_forceajax {
 
 /* mr_html_filter styles */
 .mr_html_filter .selectmultiplus.addedlist {
-    width: 250px;
+    width: 350px;
     min-height: 20px;
     max-height: 200px;
     overflow: auto;
     border: 1px solid grey;
     padding: 2px;
     background-color: white;
+}
+
+.mr_html_filter .selectmultiplus-ieshim {
+    visibility: hidden;
 }
 
 .mr_html_filter .selectmultiplusitem div {
@@ -61,6 +65,10 @@ div.mr_ajax_table_forceajax {
 
 .mr_html_filter .selectmultiplusitem {
     padding-bottom: 4px;
+}
+
+.ie .mr_html_filter .selectmultiplusitem {
+    padding-bottom: 6px;
 }
 
 .mr_html_filter .selectmultiplusitem div.deletebtn {
