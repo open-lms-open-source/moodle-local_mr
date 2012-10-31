@@ -135,9 +135,9 @@ abstract class mr_server_abstract {
      * @return mr_server_abstract
      */
     public function document($response) {
-        global $CFG, $UNITTEST;
+        global $CFG;
 
-        if (!empty($UNITTEST->running)) {
+        if (PHPUNIT_TEST) {
             require_once($CFG->dirroot.'/local/mr/framework/helper.php');
 
             $helper = new mr_helper();
@@ -153,9 +153,9 @@ abstract class mr_server_abstract {
      * @return mr_server_abstract
      */
     public function simpletest_report($response) {
-        global $CFG, $UNITTEST;
+        global $CFG;
 
-        if (!empty($UNITTEST->running)) {
+        if (PHPUNIT_TEST) {
             require_once($CFG->dirroot.'/local/mr/framework/helper.php');
 
             $helper = new mr_helper();
@@ -244,8 +244,6 @@ abstract class mr_server_abstract {
      * @return void|string
      */
     public function handle($request = false, $return = false) {
-        global $UNITTEST;
-
         try {
             // Set the request to our server's request
             if (is_array($request)) {
@@ -260,14 +258,14 @@ abstract class mr_server_abstract {
             $this->server->returnResponse(true);
 
             // Output buffer when not testing (ensures clean response)
-            if (empty($UNITTEST->running)) {
+            if (!PHPUNIT_TEST) {
                 ob_start();
             }
             // Run the server
             $response = $this->server->handle($request);
 
             // Close output buffer if needed
-            if (empty($UNITTEST->running)) {
+            if (!PHPUNIT_TEST) {
                 ob_end_clean();
             }
 
