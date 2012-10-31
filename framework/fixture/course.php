@@ -28,6 +28,8 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  */
 require_once($CFG->dirroot.'/local/mr/framework/fixture/abstract.php');
 
+require_once($CFG->dirroot.'/course/lib.php');
+
 /**
  * MR Fixture Course
  *
