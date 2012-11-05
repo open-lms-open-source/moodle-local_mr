@@ -23,10 +23,11 @@
 
 defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
-global $CFG;
-
 /**
- * @see mr_bootstrap
+ * Bootstrap Unit Tests
+ *
+ * @author Mark Nielsen
+ * @package mr
  */
-require_once($CFG->dirroot.'/local/mr/framework/bootstrap.php');
-mr_bootstrap::startup();
+
+require(dirname(__DIR__).'/bootstrap.php');
