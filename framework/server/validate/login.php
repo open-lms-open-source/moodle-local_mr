@@ -100,10 +100,8 @@ class mr_server_validate_login extends Zend_Validate_Abstract {
      * @return boolean
      */
     public function isValid($request) {
-        global $UNITTEST;
-
         // No cookies !
-        if (empty($UNITTEST->running)) {
+        if (!PHPUNIT_TEST) {
             if (!defined('NO_MOODLE_COOKIES') or !NO_MOODLE_COOKIES) {
                 $this->_error(self::LOGIN_COOKIE);
                 return false;

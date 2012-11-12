@@ -73,9 +73,7 @@ class mr_server_validate_test extends Zend_Validate_Abstract {
      * @return boolean
      */
     public function isValid($request) {
-        global $UNITTEST;
-
-        if (empty($UNITTEST->running)) {
+        if (!PHPUNIT_TEST) {
             $this->_error(self::UNITTEST);
             return false;
         }
