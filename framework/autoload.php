@@ -24,9 +24,9 @@
 defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
 /**
- * @see mr_helper
+ * @see mr_helper_load
  */
-require_once($CFG->dirroot.'/local/mr/framework/helper.php');
+require_once($CFG->dirroot.'/local/mr/framework/helper/load.php');
 
 /**
  * MR Autoload
@@ -52,11 +52,11 @@ class mr_autoload {
     protected static $instance;
 
     /**
-     * Helper
+     * Class Loader
      *
-     * @var mr_helper
+     * @var mr_helper_load
      */
-    protected $helper;
+    protected $load;
 
     /**
      * Constructor
@@ -70,7 +70,8 @@ class mr_autoload {
         if ($namespace === '') {
             throw new coding_exception('Cannot autoload with an empty namespace.  This will enable autoload for all of Moodle.');
         }
-        $this->helper = new mr_helper($namespace);
+        $this->load = new mr_helper_load();
+        $this->load->_set_helper_namespace($namespace);
     }
 
     /**
@@ -98,7 +99,7 @@ class mr_autoload {
      */
     public function autoload($class) {
         // Quick check to prevent trying to autoload everything in Moodle
-        if ($this->helper->load->get_namespace() == 'local/mr/framework' and strpos($class, 'mr_') !== 0) {
+        if (strpos($class, 'mr_') !== 0 and $this->load->get_namespace() == 'local/mr/framework') {
             return false;
         }
         try {
@@ -106,7 +107,7 @@ class mr_autoload {
             $path = str_replace(array('_', 'block/'), array('/', 'blocks/'), $class);
 
             // Try to load the class file
-            $this->helper->load->file($path);
+            $this->load->file($path);
         } catch (coding_exception $e) {
             return false;
         }
