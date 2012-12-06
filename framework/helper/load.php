@@ -219,14 +219,14 @@ class mr_helper_load extends mr_helper_abstract {
 
             // Check path
             if (!is_dir($absolute)) {
-                throw new coding_exception('Derived path is not a directory');
+                throw new coding_exception("Derived path is not a directory: $this->namespace/$relative");
             }
 
             $plugins = get_list_of_plugins("$this->namespace/$relative", 'base');
 
             // We should find plugins!
             if (empty($plugins)) {
-                throw new coding_exception('Failed to find any plugins');
+                throw new coding_exception("Failed to find any plugins in $this->namespace/$relative");
             }
             $loaded = array();
             foreach ($plugins as $plugin) {
@@ -254,14 +254,14 @@ class mr_helper_load extends mr_helper_abstract {
     public function file($path, $namespace = NULL) {
         global $CFG;
 
-        $path = $this->resolve_namespace($path, $namespace);
-        $path = clean_param($path, PARAM_PATH);
-        $path = "$CFG->dirroot/$path.php";
+        $path     = $this->resolve_namespace($path, $namespace);
+        $path     = clean_param($path, PARAM_PATH);
+        $fullpath = "$CFG->dirroot/$path.php";
 
-        if (!file_exists($path)) {
-            throw new coding_exception('Path does not exist');
+        if (!file_exists($fullpath)) {
+            throw new coding_exception("Path does not exist: $path.php");
         }
-        require_once($path);
+        require_once($fullpath);
     }
 
     /**
