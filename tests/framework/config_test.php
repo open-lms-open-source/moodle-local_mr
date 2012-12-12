@@ -21,12 +21,20 @@
  * @author Mark Nielsen
  */
 
-defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
-
-global $CFG;
+require_once(dirname(__DIR__).'/bootstrap.php');
 
 /**
- * @see mr_bootstrap
+ * Test mr_config
+ *
+ * @package mr
+ * @author Mark Nielsen
  */
-require_once($CFG->dirroot.'/local/mr/framework/bootstrap.php');
-mr_bootstrap::startup();
+class mr_config_test extends basic_testcase {
+    public function test_construct() {
+        $config = new mr_config('foo', 'bar');
+
+        $this->assertEquals('bar', $config->get_value(), 'Construct sets the value to the passed default');
+        $this->assertEquals('bar', $config->get_default(), 'Construct sets the default');
+        $this->assertEquals('foo', $config->get_name(), 'Construct sets the name');
+    }
+}

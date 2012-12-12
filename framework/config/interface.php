@@ -21,12 +21,43 @@
  * @author Mark Nielsen
  */
 
-defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
-
-global $CFG;
-
 /**
- * @see mr_bootstrap
+ * MR Configuration Value Interface
+ *
+ * @author Mark Nielsen
+ * @package mr
  */
-require_once($CFG->dirroot.'/local/mr/framework/bootstrap.php');
-mr_bootstrap::startup();
+interface mr_config_interface {
+    /**
+     * Default value
+     *
+     * If the default value is an array or implements
+     * Serializable interface, then the config value
+     * is serialized when written to storage.
+     *
+     * @return mixed
+     */
+    public function get_default();
+
+    /**
+     * Set the config value
+     *
+     * @param mixed $value
+     * @return mr_config_interface
+     */
+    public function set_value($value);
+
+    /**
+     * Get the config value
+     *
+     * @return mixed
+     */
+    public function get_value();
+
+    /**
+     * Get the config name
+     *
+     * @return string
+     */
+    public function get_name();
+}
