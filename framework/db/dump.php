@@ -76,7 +76,7 @@ class mr_db_dump {
     /**
      * Constructor
      *
-     * @param string $file The full path to creat the SQL dump file, EG: $CFG->dataroot.'/archive/plugin/logs.sql'
+     * @param string $file The full path to create the SQL dump file, EG: $CFG->dataroot.'/archive/plugin/logs.sql'
      * @param boolean $mustnotexist If the file must not exist beforehand.  Prevents overwriting files on accident.
      * @param boolean $appendtime Append the time to the file name, helps with uniqueness and informative.  EG: Appends _YYYYMMDDHHMMSS
      * @throws coding_exception
@@ -88,7 +88,7 @@ class mr_db_dump {
             $this->file = $info['dirname'].'/'.$info['filename'].'_'.date('YmdHis').'.'.$info['extension'];
         }
         if ($mustnotexist and file_exists($this->file)) {
-            throw new coding_exception("File exits, but must not already exist (This prevents accidental file overwrites). File: $this->file");
+            throw new coding_exception('File already exists (This prevents accidental file overwrites).');
         }
         $this->validate_file();
     }
@@ -112,17 +112,17 @@ class mr_db_dump {
             throw new coding_exception('File is not set');
         }
         if (pathinfo($this->file, PATHINFO_EXTENSION) != 'sql') {
-            throw new coding_exception("File extension must be 'sql': $this->file");
+            throw new coding_exception('File extension must be \'sql\'');
         }
         if (!check_dir_exists(pathinfo($this->file, PATHINFO_DIRNAME))) {
-            throw new coding_exception("File's directory does not exist and cannot be created: $this->file");
+            throw new coding_exception('File\'s directory does not exist and cannot be created');
         }
         if (!file_exists($this->file) and !touch($this->file)) {
-            throw new coding_exception("File does not exist and could not create the file: $this->file");
+            throw new coding_exception('Failed to create the file');
         }
         $fp = fopen($this->file, 'a');
         if (!is_resource($fp)) {
-            throw new coding_exception("Failed to open file for writing: $this->file");
+            throw new coding_exception('Failed to open file for writing');
         }
         fclose($fp);
 
@@ -281,10 +281,10 @@ class mr_db_dump {
         $zipname = pathinfo($this->file, PATHINFO_BASENAME);
 
         if (file_exists($zipfile)) {
-            throw new coding_exception("Destination for zip file already exists: $zipfile");
+            throw new coding_exception('Destination for zip file already exists');
         }
         if (!$packer->archive_to_pathname(array($zipname => $this->file), $zipfile)) {
-            throw new coding_exception("Failed to zip file: $this->file");
+            throw new coding_exception('Failed to zip file');
         }
         return $zipfile;
     }
