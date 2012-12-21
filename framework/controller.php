@@ -167,7 +167,8 @@ abstract class mr_controller extends mr_readonly {
         global $PAGE;
 
         // Controller name
-        $this->name = end(explode('_', get_class($this)));
+        $classparts = explode('_', get_class($this));
+        $this->name = end($classparts);
 
         // Store plugin information
         $this->component   = $component;
