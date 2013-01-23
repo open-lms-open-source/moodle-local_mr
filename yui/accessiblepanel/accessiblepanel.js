@@ -29,7 +29,7 @@ AccessiblePanel.NAME = "AccessiblePanel";
  * Required NS static field, to identify the property on the host which will,
  * be used to refer to the plugin instance ( e.g. host.feature.doSomething() )
  */
-AccessiblePanel.NS = "ap";
+AccessiblePanel.NS = "local_mr_accessiblepanel";
 
 /*
  * The attribute configuration for the plugin. This defines the core user facing state of the plugin
@@ -69,7 +69,14 @@ Y.extend(AccessiblePanel, Y.Plugin.Base, {
          * It does not need to invoke the superclass initializer.
          * init() will call initializer() for all classes in the hierarchy.
          */
-        this._widget = this.get(HOST),
+
+        this._widget = this.get(HOST);
+
+        if (!(this._widget instanceof Y.Widget)) {
+            throw new Error('Accessible Panel Plugin may only be used on Y.Widget instances');
+        }
+
+        this._widget.set('tabIndex', -1);
         this._boundingbox = this._widget.get(BOUNDING_BOX);
 
         // Set the aria-role attribute.
@@ -86,29 +93,6 @@ Y.extend(AccessiblePanel, Y.Plugin.Base, {
         this.afterHostEvent("render", this._afterHostRenderEvent);
 
     },
-
-    destructor : function() {
-        /*
-         * destructor is part of the lifecycle introduced by
-         * the Base class. It is invoked when the plugin is unplugged.
-         *
-         * Any listeners registered using Plugin.Base's onHostEvent/afterHostEvent methods,
-         * or any methods displaced using it's beforeHostMethod/afterHostMethod methods
-         * will be detached/restored by Plugin.Base's destructor.
-         *
-         * We only need to clean up anything we change on the host
-         *
-         * It does not need to invoke the superclass destructor.
-         * destroy() will call initializer() for all classes in the hierarchy.
-         */
-    },
-
-    /* Supporting Methods */
-
-    _onHostRenderEvent : function(e) {
-        /* React on the host render event */
-    },
-
 
     _afterHostRenderEvent : function(e) {
         /* React after the host render event */
@@ -149,14 +133,11 @@ Y.extend(AccessiblePanel, Y.Plugin.Base, {
         }
 
         // Append some focusable divs
-        this._firstfocusable = Y.Node.create('<div tabindex="0"></div>');
         this._lastfocusable = Y.Node.create('<div tabindex="0"></div>');
-//
         this._lastfocusable.on('focus', function(e) {
-            this._firstfocusable.focus();
+            this._boundingbox.focus();
         }, this);
 
-        this._boundingbox.prepend(this._firstfocusable);
         this._boundingbox.append(this._lastfocusable);
     },
 
@@ -167,7 +148,7 @@ Y.extend(AccessiblePanel, Y.Plugin.Base, {
         this._updateAriaAttr(ARIAHIDDEN, false);
 
         // Give the boundingbox focus.
-        this._firstfocusable.focus();
+        this._widget.focus();
     },
 
     _afterHostHideMethod: function() {
@@ -185,6 +166,7 @@ Y.extend(AccessiblePanel, Y.Plugin.Base, {
     }
 });
 
-    Y.namespace("Plugin.Moodle.local_mr").AccessiblePanel = AccessiblePanel;
+    M.local_mr = M.local_mr || {};
+    M.local_mr.accessiblepanel = AccessiblePanel;
 
 }, '@VERSION@', {requires:["plugin"]});
