@@ -22,17 +22,45 @@ YUI.add("moodle-local_mr-accessiblepanel", function(Y) {
 
     AccessiblePanel.ATTRS = {
 
-        ariarole: {
+        /**
+         * The role attribute to set on the host.
+         *
+         * If set to an empty string, then the  role attribute will
+         * not be set.
+         *
+         * Possible roles: 'dialog', 'dialog-alert'
+         */
+        ariaRole: {
             value: "dialog"
             , writeOnce: true
             , validator: "_validateAriaRole"
         },
 
-        ariadescribedby: {
+        /**
+         * The Y.Node or CSS selector string of the element that
+         * describes the host.
+         *
+         * The host will get an aria-describedby="ID" attribute.
+         *
+         * If nothing is passed and '.yui3-widget-bd' exists it will be used.
+         *
+         * Examples: http://oaa-accessibility.org/examples/prop/163/
+         */
+        ariaDescribedBy: {
             value: EMPTY_STR
         },
 
-        arialabelledby: {
+        /**
+         * The Y.Node or CSS selector string of the element that
+         * labels the host.
+         *
+         * The host will get an aria-labelledby="ID" attribute.
+         *
+         * If nothing is passed and '.yui3-widget-hd' exists it will be used.
+         *
+         * Examples: http://oaa-accessibility.org/examples/prop/165/
+         */
+        ariaLabelledBy: {
             value: EMPTY_STR
         }
 
@@ -51,7 +79,7 @@ YUI.add("moodle-local_mr-accessiblepanel", function(Y) {
             this._boundingbox = this._widget.get(BOUNDING_BOX);
 
             // Set the aria-role attribute.
-            this._boundingbox.set(ARIAROLE, this.get('ariarole'));
+            this._boundingbox.set(ARIAROLE, this.get('ariaRole'));
 
             // Set the aria-hidden attribute.
             this._boundingbox.set(ARIAHIDDEN, !this._widget.get(VISIBLE));
@@ -62,9 +90,16 @@ YUI.add("moodle-local_mr-accessiblepanel", function(Y) {
 
         },
 
+        /**
+         * Called after the host's render event. Adds the aria-describedby and aria-labelledby attributes
+         * to the Widget's bounding box if the nodes exists. Also sets up some focus management on the Widget.
+         *
+         * @param e
+         * @private
+         */
         _afterHostRenderEvent : function(e) {
-            var ariadescribedby = this.get('ariadescribedby'),
-                arialabelledby = this.get('arialabelledby'),
+            var ariadescribedby = this.get('ariaDescribedBy'),
+                arialabelledby = this.get('ariaLabelledBy'),
                 boundingbox = this._boundingbox,
                 ariadescribedbynode,
                 ariadescribedbyid,
@@ -99,7 +134,7 @@ YUI.add("moodle-local_mr-accessiblepanel", function(Y) {
                 this._updateAriaAttr(ARIALABELLEDBY, arialabelledbyid);
             }
 
-            // Append some focusable divs
+            // Append a focusable last div.
             this._lastfocusable = Y.Node.create('<div tabindex="0"></div>');
             this._lastfocusable.on('focus', function(e) {
                 this._boundingbox.focus();
@@ -108,6 +143,12 @@ YUI.add("moodle-local_mr-accessiblepanel", function(Y) {
             this._boundingbox.append(this._lastfocusable);
         },
 
+        /**
+         * Called after the host's show method. Updates the 'aria-hidden' attribute and sets the focus on the
+         * widget.
+         *
+         * @private
+         */
         _afterHostShowMethod : function() {
             // Update aria-hidden field after the panel's show method.
             this._updateAriaAttr(ARIAHIDDEN, false);
@@ -116,16 +157,33 @@ YUI.add("moodle-local_mr-accessiblepanel", function(Y) {
             this._widget.focus();
         },
 
+        /**
+         * Call after the hosts hide method. Updates the 'aria-hidden' attribute.
+         * @private
+         */
         _afterHostHideMethod: function() {
             // Update aria-hidden field after the panel's hide method.
             this._updateAriaAttr(ARIAHIDDEN, true);
         },
 
+        /**
+         * Updates an attribute on the bounding box
+         *
+         * @param attr - attribute to update
+         * @param newval - new value to set
+         * @private
+         */
         _updateAriaAttr: function(attr, newval) {
             this._boundingbox.set(attr, newval);
         },
 
-        // Validate the aria-role values we want to allow.
+        /**
+         * ariaRole ATTR validation.
+         *
+         * @param value
+         * @return {Boolean}
+         * @private
+         */
         _validateAriaRole: function(value) {
             return (VALIDARIAROLES.indexOf(value) !== -1);
         }
