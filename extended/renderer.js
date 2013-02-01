@@ -26,8 +26,8 @@ M.local_mr.init_mr_html_table = function(Y, args) {
     }
 
     // Table's DataSource
-    var myDataSource             = new YAHOO.util.DataSource(args.url);
-    myDataSource.responseType    = YAHOO.util.DataSource.TYPE_JSON;
+    var myDataSource             = new Y.YUI2.util.DataSource(args.url);
+    myDataSource.responseType    = Y.YUI2.util.DataSource.TYPE_JSON;
     myDataSource.maxCacheEntries = 0;
     myDataSource.responseSchema  = {
         resultsList: "records",
@@ -48,7 +48,7 @@ M.local_mr.init_mr_html_table = function(Y, args) {
 
     // Add per page options to paginator
     if (args.perpageopts.length > 0) {
-        myPaginatorConfig.template = YAHOO.widget.Paginator.TEMPLATE_ROWS_PER_PAGE;
+        myPaginatorConfig.template = Y.YUI2.widget.Paginator.TEMPLATE_ROWS_PER_PAGE;
         myPaginatorConfig.rowsPerPageOptions = args.perpageopts;
         myPaginatorConfig.alwaysVisible = true;
     }
@@ -62,7 +62,7 @@ M.local_mr.init_mr_html_table = function(Y, args) {
         var perpage = (oState.pagination) ? oState.pagination.rowsPerPage : args.perpage;
 
         if (oState.sortedBy) {
-            var dir = oState.sortedBy.dir === YAHOO.widget.DataTable.CLASS_DESC ? args.desc : args.asc;
+            var dir = oState.sortedBy.dir === Y.YUI2.widget.DataTable.CLASS_DESC ? args.desc : args.asc;
         } else {
             var dir = args.order;
         }
@@ -80,16 +80,16 @@ M.local_mr.init_mr_html_table = function(Y, args) {
         initialRequest:  myRequestBuilder(),
         MSG_LOADING:     args.loadingmsg,
         dynamicData:     true,
-        paginator:       new YAHOO.widget.Paginator(myPaginatorConfig),
+        paginator:       new Y.YUI2.widget.Paginator(myPaginatorConfig),
         generateRequest: myRequestBuilder,
         sortedBy: {
             key: args.sort,
-            dir: (args.order == args.asc) ? YAHOO.widget.DataTable.CLASS_ASC : YAHOO.widget.DataTable.CLASS_DESC
+            dir: (args.order == args.asc) ? Y.YUI2.widget.DataTable.CLASS_ASC : Y.YUI2.widget.DataTable.CLASS_DESC
         }
     };
 
     // DataTable instance
-    var myDataTable = new YAHOO.widget.DataTable(args.id, args.columns, myDataSource, myDataTableConfigs);
+    var myDataTable = new Y.YUI2.widget.DataTable(args.id, args.columns, myDataSource, myDataTableConfigs);
 
     // Update totalRecords and empty message on the fly with value from server
     myDataTable.handleDataReturnPayload = function(oRequest, oResponse, oPayload) {

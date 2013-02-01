@@ -203,8 +203,8 @@ M.local_mr.init_mr_html_autocomplete = function(Y, args) {
 
     if (args.url != null) {
         // Use a remote datasource
-        var myDataSource             = new YAHOO.util.XHRDataSource(args.url);
-        myDataSource.responseType    = YAHOO.util.XHRDataSource.TYPE_JSON;
+        var myDataSource             = new Y.YUI2.util.XHRDataSource(args.url);
+        myDataSource.responseType    = Y.YUI2.util.XHRDataSource.TYPE_JSON;
         myDataSource.maxCacheEntries = 5;
         myDataSource.responseSchema  = {
             resultsList: "results",
@@ -212,12 +212,12 @@ M.local_mr.init_mr_html_autocomplete = function(Y, args) {
         };
     } else {
         // Use a local datasource
-        var myDataSource = new YAHOO.util.LocalDataSource(args.data);
+        var myDataSource = new Y.YUI2.util.LocalDataSource(args.data);
         myDataSource.responseSchema = {fields : args.fields};
     }
 
     // Instantiate the AutoComplete
-    var myAutoComplete = new YAHOO.widget.AutoComplete(myInputField, myContainerId, myDataSource);
+    var myAutoComplete = new Y.YUI2.widget.AutoComplete(myInputField, myContainerId, myDataSource);
     myAutoComplete.useShadow           = true;
     myAutoComplete.maxResultsDisplayed = 20;
     myAutoComplete.applyLocalFilter    = true;
@@ -238,7 +238,7 @@ M.local_mr.init_mr_html_autocomplete = function(Y, args) {
     }
 
     if (args.hiddenfieldname != '') {
-        var myHiddenField = YAHOO.util.Dom.get('id_' + args.hiddenfieldname);
+        var myHiddenField = Y.YUI2.util.Dom.get('id_' + args.hiddenfieldname);
         var mySelectHandler = function(sType, aArgs) {
             // Selected item's result data
             var oData = aArgs[2];
