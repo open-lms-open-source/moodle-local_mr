@@ -66,3 +66,4 @@ $string['xminutes'] = '{$a} minutes';
 $string['xmonths'] = '{$a} months';
 $string['xweeks'] = '{$a} weeks';
 $string['toomanyrows'] = 'The report would return {$a->total} rows, which is greater than the maximum allowed amount of {$a->max}.  If a filter is available, please use it to reduce the number of results.';
+$string['rowsperpage'] = 'Rows per page';
