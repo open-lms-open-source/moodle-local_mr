@@ -165,7 +165,10 @@ class local_mr_renderer extends plugin_renderer_base {
                     $options[$opt] = $opt;
                 }
             }
-            $select = $this->output->single_select($paging->get_url(), $paging->REQUEST_PERPAGE, $options, $paging->get_perpage(), array());
+            $singleselect = new single_select($paging->get_url(), $paging->REQUEST_PERPAGE, $options, $paging->get_perpage(), array());
+            $singleselect->set_label(get_string('rowsperpage', 'local_mr'), array('class' => 'accesshide'));
+
+            $select = $this->output->render($singleselect);
 
             // Attempt to place it within the paging bar's div
             if (substr($output, strlen($output)-6) == '</div>') {
