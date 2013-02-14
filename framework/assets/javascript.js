@@ -96,6 +96,7 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
         activateFirstItem: true,
         minimumQueryLength: 0,
         queryDelay: 0,
+        render: 'body',
         source: selectfield,
         resultFilters: [
             function(query, results) {
