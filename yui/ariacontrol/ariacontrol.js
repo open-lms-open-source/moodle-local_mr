@@ -291,5 +291,5 @@ YUI.add('moodle-local_mr-ariacontrol', function(Y) {
     M.local_mr.ariacontrol = ARIACONTROL;
 
 }, '@VERSION@', {
-    requires: ['plugin', 'escape']
+    requires: ['plugin', 'widget', 'escape']
 });
