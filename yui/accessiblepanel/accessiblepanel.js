@@ -192,4 +192,4 @@ YUI.add("moodle-local_mr-accessiblepanel", function(Y) {
     M.local_mr = M.local_mr || {};
     M.local_mr.accessiblepanel = AccessiblePanel;
 
-}, '@VERSION@', {requires:["plugin"]});
+}, '@VERSION@', {requires:['plugin', 'widget']});
