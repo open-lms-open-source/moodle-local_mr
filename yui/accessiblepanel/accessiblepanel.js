@@ -185,7 +185,7 @@ YUI.add("moodle-local_mr-accessiblepanel", function(Y) {
          * @private
          */
         _validateAriaRole: function(value) {
-            return (VALIDARIAROLES.indexOf(value) !== -1);
+            return (Y.Array.indexOf(VALIDARIAROLES, value) !== -1);
         }
     });
 
