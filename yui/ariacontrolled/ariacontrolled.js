@@ -132,7 +132,7 @@ YUI.add('moodle-local_mr-ariacontrolled', function(Y) {
              * @return {Boolean}
              */
             _validateAriaState: function(value) {
-                return (VALID_ARIA_STATES.indexOf(value) !== -1);
+                return (Y.Array.indexOf(VALID_ARIA_STATES, value) !== -1);
             }
         },
         {
