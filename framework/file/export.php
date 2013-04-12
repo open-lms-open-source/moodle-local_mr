@@ -247,7 +247,7 @@ class mr_file_export implements renderable {
      * @return mr_file_export
      */
     public function cleanup() {
-        if (!$this->instance instanceof mr_file_export_abstract) {
+        if ($this->instance instanceof mr_file_export_abstract) {
             $this->instance->cleanup();
         }
         return $this;
