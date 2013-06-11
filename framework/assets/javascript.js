@@ -50,12 +50,12 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
             return opt.selected;
         });
 
-        selectedoptions.each(function(selopt) {
+        selectedoptions.forEach(function(selopt) {
             addselected(selopt.get('index'), selopt.get('innerHTML'));
         });
 
         // add the addedlist class to the uldiv
-        if (!selectedoptions.isEmpty() && !uldiv.hasClass('addedlist')) {
+        if (selectedoptions.length != 0 && !uldiv.hasClass('addedlist')) {
             uldiv.addClass('addedlist');
         }
     }
