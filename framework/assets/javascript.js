@@ -44,7 +44,7 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
     };
 
     // prepopulate div with already selected options
-    var seloptions = selectfield.get('options');
+    var seloptions = selectfield.all('option');
     if (seloptions instanceof Y.NodeList && !seloptions.isEmpty()) {
         var selectedoptions = seloptions.filter(function(opt) {
             return opt.selected;
