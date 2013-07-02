@@ -45,17 +45,17 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
 
     // prepopulate div with already selected options
     var seloptions = selectfield.get('options');
-    if (!seloptions.isEmpty()) {
-        var selectedoptions = Y.Array.filter(seloptions, function(opt) {
+    if (seloptions instanceof Y.NodeList && !seloptions.isEmpty()) {
+        var selectedoptions = seloptions.filter(function(opt) {
             return opt.selected;
         });
 
-        selectedoptions.forEach(function(selopt) {
+        selectedoptions.each(function(selopt) {
             addselected(selopt.get('index'), selopt.get('innerHTML'));
         });
 
         // add the addedlist class to the uldiv
-        if (selectedoptions.length != 0 && !uldiv.hasClass('addedlist')) {
+        if (!selectedoptions.isEmpty() && !uldiv.hasClass('addedlist')) {
             uldiv.addClass('addedlist');
         }
     }
@@ -73,7 +73,7 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
         var optionidx = sidid.split('smpidx_smpidx').pop();
 
         // deselect that option in our selectbox
-        if (!seloptions.isEmpty()) {
+        if (seloptions instanceof Y.NodeList && !seloptions.isEmpty()) {
             var selectedoption = seloptions.item(optionidx);
             if (selectedoption) {
                 selectedoption.set('selected', '');
