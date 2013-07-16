@@ -417,7 +417,7 @@ class local_mr_renderer extends plugin_renderer_base {
                 'yui2-datatable',
             ),
         );
-        $arguments = array((object) array(
+        $arguments = (object) array(
             'id'          => $id,
             'url'         => $table->get_url()->out(false, array('tjson' => 1)),
             'sort'        => $table->get_sort(),
@@ -430,8 +430,15 @@ class local_mr_renderer extends plugin_renderer_base {
             'asc'         => SORT_ASC,
             'desc'        => SORT_DESC,
             'autoload'    => $autoload,
-        ));
-        $PAGE->requires->js_init_call('M.local_mr.init_mr_html_table', $arguments, false, $module);
+        );
+
+        if (!is_null($table->get_summary())) {
+            $arguments->summary = $table->get_summary();
+        }
+        if (!empty($table->caption)) {
+            $arguments->caption = $table->caption;
+        }
+        $PAGE->requires->js_init_call('M.local_mr.init_mr_html_table', array($arguments), false, $module);
 
         return html_writer::tag('div', '', array('id' => $id, 'class' => 'mr_html_table mr_ajax_table'));
     }
