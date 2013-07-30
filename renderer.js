@@ -4,14 +4,22 @@
 M.local_mr = M.local_mr || {};
 
 /**
+ * @type {M.local_mr.LiveLog}
+ */
+M.local_mr.tableLiveLog = undefined;
+
+/**
  * Render mr_html_table and mr_html_paging with YUI
  *
  * @namespace M.local_mr
  * @function
- * @param {YUI} Y
+ * @param Y
  * @param {object} args
  */
 M.local_mr.init_mr_html_table = function(Y, args) {
+    // Load this regardless of auto-load.
+    M.local_mr.init_table_live_log(Y);
+
     if (!args.autoload) {
         var thisInstance = this;
         var theseArgs = arguments;
@@ -21,7 +29,7 @@ M.local_mr.init_mr_html_table = function(Y, args) {
         // Create a function reference so this can be called later to load the table
         var loadFunction = window[args.id + "_load"] = function() {
             thisInstance.init_mr_html_table.apply(thisInstance, theseArgs);
-        }
+        };
         return;
     }
 
@@ -97,8 +105,20 @@ M.local_mr.init_mr_html_table = function(Y, args) {
         myDataTable.set('MSG_EMPTY', oResponse.meta.emptyMessage);
 
         return oPayload;
-    }
+    };
+
+    myDataTable.subscribe('columnSortEvent', function(e) {
+        var identifier = e.dir === Y.YUI2.widget.DataTable.CLASS_DESC ? 'tablesortedbydesc' : 'tablesortedbyasc';
+        M.local_mr.tableLiveLog.log_text(M.util.get_string(identifier, 'local_mr', e.column.label));
+    });
 
     //Store a reference to the table so it can be accessed easily later
     window[args.id] = myDataTable;
+};
+
+// Singleton!
+M.local_mr.init_table_live_log = function(Y) {
+    if (Y.Lang.isUndefined(M.local_mr.tableLiveLog)) {
+        M.local_mr.tableLiveLog = M.local_mr.init_livelog();
+    }
 };
