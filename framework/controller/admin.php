@@ -71,7 +71,7 @@ abstract class mr_controller_admin extends mr_controller {
      * @return object
      */
     public function get_context() {
-        return get_context_instance(CONTEXT_SYSTEM);
+        return context_system::instance();
     }
 
     /**
