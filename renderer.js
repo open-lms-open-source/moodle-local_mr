@@ -21,7 +21,7 @@ M.local_mr.init_mr_html_table = function(Y, args) {
         // Create a function reference so this can be called later to load the table
         var loadFunction = window[args.id + "_load"] = function() {
             thisInstance.init_mr_html_table.apply(thisInstance, theseArgs);
-        }
+        };
         return;
     }
 
@@ -87,6 +87,13 @@ M.local_mr.init_mr_html_table = function(Y, args) {
             dir: (args.order == args.asc) ? Y.YUI2.widget.DataTable.CLASS_ASC : Y.YUI2.widget.DataTable.CLASS_DESC
         }
     };
+
+    if (args.summary !== undefined) {
+        myDataTableConfigs.summary = args.summary;
+    }
+    if (args.caption !== undefined) {
+        myDataTableConfigs.caption = args.caption;
+    }
 
     // DataTable instance
     var myDataTable = new Y.YUI2.widget.DataTable(args.id, args.columns, myDataSource, myDataTableConfigs);

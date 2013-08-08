@@ -161,6 +161,15 @@ class mr_html_table extends mr_readonly implements renderable {
     protected $helper;
 
     /**
+     * Table caption
+     *
+     * As of writing, not supported by plain HTML rendering
+     *
+     * @var string
+     */
+    public $caption;
+
+    /**
      * Setup
      *
      * @param mr_preferences $preferences User preferences
@@ -320,6 +329,18 @@ class mr_html_table extends mr_readonly implements renderable {
             return ($this->helper->cache->test($this->cachekey) and $this->helper->cache->test("pagingbar_$this->cachekey"));
         }
         return false;
+    }
+
+    /**
+     * Get table summary
+     *
+     * @return null|string
+     */
+    public function get_summary() {
+        if (array_key_exists('summary', $this->attributes) and !empty($this->attributes['summary'])) {
+            return $this->attributes['summary'];
+        }
+        return null;
     }
 
     /**
