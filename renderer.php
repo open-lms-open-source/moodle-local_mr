@@ -415,7 +415,12 @@ class local_mr_renderer extends plugin_renderer_base {
                 'yui2-get',
                 'yui2-dragdrop',
                 'yui2-datatable',
+                'moodle-local_mr-livelog',
             ),
+            'strings' => array(
+                array('tablesortedbydesc', 'local_mr'),
+                array('tablesortedbyasc', 'local_mr'),
+            )
         );
         $arguments = (object) array(
             'id'          => $id,
