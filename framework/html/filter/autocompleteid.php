@@ -74,7 +74,7 @@ class mr_html_filter_autocompleteid extends mr_html_filter_abstract {
         $mform->setDefault($textfieldname, $this->preferences_get($textfieldname));
 
         $mform->addElement('hidden', $this->name, $this->preferences_get($this->name));
-        $mform->setType('name', PARAM_INT);
+        $mform->setType($this->name, PARAM_INT);
 
         $helper->html->mform_autocomplete($mform, $this->options, $textfieldname, $this->name);
 

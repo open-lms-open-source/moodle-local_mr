@@ -69,9 +69,9 @@ class mr_html_filter_hidden extends mr_html_filter_abstract {
         $mform->addElement('hidden', $this->name, $this->_value);
 
         if (is_numeric($this->_value)) {
-            $mform->setType('name', PARAM_INT);
+            $mform->setType($this->name, PARAM_INT);
         } else {
-            $mform->setType('name', PARAM_TEXT);
+            $mform->setType($this->name, PARAM_TEXT);
         }
 
         return $this;
