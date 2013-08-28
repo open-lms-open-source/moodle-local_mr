@@ -62,6 +62,7 @@ class mr_html_filter_selectmultiplus extends mr_html_filter_abstract {
 
         // add the input field for autocomplete
         $mform->addElement('text', $this->name . '_autocomplete', $this->label, 'class="selectmultiplus"');
+        $mform->setType($this->name.'_autocomplete', PARAM_TEXT);
 
         // initialize the javascript
         $helper = new mr_helper();

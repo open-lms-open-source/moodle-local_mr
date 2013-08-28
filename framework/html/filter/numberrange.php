@@ -130,8 +130,8 @@ class mr_html_filter_numberrange extends mr_html_filter_abstract {
         $mform->setDefault($this->name.'_hc', (int) $this->preferences_get($this->name.'_hv'));
 
         // Set the type
-        $mform->setType($this->name.'_lv', PARAM_NUMBER);
-        $mform->setType($this->name.'_hv', PARAM_NUMBER);
+        $mform->setType($this->name.'_lv', PARAM_FLOAT);
+        $mform->setType($this->name.'_hv', PARAM_FLOAT);
 
         // Disable text fields when checkbox is not checked
         $mform->disabledIf($this->name.'_lv', $this->name.'_lc', 'notchecked');
