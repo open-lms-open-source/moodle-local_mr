@@ -61,7 +61,9 @@ class mr_fixture_course extends mr_fixture_abstract {
      * @throws moodle_exception
      */
     public function build() {
-        global $DB;
+        global $CFG, $DB;
+
+        require_once($CFG->libdir.'/coursecatlib.php');
 
         if (!$this->exists()) {
             $course = (object) $this->get_options();
@@ -76,7 +78,7 @@ class mr_fixture_course extends mr_fixture_abstract {
 
             // Try to help folks out...
             if (!property_exists($course, 'category')) {
-                $course->category = get_course_category()->id;
+                $course->category = coursecat::get_default()->id;
             }
             if (!property_exists($course, 'fullname')) {
                 $course->fullname = '';
