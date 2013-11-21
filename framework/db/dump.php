@@ -189,7 +189,17 @@ class mr_db_dump {
             $fp        = fopen($this->file, 'a');
             $tablename = $CFG->prefix.$table->get_name();
             $config    = $DB->export_dbconfig();
-            $mysqli    = new mysqli($config->dbhost, $config->dbuser, $config->dbpass, $config->dbname);
+
+            if (!empty($config->dboptions) && !empty($config->dboptions['dbport'])) {
+                $port = $config->dboptions['dbport'];
+            } else {
+                $port = (int) ini_get('mysqli.default_port');
+            }
+            // Verify ini.get does not return nonsense.
+            if (empty($dbport)) {
+                $dbport = 3306;
+            }
+            $mysqli = new mysqli($config->dbhost, $config->dbuser, $config->dbpass, $config->dbname, $port);
 
             if ($mysqli->connect_error) {
                 throw new coding_exception("Failed to connect to the database: ($mysqli->connect_errno) $mysqli->connect_error");
