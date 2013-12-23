@@ -154,6 +154,9 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
     });
 
     var pagecontent = Y.one('#report-content');
+    if (pagecontent == null) {
+        pagecontent = Y.one('.mr_report');
+    }
     // May need to resize the report content div based on size of the auto complete list
     actextfield.ac.on('visibleChange', function(e) {
         if (pagecontent && !e.newVal && e.prevVal) {
@@ -161,7 +164,6 @@ M.local_mr.init_filter_selectmultiplus = function(Y, args) {
             pagecontent.setStyle('min-height', 600);
         } else if (pagecontent && e.newVal && !e.prevVal) {
             // hidden to visible
-            var pagecontentypos;
             var pagecontentypos = pagecontent.getY();
             var pagecontentheight = pagecontent.get('offsetHeight');
             var acheight = actextfield.ac.get('boundingBox').get('offsetHeight');
