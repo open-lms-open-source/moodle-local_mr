@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class mr_file_export_text_abstract</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class mr_file_export_text_abstract</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-descendents">Descendents</a>
+			|											<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MR File Export Text Abstract</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Mark Nielsen</li>
+				<li><span class="field">abstract:</span> </li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_file---export---text---abstract.php.html">/file/export/text/abstract.php</a> (line <span class="field">37</span>)
+		</p>
+		
+				
+		<pre><a href="../mr/mr_plugin.html">mr_plugin</a>
+   |
+   --<a href="../mr/mr_file_export_abstract.html">mr_file_export_abstract</a>
+      |
+      --mr_file_export_text_abstract</pre>
+	
+			</div>
+</div>
+
+	<a name="sec-descendents"></a>
+	<div class="info-box">
+		<div class="info-box-title">Direct descendents</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Descendents</span>
+			|												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+								|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_file_export_text_csv.html">mr_file_export_text_csv</a></td>
+					<td>
+											MR File Export Text CSV
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_file_export_text_tsv.html">mr_file_export_text_tsv</a></td>
+					<td>
+											MR File Export Text TSV (Tab Separated Values)
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$file" title="details" class="var-name">$file</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">resource</span>
+					<a href="#$fp" title="details" class="var-name">$fp</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#add_row" title="details" class="method-name">add_row</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$row</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#cleanup" title="details" class="method-name">cleanup</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#close" title="details" class="method-name">close</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#get_delimiter" title="details" class="method-name">get_delimiter</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#init" title="details" class="method-name">init</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$dir</span> = <span class="var-default">NULL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#set_headers" title="details" class="method-name">set_headers</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$headers</span>)
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+<a name="var$file" id="$file"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$file</span>
+						(line <span class="line-number">43</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The export file</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$fp" id="$fp"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">resource</span>
+			<span class="var-name">$fp</span>
+						(line <span class="line-number">50</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The file point to the export file</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodadd_row" id="add_row"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">add_row</span> (line <span class="line-number">99</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Write the row to the file</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			add_row
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$row</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$row</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../mr/mr_file_export_abstract.html#methodadd_row">mr_file_export_abstract::add_row()</a></dt>
+						<dd>Add a row to the export</dd>
+					</dl>
+			
+	</div>
+<a name="methodcleanup" id="cleanup"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">cleanup</span> (line <span class="line-number">114</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Remove the csv file</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			cleanup
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../mr/mr_file_export_abstract.html#methodcleanup">mr_file_export_abstract::cleanup()</a></dt>
+						<dd>Run any cleanup routines</dd>
+					</dl>
+			
+	</div>
+<a name="methodclose" id="close"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">close</span> (line <span class="line-number">106</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Close the file pointer and return file</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			close
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../mr/mr_file_export_abstract.html#methodclose">mr_file_export_abstract::close()</a></dt>
+						<dd>Close the export and return whatever the export generated</dd>
+					</dl>
+			
+	</div>
+<a name="methodget_delimiter" id="get_delimiter"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_delimiter</span> (line <span class="line-number">57</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the text delimiter</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			get_delimiter
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../mr/mr_file_export_text_csv.html#methodget_delimiter">mr_file_export_text_csv::get_delimiter()</a>
+								: Get the text delimiter
+							</li>
+					<li>
+				<a href="../mr/mr_file_export_text_tsv.html#methodget_delimiter">mr_file_export_text_tsv::get_delimiter()</a>
+								: Get the text delimiter
+							</li>
+				</ul>
+	</div>
+<a name="methodinit" id="init"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">init</span> (line <span class="line-number">66</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Make the directory for the file and open the file pointer</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			init
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$dir</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: The preferred file name (no extension)</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$dir</span><span class="var-description">: The directory to store the file in (temp by default)</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../mr/mr_file_export_abstract.html#methodinit">mr_file_export_abstract::init()</a></dt>
+						<dd>Init routines, params can be unique to the plugin</dd>
+					</dl>
+			
+	</div>
+<a name="methodset_headers" id="set_headers"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_headers</span> (line <span class="line-number">92</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Write headers to the file</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			set_headers
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$headers</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$headers</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../mr/mr_file_export_abstract.html#methodset_headers">mr_file_export_abstract::set_headers()</a></dt>
+						<dd>Header setup</dd>
+					</dl>
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../mr/mr_file_export_abstract.html">mr_file_export_abstract</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodadd_row">mr_file_export_abstract::add_row()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodcleanup">mr_file_export_abstract::cleanup()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodclose">mr_file_export_abstract::close()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodgenerates_file">mr_file_export_abstract::generates_file()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodget_component">mr_file_export_abstract::get_component()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodget_extension">mr_file_export_abstract::get_extension()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodinit">mr_file_export_abstract::init()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodmax_rows">mr_file_export_abstract::max_rows()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodset_headers">mr_file_export_abstract::set_headers()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodtype">mr_file_export_abstract::type()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../mr/mr_plugin.html">mr_plugin</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../mr/mr_plugin.html#methodget_component">mr_plugin::get_component()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_plugin.html#methodname">mr_plugin::name()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_plugin.html#methodtype">mr_plugin::type()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:44 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

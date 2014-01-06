@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class mr_file_export</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class mr_file_export</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MR File Export</p>
+<p class="description"><p>Manages exporting of data to  files and the different export  formats.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Mark Nielsen</li>
+				<li><span class="field">example:</span> <a href="../__examplesource/exsource_oule2-maint_blocks_helloworld_controller_table.php_69f093d72103b85451a8ad3f71467993.html">See how to use this class</a></li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_file---export.php.html">/file/export.php</a> (line <span class="field">37</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																																								<div class="var-title">
+					<span class="var-type">array</span>
+					<a href="#$exporters" title="details" class="var-name">$exporters</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">boolean</span>
+					<a href="#$exporting" title="details" class="var-name">$exporting</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$filename" title="details" class="var-name">$filename</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type"><a href="../mr/mr_file_export_abstract.html">mr_file_export_abstract</a></span>
+					<a href="#$instance" title="details" class="var-name">$instance</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">moodle_url</span>
+					<a href="#$url" title="details" class="var-name">$url</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																						
+				<div class="method-definition">
+											<span class="method-result">mr_file_export</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$exporters</span> = <span class="var-default">'**'</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$requirefile</span> = <span class="var-default">false</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$url</span> = <span class="var-default">NULL</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span> = <span class="var-default">'export'</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_file_export.html">mr_file_export</a></span>
+										<a href="#cleanup" title="details" class="method-name">cleanup</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#close" title="details" class="method-name">close</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#get_select_options" title="details" class="method-name">get_select_options</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">moodle_url</span>
+										<a href="#get_url" title="details" class="method-name">get_url</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#get_url_select_options" title="details" class="method-name">get_url_select_options</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_file_export.html">mr_file_export</a></span>
+										<a href="#init" title="details" class="method-name">init</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$exporter</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span> = <span class="var-default">NULL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_file_export_abstract.html">mr_file_export_abstract</a></span>
+										<a href="#instance" title="details" class="method-name">instance</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#is_exporting" title="details" class="method-name">is_exporting</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#send" title="details" class="method-name">send</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_file_export.html">mr_file_export</a></span>
+										<a href="#set_filename" title="details" class="method-name">set_filename</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span>)
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+<a name="var$exporters" id="$exporters"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$exporters</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">51</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Loaded exporters, only these can be used</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$exporting" id="$exporting"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">boolean</span>
+			<span class="var-name">$exporting</span>
+			 = <span class="var-default"> false</span>			(line <span class="line-number">44</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Flag for if exporting is currently underway or not</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$filename" id="$filename"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$filename</span>
+						(line <span class="line-number">58</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Export file name</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$instance" id="$instance"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type"><a href="../mr/mr_file_export_abstract.html">mr_file_export_abstract</a></span>
+			<span class="var-name">$instance</span>
+			 = <span class="var-default"> NULL</span>			(line <span class="line-number">65</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Exporter instance</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$url" id="$url"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">moodle_url</span>
+			<span class="var-name">$url</span>
+						(line <span class="line-number">72</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Moodle URL - used for rendering</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">107</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Exporter setup</p>
+<p class="description"><p>There are many ways to define which exporters are available.  The $exporters  param can be a string or an array of strings that get sent to the mr_helper_load class.</p><p>Examples:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Load&nbsp;all&nbsp;exporters</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$export&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_file_export.html">mr_file_export</a></span><span class="src-sym">(</span><span class="src-str">'**'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Load&nbsp;only&nbsp;text&nbsp;exporters</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$export&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_file_export.html">mr_file_export</a></span><span class="src-sym">(</span><span class="src-str">'text/*'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Load&nbsp;all&nbsp;spreadsheet&nbsp;and&nbsp;text/csv&nbsp;exporters</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$export&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_file_export.html">mr_file_export</a></span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'text/csv'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'spreadsheet/*'</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Load&nbsp;an&nbsp;instance&nbsp;of&nbsp;a&nbsp;class&nbsp;that&nbsp;extends&nbsp;mr_file_export_abstract</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$export&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_file_export.html">mr_file_export</a></span><span class="src-sym">(</span><span class="src-key">new&nbsp;</span><span class="src-id">blocks_dummy_file_export_csv</span><span class="src-sym">(</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Load&nbsp;an&nbsp;instance&nbsp;and&nbsp;all&nbsp;text&nbsp;exporters</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$export&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_file_export.html">mr_file_export</a></span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'text/*'</span><span class="src-sym">,&nbsp;</span><span class="src-key">new&nbsp;</span><span class="src-id">blocks_dummy_file_export_csv</span><span class="src-sym">(</span><span class="src-sym">)))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;<span class="src-php">?&gt;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mr_file_export</span>
+		<span class="method-name">
+			__construct
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$exporters</span> = <span class="var-default">'**'</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$requirefile</span> = <span class="var-default">false</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$url</span> = <span class="var-default">NULL</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span> = <span class="var-default">'export'</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$exporters</span><span class="var-description">: This can take on many forms, see above for examples.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$requirefile</span><span class="var-description">: If true, then no export plugin will be included that cannot generate a file</span>			</li>
+					<li>
+				<span class="var-type">moodle_url</span>
+				<span class="var-name">$url</span><span class="var-description">: Moodle URL for current page, used for rendering only</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$filename</span><span class="var-description">: The exported file's name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcleanup" id="cleanup"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">cleanup</span> (line <span class="line-number">249</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Calls the exporters cleanup.</p>
+<p class="description"><p>If the exporter generates a file, then the file  is deleted.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_file_export.html">mr_file_export</a></span>
+		<span class="method-name">
+			cleanup
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodclose" id="close"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">close</span> (line <span class="line-number">226</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Stop exporting and if the exporter  returns a file, then the file is returned,  otherwise, always returns false.</p>
+<p class="description"><p>To remove the export file from the file  system, you must call mr_file_export::cleanup()</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			close
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_select_options" id="get_select_options"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_select_options</span> (line <span class="line-number">324</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get select options for the currently available exporters</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			get_select_options
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_url" id="get_url"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_url</span> (line <span class="line-number">312</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the URL</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">moodle_url</span>
+		<span class="method-name">
+			get_url
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_url_select_options" id="get_url_select_options"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_url_select_options</span> (line <span class="line-number">337</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get URL select options for the currently available exporters</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			get_url_select_options
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodinit" id="init"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">init</span> (line <span class="line-number">193</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Start exporting process</p>
+<p class="description"><p>Can be manually called.</p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_file_export.html">mr_file_export</a></span>
+		<span class="method-name">
+			init
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$exporter</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$exporter</span><span class="var-description">: The exporter to use</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$filename</span><span class="var-description">: Optionally change the file name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodinstance" id="instance"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">instance</span> (line <span class="line-number">167</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Once an export has started, you can get access  to the current exporter through this method.</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_file_export_abstract.html">mr_file_export_abstract</a></span>
+		<span class="method-name">
+			instance
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodis_exporting" id="is_exporting"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">is_exporting</span> (line <span class="line-number">179</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Are we currently exporting?</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			is_exporting
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodsend" id="send"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">send</span> (line <span class="line-number">264</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Closes, cleans and sends the exported file to the  browser for download.</p>
+<p class="description"><p>If a file is sent, this method will kill the PHP script!</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			send
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodset_filename" id="set_filename"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_filename</span> (line <span class="line-number">296</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Change the export file name</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_file_export.html">mr_file_export</a></span>
+		<span class="method-name">
+			set_filename
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$filename</span><span class="var-description">: The new file name</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:48 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

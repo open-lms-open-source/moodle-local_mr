@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>See how to save global config to work with this method</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+											</head>
+		<body>
+						<h1>See how to save global config to work with this method</h1>
+<div class="listing">
+<div class="src-code"><ol><li><div class="src-line"><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line"><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;Global&nbsp;Settings&nbsp;Example</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Mark&nbsp;Nielsen</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@version</span><span class="src-doc">&nbsp;$Id$</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;blocks/helloworld</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;***/</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><a href="http://www.php.net/defined">defined</a><span class="src-sym">(</span><span class="src-str">'MOODLE_INTERNAL'</span><span class="src-sym">)&nbsp;</span><span class="src-key">or&nbsp;</span><span class="src-key">die</span><span class="src-sym">(</span><span class="src-str">'Direct&nbsp;access&nbsp;to&nbsp;this&nbsp;script&nbsp;is&nbsp;forbidden.'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><span class="src-var">$configs&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-key">array</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><span class="src-var">$configs</span><span class="src-sym">[</span><span class="src-sym">]&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id">admin_setting_configtext</span><span class="src-sym">(</span><span class="src-str">'textexample'</span><span class="src-sym">,&nbsp;</span><span class="src-id">get_string</span><span class="src-sym">(</span><span class="src-str">'textexample'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'block_helloworld'</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-id">get_string</span><span class="src-sym">(</span><span class="src-str">'textexampledesc'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'block_helloworld'</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-str">'Hello&nbsp;World!'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><span class="src-comm">//&nbsp;Define&nbsp;the&nbsp;config&nbsp;plugin&nbsp;so&nbsp;it&nbsp;is&nbsp;saved&nbsp;to</span></div></li>
+<li><div class="src-line"><span class="src-comm">//&nbsp;the&nbsp;config_plugin&nbsp;table&nbsp;then&nbsp;add&nbsp;to&nbsp;the&nbsp;settings&nbsp;page</span></div></li>
+<li><div class="src-line"><span class="src-key">foreach&nbsp;</span><span class="src-sym">(</span><span class="src-var">$configs&nbsp;</span><span class="src-key">as&nbsp;</span><span class="src-var">$config</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$config</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="../mr/mr_controller.html#var$plugin">plugin</a>&nbsp;</span>=&nbsp;<span class="src-str">'blocks/helloworld'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$settings</span><span class="src-sym">-&gt;</span><span class="src-id">add</span><span class="src-sym">(</span><span class="src-var">$config</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><span class="src-sym">}</span></div></li>
+</ol></div>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:48 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

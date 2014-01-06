@@ -1,0 +1,872 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class mr_html_tag</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class mr_html_tag</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MR HTML Tag</p>
+<p class="description"><p>This class is designed to generate HTML tags  with attributes.</p><p>The class relies on the fluent interface in  order to build html tags with their attributes.</p><p>The first call is always a call to a function whose name  is the name of the HTML tag you want to create.</p><p>Example:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$tag&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-comm">//&nbsp;Generate&nbsp;an&nbsp;&lt;a&gt;&nbsp;tag</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$html&nbsp;</span>=&nbsp;<span class="src-var">$tag</span><span class="src-sym">-&gt;</span><span class="src-id">a</span><span class="src-sym">(</span><span class="src-str">'Click&nbsp;me!'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">href</span><span class="src-sym">(</span><span class="src-str">'http://foo.bar'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><a href="../mr/mr_html_tag.html#methodclose">close</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-comm">//&nbsp;$html&nbsp;is&nbsp;set&nbsp;to&nbsp;&lt;a&nbsp;href=&quot;http://foo.bar&quot;&gt;Click&nbsp;me!&lt;/a&gt;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;<span class="src-comm">//&nbsp;Generate&nbsp;a&nbsp;&lt;div&gt;&nbsp;tag</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$html&nbsp;</span>=&nbsp;<span class="src-var">$tag</span><span class="src-sym">-&gt;</span><span class="src-id">div</span><span class="src-sym">(</span><span class="src-str">'Some&nbsp;words'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">class</span><span class="src-sym">(</span><span class="src-str">'centerpara'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><a href="../mr/mr_html_tag.html#methodclose">close</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-comm">//&nbsp;$html&nbsp;is&nbsp;set&nbsp;to&nbsp;&lt;div&nbsp;class=&quot;centerpara&quot;&gt;Some&nbsp;words&lt;/div&gt;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-php">?&gt;</span></div></li>
+</ol></div></p><p>Also, there is a static interface.</p><p>Example (this is equivalent to the above example):  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$html&nbsp;</span>=&nbsp;<span class="src-id"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span><span class="src-sym">::</span><a href="../mr/mr_html_tag.html#methodopen">open</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">a</span><span class="src-sym">(</span><span class="src-str">'Click&nbsp;me!'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">href</span><span class="src-sym">(</span><span class="src-str">'http://foo.bar'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><a href="../mr/mr_html_tag.html#methodclose">close</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$html&nbsp;</span>=&nbsp;<span class="src-id"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span><span class="src-sym">::</span><a href="../mr/mr_html_tag.html#methodopen">open</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">div</span><span class="src-sym">(</span><span class="src-str">'Some&nbsp;words'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">class</span><span class="src-sym">(</span><span class="src-str">'centerpara'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><a href="../mr/mr_html_tag.html#methodclose">close</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-php">?&gt;</span></div></li>
+</ol></div></p><p>There are a couple of ways to modify attributes.  Review the rest of the  class methods and see example code for recommended ways to call it.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Mark Nielsen</li>
+				<li><span class="field">example:</span> <a href="../__examplesource/exsource_le2-maint_blocks_helloworld_controller_default.php_d07b4f4487b0e7d8be5b9565de1680c1.html">See this class in action</a></li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_html---tag.php.html">/html/tag.php</a> (line <span class="field">69</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																								<div class="var-title">
+					<span class="var-type">object</span>
+					<a href="#$attributes" title="details" class="var-name">$attributes</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$contents" title="details" class="var-name">$contents</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$tag" title="details" class="var-name">$tag</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																										
+				<div class="method-definition">
+					static 						<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+										<a href="#open" title="details" class="method-name">open</a>
+										()
+									</div>
+																																																																		
+				<div class="method-definition">
+											<span class="method-result">mr_html_tag</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+										<a href="#add_attribute" title="details" class="method-name">add_attribute</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+										<a href="#add_attributes" title="details" class="method-name">add_attributes</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$attributes</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+										<a href="#append_attribute" title="details" class="method-name">append_attribute</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+										<a href="#append_attributes" title="details" class="method-name">append_attributes</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$attributes</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#close" title="details" class="method-name">close</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$param</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#get_attribute" title="details" class="method-name">get_attribute</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#init" title="details" class="method-name">init</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tag</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$contents</span>)
+									</div>
+																						
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+										<a href="#prepend_attribute" title="details" class="method-name">prepend_attribute</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+										<a href="#prepend_attributes" title="details" class="method-name">prepend_attributes</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$attributes</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+										<a href="#remove_attribute" title="details" class="method-name">remove_attribute</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+										<a href="#remove_attributes" title="details" class="method-name">remove_attributes</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$attributes</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#__call" title="details" class="method-name">__call</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$arguments</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#__toString" title="details" class="method-name">__toString</a>
+										()
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+<a name="var$attributes" id="$attributes"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">object</span>
+			<span class="var-name">$attributes</span>
+						(line <span class="line-number">89</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">HTML tag attribute list</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$contents" id="$contents"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$contents</span>
+			 = <span class="var-default"> NULL</span>			(line <span class="line-number">82</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">HTML tag contents (EG: goes between the open/close tags)</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$tag" id="$tag"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$tag</span>
+			 = <span class="var-default"> NULL</span>			(line <span class="line-number">75</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">HTML tag name</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodopen" id="open"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static open</span> (line <span class="line-number">215</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Static interface</p>
+<p class="description"><p>Example  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$html&nbsp;</span>=&nbsp;<span class="src-id"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span><span class="src-sym">::</span><a href="../mr/mr_html_tag.html#methodopen">open</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">a</span><span class="src-sym">(</span><span class="src-str">'Click&nbsp;me!'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">href</span><span class="src-sym">(</span><span class="src-str">'http://foo.bar'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><a href="../mr/mr_html_tag.html#methodclose">close</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-php">?&gt;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+		<span class="method-name">
+			open
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">94</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constructor</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mr_html_tag</span>
+		<span class="method-name">
+			__construct
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodadd_attribute" id="add_attribute"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">add_attribute</span> (line <span class="line-number">290</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get an attribute</p>
+<p class="description"><p>Recommended way to call:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$tag&nbsp;&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$link&nbsp;</span>=&nbsp;<span class="src-var">$tag</span><span class="src-sym">-&gt;</span><span class="src-id">a</span><span class="src-sym">(</span><span class="src-str">'Click&nbsp;me!'</span><span class="src-sym">)</span><span class="src-sym">;&nbsp;&nbsp;</span><span class="src-comm">//&nbsp;Create&nbsp;a&nbsp;link&nbsp;tag</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$link</span><span class="src-sym">-&gt;</span><span class="src-id">href</span><span class="src-sym">(</span><span class="src-str">'http://foo.bar'</span><span class="src-sym">)</span><span class="src-sym">;&nbsp;</span><span class="src-comm">//&nbsp;Calls&nbsp;add_attribute('href',&nbsp;'http://foo.bar')</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-php">?&gt;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+		<span class="method-name">
+			add_attribute
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: The attribute name</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value</span><span class="var-description">: The attribute value</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodadd_attributes" id="add_attributes"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">add_attributes</span> (line <span class="line-number">301</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Bulk add attributes</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+		<span class="method-name">
+			add_attributes
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$attributes</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$attributes</span><span class="var-description">: Array or object of atrributes</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodappend_attribute" id="append_attribute"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">append_attribute</span> (line <span class="line-number">325</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Append an attribute</p>
+<p class="description"><p>Recommended way to call:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$tag&nbsp;&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$link&nbsp;</span>=&nbsp;<span class="src-var">$tag</span><span class="src-sym">-&gt;</span><span class="src-id">a</span><span class="src-sym">(</span><span class="src-str">'Click&nbsp;me!'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">href</span><span class="src-sym">(</span><span class="src-str">'http://foo.bar'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">class</span><span class="src-sym">(</span><span class="src-str">'foo'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$link</span><span class="src-sym">-&gt;</span><span class="src-id">append_class</span><span class="src-sym">(</span><span class="src-str">'bar'</span><span class="src-sym">)</span><span class="src-sym">;&nbsp;&nbsp;</span><span class="src-comm">//&nbsp;Calls&nbsp;append_attribute('class',&nbsp;'bar')</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;and&nbsp;class&nbsp;attribute&nbsp;will&nbsp;render&nbsp;as&nbsp;class=&quot;foo&nbsp;bar&quot;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-php">?&gt;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+		<span class="method-name">
+			append_attribute
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: The attribute name</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value</span><span class="var-description">: The attribute value to append</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodappend_attributes" id="append_attributes"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">append_attributes</span> (line <span class="line-number">340</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Bulk append attributes</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+		<span class="method-name">
+			append_attributes
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$attributes</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$attributes</span><span class="var-description">: Array or object of atrributes</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodclose" id="close"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">close</span> (line <span class="line-number">410</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Render the HTML tag</p>
+<p class="description"><p>This method will render the tag with all of its  attributes and content.  You can pass additional  strings to this method to add more content to the  tag.</p><p>Example code:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$tag&nbsp;&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$html&nbsp;</span>=&nbsp;<span class="src-var">$tag</span><span class="src-sym">-&gt;</span><span class="src-id">div</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">class</span><span class="src-sym">(</span><span class="src-str">'generalbox'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><a href="../mr/mr_html_tag.html#methodclose">close</a><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$somestring1</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$somestring2</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$tag</span><span class="src-sym">-&gt;</span><span class="src-id">p</span><span class="src-sym">(</span><span class="src-var">$somestring3</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-php">?&gt;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			close
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$param</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$param</span><span class="var-description">: Pass as many strings as you like, all will be added to the contents of the tag</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodget_attribute" id="get_attribute"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_attribute</span> (line <span class="line-number">234</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get an attribute</p>
+<p class="description"><p>Recommended way to call:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$tag&nbsp;&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$link&nbsp;</span>=&nbsp;<span class="src-var">$tag</span><span class="src-sym">-&gt;</span><span class="src-id">a</span><span class="src-sym">(</span><span class="src-str">'Click&nbsp;me!'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">href</span><span class="src-sym">(</span><span class="src-str">'http://foo.bar'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$href&nbsp;</span>=&nbsp;<span class="src-var">$link</span><span class="src-sym">-&gt;</span><span class="src-id">get_href</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;&nbsp;&nbsp;</span><span class="src-comm">//&nbsp;Calls&nbsp;get_attribute('href')&nbsp;and&nbsp;returns&nbsp;'http://foo.bar'</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-php">?&gt;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			get_attribute
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: The attribute name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodinit" id="init"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">init</span> (line <span class="line-number">109</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Init routine</p>
+<p class="description"><p>This is protected because it should only  be called by this class itself through  mr_html_tag::__call()</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			init
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tag</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$contents</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tag</span><span class="var-description">: The HTML tag name</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$contents</span><span class="var-description">: The HTML tag contents</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodprepend_attribute" id="prepend_attribute"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">prepend_attribute</span> (line <span class="line-number">364</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Prepend an attribute</p>
+<p class="description"><p>Recommended way to call:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$tag&nbsp;&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$link&nbsp;</span>=&nbsp;<span class="src-var">$tag</span><span class="src-sym">-&gt;</span><span class="src-id">a</span><span class="src-sym">(</span><span class="src-str">'Click&nbsp;me!'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">href</span><span class="src-sym">(</span><span class="src-str">'http://foo.bar'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">class</span><span class="src-sym">(</span><span class="src-str">'foo'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$link</span><span class="src-sym">-&gt;</span><span class="src-id">prepend_class</span><span class="src-sym">(</span><span class="src-str">'bar'</span><span class="src-sym">)</span><span class="src-sym">;&nbsp;&nbsp;</span><span class="src-comm">//&nbsp;Calls&nbsp;prepend_attribute('class',&nbsp;'bar')</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;and&nbsp;class&nbsp;attribute&nbsp;will&nbsp;render&nbsp;as&nbsp;class=&quot;bar&nbsp;foo&quot;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-php">?&gt;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+		<span class="method-name">
+			prepend_attribute
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: The attribute name</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value</span><span class="var-description">: The attribute value to prepend</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodprepend_attributes" id="prepend_attributes"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">prepend_attributes</span> (line <span class="line-number">379</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Bulk prepend attributes</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+		<span class="method-name">
+			prepend_attributes
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$attributes</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$attributes</span><span class="var-description">: Array or object of atrributes</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodremove_attribute" id="remove_attribute"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">remove_attribute</span> (line <span class="line-number">256</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Remove an attribute</p>
+<p class="description"><p>Recommended way to call:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$tag&nbsp;&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$link&nbsp;</span>=&nbsp;<span class="src-var">$tag</span><span class="src-sym">-&gt;</span><span class="src-id">a</span><span class="src-sym">(</span><span class="src-str">'Click&nbsp;me!'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">href</span><span class="src-sym">(</span><span class="src-str">'http://foo.bar'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$link</span><span class="src-sym">-&gt;</span><span class="src-id">remove_href</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;&nbsp;</span><span class="src-comm">//&nbsp;Calls&nbsp;remove_attribute('href')&nbsp;and&nbsp;unsets&nbsp;href&nbsp;attribute</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-php">?&gt;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+		<span class="method-name">
+			remove_attribute
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: The attribute name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodremove_attributes" id="remove_attributes"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">remove_attributes</span> (line <span class="line-number">267</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Bulk remove attributes</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span>
+		<span class="method-name">
+			remove_attributes
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$attributes</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$attributes</span><span class="var-description">: An array of attribute names</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__call" id="__call"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">__call</span> (line <span class="line-number">163</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">This is where all of the real work is done.</p>
+<p class="description"><p>Special method calls include:  <ul><li>append_ATTRIBUTENAME($value) (Same as mr_html_tag::prepend_attribute(ATTRIBUTENAME, $value))</li><li>prepend_ATTRIBUTENAME($value) (Same as mr_html_tag::prepend_attribute(ATTRIBUTENAME, $value))</li><li>remove_ATTRIBUTENAME() (Same as mr_html_tag::remove_attribute(ATTRIBUTENAME))</li><li>remove_ATTRIBUTENAME() (Same as mr_html_tag::get_attribute(ATTRIBUTENAME))</li></ul></p><p>How to use:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$tag&nbsp;&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_html_tag.html">mr_html_tag</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$link&nbsp;</span>=&nbsp;<span class="src-var">$tag</span><span class="src-sym">-&gt;</span><span class="src-id">a</span><span class="src-sym">(</span><span class="src-str">'Click&nbsp;me!'</span><span class="src-sym">)</span><span class="src-sym">;&nbsp;&nbsp;</span><span class="src-comm">//&nbsp;This&nbsp;will&nbsp;return&nbsp;a&nbsp;new&nbsp;instance</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;mr_html_tag&nbsp;and&nbsp;set&nbsp;the&nbsp;tag='a'</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;and&nbsp;contents='Click&nbsp;me!'</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$link</span><span class="src-sym">-&gt;</span><span class="src-id">href</span><span class="src-sym">(</span><span class="src-str">'http://foo.bar'</span><span class="src-sym">)</span><span class="src-sym">;&nbsp;</span><span class="src-comm">//&nbsp;This&nbsp;will&nbsp;add&nbsp;an&nbsp;attribute&nbsp;to&nbsp;the&nbsp;a</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;tag:&nbsp;href=&quot;http://foo.bar&quot;&nbsp;(Same&nbsp;as</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;mr_html_tag::add_attribute()</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$html&nbsp;</span>=&nbsp;<span class="src-var">$link</span><span class="src-sym">-&gt;</span><a href="../mr/mr_html_tag.html#methodclose">close</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="src-comm">//&nbsp;This&nbsp;will&nbsp;close&nbsp;the&nbsp;tag&nbsp;and&nbsp;return&nbsp;the&nbsp;HTML</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;<span class="src-comm">//&nbsp;All&nbsp;of&nbsp;the&nbsp;above&nbsp;calls&nbsp;can&nbsp;be&nbsp;stringed&nbsp;together&nbsp;using</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-comm">//&nbsp;the&nbsp;fluent&nbsp;interface&nbsp;to&nbsp;get&nbsp;the&nbsp;HTML</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$html&nbsp;</span>=&nbsp;<span class="src-var">$tag</span><span class="src-sym">-&gt;</span><span class="src-id">a</span><span class="src-sym">(</span><span class="src-str">'Click&nbsp;me!'</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">href</span><span class="src-sym">(</span><span class="src-str">'http://foo.bar'</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><a href="../mr/mr_html_tag.html#methodclose">close</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-php">?&gt;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+				<li><span class="field">example:</span> <a href="../__examplesource/exsource_le2-maint_blocks_helloworld_controller_default.php_d07b4f4487b0e7d8be5b9565de1680c1.html">See more examples</a></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			__call
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$arguments</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: The function name called</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$arguments</span><span class="var-description">: The function arguments passed</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__toString" id="__toString"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">__toString</span> (line <span class="line-number">122</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Convert this object to it's HTML string equivalent</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			__toString
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:52 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

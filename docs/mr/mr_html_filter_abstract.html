@@ -1,0 +1,1217 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class mr_html_filter_abstract</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class mr_html_filter_abstract</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-descendents">Descendents</a>
+			|											<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MR HTML Filter Abstract</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Mark Nielsen</li>
+				<li><span class="field">abstract:</span> </li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_html---filter---abstract.php.html">/html/filter/abstract.php</a> (line <span class="field">32</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+	<a name="sec-descendents"></a>
+	<div class="info-box">
+		<div class="info-box-title">Direct descendents</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Descendents</span>
+			|												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+								|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_html_filter_autocomplete.html">mr_html_filter_autocomplete</a></td>
+					<td>
+											MR HTML Filter Autocomplete
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_html_filter_autocompleteid.html">mr_html_filter_autocompleteid</a></td>
+					<td>
+											MR HTML Filter Autocomplete with IDs
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_html_filter_checkbox.html">mr_html_filter_checkbox</a></td>
+					<td>
+											MR HTML Filter Checkbox
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_html_filter_daterange.html">mr_html_filter_daterange</a></td>
+					<td>
+											MR HTML Filter Date Range
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_html_filter_header.html">mr_html_filter_header</a></td>
+					<td>
+											MR HTML Filter Header
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_html_filter_hidden.html">mr_html_filter_hidden</a></td>
+					<td>
+											MR HTML Filter hidden
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_html_filter_numberrange.html">mr_html_filter_numberrange</a></td>
+					<td>
+											MR HTML Filter Number Range
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_html_filter_recent.html">mr_html_filter_recent</a></td>
+					<td>
+											MR HTML Filter Recent
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_html_filter_select.html">mr_html_filter_select</a></td>
+					<td>
+											MR HTML Filter Select
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_html_filter_selectmulti.html">mr_html_filter_selectmulti</a></td>
+					<td>
+											MR HTML Filter Multiple Select
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_html_filter_selectmultiplus.html">mr_html_filter_selectmultiplus</a></td>
+					<td>
+											Multi-select plus filter
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_html_filter_text.html">mr_html_filter_text</a></td>
+					<td>
+											MR HTML Filter Text
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../mr/mr_html_filter_textarea.html">mr_html_filter_textarea</a></td>
+					<td>
+											MR HTML Filter Text
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																																																								<div class="var-title">
+					<span class="var-type">boolean</span>
+					<a href="#$advanced" title="details" class="var-name">$advanced</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">array</span>
+					<a href="#$disabledif" title="details" class="var-name">$disabledif</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$field" title="details" class="var-name">$field</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">array</span>
+					<a href="#$helpbutton" title="details" class="var-name">$helpbutton</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$label" title="details" class="var-name">$label</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$name" title="details" class="var-name">$name</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type"><a href="../mr/mr_preferences.html">mr_preferences</a></span>
+					<a href="#$preferences" title="details" class="var-name">$preferences</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																						
+				<div class="method-definition">
+											<span class="method-result">mr_html_filter_abstract</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$label</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$advanced</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$field</span> = <span class="var-default">NULL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+										<a href="#add_disabledif" title="details" class="method-name">add_disabledif</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$dependenton</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$condition</span> = <span class="var-default">'notchecked'</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$value</span> = <span class="var-default">'1'</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+										<a href="#add_element" title="details" class="method-name">add_element</a>
+											(<span class="var-type">MoodleQuickForm</span>&nbsp;<span class="var-name">$mform</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+										<a href="#add_elements" title="details" class="method-name">add_elements</a>
+											(<span class="var-type">MoodleQuickForm</span>&nbsp;<span class="var-name">$mform</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+										<a href="#add_helpbutton" title="details" class="method-name">add_helpbutton</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$identifier</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$component</span> = <span class="var-default">'moodle'</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#get_element_name" title="details" class="method-name">get_element_name</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#get_field" title="details" class="method-name">get_field</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#get_name" title="details" class="method-name">get_name</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#preferences_defaults" title="details" class="method-name">preferences_defaults</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+										<a href="#preferences_delete" title="details" class="method-name">preferences_delete</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span> = <span class="var-default">NULL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#preferences_get" title="details" class="method-name">preferences_get</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+										<a href="#preferences_init" title="details" class="method-name">preferences_init</a>
+											(<span class="var-type"><a href="../mr/mr_preferences.html">mr_preferences</a></span>&nbsp;<span class="var-name">$preferences</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+										<a href="#preferences_update" title="details" class="method-name">preferences_update</a>
+											(<span class="var-type">object</span>&nbsp;<span class="var-name">$data</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#sql" title="details" class="method-name">sql</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#__toString" title="details" class="method-name">__toString</a>
+										()
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+<a name="var$advanced" id="$advanced"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">boolean</span>
+			<span class="var-name">$advanced</span>
+						(line <span class="line-number">53</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">If it should be flagged as  advanced or not in the form</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$disabledif" id="$disabledif"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$disabledif</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">81</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Element disabledIf parameters</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$field" id="$field"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$field</span>
+						(line <span class="line-number">60</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">SQL field name (if different from $name)</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$helpbutton" id="$helpbutton"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$helpbutton</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">74</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Element help button parameters</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$label" id="$label"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$label</span>
+						(line <span class="line-number">45</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Filter label in the form</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$name" id="$name"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$name</span>
+						(line <span class="line-number">38</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The filter's name</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$preferences" id="$preferences"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type"><a href="../mr/mr_preferences.html">mr_preferences</a></span>
+			<span class="var-name">$preferences</span>
+						(line <span class="line-number">67</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">User preferences (filter values are stored here)</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">91</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Construct</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mr_html_filter_abstract</span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$label</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$advanced</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$field</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: Filter name</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$label</span><span class="var-description">: Filter label</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$advanced</span><span class="var-description">: Filter advanced form setting</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$field</span><span class="var-description">: SQL field, defaults to $name</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../mr/mr_html_filter_autocomplete.html#method__construct">mr_html_filter_autocomplete::__construct()</a>
+								: Adding an options param for the select options
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_autocompleteid.html#method__construct">mr_html_filter_autocompleteid::__construct()</a>
+								: Adding an options param for the select options
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_checkbox.html#method__construct">mr_html_filter_checkbox::__construct()</a>
+								: Checkbox filter constructor
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_header.html#method__construct">mr_html_filter_header::__construct()</a>
+								: Header &quot;filter&quot; constructor
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_hidden.html#method__construct">mr_html_filter_hidden::__construct()</a>
+								: Construct
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_numberrange.html#method__construct">mr_html_filter_numberrange::__construct()</a>
+								: Construct
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_select.html#method__construct">mr_html_filter_select::__construct()</a>
+								: Adding an options param for the select options
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_selectmulti.html#method__construct">mr_html_filter_selectmulti::__construct()</a>
+								: Adding an options param for the select options
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_selectmultiplus.html#method__construct">mr_html_filter_selectmultiplus::__construct()</a>
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_textarea.html#method__construct">mr_html_filter_textarea::__construct()</a>
+								: Construct
+							</li>
+				</ul>
+	</div>
+<a name="methodadd_disabledif" id="add_disabledif"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">add_disabledif</span> (line <span class="line-number">237</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add disabledIf to this filter</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+		<span class="method-name">
+			add_disabledif
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$dependenton</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$condition</span> = <span class="var-default">'notchecked'</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$value</span> = <span class="var-default">'1'</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$dependenton</span><span class="var-description">: The name of the element whose state will be checked for condition</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$condition</span><span class="var-description">: The condition to check</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$value</span><span class="var-description">: Used in conjunction with condition.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodadd_element" id="add_element"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">add_element</span> (line <span class="line-number">282</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add filter form element</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+		<span class="method-name">
+			add_element
+		</span>
+					(<span class="var-type">MoodleQuickForm</span>&nbsp;<span class="var-name">$mform</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">MoodleQuickForm</span>
+				<span class="var-name">$mform</span><span class="var-description">: Filter form</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../mr/mr_html_filter_autocomplete.html#methodadd_element">mr_html_filter_autocomplete::add_element()</a>
+								: Add text input
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_autocompleteid.html#methodadd_element">mr_html_filter_autocompleteid::add_element()</a>
+								: Add text input for autocomplete and hidden field to store ID
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_checkbox.html#methodadd_element">mr_html_filter_checkbox::add_element()</a>
+								: Add checkbox
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_daterange.html#methodadd_element">mr_html_filter_daterange::add_element()</a>
+								: Add date fields and checkboxes to enable/disable
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_header.html#methodadd_element">mr_html_filter_header::add_element()</a>
+								: Add filter form element
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_hidden.html#methodadd_element">mr_html_filter_hidden::add_element()</a>
+								: Add hidden field
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_numberrange.html#methodadd_element">mr_html_filter_numberrange::add_element()</a>
+								: Add text fields and checkboxes to enable/disable
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_recent.html#methodadd_element">mr_html_filter_recent::add_element()</a>
+								: Add select input
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_select.html#methodadd_element">mr_html_filter_select::add_element()</a>
+								: Add select input
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_selectmulti.html#methodadd_element">mr_html_filter_selectmulti::add_element()</a>
+								: Add select input
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_selectmultiplus.html#methodadd_element">mr_html_filter_selectmultiplus::add_element()</a>
+								: Add filter form element
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_text.html#methodadd_element">mr_html_filter_text::add_element()</a>
+								: Add text input
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_textarea.html#methodadd_element">mr_html_filter_textarea::add_element()</a>
+								: Add text input
+							</li>
+				</ul>
+	</div>
+<a name="methodadd_elements" id="add_elements"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">add_elements</span> (line <span class="line-number">252</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add all elements for this filter</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+		<span class="method-name">
+			add_elements
+		</span>
+					(<span class="var-type">MoodleQuickForm</span>&nbsp;<span class="var-name">$mform</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">MoodleQuickForm</span>
+				<span class="var-name">$mform</span><span class="var-description">: The filter form</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../mr/mr_html_filter_selectmultiplus.html#methodadd_elements">mr_html_filter_selectmultiplus::add_elements()</a>
+								: Add all elements for this filter
+							</li>
+				</ul>
+	</div>
+<a name="methodadd_helpbutton" id="add_helpbutton"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">add_helpbutton</span> (line <span class="line-number">221</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add a help button to this filter</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+		<span class="method-name">
+			add_helpbutton
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$identifier</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$component</span> = <span class="var-default">'moodle'</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$identifier</span><span class="var-description">: Help button text identifier</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$component</span><span class="var-description">: The plugin component</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodget_element_name" id="get_element_name"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_element_name</span> (line <span class="line-number">133</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the filter's primary form element's name</p>
+<p class="description"><p>This is used to attach help buttons, disabledIfs,  etc to the filter's element.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			get_element_name
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../mr/mr_html_filter_daterange.html#methodget_element_name">mr_html_filter_daterange::get_element_name()</a>
+								: Return the group element
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_numberrange.html#methodget_element_name">mr_html_filter_numberrange::get_element_name()</a>
+								: Return the group element
+							</li>
+				</ul>
+	</div>
+<a name="methodget_field" id="get_field"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_field</span> (line <span class="line-number">142</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get SQL field name</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			get_field
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_name" id="get_name"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_name</span> (line <span class="line-number">121</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the field's name</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			get_name
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodpreferences_defaults" id="preferences_defaults"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">preferences_defaults</span> (line <span class="line-number">151</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Filter defaults</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			preferences_defaults
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../mr/mr_html_filter_autocompleteid.html#methodpreferences_defaults">mr_html_filter_autocompleteid::preferences_defaults()</a>
+								: Defaults for two fields
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_checkbox.html#methodpreferences_defaults">mr_html_filter_checkbox::preferences_defaults()</a>
+								: Filter defaults
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_daterange.html#methodpreferences_defaults">mr_html_filter_daterange::preferences_defaults()</a>
+								: Defaults for two fields
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_hidden.html#methodpreferences_defaults">mr_html_filter_hidden::preferences_defaults()</a>
+								: Defaults to value
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_numberrange.html#methodpreferences_defaults">mr_html_filter_numberrange::preferences_defaults()</a>
+								: Defaults for two fields
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_recent.html#methodpreferences_defaults">mr_html_filter_recent::preferences_defaults()</a>
+								: Default is zero
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_select.html#methodpreferences_defaults">mr_html_filter_select::preferences_defaults()</a>
+								: First option is default
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_selectmulti.html#methodpreferences_defaults">mr_html_filter_selectmulti::preferences_defaults()</a>
+								: First option is default
+							</li>
+				</ul>
+	</div>
+<a name="methodpreferences_delete" id="preferences_delete"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">preferences_delete</span> (line <span class="line-number">202</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Remove preferences for this filter</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+		<span class="method-name">
+			preferences_delete
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: A specific preference to delete, if NULL all are deleted</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodpreferences_get" id="preferences_get"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">preferences_get</span> (line <span class="line-number">173</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get a preference value (default can be returned)</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			preferences_get
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: Preference name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodpreferences_init" id="preferences_init"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">preferences_init</span> (line <span class="line-number">161</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Preferences init</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+		<span class="method-name">
+			preferences_init
+		</span>
+					(<span class="var-type"><a href="../mr/mr_preferences.html">mr_preferences</a></span>&nbsp;<span class="var-name">$preferences</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_preferences.html">mr_preferences</a></span>
+				<span class="var-name">$preferences</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodpreferences_update" id="preferences_update"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">preferences_update</span> (line <span class="line-number">185</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Update user preferences to current filter settings</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span>
+		<span class="method-name">
+			preferences_update
+		</span>
+					(<span class="var-type">object</span>&nbsp;<span class="var-name">$data</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">object</span>
+				<span class="var-name">$data</span><span class="var-description">: Form data</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../mr/mr_html_filter_daterange.html#methodpreferences_update">mr_html_filter_daterange::preferences_update()</a>
+								: Enforce checkboxes - if not set
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_numberrange.html#methodpreferences_update">mr_html_filter_numberrange::preferences_update()</a>
+								: Enforce checkboxes - if not set
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_selectmulti.html#methodpreferences_update">mr_html_filter_selectmulti::preferences_update()</a>
+								: Save as CSV value
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_selectmultiplus.html#methodpreferences_update">mr_html_filter_selectmultiplus::preferences_update()</a>
+							</li>
+				</ul>
+	</div>
+<a name="methodsql" id="sql"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">sql</span> (line <span class="line-number">289</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Generate this filter's SQL</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			sql
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../mr/mr_html_filter_autocomplete.html#methodsql">mr_html_filter_autocomplete::sql()</a>
+								: Search by input value
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_autocompleteid.html#methodsql">mr_html_filter_autocompleteid::sql()</a>
+								: Restrict to value
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_checkbox.html#methodsql">mr_html_filter_checkbox::sql()</a>
+								: Limit by input value
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_daterange.html#methodsql">mr_html_filter_daterange::sql()</a>
+								: Set limits on field
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_header.html#methodsql">mr_html_filter_header::sql()</a>
+								: Stub method to override abstract method
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_hidden.html#methodsql">mr_html_filter_hidden::sql()</a>
+								: Set field to value
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_numberrange.html#methodsql">mr_html_filter_numberrange::sql()</a>
+								: Set limits on field
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_recent.html#methodsql">mr_html_filter_recent::sql()</a>
+								: Limit a field to being greater than our recent time
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_select.html#methodsql">mr_html_filter_select::sql()</a>
+								: Limit by input value
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_selectmulti.html#methodsql">mr_html_filter_selectmulti::sql()</a>
+								: Limit by input value
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_selectmultiplus.html#methodsql">mr_html_filter_selectmultiplus::sql()</a>
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_text.html#methodsql">mr_html_filter_text::sql()</a>
+								: Search by input value
+							</li>
+					<li>
+				<a href="../mr/mr_html_filter_textarea.html#methodsql">mr_html_filter_textarea::sql()</a>
+								: Search by input value
+							</li>
+				</ul>
+	</div>
+<a name="method__toString" id="__toString"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">__toString</span> (line <span class="line-number">108</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Convert this filter into a simple string</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			__toString
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:44 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

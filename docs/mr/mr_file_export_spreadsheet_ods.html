@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class mr_file_export_spreadsheet_ods</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class mr_file_export_spreadsheet_ods</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-vars">Vars</a>
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+											<a href="#sec-consts">Constants</a>
+						
+			</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MR File Export Spreadsheet ODS</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Mark Nielsen</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_file---export---spreadsheet---ods.php.html">/file/export/spreadsheet/ods.php</a> (line <span class="field">37</span>)
+		</p>
+		
+				
+		<pre><a href="../mr/mr_plugin.html">mr_plugin</a>
+   |
+   --<a href="../mr/mr_file_export_abstract.html">mr_file_export_abstract</a>
+      |
+      --<a href="../mr/mr_file_export_spreadsheet_abstract.html">mr_file_export_spreadsheet_abstract</a>
+         |
+         --mr_file_export_spreadsheet_ods</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-consts">Constants</a>
+							
+															<a href="#sec-vars">Vars</a>
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																						
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#get_extension" title="details" class="method-name">get_extension</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#max_rows" title="details" class="method-name">max_rows</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#new_workbook" title="details" class="method-name">new_workbook</a>
+										()
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+												<a href="#sec-consts">Constants</a>
+							
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../mr/mr_file_export_spreadsheet_abstract.html">mr_file_export_spreadsheet_abstract</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_file_export_spreadsheet_abstract.html#var$name">mr_file_export_spreadsheet_abstract::$name</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_file_export_spreadsheet_abstract.html#var$row">mr_file_export_spreadsheet_abstract::$row</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_file_export_spreadsheet_abstract.html#var$workbook">mr_file_export_spreadsheet_abstract::$workbook</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_file_export_spreadsheet_abstract.html#var$worksheet">mr_file_export_spreadsheet_abstract::$worksheet</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_file_export_spreadsheet_abstract.html#var$writer">mr_file_export_spreadsheet_abstract::$writer</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-vars">Vars</a>
+																			<a href="#sec-consts">Constants</a>
+							
+										<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodget_extension" id="get_extension"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_extension</span> (line <span class="line-number">43</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the file extension generated by the export class</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			get_extension
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../mr/mr_file_export_abstract.html#methodget_extension">mr_file_export_abstract::get_extension()</a></dt>
+						<dd>Get the file extension generated by the export class</dd>
+					</dl>
+			
+	</div>
+<a name="methodmax_rows" id="max_rows"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">max_rows</span> (line <span class="line-number">50</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Can only handle 100k</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			max_rows
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../mr/mr_file_export_abstract.html#methodmax_rows">mr_file_export_abstract::max_rows()</a></dt>
+						<dd>The max export size that the export plugin can handle</dd>
+					</dl>
+			
+	</div>
+<a name="methodnew_workbook" id="new_workbook"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">new_workbook</span> (line <span class="line-number">57</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Different workbook</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			new_workbook
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../mr/mr_file_export_spreadsheet_abstract.html#methodnew_workbook">mr_file_export_spreadsheet_abstract::new_workbook()</a></dt>
+						<dd>Generate a new workbook</dd>
+					</dl>
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../mr/mr_file_export_spreadsheet_abstract.html">mr_file_export_spreadsheet_abstract</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../mr/mr_file_export_spreadsheet_abstract.html#methodadd_row">mr_file_export_spreadsheet_abstract::add_row()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_spreadsheet_abstract.html#methodclose">mr_file_export_spreadsheet_abstract::close()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_spreadsheet_abstract.html#methodgenerates_file">mr_file_export_spreadsheet_abstract::generates_file()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_spreadsheet_abstract.html#methodinit">mr_file_export_spreadsheet_abstract::init()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_spreadsheet_abstract.html#methodnew_workbook">mr_file_export_spreadsheet_abstract::new_workbook()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_spreadsheet_abstract.html#methodset_headers">mr_file_export_spreadsheet_abstract::set_headers()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../mr/mr_file_export_abstract.html">mr_file_export_abstract</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodadd_row">mr_file_export_abstract::add_row()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodcleanup">mr_file_export_abstract::cleanup()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodclose">mr_file_export_abstract::close()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodgenerates_file">mr_file_export_abstract::generates_file()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodget_component">mr_file_export_abstract::get_component()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodget_extension">mr_file_export_abstract::get_extension()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodinit">mr_file_export_abstract::init()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodmax_rows">mr_file_export_abstract::max_rows()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodset_headers">mr_file_export_abstract::set_headers()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_file_export_abstract.html#methodtype">mr_file_export_abstract::type()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../mr/mr_plugin.html">mr_plugin</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../mr/mr_plugin.html#methodget_component">mr_plugin::get_component()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_plugin.html#methodname">mr_plugin::name()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_plugin.html#methodtype">mr_plugin::type()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+	<a name="sec-consts"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constants</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Constants</a> (<span class="disabled">details</span>)
+						
+			
+												<a href="#sec-vars">Vars</a>
+														| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+										<h4>Inherited Constants</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../mr/mr_file_export_spreadsheet_abstract.html">mr_file_export_spreadsheet_abstract</a></span></p>
+					<blockquote>
+													<img src="../media/images/Variable.png" />
+							<span class="const-title">
+								<span class="const-name"><a href="../mr/mr_file_export_spreadsheet_abstract.html#constMAXROWS">mr_file_export_spreadsheet_abstract::MAXROWS</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:49 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

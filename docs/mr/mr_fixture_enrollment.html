@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class mr_fixture_enrollment</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class mr_fixture_enrollment</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MR Fixture Enrollment</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Mark Nielsen</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_fixture---enrollment.php.html">/fixture/enrollment.php</a> (line <span class="field">37</span>)
+		</p>
+		
+				
+		<pre><a href="../mr/mr_fixture_abstract.html">mr_fixture_abstract</a>
+   |
+   --mr_fixture_enrollment</pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																																								<div class="var-title">
+					<span class="var-type"><a href="../mr/mr_fixture_course.html">mr_fixture_course</a></span>
+					<a href="#$course" title="details" class="var-name">$course</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">enrol_plugin</span>
+					<a href="#$enroll" title="details" class="var-name">$enroll</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">array</span>
+					<a href="#$options" title="details" class="var-name">$options</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type"><a href="../mr/mr_fixture_role.html">mr_fixture_role</a>|null</span>
+					<a href="#$role" title="details" class="var-name">$role</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type"><a href="../mr/mr_fixture_user.html">mr_fixture_user</a></span>
+					<a href="#$user" title="details" class="var-name">$user</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																														
+				<div class="method-definition">
+											<span class="method-result">mr_fixture_enrollment</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type"><a href="../mr/mr_fixture_course.html">mr_fixture_course</a></span>&nbsp;<span class="var-name">$course</span>, <span class="var-type"><a href="../mr/mr_fixture_user.html">mr_fixture_user</a></span>&nbsp;<span class="var-name">$user</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$enroll</span> = <span class="var-default">null</span>], [<span class="var-type"><a href="../mr/mr_fixture_role.html">mr_fixture_role</a></span>&nbsp;<span class="var-name">$role</span> = <span class="var-default">null</span>], [<span class="var-type">array|object </span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">array()</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#build" title="details" class="method-name">build</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#destroy" title="details" class="method-name">destroy</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#exists" title="details" class="method-name">exists</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">stdClass</span>
+										<a href="#fetch_enrollment_instance" title="details" class="method-name">fetch_enrollment_instance</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">\mr_fixture_course</span>
+										<a href="#get_course" title="details" class="method-name">get_course</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">\enrol_plugin</span>
+										<a href="#get_enroll" title="details" class="method-name">get_enroll</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#get_option" title="details" class="method-name">get_option</a>
+											(<span class="var-type">$name</span>&nbsp;<span class="var-name">$name</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$default</span> = <span class="var-default">null</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#get_options" title="details" class="method-name">get_options</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">\mr_fixture_role|null</span>
+										<a href="#get_role" title="details" class="method-name">get_role</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">\mr_fixture_user</span>
+										<a href="#get_user" title="details" class="method-name">get_user</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_fixture_enrollment.html">mr_fixture_enrollment</a></span>
+										<a href="#set_course" title="details" class="method-name">set_course</a>
+											(<span class="var-type">\mr_fixture_course</span>&nbsp;<span class="var-name">$course</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_fixture_enrollment.html">mr_fixture_enrollment</a></span>
+										<a href="#set_enroll" title="details" class="method-name">set_enroll</a>
+											(<span class="var-type">\enrol_plugin</span>&nbsp;<span class="var-name">$enroll</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_fixture_user.html">mr_fixture_user</a></span>
+										<a href="#set_options" title="details" class="method-name">set_options</a>
+											(<span class="var-type">array|object </span>&nbsp;<span class="var-name">$options</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_fixture_enrollment.html">mr_fixture_enrollment</a></span>
+										<a href="#set_role" title="details" class="method-name">set_role</a>
+											(<span class="var-type">\mr_fixture_role|null</span>&nbsp;<span class="var-name">$role</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_fixture_enrollment.html">mr_fixture_enrollment</a></span>
+										<a href="#set_user" title="details" class="method-name">set_user</a>
+											(<span class="var-type">\mr_fixture_user</span>&nbsp;<span class="var-name">$user</span>)
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+<a name="var$course" id="$course"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type"><a href="../mr/mr_fixture_course.html">mr_fixture_course</a></span>
+			<span class="var-name">$course</span>
+						(line <span class="line-number">41</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$enroll" id="$enroll"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">enrol_plugin</span>
+			<span class="var-name">$enroll</span>
+						(line <span class="line-number">56</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$options" id="$options"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$options</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">63</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Parameters to pass to the enrol_plugin-&gt;enrol_user()</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$role" id="$role"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type"><a href="../mr/mr_fixture_role.html">mr_fixture_role</a>|null</span>
+			<span class="var-name">$role</span>
+			 = <span class="var-default"> null</span>			(line <span class="line-number">51</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$user" id="$user"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type"><a href="../mr/mr_fixture_user.html">mr_fixture_user</a></span>
+			<span class="var-name">$user</span>
+						(line <span class="line-number">46</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../mr/mr_fixture_abstract.html">mr_fixture_abstract</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_fixture_abstract.html#var$results">mr_fixture_abstract::$results</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">72</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mr_fixture_enrollment</span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type"><a href="../mr/mr_fixture_course.html">mr_fixture_course</a></span>&nbsp;<span class="var-name">$course</span>, <span class="var-type"><a href="../mr/mr_fixture_user.html">mr_fixture_user</a></span>&nbsp;<span class="var-name">$user</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$enroll</span> = <span class="var-default">null</span>], [<span class="var-type"><a href="../mr/mr_fixture_role.html">mr_fixture_role</a></span>&nbsp;<span class="var-name">$role</span> = <span class="var-default">null</span>], [<span class="var-type">array|object </span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">array()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_fixture_course.html">mr_fixture_course</a></span>
+				<span class="var-name">$course</span><span class="var-description">: The course to enroll the user into</span>			</li>
+					<li>
+				<span class="var-type"><a href="../mr/mr_fixture_user.html">mr_fixture_user</a></span>
+				<span class="var-name">$user</span><span class="var-description">: The user to enroll</span>			</li>
+					<li>
+				<span class="var-type">enrol_plugin</span>
+				<span class="var-name">$enroll</span><span class="var-description">: The enrollment plugin to use, defaults to enrol_get_plugin('manual')</span>			</li>
+					<li>
+				<span class="var-type"><a href="../mr/mr_fixture_role.html">mr_fixture_role</a>|null</span>
+				<span class="var-name">$role</span><span class="var-description">: The role to use for the enrollment, optional</span>			</li>
+					<li>
+				<span class="var-type">array|object </span>
+				<span class="var-name">$options</span><span class="var-description">: Parameters to pass to the enrol_plugin-&gt;enrol_user()</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../mr/mr_fixture_abstract.html#method__construct">mr_fixture_abstract::__construct()</a></dt>
+					</dl>
+			
+	</div>
+<a name="methodbuild" id="build"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">build</span> (line <span class="line-number">93</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Create the fixture</p>
+<p class="description"><p>This method must be safe to call multiple times.</p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> moodle_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			build
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methoddestroy" id="destroy"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">destroy</span> (line <span class="line-number">133</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Delete the fixture</p>
+<p class="description"><p>This method must be safe to call multiple times.</p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> moodle_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			destroy
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodexists" id="exists"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">exists</span> (line <span class="line-number">148</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Determine if the fixture exists</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			exists
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodfetch_enrollment_instance" id="fetch_enrollment_instance"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">fetch_enrollment_instance</span> (line <span class="line-number">163</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Find or create an enrollment instance record</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">stdClass</span>
+		<span class="method-name">
+			fetch_enrollment_instance
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_course" id="get_course"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_course</span> (line <span class="line-number">186</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">\mr_fixture_course</span>
+		<span class="method-name">
+			get_course
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_enroll" id="get_enroll"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_enroll</span> (line <span class="line-number">218</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">\enrol_plugin</span>
+		<span class="method-name">
+			get_enroll
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_option" id="get_option"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_option</span> (line <span class="line-number">247</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			get_option
+		</span>
+					(<span class="var-type">$name</span>&nbsp;<span class="var-name">$name</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$default</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$default</span>			</li>
+					<li>
+				<span class="var-type">$name</span>
+				<span class="var-name">$name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodget_options" id="get_options"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_options</span> (line <span class="line-number">238</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the properties used for the enrollment</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			get_options
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_role" id="get_role"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_role</span> (line <span class="line-number">266</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">\mr_fixture_role|null</span>
+		<span class="method-name">
+			get_role
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_user" id="get_user"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_user</span> (line <span class="line-number">202</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">\mr_fixture_user</span>
+		<span class="method-name">
+			get_user
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodset_course" id="set_course"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_course</span> (line <span class="line-number">178</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_fixture_enrollment.html">mr_fixture_enrollment</a></span>
+		<span class="method-name">
+			set_course
+		</span>
+					(<span class="var-type">\mr_fixture_course</span>&nbsp;<span class="var-name">$course</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">\mr_fixture_course</span>
+				<span class="var-name">$course</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodset_enroll" id="set_enroll"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_enroll</span> (line <span class="line-number">210</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_fixture_enrollment.html">mr_fixture_enrollment</a></span>
+		<span class="method-name">
+			set_enroll
+		</span>
+					(<span class="var-type">\enrol_plugin</span>&nbsp;<span class="var-name">$enroll</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">\enrol_plugin</span>
+				<span class="var-name">$enroll</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodset_options" id="set_options"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_options</span> (line <span class="line-number">228</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set properties to use for the enrollment</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_fixture_user.html">mr_fixture_user</a></span>
+		<span class="method-name">
+			set_options
+		</span>
+					(<span class="var-type">array|object </span>&nbsp;<span class="var-name">$options</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array|object </span>
+				<span class="var-name">$options</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodset_role" id="set_role"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_role</span> (line <span class="line-number">258</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_fixture_enrollment.html">mr_fixture_enrollment</a></span>
+		<span class="method-name">
+			set_role
+		</span>
+					(<span class="var-type">\mr_fixture_role|null</span>&nbsp;<span class="var-name">$role</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">\mr_fixture_role|null</span>
+				<span class="var-name">$role</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodset_user" id="set_user"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_user</span> (line <span class="line-number">194</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_fixture_enrollment.html">mr_fixture_enrollment</a></span>
+		<span class="method-name">
+			set_user
+		</span>
+					(<span class="var-type">\mr_fixture_user</span>&nbsp;<span class="var-name">$user</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">\mr_fixture_user</span>
+				<span class="var-name">$user</span>			</li>
+				</ul>
+		
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../mr/mr_fixture_abstract.html">mr_fixture_abstract</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../mr/mr_fixture_abstract.html#method__construct">mr_fixture_abstract::__construct()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_fixture_abstract.html#methodget">mr_fixture_abstract::get()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_fixture_abstract.html#methodget_results">mr_fixture_abstract::get_results()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_fixture_abstract.html#methodset_results">mr_fixture_abstract::set_results()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:48 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

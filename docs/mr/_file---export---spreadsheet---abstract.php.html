@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs for page abstract.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="file-name">/file/export/spreadsheet/abstract.php</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-classes">Classes</a>
+			|							<a href="#sec-includes">Includes</a>
+												</div>
+	<div class="info-box-body">	
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Moodlerooms Framework</p>
+<p class="description"><p>This program is free software: you can redistribute it and/or modify  it under the terms of the GNU General Public License as published by  the Free Software Foundation, either version 3 of the License, or  (at your option) any later version.</p><p>This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  GNU General Public License for more details.</p><p>You should have received a copy of the GNU General Public License  along with this program.  If not, see http://opensource.org/licenses/gpl-3.0.html.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Mark Nielsen</li>
+				<li><span class="field">copyright:</span> Copyright (c) 2009 Moodlerooms Inc. (http://www.moodlerooms.com)</li>
+				<li><span class="field">license:</span> <a href="http://opensource.org/licenses/gpl-3.0.html">GNU Public License</a></li>
+			</ul>
+		
+			</div>
+</div>
+		
+	<a name="sec-classes"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Classes</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Classes</span>
+			|							<a href="#sec-includes">Includes</a>
+																		</div>
+		<div class="info-box-body">	
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; vertical-align: top">
+						<a href="../mr/mr_file_export_spreadsheet_abstract.html">mr_file_export_spreadsheet_abstract</a>
+					</td>
+					<td>
+											MR File Export Spreadsheet Abstract
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+	<a name="sec-includes"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Includes</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-classes">Classes</a>
+				|						<span class="disabled">Includes</span>
+														</div>
+		<div class="info-box-body">	
+			<a name="_$CFG->dirroot_/local/mr/framework/file/export/abstract_php"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="include-title">
+			<span class="include-type">require_once</span>
+			(<span class="include-name">$CFG->dirroot.'/local/mr/framework/file/export/abstract.php'</span>)
+			(line <span class="line-number">29</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">see:</span> <a href="../mr/mr_file_export_abstract.html">mr_file_export_abstract</a></li>
+			</ul>
+	
+</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:44 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

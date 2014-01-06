@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>See how to extend this class</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+											</head>
+		<body>
+						<h1>See how to extend this class</h1>
+<div class="listing">
+<div class="src-code"><ol><li><div class="src-line"><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line"><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;A&nbsp;report&nbsp;for&nbsp;viewing&nbsp;user&nbsp;accounts</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;blocks/helloworld</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Mark&nbsp;Nielsen</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><span class="src-key">class&nbsp;</span><span class="src-id">blocks_helloworld_report_users&nbsp;</span><span class="src-key">extends&nbsp;</span><a href="../mr/mr_report_abstract.html">mr_report_abstract</a>&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Report's&nbsp;init&nbsp;routine</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">void&nbsp;</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">public&nbsp;</span><span class="src-key">function&nbsp;</span><span class="src-id">init</span><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">config</span><span class="src-sym">-&gt;</span><span class="src-id">set</span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'export'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'**'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'perpage'&nbsp;</span>=&gt;&nbsp;<span class="src-id">true</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'ajax'&nbsp;&nbsp;&nbsp;&nbsp;</span>=&gt;&nbsp;<span class="src-id">true</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'perpageopts'&nbsp;</span>=&gt;&nbsp;<span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'all'</span><span class="src-sym">,&nbsp;</span><span class="src-num">1</span><span class="src-sym">,&nbsp;</span><span class="src-num">5</span><span class="src-sym">,&nbsp;</span><span class="src-num">10</span><span class="src-sym">,&nbsp;</span><span class="src-num">50</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;The&nbsp;component&nbsp;string,&nbsp;used&nbsp;for&nbsp;get_string()&nbsp;calls</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">string&nbsp;</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">public&nbsp;</span><span class="src-key">function&nbsp;</span><span class="src-id">get_component</span><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-str">'block_helloworld'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Filter&nbsp;setup</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">void&nbsp;</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">public&nbsp;</span><span class="src-key">function&nbsp;</span><span class="src-id">filter_init</span><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$url&nbsp;</span>=&nbsp;<span class="src-key">clone</span><span class="src-sym">(</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">url</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$url</span><span class="src-sym">-&gt;</span><span class="src-id">param</span><span class="src-sym">(</span><span class="src-str">'action'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'autocomplete'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">filter&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_html_filter.html">mr_html_filter</a></span><span class="src-sym">(</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">preferences</span><span class="src-sym">,&nbsp;</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">url</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">filter</span><span class="src-sym">-&gt;</span><span class="src-id">new_autocomplete</span><span class="src-sym">(</span><span class="src-str">'username'</span><span class="src-sym">,&nbsp;</span><span class="src-id">get_string</span><span class="src-sym">(</span><span class="src-str">'username'</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-var">$url</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">filter</span><span class="src-sym">-&gt;</span><span class="src-id">new_autocompleteid</span><span class="src-sym">(</span><span class="src-str">'userid'</span><span class="src-sym">,&nbsp;</span><span class="src-id">get_string</span><span class="src-sym">(</span><span class="src-str">'usernamebyid'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'block_helloworld'</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-var">$url</span><span class="src-sym">,&nbsp;</span><span class="src-id">false</span><span class="src-sym">,&nbsp;</span><span class="src-str">'id'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Table&nbsp;setup</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">void&nbsp;</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">public&nbsp;</span><span class="src-key">function&nbsp;</span><span class="src-id">table_init</span><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">table&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_html_table.html">mr_html_table</a></span><span class="src-sym">(</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">preferences</span><span class="src-sym">,&nbsp;</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">url</span><span class="src-sym">,&nbsp;</span><span class="src-str">'username'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">table</span><span class="src-sym">-&gt;</span><span class="src-id">add_column</span><span class="src-sym">(</span><span class="src-str">'id'</span><span class="src-sym">,&nbsp;</span><span class="src-str">''</span><span class="src-sym">,&nbsp;</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'display'&nbsp;</span>=&gt;&nbsp;<span class="src-id">false</span><span class="src-sym">))</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">add_column</span><span class="src-sym">(</span><span class="src-str">'username'</span><span class="src-sym">,&nbsp;</span><span class="src-id">get_string</span><span class="src-sym">(</span><span class="src-str">'username'</span><span class="src-sym">))</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">add_column</span><span class="src-sym">(</span><span class="src-str">'firstname'</span><span class="src-sym">,&nbsp;</span><span class="src-id">get_string</span><span class="src-sym">(</span><span class="src-str">'firstname'</span><span class="src-sym">))</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">add_column</span><span class="src-sym">(</span><span class="src-str">'lastname'</span><span class="src-sym">,&nbsp;</span><span class="src-id">get_string</span><span class="src-sym">(</span><span class="src-str">'lastname'</span><span class="src-sym">))</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">add_column</span><span class="src-sym">(</span><span class="src-str">'email'</span><span class="src-sym">,&nbsp;</span><span class="src-id">get_string</span><span class="src-sym">(</span><span class="src-str">'email'</span><span class="src-sym">))</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">add_column</span><span class="src-sym">(</span><span class="src-str">'lastaccess'</span><span class="src-sym">,&nbsp;</span><span class="src-id">get_string</span><span class="src-sym">(</span><span class="src-str">'lastaccess'</span><span class="src-sym">))</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">add_format</span><span class="src-sym">(</span><span class="src-str">'lastaccess'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'date'</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">add_format</span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'username'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'firstname'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'lastname'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'email'</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-str">'string'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Report&nbsp;SQL</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">public&nbsp;</span><span class="src-key">function&nbsp;</span><span class="src-id">get_sql</span><span class="src-sym">(</span><span class="src-var">$fields</span><span class="src-sym">,&nbsp;</span><span class="src-var">$filtersql</span><span class="src-sym">,&nbsp;</span><span class="src-var">$filterparams</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$sql&nbsp;</span>=&nbsp;<span class="src-str">&quot;</span><span class="src-str">SELECT&nbsp;<span class="src-var">$fields</span></span></div></li>
+<li><div class="src-line"></span><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM&nbsp;{user}</span></div></li>
+<li><div class="src-line"></span><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;<span class="src-var">$filtersql</span></span><span class="src-str">&quot;</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-var">$sql</span><span class="src-sym">,&nbsp;</span><span class="src-var">$filterparams</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><span class="src-sym">}</span></div></li>
+</ol></div>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:46 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class mr_server_response_abstract</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class mr_server_response_abstract</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MR Server Response Abstract</p>
+<p class="description"><p>This class is responsible for generating the  response body for a particular service.  The reason  to have a separate class to handle responses is so that  a single service could be paired with different response  classes at different endpoints.  So, same functioning service  but different customized responses.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Mark Nielsen</li>
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">example:</span> <a href="../__examplesource/exsource_tes_joule2-maint_blocks_helloworld_webservices.php_c1a862a8922f2c4590de2cdacca66e16.html">Example usage with the server</a></li>
+				<li><span class="field">example:</span> <a href="../__examplesource/exsource_e2-maint_blocks_helloworld_lib_server_response.php_77fc09509f01f7aaccd03f7ab250b7f8.html">Example class definition</a></li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_server---response---abstract.php.html">/server/response/abstract.php</a> (line <span class="field">46</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																								<div class="var-title">
+					<span class="var-type"><a href="../mr/mr_server_abstract.html">mr_server_abstract</a></span>
+					<a href="#$server" title="details" class="var-name">$server</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$serviceclass" title="details" class="var-name">$serviceclass</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$servicemethod" title="details" class="var-name">$servicemethod</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																						
+				<div class="method-definition">
+											<span class="method-result">mr_server_response_abstract</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type"><a href="../mr/mr_server_abstract.html">mr_server_abstract</a></span>&nbsp;<span class="var-name">$server</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$serviceclass</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#array_to_dom" title="details" class="method-name">array_to_dom</a>
+											(<span class="var-type">array|object </span>&nbsp;<span class="var-name">$array</span>, <span class="var-type">DOMDocument</span>&nbsp;<span class="var-name">$dom</span>, <span class="var-type">DOMElement|DOMNodeList</span>&nbsp;<span class="var-name">$parent</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#fault" title="details" class="method-name">fault</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$message</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#init" title="details" class="method-name">init</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">DOMDocument</span>
+										<a href="#new_dom" title="details" class="method-name">new_dom</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#post_handle" title="details" class="method-name">post_handle</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$response</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#send_headers" title="details" class="method-name">send_headers</a>
+											(<span class="var-type">Zend_Server_*</span>&nbsp;<span class="var-name">$server</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">DOMDocument</span>
+										<a href="#standard" title="details" class="method-name">standard</a>
+											([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$response</span> = <span class="var-default">NULL</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$status</span> = <span class="var-default">true</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">DOMDocument</span>
+										<a href="#__call" title="details" class="method-name">__call</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$arguments</span>)
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+<a name="var$server" id="$server"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type"><a href="../mr/mr_server_abstract.html">mr_server_abstract</a></span>
+			<span class="var-name">$server</span>
+						(line <span class="line-number">52</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The server</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$serviceclass" id="$serviceclass"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$serviceclass</span>
+						(line <span class="line-number">59</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The service class name</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$servicemethod" id="$servicemethod"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$servicemethod</span>
+						(line <span class="line-number">66</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The service class method name</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">74</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constructor</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mr_server_response_abstract</span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type"><a href="../mr/mr_server_abstract.html">mr_server_abstract</a></span>&nbsp;<span class="var-name">$server</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$serviceclass</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_server_abstract.html">mr_server_abstract</a></span>
+				<span class="var-name">$server</span><span class="var-description">: The current server model</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$serviceclass</span><span class="var-description">: The web service class</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodarray_to_dom" id="array_to_dom"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">array_to_dom</span> (line <span class="line-number">201</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Converts an array into DOMDocument</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			array_to_dom
+		</span>
+					(<span class="var-type">array|object </span>&nbsp;<span class="var-name">$array</span>, <span class="var-type">DOMDocument</span>&nbsp;<span class="var-name">$dom</span>, <span class="var-type">DOMElement|DOMNodeList</span>&nbsp;<span class="var-name">$parent</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array|object </span>
+				<span class="var-name">$array</span><span class="var-description">: The array to convert</span>			</li>
+					<li>
+				<span class="var-type">DOMDocument</span>
+				<span class="var-name">$dom</span><span class="var-description">: The document</span>			</li>
+					<li>
+				<span class="var-type">DOMElement|DOMNodeList</span>
+				<span class="var-name">$parent</span><span class="var-description">: Parent element in the $dom</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodfault" id="fault"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">fault</span> (line <span class="line-number">123</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Server fault response (Return false to use Zend Server's)</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			fault
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$message</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$message</span><span class="var-description">: Reason for the fault</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodinit" id="init"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">init</span> (line <span class="line-number">94</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constructor hook</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			init
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodnew_dom" id="new_dom"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">new_dom</span> (line <span class="line-number">102</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Generate default DOM structure</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">DOMDocument</span>
+		<span class="method-name">
+			new_dom
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodpost_handle" id="post_handle"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">post_handle</span> (line <span class="line-number">136</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">View the response returned by Zend Server</p>
+<p class="description"><p>This gives the response class to map any  Zend Server faults to its own.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			post_handle
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$response</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$response</span><span class="var-description">: Response XML</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsend_headers" id="send_headers"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">send_headers</span> (line <span class="line-number">146</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Send server headers</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			send_headers
+		</span>
+					(<span class="var-type">Zend_Server_*</span>&nbsp;<span class="var-name">$server</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">Zend_Server_*</span>
+				<span class="var-name">$server</span><span class="var-description">: object</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodstandard" id="standard"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">standard</span> (line <span class="line-number">171</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Standard response structure</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">DOMDocument</span>
+		<span class="method-name">
+			standard
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$response</span> = <span class="var-default">NULL</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$status</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$response</span><span class="var-description">: An array or string of response data</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$status</span><span class="var-description">: Web service request status</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__call" id="__call"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">__call</span> (line <span class="line-number">233</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Handle undefined method calls</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">DOMDocument</span>
+		<span class="method-name">
+			__call
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$arguments</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: Method name</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$arguments</span><span class="var-description">: Method args</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:45 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

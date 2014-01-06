@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class mr_preferences</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class mr_preferences</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MR Preferences</p>
+<p class="description"><p>Keeps track of user's course preferences  in the session.  Feel free to extend this  class to provide some alternative storage  (EG: store in a database table) but keep  the session parts for caching hits.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Mark Nielsen</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_preferences.php.html">/preferences.php</a> (line <span class="field">36</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																<div class="var-title">
+					<span class="var-type">int</span>
+					<a href="#$courseid" title="details" class="var-name">$courseid</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$plugin" title="details" class="var-name">$plugin</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																						
+				<div class="method-definition">
+											<span class="method-result">mr_preferences</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$courseid</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$plugin</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_preferences.html">mr_preferences</a></span>
+										<a href="#delete" title="details" class="method-name">delete</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$plugin</span> = <span class="var-default">NULL</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$courseid</span> = <span class="var-default">NULL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#get" title="details" class="method-name">get</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$default</span> = <span class="var-default">NULL</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$plugin</span> = <span class="var-default">NULL</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$courseid</span> = <span class="var-default">NULL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#get_courseid" title="details" class="method-name">get_courseid</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#get_plugin" title="details" class="method-name">get_plugin</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_preferences.html">mr_preferences</a></span>
+										<a href="#load" title="details" class="method-name">load</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#process_args" title="details" class="method-name">process_args</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">&$courseid</span>, <span class="var-type"></span>&nbsp;<span class="var-name">&$plugin</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$courseid</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$plugin</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_preferences.html">mr_preferences</a></span>
+										<a href="#reload" title="details" class="method-name">reload</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_preferences.html">mr_preferences</a></span>
+										<a href="#set" title="details" class="method-name">set</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$plugin</span> = <span class="var-default">NULL</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$courseid</span> = <span class="var-default">NULL</span>])
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+<a name="var$courseid" id="$courseid"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">int</span>
+			<span class="var-name">$courseid</span>
+			 = <span class="var-default"> 0</span>			(line <span class="line-number">49</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The course ID</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$plugin" id="$plugin"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$plugin</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">42</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The plugin that the preferences belong</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">57</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constructor: set defaults</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mr_preferences</span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$courseid</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$plugin</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$courseid</span><span class="var-description">: Course ID</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$plugin</span><span class="var-description">: Plugin name, EG: blocks/blockname, block_blockname, etc</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddelete" id="delete"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">delete</span> (line <span class="line-number">179</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Delete a preference</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_preferences.html">mr_preferences</a></span>
+		<span class="method-name">
+			delete
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$plugin</span> = <span class="var-default">NULL</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$courseid</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: Preference name</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$plugin</span><span class="var-description">: Override plugin name</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$courseid</span><span class="var-description">: Override course ID</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodget" id="get"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get</span> (line <span class="line-number">139</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get a preference</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			get
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$default</span> = <span class="var-default">NULL</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$plugin</span> = <span class="var-default">NULL</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$courseid</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: Preference name</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$default</span><span class="var-description">: Return this value if preference is not found</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$plugin</span><span class="var-description">: Override plugin name</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$courseid</span><span class="var-description">: Override course ID</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodget_courseid" id="get_courseid"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_courseid</span> (line <span class="line-number">126</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get current courseid</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			get_courseid
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_plugin" id="get_plugin"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_plugin</span> (line <span class="line-number">117</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get current plugin value</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			get_plugin
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodload" id="load"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">load</span> (line <span class="line-number">88</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Load the preferences for a user</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_preferences.html">mr_preferences</a></span>
+		<span class="method-name">
+			load
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodprocess_args" id="process_args"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">process_args</span> (line <span class="line-number">71</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Helper method - handle passed courseid and plugin values</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			process_args
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">&$courseid</span>, <span class="var-type"></span>&nbsp;<span class="var-name">&$plugin</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$courseid</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$plugin</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$courseid</span><span class="var-description">: Course ID</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$plugin</span><span class="var-description">: Plugin name</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">&$courseid</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">&$plugin</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodreload" id="reload"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">reload</span> (line <span class="line-number">102</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Reload preferences</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_preferences.html">mr_preferences</a></span>
+		<span class="method-name">
+			reload
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodset" id="set"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">set</span> (line <span class="line-number">160</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set a preference</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_preferences.html">mr_preferences</a></span>
+		<span class="method-name">
+			set
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$plugin</span> = <span class="var-default">NULL</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$courseid</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: Preference name</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value</span><span class="var-description">: Value to save</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$plugin</span><span class="var-description">: Override plugin name</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$courseid</span><span class="var-description">: Override course ID</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:50 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

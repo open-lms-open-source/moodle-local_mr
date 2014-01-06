@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>See how to use this class</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+											</head>
+		<body>
+						<h1>See how to use this class</h1>
+<div class="listing">
+<div class="src-code"><ol><li><div class="src-line"><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line"><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;Filter&nbsp;controller</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Mark&nbsp;Nielsen</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@version</span><span class="src-doc">&nbsp;$Id$</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;blocks/helloworld</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><a href="http://www.php.net/defined">defined</a><span class="src-sym">(</span><span class="src-str">'MOODLE_INTERNAL'</span><span class="src-sym">)&nbsp;</span><span class="src-key">or&nbsp;</span><span class="src-key">die</span><span class="src-sym">(</span><span class="src-str">'Direct&nbsp;access&nbsp;to&nbsp;this&nbsp;script&nbsp;is&nbsp;forbidden.'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><span class="src-key">class&nbsp;</span><span class="src-id">block_helloworld_controller_filter&nbsp;</span><span class="src-key">extends&nbsp;</span><a href="../mr/mr_controller_block.html">mr_controller_block</a>&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Default&nbsp;screen</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Demo&nbsp;of&nbsp;mr_filter&nbsp;et&nbsp;al</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">public&nbsp;</span><span class="src-key">function&nbsp;</span><span class="src-id">view_action</span><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">global&nbsp;</span><span class="src-var">$COURSE</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">####&nbsp;DEMO&nbsp;CODE&nbsp;####</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Filter&nbsp;values&nbsp;are&nbsp;stored&nbsp;here</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$preferences&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_preferences.html">mr_preferences</a></span><span class="src-sym">(</span><span class="src-var">$COURSE</span><span class="src-sym">-&gt;</span><span class="src-id">id</span><span class="src-sym">,&nbsp;</span><span class="src-str">'blocks/helloworld'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Create&nbsp;the&nbsp;filter&nbsp;&quot;manager&quot;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$filter&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_html_filter.html">mr_html_filter</a></span><span class="src-sym">(</span><span class="src-var">$preferences</span><span class="src-sym">,&nbsp;</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">url</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Add&nbsp;a&nbsp;filter</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$filter</span><span class="src-sym">-&gt;</span><span class="src-id">add</span><span class="src-sym">(</span><span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_html_filter_text.html">mr_html_filter_text</a></span><span class="src-sym">(</span><span class="src-str">'foo'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'Foo'</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Add&nbsp;the&nbsp;same&nbsp;filter,&nbsp;shortcut&nbsp;way</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$filter</span><span class="src-sym">-&gt;</span><span class="src-id">new_text</span><span class="src-sym">(</span><span class="src-str">'bar'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'Bar'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;You&nbsp;can&nbsp;chain&nbsp;these&nbsp;too&nbsp;(with&nbsp;add()&nbsp;as&nbsp;well)</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$filter</span><span class="src-sym">-&gt;</span><span class="src-id">new_select</span><span class="src-sym">(</span><span class="src-str">'baz'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'Baz'</span><span class="src-sym">,&nbsp;</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'0'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'No'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'1'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'Yes'</span><span class="src-sym">))</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">new_daterange</span><span class="src-sym">(</span><span class="src-str">'bat'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'Bat'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Render&nbsp;the&nbsp;filter:&nbsp;This&nbsp;should&nbsp;be&nbsp;done&nbsp;before&nbsp;the&nbsp;print_header()&nbsp;-&nbsp;may&nbsp;redirect</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$output&nbsp;</span>=&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">mroutput</span><span class="src-sym">-&gt;</span><span class="src-id">render</span><span class="src-sym">(</span><span class="src-var">$filter</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Generate&nbsp;SQL&nbsp;based&nbsp;on&nbsp;filter&nbsp;values</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$output&nbsp;</span>.=&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">helper</span><span class="src-sym">-&gt;</span><span class="src-id">dump</span><span class="src-sym">(</span><span class="src-var">$filter</span><span class="src-sym">-&gt;</span><span class="src-id">sql</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-str">'Filter&nbsp;SQL'</span><span class="src-sym">,&nbsp;</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Access&nbsp;filter&nbsp;values&nbsp;through&nbsp;preferences</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$output&nbsp;</span>.=&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">helper</span><span class="src-sym">-&gt;</span><span class="src-id">dump</span><span class="src-sym">(</span><span class="src-var">$preferences</span><span class="src-sym">-&gt;</span><span class="src-id">get</span><span class="src-sym">(</span><span class="src-str">'foo'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'NOT&nbsp;SET'</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-str">'Preference&nbsp;foo'</span><span class="src-sym">,&nbsp;</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$output&nbsp;</span>.=&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">helper</span><span class="src-sym">-&gt;</span><span class="src-id">dump</span><span class="src-sym">(</span><span class="src-var">$preferences</span><span class="src-sym">-&gt;</span><span class="src-id">get</span><span class="src-sym">(</span><span class="src-str">'bar'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'NOT&nbsp;SET'</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-str">'Preference&nbsp;bar'</span><span class="src-sym">,&nbsp;</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">####&nbsp;DEMO&nbsp;CODE&nbsp;####</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">output</span><span class="src-sym">-&gt;</span><span class="src-id">heading</span><span class="src-sym">(</span><span class="src-str">'Demo&nbsp;of&nbsp;mr_filter_*'</span><span class="src-sym">)</span>.</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">helper</span><span class="src-sym">-&gt;</span><span class="src-id">highlight</span><span class="src-sym">(</span>__CLASS__<span class="src-sym">,&nbsp;</span>__FUNCTION__<span class="src-sym">,&nbsp;</span><span class="src-id">true</span><span class="src-sym">)</span>.</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">output</span><span class="src-sym">-&gt;</span><span class="src-id">box</span><span class="src-sym">(</span><span class="src-var">$output</span><span class="src-sym">,&nbsp;</span><span class="src-str">'generalbox&nbsp;boxaligncenter&nbsp;boxwidthnormal'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><span class="src-sym">}</span></div></li>
+</ol></div>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:48 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

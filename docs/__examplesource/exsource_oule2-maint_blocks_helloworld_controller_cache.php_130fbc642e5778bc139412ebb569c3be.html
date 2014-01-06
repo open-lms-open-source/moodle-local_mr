@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>See the cache in action</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+											</head>
+		<body>
+						<h1>See the cache in action</h1>
+<div class="listing">
+<div class="src-code"><ol><li><div class="src-line"><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line"><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;Cache&nbsp;controller</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Mark&nbsp;Nielsen</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@version</span><span class="src-doc">&nbsp;$Id$</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;blocks/helloworld</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><a href="http://www.php.net/defined">defined</a><span class="src-sym">(</span><span class="src-str">'MOODLE_INTERNAL'</span><span class="src-sym">)&nbsp;</span><span class="src-key">or&nbsp;</span><span class="src-key">die</span><span class="src-sym">(</span><span class="src-str">'Direct&nbsp;access&nbsp;to&nbsp;this&nbsp;script&nbsp;is&nbsp;forbidden.'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><span class="src-key">class&nbsp;</span><span class="src-id">block_helloworld_controller_cache&nbsp;</span><span class="src-key">extends&nbsp;</span><a href="../mr/mr_controller_block.html">mr_controller_block</a>&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Default&nbsp;screen</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Demo&nbsp;of&nbsp;cache</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">public&nbsp;</span><span class="src-key">function&nbsp;</span><span class="src-id">view_action</span><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-id">print_header</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">output</span><span class="src-sym">-&gt;</span><span class="src-id">heading</span><span class="src-sym">(</span><span class="src-str">'Demo&nbsp;of&nbsp;mr_cache'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">helper</span><span class="src-sym">-&gt;</span><span class="src-id">highlight</span><span class="src-sym">(</span>__CLASS__<span class="src-sym">,&nbsp;</span>__FUNCTION__<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">output</span><span class="src-sym">-&gt;</span><span class="src-id">box_start</span><span class="src-sym">(</span><span class="src-str">'generalbox&nbsp;boxaligncenter&nbsp;boxwidthnormal'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">####&nbsp;DEMO&nbsp;CODE&nbsp;####</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Note:&nbsp;you&nbsp;can&nbsp;make&nbsp;your&nbsp;very&nbsp;own&nbsp;instance&nbsp;of&nbsp;mr_cache!</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;$this-&gt;helper-&gt;cache&nbsp;is&nbsp;EXACTLY&nbsp;the&nbsp;same&nbsp;as:</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;$cache&nbsp;=&nbsp;new&nbsp;mr_cache('blocks_helloworld_');</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Try&nbsp;to&nbsp;load&nbsp;cache&nbsp;ID&nbsp;=&nbsp;time_string&nbsp;from&nbsp;cache</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-sym">!</span><span class="src-var">$string&nbsp;</span>=&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">helper</span><span class="src-sym">-&gt;</span><span class="src-id">cache</span><span class="src-sym">-&gt;</span><span class="src-id">load</span><span class="src-sym">(</span><span class="src-str">'time_string'</span><span class="src-sym">))&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Failed&nbsp;to&nbsp;get&nbsp;from&nbsp;cache,&nbsp;create&nbsp;a&nbsp;new&nbsp;string&nbsp;to&nbsp;cache</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$string&nbsp;</span>=&nbsp;<span class="src-str">'Last&nbsp;cache:&nbsp;'</span>.<span class="src-id">userdate</span><span class="src-sym">(</span><a href="http://www.php.net/time">time</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-str">'%A,&nbsp;%d&nbsp;%B&nbsp;%Y,&nbsp;%r'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Save&nbsp;the&nbsp;string&nbsp;to&nbsp;cache&nbsp;using&nbsp;cache&nbsp;ID&nbsp;=&nbsp;time_string</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">helper</span><span class="src-sym">-&gt;</span><span class="src-id">cache</span><span class="src-sym">(</span><span class="src-var">$string</span><span class="src-sym">,&nbsp;</span><span class="src-str">'time_string'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Note:&nbsp;the&nbsp;above&nbsp;line&nbsp;is&nbsp;EXACTLY&nbsp;the&nbsp;same&nbsp;as:</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;$this-&gt;helper-&gt;cache-&gt;save($string,&nbsp;'time_string');</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">helper</span><span class="src-sym">-&gt;</span><span class="src-id">dump</span><span class="src-sym">(</span><span class="src-var">$string</span><span class="src-sym">,&nbsp;</span><span class="src-str">'Currently&nbsp;cached&nbsp;value'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;See&nbsp;if&nbsp;a&nbsp;cached&nbsp;ID&nbsp;exists&nbsp;or&nbsp;not</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-sym">!</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">helper</span><span class="src-sym">-&gt;</span><span class="src-id">cache</span><span class="src-sym">-&gt;</span><span class="src-id">test</span><span class="src-sym">(</span><span class="src-str">'time_string'</span><span class="src-sym">))&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;In&nbsp;this&nbsp;case,&nbsp;if&nbsp;we&nbsp;get&nbsp;here,&nbsp;its&nbsp;bad,&nbsp;cache&nbsp;isn't&nbsp;working</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">notify</span><span class="src-sym">-&gt;</span><span class="src-id">add_string</span><span class="src-sym">(</span><span class="src-str">'cache&nbsp;doesnt&nbsp;exist'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;EXAMPLE:</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Slightly&nbsp;different&nbsp;code&nbsp;when&nbsp;storing&nbsp;data&nbsp;that&nbsp;fails&nbsp;to&nbsp;pass&nbsp;is_string()</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Data&nbsp;like&nbsp;this,&nbsp;gets&nbsp;serialized,&nbsp;need&nbsp;to&nbsp;tell&nbsp;load&nbsp;method&nbsp;to&nbsp;unserialize&nbsp;it&nbsp;like&nbsp;so</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;if&nbsp;(!$array&nbsp;=&nbsp;$this-&gt;helper-&gt;cache-&gt;load('array_example',&nbsp;true))&nbsp;{&nbsp;&nbsp;//&nbsp;ADDED:&nbsp;true</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$array&nbsp;=&nbsp;array('foo',&nbsp;'bar',&nbsp;$string);</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Save&nbsp;as&nbsp;we&nbsp;normally&nbsp;do,&nbsp;mr_cache&nbsp;will&nbsp;automatically&nbsp;serialize&nbsp;$array</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;helper-&gt;cache($array,&nbsp;'array_example');</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;}</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;print_object($array);</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">####&nbsp;DEMO&nbsp;CODE&nbsp;####</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">output</span><span class="src-sym">-&gt;</span><span class="src-id">single_button</span><span class="src-sym">(</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">url</span><span class="src-sym">-&gt;</span><span class="src-id">out</span><span class="src-sym">(</span><span class="src-id">false</span><span class="src-sym">,&nbsp;</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'action'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'delete'</span><span class="src-sym">))</span><span class="src-sym">,&nbsp;</span><span class="src-str">'Delete&nbsp;cache'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">output</span><span class="src-sym">-&gt;</span><span class="src-id">box_end</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-id">print_footer</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Delete&nbsp;cached&nbsp;item</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Demo&nbsp;of&nbsp;cache</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">public&nbsp;</span><span class="src-key">function&nbsp;</span><span class="src-id">delete_action</span><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Remove&nbsp;the&nbsp;cached&nbsp;item</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">helper</span><span class="src-sym">-&gt;</span><span class="src-id">cache</span><span class="src-sym">-&gt;</span><span class="src-id">remove</span><span class="src-sym">(</span><span class="src-str">'time_string'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">notify</span><span class="src-sym">-&gt;</span><span class="src-id">add_string</span><span class="src-sym">(</span><span class="src-str">'cache&nbsp;reset'</span><span class="src-sym">,&nbsp;</span><span class="src-id">mr_notify</span><span class="src-sym">::</span><span class="src-id">GOOD</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">redirect</span><span class="src-sym">(</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">url</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><span class="src-sym">}</span></div></li>
+</ol></div>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:47 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>
