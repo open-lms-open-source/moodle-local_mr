@@ -137,7 +137,7 @@ abstract class mr_server_abstract {
     public function document($response) {
         global $CFG;
 
-        if (PHPUNIT_TEST) {
+        if (PHPUNIT_TEST and defined('LOCAL_MR_PHPUNIT_WEBSERVICE_PRINT')) {
             require_once($CFG->dirroot.'/local/mr/framework/helper.php');
 
             $helper = new mr_helper();
@@ -155,7 +155,7 @@ abstract class mr_server_abstract {
     public function simpletest_report($response) {
         global $CFG;
 
-        if (PHPUNIT_TEST) {
+        if (PHPUNIT_TEST and defined('LOCAL_MR_PHPUNIT_WEBSERVICE_PRINT')) {
             require_once($CFG->dirroot.'/local/mr/framework/helper.php');
 
             $helper = new mr_helper();
