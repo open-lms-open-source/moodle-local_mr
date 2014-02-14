@@ -137,9 +137,7 @@ class mr_fixture_manager {
      * @static
      */
     public static function tearDown() {
-        foreach (self::$instances as $instance) {
-            $instance->destroy();
-        }
+        // Don't worry about cleanup, Moodle will reset the database anyways.
         self::$instances = array();
         self::$instance = null;
     }
