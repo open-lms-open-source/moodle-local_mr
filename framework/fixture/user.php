@@ -118,7 +118,7 @@ class mr_fixture_user extends mr_fixture_abstract {
     protected function delete_user($user) {
         global $DB;
 
-        delete_user($user);
+        // delete_user($user); This stopped working.
         $DB->delete_records('user', array('id' => $user->id));
     }
 
