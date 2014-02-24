@@ -106,6 +106,6 @@ abstract class mr_controller_mod extends mr_controller {
      * @return object
      */
     public function get_context() {
-        return get_context_instance(CONTEXT_MODULE, $this->cm->id);
+        return context_module::instance($this->cm->id);
     }
 }

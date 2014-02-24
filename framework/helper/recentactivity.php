@@ -84,7 +84,7 @@ class mr_helper_recentactivity extends mr_helper_abstract {
         // Gather recent activity
         foreach ($courses as $course) {
             $modinfo       = get_fast_modinfo($course);
-            $viewfullnames = has_capability('moodle/site:viewfullnames', get_context_instance(CONTEXT_COURSE, $course->id));
+            $viewfullnames = has_capability('moodle/site:viewfullnames', context_course::instance($course->id));
             $activities    = array();
             $index         = 0;
 

@@ -321,7 +321,7 @@ abstract class mr_controller extends mr_readonly {
     public function get_context() {
         global $COURSE;
 
-        return get_context_instance(CONTEXT_COURSE, $COURSE->id);
+        return context_course::instance($COURSE->id);
     }
 
     /**
