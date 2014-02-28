@@ -65,7 +65,7 @@ class mr_helper_recentactivity extends mr_helper_abstract {
         if (!is_null($otheruser)) {
             $currentuser = clone($USER);
             enrol_check_plugins($otheruser);
-            session_set_user($otheruser);
+            \core\session\manager::set_user($otheruser);
         } else {
             $currentuser = false;
         }
@@ -245,7 +245,7 @@ class mr_helper_recentactivity extends mr_helper_abstract {
             $recentactivity[$courseid]->recentactivity = array_values($course->recentactivity);
         }
         if ($currentuser !== false) {
-            session_set_user($currentuser);
+            \core\session\manager::set_user($currentuser);
         }
         return $recentactivity;
     }
