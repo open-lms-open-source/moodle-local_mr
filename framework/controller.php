@@ -316,7 +316,7 @@ abstract class mr_controller extends mr_readonly {
     /**
      * Get controller context
      *
-     * @return object
+     * @return \context_course
      */
     public function get_context() {
         global $COURSE;
