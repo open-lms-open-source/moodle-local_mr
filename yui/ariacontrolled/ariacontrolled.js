@@ -40,10 +40,12 @@ YUI.add('moodle-local_mr-ariacontrolled', function(Y) {
                     this.get('box').setAttribute(ARIA_DESCRIBED_BY_ATTR, this.get('ariaDescribedBy').generateID());
                 }
                 // Initialize the tab index attribute on the host
-                if (!this.get('isWidget')) {
-                    this.get(HOST).setAttribute(TAB_INDEX_ATTR, this.get('tabIndex'));
-                } else {
-                    this.get(HOST).set('tabIndex', this.get('tabIndex'));
+                if (!Lang.isNull(this.get('tabIndex'))) {
+                    if (!this.get('isWidget')) {
+                        this.get(HOST).setAttribute(TAB_INDEX_ATTR, this.get('tabIndex'));
+                    } else {
+                        this.get(HOST).set('tabIndex', this.get('tabIndex'));
+                    }
                 }
                 // Ensure state is properly set
                 this.update_state();
@@ -133,6 +135,15 @@ YUI.add('moodle-local_mr-ariacontrolled', function(Y) {
              */
             _validateAriaState: function(value) {
                 return (Y.Array.indexOf(VALID_ARIA_STATES, value) !== -1);
+            },
+
+            /**
+             * Allow null or a number
+             * @param value
+             * @returns {boolean}
+             */
+            _validateTabIndex: function(value) {
+                return Lang.isNull(value) ? true : Lang.isNumber(value);
             }
         },
         {
@@ -237,7 +248,7 @@ YUI.add('moodle-local_mr-ariacontrolled', function(Y) {
                  */
                 tabIndex: {
                     value: -1,
-                    validator: Lang.isNumber,
+                    validator: '_validateTabIndex',
                     writeOnce: true
                 },
                 /**
