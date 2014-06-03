@@ -22,8 +22,8 @@
  */
 
 $plugin->version   = 2010090201;
-$plugin->requires  = 2013051401;
+$plugin->requires  = 2013111803;
 $plugin->component = 'local_mr';
-$plugin->release   = '2.5.0 (Build: 20131227)';
+$plugin->release   = '2.6.0 (Build: 20140603)';
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->cron      = 0;
