@@ -167,8 +167,14 @@ abstract class mr_controller extends mr_readonly {
         global $PAGE;
 
         // Controller name
-        $classparts = explode('_', get_class($this));
-        $this->name = end($classparts);
+        $class = get_class($this);
+        if (strpos($class, '\\') !== false) {
+            $classparts = explode('\\', $class);
+            $this->name = str_replace('_controller', '', end($classparts));
+        } else {
+            $classparts = explode('_', $class);
+            $this->name = end($classparts);
+        }
 
         // Store plugin information
         $this->component   = $component;
@@ -310,12 +316,12 @@ abstract class mr_controller extends mr_readonly {
     /**
      * Get controller context
      *
-     * @return object
+     * @return \context
      */
     public function get_context() {
         global $COURSE;
 
-        return get_context_instance(CONTEXT_COURSE, $COURSE->id);
+        return context_course::instance($COURSE->id);
     }
 
     /**
@@ -350,23 +356,33 @@ abstract class mr_controller extends mr_readonly {
         $action     = optional_param('action', 'view', PARAM_ALPHA);
         $helper     = new mr_helper($plugin);
 
-        // If controller is not a path, then assume under controller dir
-        if (strpos($controller, '/') === false) {
-            $controller = "controller/$controller";
-        }
         // Load controller's class file
-        $helper->load->file($controller);
+        try {
+            // If controller is not a path, then assume under controller dir
+            $path = $controller;
+            if (strpos($controller, '/') === false) {
+                $path = "controller/$controller";
+            }
+            $helper->load->file($path);
+            $classname = $helper->load->classname($path);
+        } catch (Exception $e) {
+            // Fallback to auto-loader style controllers.
+            $classname = "\\$component\\controller\\{$controller}_controller";
+            if (!class_exists($classname)) {
+                throw $e; // Throw original error.
+            }
+        }
 
         // Hook method to execute
         $method = "{$action}_action";
 
         // Ensure the method is available and is public
-        $reflection = new ReflectionClass($helper->load->classname($controller));
+        $reflection = new ReflectionClass($classname);
         if (!$reflection->hasMethod($method) or $reflection->getMethod($method)->isPublic() != true) {
             throw new coding_exception("Unable to handle request for $method");
         }
         // Action is OK, instantiate the controller
-        $controller = $helper->load($controller, array($plugin, $identifier, $component, $action));
+        $controller = $reflection->newInstance($plugin, $identifier, $component, $action);
 
         // Capability check
         $controller->require_capability();

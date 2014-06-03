@@ -444,6 +444,17 @@ class local_mr_renderer extends plugin_renderer_base {
             $arguments->caption = $table->caption;
         }
         $PAGE->requires->js_init_call('M.local_mr.init_mr_html_table', array($arguments), false, $module);
+        $PAGE->requires->strings_for_js(
+            array(
+                'paginatorfirstlabel',
+                'paginatorfirsttitle',
+                'paginatorlastlabel',
+                'paginatorlasttitle',
+                'paginatorprevlabel',
+                'paginatorprevtitle',
+                'paginatornextlabel',
+                'paginatornexttitle',
+            ), 'local_mr');
 
         return html_writer::tag('div', '', array('id' => $id, 'class' => 'mr_html_table mr_ajax_table'));
     }

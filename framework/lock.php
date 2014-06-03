@@ -103,7 +103,7 @@ class mr_lock {
         }
         $result = $this->backend->get();
         if ($result) {
-            register_shutdown_function(array($this, 'shutdown'));
+            core_shutdown_manager::register_function(array($this, 'shutdown'));
         }
         return $result;
     }

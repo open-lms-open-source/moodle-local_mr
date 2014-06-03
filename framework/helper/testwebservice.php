@@ -163,16 +163,12 @@ class mr_helper_testwebservice extends mr_helper_abstract {
      * @return void
      */
     public function simpletest_report($serviceclass, $servicemethod, $requestparams, $response) {
-        global $OUTPUT;
-
-        echo $OUTPUT->box_start();
-        echo '<span class="notice">Service class:</span> '.$serviceclass.'<br />';
-        echo '<span class="notice">Service method:</span> '.$servicemethod.'<br />';
-        echo '<span class="notice">Request params:</span><br />';
-        print_object($requestparams);
-        echo '<span class="notice">Server response:</span><br />';
+        echo "Service class:  $serviceclass\n";
+        echo "Service method: $servicemethod\n";
+        echo "Request params:\n";
+        var_export($requestparams);
+        echo "\nServer response:\n";
         echo $this->format_response($response);
-        echo $OUTPUT->box_end();
     }
 
     /**
@@ -214,11 +210,11 @@ class mr_helper_testwebservice extends mr_helper_abstract {
         if ($simplexml = @simplexml_load_string($response)) {
             $dom = dom_import_simplexml($simplexml)->ownerDocument;
             $dom->formatOutput = true;
-            return '<pre class="notifytiny">'.s($dom->saveXML()).'</pre>';
+            return $dom->saveXML();
         } else if (($json = json_decode($response)) !== NULL) {
-            return '<pre class="notifytiny">'.print_r($json, true).'</pre>';
+            return var_export($json, true);
         } else {
-            return '<pre class="notifytiny">'.s($response).'</pre>';
+            return $response;
         }
     }
 

@@ -51,7 +51,19 @@ M.local_mr.init_mr_html_table = function(Y, args) {
         rowsPerPage:   args.perpage,
         alwaysVisible: false,
         totalRecords: Number.MAX_VALUE, // Setting totalRecords arbitrarily high so that the initialPage setting will work. This doesn't affect behavior as it is overwritten when actual data is loaded.
-        initialPage: args.page + 1
+        initialPage: args.page + 1,
+
+        firstPageLinkLabel : "<< " + M.str.local_mr.paginatorfirstlabel,
+        firstPageLinkTitle : M.str.local_mr.paginatorfirsttitle,
+
+        lastPageLinkLabel : M.str.local_mr.paginatorlastlabel + " >>",
+        lastPageLinkTitle : M.str.local_mr.paginatorlasttitle,
+
+        previousPageLinkLabel : "< " + M.str.local_mr.paginatorprevlabel,
+        previousPageLinkTitle : M.str.local_mr.paginatorprevtitle,
+
+        nextPageLinkLabel : M.str.local_mr.paginatornextlabel + " >",
+        nextPageLinkTitle : M.str.local_mr.paginatornexttitle
     };
 
     // Add per page options to paginator

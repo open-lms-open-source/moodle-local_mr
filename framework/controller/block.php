@@ -103,7 +103,7 @@ abstract class mr_controller_block extends mr_controller {
      */
     public function get_context() {
         if ($this->instance) {
-            return get_context_instance(CONTEXT_BLOCK, $this->instance->id);
+            return context_block::instance($this->instance->id);
         }
         return parent::get_context();
     }
