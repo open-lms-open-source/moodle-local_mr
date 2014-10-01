@@ -97,7 +97,7 @@ abstract class mr_file_export_spreadsheet_abstract extends mr_file_export_abstra
         $this->workbook->send("$filename.".$this->get_extension());
 
         // Adding the worksheet
-        $this->writer =& $this->workbook->add_worksheet("$this->name $this->worksheet");
+        $this->writer = $this->workbook->add_worksheet("$this->name $this->worksheet");
     }
 
     /**
