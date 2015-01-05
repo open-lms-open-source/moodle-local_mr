@@ -200,7 +200,7 @@ class mr_file_export implements renderable {
         $this->exporting = true;
 
         // Bump to 5 minutes
-        set_time_limit((MINSECS * 5));
+        core_php_time_limit::raise((MINSECS * 5));
 
         // Set the exporter instance
         if (!array_key_exists($exporter, $this->exporters)) {

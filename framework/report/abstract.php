@@ -187,19 +187,18 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
     protected function _init() {
         $this->init();
 
-        // Determine if we can turn ajax on
+        // Determine if we can turn ajax on.
         if (($forceajax = optional_param('forceajax', -1, PARAM_INT)) != -1) {
             $this->preferences->set('forceajax', $forceajax);
         }
-        $this->config->ajax = ($this->config->ajax and ajaxenabled());
 
-        // Setup Paging
+        // Setup Paging.
         $this->paging = new mr_html_paging($this->preferences, $this->url);
         if ($this->config->perpage) {
             $this->paging->set_perpageopts($this->config->perpageopts);
         }
 
-        // Setup Export
+        // Setup Export.
         if ($this->config->export) {
             $this->export = new mr_file_export($this->config->export, false, $this->url, $this->name());
         }
