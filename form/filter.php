@@ -41,6 +41,13 @@ class local_mr_form_filter extends moodleform {
         }
         $this->_customdata->mform_hook($mform);
 
+        $this->add_submit_buttons($mform);
+    }
+
+    /**
+     * @param MoodleQuickForm $mform
+     */
+    function add_submit_buttons($mform) {
         $buttons = array();
         $buttons[] = &$mform->createElement('submit', 'submitbutton', get_string('filter', 'local_mr'));
         $buttons[] = &$mform->createElement('submit', 'resetbutton', get_string('reset', 'local_mr'));
