@@ -55,13 +55,14 @@ abstract class mr_helper_abstract {
      *
      * @param array          $roleids    a list of roleids
      * @param context_course $context    a course context
+     * @param bool           $paremt     if true, get list of users assigned in higher context too
      *
      * @return mixed array|false an array of records, or false if nothing found
      */
-    protected function get_users_by_role($roleids, $context) {
+    public static function get_users_by_role($roleids, $context, $parent = false) {
 
         // Get the list of users.
-        $users = get_role_users($roleids, $context, false, 'ra.id, u.id as userid');
+        $users = get_role_users($roleids, $context, $parent, 'ra.id, u.id as userid');
 
         // Return false if nothing is found.
         if (empty($users)) {
