@@ -49,36 +49,4 @@ abstract class mr_helper_abstract {
     public function _set_helper_namespace($namespace) {
         $this->_helper_namespace = $namespace;
     }
-
-    /**
-     * Get a list of users by role
-     *
-     * @param array          $roleids    a list of roleids
-     * @param context_course $context    a course context
-     * @param bool           $paremt     if true, get list of users assigned in higher context too
-     *
-     * @return mixed array|false an array of records, or false if nothing found
-     */
-    public static function get_users_by_role($roleids, $context, $parent = false) {
-
-        // Get the list of users.
-        $users = get_role_users($roleids, $context, $parent, 'ra.id, u.id as userid');
-
-        // Return false if nothing is found.
-        if (empty($users)) {
-            return false;
-        }
-
-        // Process the returned records.
-        $tmp = array();
-        foreach ($users as $u) {
-            if (!isset($tmp[$u->userid])) {
-                $o = new \stdClass();
-                $o->id = $u->userid;
-                $tmp[$u->userid] = $o;
-            }
-        }
-
-        return $tmp;
-    }
 }
