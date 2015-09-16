@@ -69,16 +69,7 @@ class mr_html_filter_selectmulti extends mr_html_filter_abstract {
      * Save as CSV value
      */
     public function preferences_update($data) {
-        // Hack to remove the itemtype field added by MoodleQuickForm_select...
-        // Prevents debugging output from the optional_param_array call.
-        if (isset($_POST['itemtype'])) {
-            if ($_POST['itemtype'] == '_qf__force_multiselect_submission') {
-                unset($_POST['itemtype']);
-            }
-        }
-
-        $raw = optional_param_array($this->name, '', PARAM_RAW);
-        if (!empty($raw) and !empty($data->{$this->name})) {
+        if (!empty($data->{$this->name}) && is_array($data->{$this->name})) {
             $data->{$this->name} = implode(',', $data->{$this->name});
         } else {
             $data->{$this->name} = '';
