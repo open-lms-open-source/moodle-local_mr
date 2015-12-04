@@ -83,7 +83,7 @@ abstract class mr_file_export_text_abstract extends mr_file_export_abstract {
         $this->cleanup();
 
         // Open for writing
-        $this->fp = fopen($this->file, 'w');
+        $this->fp = fopen($this->file, 'w+');
     }
 
     /**
