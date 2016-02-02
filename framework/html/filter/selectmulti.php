@@ -69,8 +69,7 @@ class mr_html_filter_selectmulti extends mr_html_filter_abstract {
      * Save as CSV value
      */
     public function preferences_update($data) {
-        $raw = optional_param_array($this->name, '', PARAM_RAW);
-        if (!empty($raw) and !empty($data->{$this->name})) {
+        if (!empty($data->{$this->name}) && is_array($data->{$this->name})) {
             $data->{$this->name} = implode(',', $data->{$this->name});
         } else {
             $data->{$this->name} = '';

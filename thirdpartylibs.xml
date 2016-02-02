@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<libraries>
+    <library>
+        <location>vendor/zend/Zend</location>
+        <name>Zend Framework</name>
+        <version>1.10.6</version>
+        <license>New BSD</license>
+        <licenseversion></licenseversion>
+    </library>
+</libraries>
