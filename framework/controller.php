@@ -227,9 +227,9 @@ abstract class mr_controller extends mr_readonly {
         $moodleurl   = $this->new_url(array('action' => $this->action));
         $relativeurl = str_replace($CFG->wwwroot, '', $moodleurl->out_omit_querystring());
 
+        $PAGE->set_context($this->get_context());
         $PAGE->set_title(format_string($COURSE->fullname));
         $PAGE->set_heading(format_string($COURSE->fullname));
-        $PAGE->set_context($this->get_context());
         $PAGE->set_url($relativeurl, $moodleurl->params());
         $this->heading->set($this->identifier);
     }
