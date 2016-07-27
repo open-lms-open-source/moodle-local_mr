@@ -49,8 +49,12 @@ class mr_helper_users extends mr_helper_abstract {
      */
     public static function get_users_by_role($roleids, $context, $parent = false, $sort = null, $limitfrom = '', $limitnum = '') {
 
+        if (is_null($sort)) {
+            $sort = 'u.id';
+        }
+
         // Get the list of users.
-        $users = get_role_users($roleids, $context, $parent, 'ra.id, u.id as userid', $sort, true, '', $limitfrom, $limitnum);
+        $users = get_role_users($roleids, $context, $parent, 'ra.id raid, u.id', $sort, true, '', $limitfrom, $limitnum);
 
         // Return false if nothing is found.
         if (empty($users)) {
@@ -60,10 +64,10 @@ class mr_helper_users extends mr_helper_abstract {
         // Process the returned records.
         $tmp = array();
         foreach ($users as $u) {
-            if (!isset($tmp[$u->userid])) {
+            if (!isset($tmp[$u->id])) {
                 $o = new \stdClass();
-                $o->id = $u->userid;
-                $tmp[$u->userid] = $o;
+                $o->id = $u->id;
+                $tmp[$u->id] = $o;
             }
         }
 
