@@ -23,7 +23,6 @@
 
 defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 
-
 /**
  * @see mr_autoload
  */
@@ -105,27 +104,14 @@ class mr_bootstrap {
         global $CFG;
 
         if (!self::$zend) {
-            // Include path for Zend
-            $includepath = get_include_path();
-            $searchpath  = $CFG->dirroot.'/search';
-            $zendpath    = $CFG->libdir.'/zend';
-            $zendmrpath  = $CFG->dirroot.'/local/mr/vendor/zend';
-            $paths       = array($zendmrpath, $zendpath, $searchpath);
+            $path = $CFG->dirroot.'/local/mr/vendor/zend';
 
-            if (is_dir($searchpath) or is_dir($zendmrpath)) {
-                // Remove paths that we are adding
-                $includepaths = explode(PATH_SEPARATOR, $includepath);
-                foreach ($includepaths as $key => $path) {
-                    if (in_array($path, $paths)) {
-                        unset($includepaths[$key]);
-                    }
-                }
-                // Add our paths to the front
-                foreach ($paths as $path) {
-                    if (is_dir($path)) {
-                        array_unshift($includepaths, $path);
-                    }
-                }
+            if (is_dir($path)) {
+                $includepaths = explode(PATH_SEPARATOR, get_include_path());
+
+                // Add our path to the front.
+                array_unshift($includepaths, $path);
+
                 set_include_path(implode(PATH_SEPARATOR, $includepaths));
             }
 
