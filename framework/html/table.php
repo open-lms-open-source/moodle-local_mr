@@ -140,13 +140,6 @@ class mr_html_table extends mr_readonly implements renderable {
     protected $export;
 
     /**
-     * Cache ID to use
-     *
-     * @var string
-     */
-    protected $cachekey = NULL;
-
-    /**
      * Preferences model
      *
      * @var mr_preferences
@@ -306,29 +299,6 @@ class mr_html_table extends mr_readonly implements renderable {
             }
         }
         return $this;
-    }
-
-    /**
-     * Set the cache ID
-     *
-     * @param string $key The key to set
-     * @return mr_html_table
-     */
-    public function set_cachekey($key) {
-        $this->cachekey = $key;
-        return $this;
-    }
-
-    /**
-     * Is the table cached for this request or not
-     *
-     * @return boolean
-     */
-    public function cached() {
-        if (!is_null($this->cachekey)) {
-            return ($this->helper->cache->test($this->cachekey) and $this->helper->cache->test("pagingbar_$this->cachekey"));
-        }
-        return false;
     }
 
     /**

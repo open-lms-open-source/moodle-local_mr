@@ -75,18 +75,4 @@ class local_mr_controller_default extends mr_controller_block {
                                  ->height('800px')
                                  ->width('100%');
     }
-
-    /**
-     * Clean mr_cache
-     */
-    public function cleancache_action() {
-        global $CFG;
-
-        $cache = new mr_cache();
-        $cache->clean();
-
-        $this->notify->good('cachecleaned');
-
-        return $this->output->single_button(new moodle_url("$CFG->wwwroot/$CFG->admin/settings.php?section=local_mr_cache"), get_string('continue'));
-    }
 }
