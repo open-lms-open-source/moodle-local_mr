@@ -48,6 +48,7 @@ require_once 'Zend/Validate/Abstract.php';
  *
  * @author Mark Nielsen
  * @package mr
+ * @deprecated Use core built in web service API instead
  */
 class mr_server_validate_token extends Zend_Validate_Abstract {
     /**
@@ -87,6 +88,7 @@ class mr_server_validate_token extends Zend_Validate_Abstract {
      *
      * @param string $token The expected token
      * @param string $paramname Override the token parameter name
+     * @deprecated Use core built in web service API instead
      */
     public function __construct($token, $paramname = 'token') {
         $this->_token     = $token;
@@ -102,6 +104,7 @@ class mr_server_validate_token extends Zend_Validate_Abstract {
      *
      * @param  Zend_Controller_Request_Http $request The request to check
      * @return boolean
+     * @deprecated Use core built in web service API instead
      */
     public function isValid($request) {
         $value = $request->getParam($this->_paramname);

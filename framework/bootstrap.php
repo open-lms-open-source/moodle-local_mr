@@ -99,6 +99,7 @@ class mr_bootstrap {
      * so you can require_once(...) Zend files.
      *
      * @return void
+     * @deprecated Zend Framework support has been deprecated, please use alternatives
      */
     public static function zend() {
         global $CFG;

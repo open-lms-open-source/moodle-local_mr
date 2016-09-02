@@ -40,6 +40,7 @@ require_once($CFG->dirroot.'/local/mr/framework/bootstrap.php');
  *
  * @package mr
  * @author Mark Nielsen
+ * @deprecated Use core built in web service API instead
  */
 class mr_helper_testwebservice extends mr_helper_abstract {
     /**
@@ -54,6 +55,7 @@ class mr_helper_testwebservice extends mr_helper_abstract {
      *
      * @return void
      * @todo Some other way to do this?
+     * @deprecated Use core built in web service API instead
      */
     public function __destruct() {
         if (!empty($this->markup)) {
@@ -69,6 +71,7 @@ class mr_helper_testwebservice extends mr_helper_abstract {
      * @param string $response The server response
      * @return string
      * @author Mark Nielsen
+     * @deprecated Use core built in web service API instead
      */
     public function document($classname, $methodname, $response) {
         $markup = '';
@@ -161,6 +164,7 @@ class mr_helper_testwebservice extends mr_helper_abstract {
      * @param array $requestparams The request parameters
      * @param string $response The server response
      * @return void
+     * @deprecated Use core built in web service API instead
      */
     public function simpletest_report($serviceclass, $servicemethod, $requestparams, $response) {
         echo "Service class:  $serviceclass\n";
@@ -176,6 +180,7 @@ class mr_helper_testwebservice extends mr_helper_abstract {
      *
      * @param string $string The string to strip
      * @return string
+     * @deprecated Use core built in web service API instead
      */
     public function generalize_text($string) {
         global $CFG;
@@ -205,6 +210,7 @@ class mr_helper_testwebservice extends mr_helper_abstract {
      *
      * @param string $response The server response
      * @return string
+     * @deprecated Use core built in web service API instead
      */
     public function format_response($response) {
         if ($simplexml = @simplexml_load_string($response)) {
@@ -227,6 +233,7 @@ class mr_helper_testwebservice extends mr_helper_abstract {
      * @param Zend_Http_Response $response The last response
      * @throws coding_exception
      * @return string
+     * @deprecated Use core built in web service API instead
      */
     public function debuginfo($request, $response) {
         if (!$response instanceof Zend_Http_Response) {

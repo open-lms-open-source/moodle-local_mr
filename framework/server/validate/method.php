@@ -48,6 +48,7 @@ require_once 'Zend/Validate/Abstract.php';
  *
  * @author Mark Nielsen
  * @package mr
+ * @deprecated Use core built in web service API instead
  */
 class mr_server_validate_method extends Zend_Validate_Abstract {
     /**
@@ -75,6 +76,7 @@ class mr_server_validate_method extends Zend_Validate_Abstract {
      * Constructor
      *
      * @param string $method The request method
+     * @deprecated Use core built in web service API instead
      */
     public function __construct($method = 'POST') {
         $this->_method = strtoupper($method);
@@ -85,6 +87,7 @@ class mr_server_validate_method extends Zend_Validate_Abstract {
      *
      * @param  Zend_Controller_Request_Http $request The request to check
      * @return boolean
+     * @deprecated Use core built in web service API instead
      */
     public function isValid($request) {
         $this->_setValue($this->_method);

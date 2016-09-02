@@ -35,12 +35,14 @@ require_once($CFG->dirroot.'/local/mr/framework/server/abstract.php');
  * @package mr
  * @example webservices.php Example server usage
  * @example controller/server.php Example client
+ * @deprecated Use core built in web service API instead
  */
 class mr_server_rest extends mr_server_abstract {
     /**
      * Use a Zend_Rest_Server
      *
      * @return object|\Zend_Rest_Server
+     * @deprecated Use core built in web service API instead
      */
     public function new_server() {
         require_once('Zend/Rest/Server.php');

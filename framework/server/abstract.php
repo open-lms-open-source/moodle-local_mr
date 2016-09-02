@@ -48,6 +48,7 @@ require_once 'Zend/Validate.php';
  * @package mr
  * @example webservices.php Example server usage
  * @example controller/server.php Example client
+ * @deprecated Use core built in web service API instead
  */
 abstract class mr_server_abstract {
     /**
@@ -98,6 +99,7 @@ abstract class mr_server_abstract {
      * @param string $serviceclass The service class name to be used by the server
      * @param string $responseclass The response class name to use
      * @param Zend_Validate $validator A vaidator chain used to validate the request
+     * @deprecated Use core built in web service API instead
      */
     public function __construct($serviceclass, $responseclass, $validator) {
         $this->validator     = $validator;
@@ -111,6 +113,7 @@ abstract class mr_server_abstract {
      * Create a new Zend Server instance
      *
      * @return object
+     * @deprecated Use core built in web service API instead
      */
     abstract protected function new_server();
 
@@ -118,6 +121,7 @@ abstract class mr_server_abstract {
      * Was the last handle() successful?
      *
      * @return boolean
+     * @deprecated Use core built in web service API instead
      */
     public function is_successful() {
         foreach ($this->server->getHeaders() as $header) {
@@ -133,6 +137,7 @@ abstract class mr_server_abstract {
      *
      * @param string $response The server response
      * @return mr_server_abstract
+     * @deprecated Use core built in web service API instead
      */
     public function document($response) {
         global $CFG;
@@ -151,6 +156,7 @@ abstract class mr_server_abstract {
      *
      * @param string $response The server response
      * @return mr_server_abstract
+     * @deprecated Use core built in web service API instead
      */
     public function simpletest_report($response) {
         global $CFG;
@@ -173,6 +179,7 @@ abstract class mr_server_abstract {
      * Get the HTTP request
      *
      * @return Zend_Controller_Request_Http
+     * @deprecated Use core built in web service API instead
      */
     public function get_request() {
         if (!$this->request instanceof Zend_Controller_Request_Http) {
@@ -186,6 +193,7 @@ abstract class mr_server_abstract {
      * Get the response instance
      *
      * @return mr_server_response_abstract
+     * @deprecated Use core built in web service API instead
      */
     protected function get_response() {
         if (!$this->response instanceof mr_server_response_abstract) {
@@ -200,6 +208,7 @@ abstract class mr_server_abstract {
      *
      * @throws Exception
      * @return void
+     * @deprecated Use core built in web service API instead
      */
     public function security() {
         if (!$this->validator->isValid($this->get_request())) {
@@ -215,6 +224,7 @@ abstract class mr_server_abstract {
      * @param string $message Reason for the fault
      * @param int $code Error code
      * @return string
+     * @deprecated Use core built in web service API instead
      */
     public function fault($message, $code = NULL) {
         // Call the server's fault to set headers and the like
@@ -231,6 +241,7 @@ abstract class mr_server_abstract {
      * Send server headers
      *
      * @return void
+     * @deprecated Use core built in web service API instead
      */
     protected function send_headers() {
         $this->get_response()->send_headers($this->server);
@@ -242,6 +253,7 @@ abstract class mr_server_abstract {
      * @param array|bool $request The request (Really only used for testing)
      * @param boolean $return Return the response or not (Really only used for testing)
      * @return void|string
+     * @deprecated Use core built in web service API instead
      */
     public function handle($request = false, $return = false) {
         try {

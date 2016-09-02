@@ -42,6 +42,7 @@ require_once($CFG->dirroot.'/local/mr/framework/server/abstract.php');
  * @package mr
  * @example webservices.php Example usage with the server
  * @example lib/server/response.php Example class definition
+ * @deprecated Use core built in web service API instead
  */
 abstract class mr_server_response_abstract {
     /**
@@ -70,6 +71,7 @@ abstract class mr_server_response_abstract {
      *
      * @param mr_server_abstract $server The current server model
      * @param string $serviceclass The web service class
+     * @deprecated Use core built in web service API instead
      */
     public function __construct($server, $serviceclass) {
         $this->server       = $server;
@@ -90,6 +92,7 @@ abstract class mr_server_response_abstract {
      * Constructor hook
      *
      * @return void
+     * @deprecated Use core built in web service API instead
      */
     protected function init() {
     }
@@ -98,6 +101,7 @@ abstract class mr_server_response_abstract {
      * Generate default DOM structure
      *
      * @return DOMDocument
+     * @deprecated Use core built in web service API instead
      */
     public function new_dom() {
         $dom = new DOMDocument('1.0', 'UTF-8');
@@ -119,6 +123,7 @@ abstract class mr_server_response_abstract {
      *
      * @param string $message Reason for the fault
      * @return mixed
+     * @deprecated Use core built in web service API instead
      */
     public function fault($message) {
         return false;
@@ -132,6 +137,7 @@ abstract class mr_server_response_abstract {
      *
      * @param string $response Response XML
      * @return string
+     * @deprecated Use core built in web service API instead
      */
     public function post_handle($response) {
         return $response;
@@ -142,6 +148,7 @@ abstract class mr_server_response_abstract {
      *
      * @param Zend_Server_* object
      * @return void
+     * @deprecated Use core built in web service API instead
      */
     public function send_headers($server) {
         if (!headers_sent()) {
@@ -167,6 +174,7 @@ abstract class mr_server_response_abstract {
      * @param mixed $response An array or string of response data
      * @param boolean $status Web service request status
      * @return DOMDocument
+     * @deprecated Use core built in web service API instead
      */
     public function standard($response = NULL, $status = true) {
         $dom    = $this->new_dom();
@@ -197,6 +205,7 @@ abstract class mr_server_response_abstract {
      * @param DOMDocument $dom The document
      * @param DOMElement|DOMNodeList $parent Parent element in the $dom
      * @return void
+     * @deprecated Use core built in web service API instead
      */
     protected function array_to_dom($array, $dom, $parent) {
         foreach ($array as $key => $value) {
@@ -229,6 +238,7 @@ abstract class mr_server_response_abstract {
      * @param array $arguments Method args
      * @throws coding_exception
      * @return DOMDocument
+     * @deprecated Use core built in web service API instead
      */
     public function __call($name, $arguments) {
         $class = get_class($this);

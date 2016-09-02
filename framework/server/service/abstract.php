@@ -41,6 +41,7 @@ require_once($CFG->dirroot.'/local/mr/framework/server/abstract.php');
  * @package mr
  * @example webservices.php Example usage with the server
  * @example lib/server/service.php Example class definition
+ * @deprecated Use core built in web service API instead
  */
 abstract class mr_server_service_abstract {
     /**
@@ -62,6 +63,7 @@ abstract class mr_server_service_abstract {
      *
      * @param mr_server_abstract $server The current server model
      * @param object $response Response handling object
+     * @deprecated Use core built in web service API instead
      */
     public function __construct($server, $response) {
         $this->server   = $server;
@@ -74,6 +76,7 @@ abstract class mr_server_service_abstract {
      * Constructor hook
      *
      * @return void
+     * @deprecated Use core built in web service API instead
      */
     protected function init() {
     }

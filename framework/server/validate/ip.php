@@ -48,6 +48,7 @@ require_once 'Zend/Validate/Abstract.php';
  *
  * @author Mark Nielsen
  * @package mr
+ * @deprecated Use core built in web service API instead
  */
 class mr_server_validate_ip extends Zend_Validate_Abstract {
     /**
@@ -77,6 +78,7 @@ class mr_server_validate_ip extends Zend_Validate_Abstract {
      * Constructor
      *
      * @param string $ipaddresses IP Address schema to validate against
+     * @deprecated Use core built in web service API instead
      */
     public function __construct($ipaddresses) {
         $this->_ipAddresses = $ipaddresses;
@@ -87,6 +89,7 @@ class mr_server_validate_ip extends Zend_Validate_Abstract {
      *
      * @param  Zend_Controller_Request_Http $request The request to check
      * @return boolean
+     * @deprecated Use core built in web service API instead
      */
     public function isValid($request) {
         if (!empty($this->_ipAddresses)) {
