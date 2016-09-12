@@ -447,7 +447,8 @@ abstract class mr_report_abstract extends mr_readonly implements renderable {
         if (!empty($sort)) {
             $sql .= "\nORDER BY $sort";
         }
-        $this->executedsql[] = array("$sql\nlimit $limitfrom, $limitnum", $params);
+        $limitsql = mr_helper_sql::limit($limitfrom, $limitnum);
+        $this->executedsql[] = array("$sql\n$limitsql", $params);
 
         return $DB->get_recordset_sql($sql, $params, $limitfrom, $limitnum);
     }
