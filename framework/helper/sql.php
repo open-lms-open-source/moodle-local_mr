@@ -21,6 +21,7 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  *
  * @author    Adam Olley
  * @package   mr
+ * @copyright Copyright (c) 2016 Blackboard Inc. (http://www.moodlerooms.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class mr_helper_sql extends mr_helper_abstract {
