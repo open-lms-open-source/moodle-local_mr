@@ -40,7 +40,7 @@ class mr_config_storage_default_test extends advanced_testcase {
     public function test_read() {
         set_config('phpunit', 'value', $this->component);
 
-        $config = $this->getMock('mr_config_interface');
+        $config = $this->createMock('mr_config_interface');
         $config->expects($this->exactly(2))
             ->method('get_name')
             ->will($this->returnValue('phpunit'));
@@ -62,7 +62,7 @@ class mr_config_storage_default_test extends advanced_testcase {
 
         set_config('phpunit', serialize($value), $this->component);
 
-        $config = $this->getMock('mr_config_interface');
+        $config = $this->createMock('mr_config_interface');
         $config->expects($this->exactly(2))
             ->method('get_name')
             ->will($this->returnValue('phpunit'));
@@ -80,7 +80,7 @@ class mr_config_storage_default_test extends advanced_testcase {
     }
 
     public function test_write() {
-        $config = $this->getMock('mr_config_interface');
+        $config = $this->createMock('mr_config_interface');
         $config->expects($this->once())
             ->method('get_name')
             ->will($this->returnValue('phpunit'));
@@ -103,7 +103,7 @@ class mr_config_storage_default_test extends advanced_testcase {
     public function test_write_serialize() {
         $value = array('bat' => 'baz');
 
-        $config = $this->getMock('mr_config_interface');
+        $config = $this->createMock('mr_config_interface');
         $config->expects($this->once())
             ->method('get_name')
             ->will($this->returnValue('phpunit'));
@@ -126,7 +126,7 @@ class mr_config_storage_default_test extends advanced_testcase {
     public function test_remove() {
         set_config('phpunit', 'value', $this->component);
 
-        $config = $this->getMock('mr_config_interface');
+        $config = $this->createMock('mr_config_interface');
         $config->expects($this->once())
             ->method('get_name')
             ->will($this->returnValue('phpunit'));

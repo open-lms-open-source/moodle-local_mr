@@ -42,7 +42,7 @@ class mr_config_collection_test extends basic_testcase {
     public function test_add() {
         $config = new mr_config('foo', 'bar');
 
-        $storage = $this->getMock('mr_config_storage_interface');
+        $storage = $this->createMock('mr_config_storage_interface');
         $storage->expects($this->once())
             ->method('read')
             ->with($this->equalTo($config));
@@ -99,7 +99,7 @@ class mr_config_collection_test extends basic_testcase {
 
     public function test_set() {
         $config  = new mr_config('foo', 'bar');
-        $storage = $this->getMock('mr_config_storage_interface');
+        $storage = $this->createMock('mr_config_storage_interface');
         $storage->expects($this->once())
             ->method('write')
             ->with($this->equalTo($config));
@@ -124,7 +124,7 @@ class mr_config_collection_test extends basic_testcase {
 
     public function test_remove() {
         $config  = new mr_config('foo', 'bar');
-        $storage = $this->getMock('mr_config_storage_interface');
+        $storage = $this->createMock('mr_config_storage_interface');
         $storage->expects($this->once())
             ->method('remove')
             ->with($this->equalTo($config));
