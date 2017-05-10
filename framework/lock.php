@@ -66,6 +66,7 @@ class mr_lock {
       *                         Example values: mod_quiz_cron, admin_cron, etc.
      * @param int $timetolive The number of seconds until the lock expires completely.  Default is 8 hours.
      * @param string $backend The backend to use for the locking mechanism.  Generally, don't pass this.
+     * @deprecated Use core's built in locking API instead
      */
     public function __construct($uniquekey, $timetolive = NULL, $backend = NULL) {
         global $CFG;
@@ -87,6 +88,7 @@ class mr_lock {
      * Release the lock on shutdown.
      *
      * @return void
+     * @deprecated Use core's built in locking API instead
      */
     public function shutdown() {
         $this->backend->__destruct();
@@ -96,6 +98,7 @@ class mr_lock {
      * Try to acquire the lock
      *
      * @return boolean
+     * @deprecated Use core's built in locking API instead
      */
     public function get() {
         if ($this->backend->has_lock()) {
@@ -112,6 +115,7 @@ class mr_lock {
      * Release the lock
      *
      * @return boolean
+     * @deprecated Use core's built in locking API instead
      */
     public function release() {
         return $this->backend->release();

@@ -32,6 +32,7 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  *
  * @package mr
  * @author Mark Nielsen
+ * @deprecated Use core's built in locking API instead
  */
 abstract class mr_lock_abstract {
     /**

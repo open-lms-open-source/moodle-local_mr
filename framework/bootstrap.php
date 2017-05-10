@@ -133,6 +133,7 @@ class mr_bootstrap {
      * @see https://github.com/owlient/phpredis
      * @throws RedisException On connection errors
      * @throws Exception On configuration/setup errors
+     * @deprecated This should no longer be used.
      */
     public static function redis() {
         global $CFG;

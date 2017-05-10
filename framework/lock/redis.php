@@ -41,6 +41,7 @@ require_once($CFG->dirroot.'/local/mr/framework/lock/abstract.php');
  *
  * @package mr
  * @author Mark Nielsen
+ * @deprecated Use core's built in locking API instead
  */
 class mr_lock_redis extends mr_lock_abstract {
 
