@@ -222,12 +222,14 @@ abstract class mr_controller extends mr_readonly {
         global $CFG, $COURSE, $PAGE;
 
         require_login(optional_param('courseid', SITEID, PARAM_INT));
+        // currentcourse has the id of the course where the user initially views the report block.
         $currentcourse = optional_param('currentcourse', null, PARAM_INT);
 
         // We want to send relative URL to $PAGE so $PAGE can set it to https or not
         $moodleurl   = $this->new_url(array('action' => $this->action));
         $relativeurl = str_replace($CFG->wwwroot, '', $moodleurl->out_omit_querystring());
 
+        // We are setting temporally $COURSE->theme to the theme of the original course if it's need it.
         if (!empty($currentcourse)) {
             $COURSE->theme = get_course($currentcourse)->theme;
         }
