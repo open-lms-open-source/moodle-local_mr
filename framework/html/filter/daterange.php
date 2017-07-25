@@ -80,7 +80,7 @@ class mr_html_filter_daterange extends mr_html_filter_abstract {
         // Creating subgroups to keep each checkbox aligned to its date selector.
         $subgroup1[] =& $mform->createElement('checkbox', $this->name.'_sc', null, get_string('isafter', 'filters'));
         $subgroup1[] =& $mform->createElement('date_selector', $this->name.'_sd', null);
-        $mform->addGroup($subgroup1, $this->name.'_grp1', $this->label, ' ', false);
+        $mform->addGroup($subgroup1, $this->name.'_grp', $this->label, ' ', false);
         $subgroup2[] =& $mform->createElement('checkbox', $this->name.'_ec', null, get_string('isbefore', 'filters'));
         $subgroup2[] =& $mform->createElement('date_selector', $this->name.'_ed', null);
         $mform->addGroup($subgroup2, $this->name.'_grp2', '', ' ', false);
