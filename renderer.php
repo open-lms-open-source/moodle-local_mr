@@ -219,11 +219,11 @@ class local_mr_renderer extends plugin_renderer_base {
 
                     if ($table->get_sort() == $column->get_name()) {
                         if ($table->get_order() == SORT_ASC) {
-                            $icon    = $tag->img()->src($this->output->pix_url('t/down'))->alt(get_string('asc'));
+                            $icon    = $tag->img()->src($this->output->image_url('t/down'))->alt(get_string('asc'));
                             $sortstr = get_string('asc');
                             $sortord = SORT_DESC;
                         } else {
-                            $icon = $tag->img()->src($this->output->pix_url('t/up'))->alt(get_string('desc'));
+                            $icon = $tag->img()->src($this->output->image_url('t/up'))->alt(get_string('desc'));
                         }
                     }
                     $url     = $table->get_url()->out(false, array('tsort' => $config->name, 'torder' => $sortord));
