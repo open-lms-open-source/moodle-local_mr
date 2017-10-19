@@ -87,6 +87,7 @@ class mr_html_filter_daterange extends mr_html_filter_abstract {
 
         if ($this->advanced) {
             $mform->setAdvanced($this->name.'_grp');
+            $mform->setAdvanced($this->name.'_grp2');
         }
 
         // Handle defaults
