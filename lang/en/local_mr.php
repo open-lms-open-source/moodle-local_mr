@@ -70,3 +70,4 @@ $string['paginatorprevlabel'] = 'prev';
 $string['paginatorprevtitle'] = 'Previous Page';
 $string['paginatornextlabel'] = 'next';
 $string['paginatornexttitle'] = 'Next Page';
+$string['privacy:metadata'] = 'The Moodlerooms Framework plugin does not store any personal data.';
