@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Moodlerooms Çerçevesi';
+$string['pluginname'] = 'Blackboard Open LMS Çerçevesi';
 $string['addedactivity'] = '{$a->modname}, {$a->fullname} tarafından eklendi';
 $string['basichtml'] = 'Temel HTML';
 $string['deletedactivity'] = '{$a->modname}, {$a->fullname} tarafından silindi';
@@ -29,7 +29,7 @@ $string['export'] = 'Dışa ver: ';
 $string['filter'] = 'Filtre';
 $string['loadingdotdotdot'] = 'Yükleniyor...';
 $string['local_mr_docs'] = 'Belgeler';
-$string['moodleroomsframework'] = 'Moodlerooms Çerçevesi';
+$string['moodleroomsframework'] = 'Blackboard Open LMS Çerçevesi';
 $string['mrframework'] = 'MR Çerçevesi';
 $string['nolimit'] = 'Sınır yok';
 $string['oneday'] = '1 gün';

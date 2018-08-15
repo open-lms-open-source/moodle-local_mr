@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Moodlerooms Framework';
+$string['pluginname'] = 'Blackboard Open LMS Framework';
 $string['addedactivity'] = '{$a->modname}toegevoegd door {$a->fullname}';
 $string['basichtml'] = 'Basis HTML';
 $string['deletedactivity'] = '{$a->modname} is verwijderd door {$a->fullname}';
@@ -29,7 +29,7 @@ $string['export'] = 'Export: ';
 $string['filter'] = 'Filter';
 $string['loadingdotdotdot'] = 'Laden...';
 $string['local_mr_docs'] = 'Documenten';
-$string['moodleroomsframework'] = 'Moodlerooms Framework';
+$string['moodleroomsframework'] = 'Blackboard Open LMS Framework';
 $string['mrframework'] = 'MR Framework';
 $string['nolimit'] = 'Geen limiet';
 $string['oneday'] = '1 dag';

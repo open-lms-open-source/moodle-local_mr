@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Moodlerooms Framework';
+$string['pluginname'] = 'Blackboard Open LMS Framework';
 $string['addedactivity'] = 'Modul {$a->modname} byl přidán uživatelem {$a->fullname}.';
 $string['basichtml'] = 'Základní jazyk HTML';
 $string['deletedactivity'] = 'Modul {$a->modname} byl odstraněn uživatelem {$a->fullname}.';
@@ -29,7 +29,7 @@ $string['export'] = 'Exportovat: ';
 $string['filter'] = 'Filtr';
 $string['loadingdotdotdot'] = 'Načítání...';
 $string['local_mr_docs'] = 'Dokumenty';
-$string['moodleroomsframework'] = 'Moodlerooms Framework';
+$string['moodleroomsframework'] = 'Blackboard Open LMS Framework';
 $string['mrframework'] = 'MR Framework';
 $string['nolimit'] = 'Bez omezení';
 $string['oneday'] = '1 den';

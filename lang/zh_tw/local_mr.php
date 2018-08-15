@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Moodlerooms 框架';
+$string['pluginname'] = 'Blackboard Open LMS 框架';
 $string['addedactivity'] = '{$a->modname} 已由 {$a->fullname} 新增 ';
 $string['basichtml'] = '基本 HTML';
 $string['deletedactivity'] = '{$a->modname} 已由 {$a->fullname} 刪除';
@@ -29,7 +29,7 @@ $string['export'] = '匯出： ';
 $string['filter'] = '篩選器';
 $string['loadingdotdotdot'] = '正在載入...';
 $string['local_mr_docs'] = '文件';
-$string['moodleroomsframework'] = 'Moodlerooms 框架';
+$string['moodleroomsframework'] = 'Blackboard Open LMS 框架';
 $string['mrframework'] = 'MR 框架';
 $string['nolimit'] = '無限制';
 $string['oneday'] = '1 天';

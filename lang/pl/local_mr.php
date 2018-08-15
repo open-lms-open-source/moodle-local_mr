@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Moodlerooms Framework';
+$string['pluginname'] = 'Blackboard Open LMS Framework';
 $string['addedactivity'] = 'Składnik {$a->modname} dodany przez {$a->fullname}';
 $string['basichtml'] = 'Basic HTML';
 $string['deletedactivity'] = 'Moduł {$a->modname} usunięty przez {$a->fullname}';
@@ -29,7 +29,7 @@ $string['export'] = 'Eksportuj: ';
 $string['filter'] = 'Filtr';
 $string['loadingdotdotdot'] = 'Ładowanie...';
 $string['local_mr_docs'] = 'Dokumenty';
-$string['moodleroomsframework'] = 'Moodlerooms Framework';
+$string['moodleroomsframework'] = 'Blackboard Open LMS Framework';
 $string['mrframework'] = 'MR Framework';
 $string['nolimit'] = 'Bez ograniczeń';
 $string['oneday'] = '1 dzień';

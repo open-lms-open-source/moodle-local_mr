@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'إطار عمل Moodlerooms';
+$string['pluginname'] = 'إطار عمل Blackboard Open LMS';
 $string['addedactivity'] = 'تمت إضافة {$a->modname} بواسطة {$a->fullname}';
 $string['basichtml'] = 'HTML الأساسي';
 $string['deletedactivity'] = 'تم حذف {$a->modname} بواسطة {$a->fullname}';
@@ -29,7 +29,7 @@ $string['export'] = 'التصدير: ';
 $string['filter'] = 'التصفية';
 $string['loadingdotdotdot'] = 'يتم الآن التحميل...';
 $string['local_mr_docs'] = 'مستندات';
-$string['moodleroomsframework'] = 'إطار عمل Moodlerooms';
+$string['moodleroomsframework'] = 'إطار عمل Blackboard Open LMS';
 $string['mrframework'] = 'إطار عمل MR';
 $string['nolimit'] = 'غير محدود';
 $string['oneday'] = 'يوم 1';

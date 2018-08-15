@@ -1,6 +1,6 @@
 <?php
 /**
- * Moodlerooms Framework
+ * Blackboard Open LMS Framework
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see http://opensource.org/licenses/gpl-3.0.html.
  *
- * @copyright Copyright (c) 2009 Moodlerooms Inc. (http://www.moodlerooms.com)
+ * @copyright Copyright (c) 2009 Blackboard Inc. (http://www.moodlerooms.com)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License
  * @package local_mr
  * @author Mark Nielsen
@@ -28,7 +28,7 @@
  * @package local_mr
  */
 
-$string['pluginname'] = 'Moodlerooms Framework';
+$string['pluginname'] = 'Blackboard Open LMS Framework';
 $string['addedactivity'] = 'Added {$a->modname} by {$a->fullname}';
 $string['basichtml'] = 'Basic HTML';
 $string['deletedactivity'] = 'Deleted {$a->modname} by {$a->fullname}';
@@ -36,7 +36,7 @@ $string['export'] = 'Export: ';
 $string['filter'] = 'Filter';
 $string['loadingdotdotdot'] = 'Loading...';
 $string['local_mr_docs'] = 'Docs';
-$string['moodleroomsframework'] = 'Moodlerooms Framework';
+$string['moodleroomsframework'] = 'Blackboard Open LMS Framework';
 $string['mrframework'] = 'MR Framework';
 $string['nolimit'] = 'No limit';
 $string['oneday'] = '1 day';
@@ -70,4 +70,4 @@ $string['paginatorprevlabel'] = 'prev';
 $string['paginatorprevtitle'] = 'Previous Page';
 $string['paginatornextlabel'] = 'next';
 $string['paginatornexttitle'] = 'Next Page';
-$string['privacy:metadata'] = 'The Moodlerooms Framework plugin does not store any personal data.';
+$string['privacy:metadata'] = 'The Blackboard Open LMS Framework plugin does not store any personal data.';

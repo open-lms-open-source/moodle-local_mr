@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Estrutura do Moodlerooms';
+$string['pluginname'] = 'Estrutura do Open';
 $string['addedactivity'] = '{$a->modname} adicionado por {$a->fullname}';
 $string['basichtml'] = 'HTML básico';
 $string['deletedactivity'] = '{$a->modname} excluído por {$a->fullname}';
@@ -29,7 +29,7 @@ $string['export'] = 'Exportar: ';
 $string['filter'] = 'Filtro';
 $string['loadingdotdotdot'] = 'Carregando...';
 $string['local_mr_docs'] = 'Documentos';
-$string['moodleroomsframework'] = 'Estrutura do Moodlerooms';
+$string['moodleroomsframework'] = 'Estrutura do Open';
 $string['mrframework'] = 'Estrutura do MR';
 $string['nolimit'] = 'Sem limite';
 $string['oneday'] = '1 dia';

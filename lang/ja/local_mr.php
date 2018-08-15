@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Moodleroomsフレームワーク';
+$string['pluginname'] = 'Openフレームワーク';
 $string['addedactivity'] = '{$a->modname} は {$a->fullname} により追加されました';
 $string['basichtml'] = '基本HTML';
 $string['deletedactivity'] = '{$a->modname} は {$a->fullname} により削除されました';
@@ -29,7 +29,7 @@ $string['export'] = 'エクスポート : ';
 $string['filter'] = 'フィルタ';
 $string['loadingdotdotdot'] = '読み込み中 ...';
 $string['local_mr_docs'] = 'ドキュメント';
-$string['moodleroomsframework'] = 'Moodleroomsフレームワーク';
+$string['moodleroomsframework'] = 'Openフレームワーク';
 $string['mrframework'] = 'MRフレームワーク';
 $string['nolimit'] = '無制限';
 $string['oneday'] = '1日';

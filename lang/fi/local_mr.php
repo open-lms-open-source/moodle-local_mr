@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Moodlerooms Framework';
+$string['pluginname'] = 'Blackboard Open LMS Framework';
 $string['addedactivity'] = '{$a->fullname} lisäsi aktiviteetin {$a->modname}';
 $string['basichtml'] = 'HTML-perusmuotoilu';
 $string['deletedactivity'] = '{$a->fullname} poisti aktiviteetin {$a->modname}';
@@ -29,7 +29,7 @@ $string['export'] = 'Vie: ';
 $string['filter'] = 'Suodatin';
 $string['loadingdotdotdot'] = 'Ladataan...';
 $string['local_mr_docs'] = 'Tiedostot';
-$string['moodleroomsframework'] = 'Moodlerooms Framework';
+$string['moodleroomsframework'] = 'Blackboard Open LMS Framework';
 $string['mrframework'] = 'MR Framework';
 $string['nolimit'] = 'Ei rajaa';
 $string['oneday'] = '1 päivä';
