@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see http://opensource.org/licenses/gpl-3.0.html.
  *
- * @copyright Copyright (c) 2009 Blackboard Inc. (http://www.moodlerooms.com)
+ * @copyright Copyright (c) 2009 Blackboard Inc. (http://www.blackboardopenlms.com)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License
  * @package mr
  * @author Mark Nielsen
@@ -191,7 +191,7 @@ class mr_helper_testwebservice extends mr_helper_abstract {
             str_replace('http://', '', $CFG->wwwroot),
             str_replace('/', '\/', str_replace('http://', '', $CFG->wwwroot)),
             'CISCO',
-            'mark@moodlerooms.com',
+            'osdev@blackboard.com',
         );
 
         $replaces = array(

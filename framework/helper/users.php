@@ -21,7 +21,7 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  *
  * @author    Corey Wallis
  * @package   mr
- * @copyright Copyright (c) 2015 Blackboard Inc. (http://www.moodlerooms.com)
+ * @copyright Copyright (c) 2015 Blackboard Inc. (http://www.blackboardopenlms.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -30,7 +30,7 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  *
  * @author    Corey Wallis
  * @package   mr
- * @copyright Copyright (c) 2015 Blackboard Inc. (http://www.moodlerooms.com)
+ * @copyright Copyright (c) 2015 Blackboard Inc. (http://www.blackboardopenlms.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class mr_helper_users extends mr_helper_abstract {
