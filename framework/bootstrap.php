@@ -1,6 +1,6 @@
 <?php
 /**
- * Moodlerooms Framework
+ * Blackboard Open LMS framework
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -76,7 +76,7 @@ class mr_bootstrap {
     /**
      * Run shutdown routine
      *
-     * Recommended to call this when you don't want the Moodlerooms
+     * Recommended to call this when you don't want the Blackboard Open LMS
      * Framework to conflict with other code, EG: when using the
      * framework on the cron.
      *
