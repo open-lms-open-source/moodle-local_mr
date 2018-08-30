@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Marco de Open';
+$string['pluginname'] = 'Marco de Blackboard Open LMS';
 $string['addedactivity'] = '{$a->modname} agregado por {$a->fullname}';
 $string['basichtml'] = 'HTML básico';
 $string['deletedactivity'] = '{$a->modname} eliminado por {$a->fullname}';
@@ -30,7 +30,7 @@ $string['filter'] = 'Filtro';
 $string['loadingdotdotdot'] = 'Cargando...';
 $string['local_mr_docs'] = 'Docs';
 $string['moodleroomsframework'] = 'Marco de Blackboard Open LMS';
-$string['mrframework'] = 'Marco MR';
+$string['mrframework'] = 'Marco Bb Open LMS';
 $string['nolimit'] = 'Sin límites';
 $string['oneday'] = '1 día';
 $string['onemonth'] = '1 mes';
