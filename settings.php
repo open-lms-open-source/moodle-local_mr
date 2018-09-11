@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see http://opensource.org/licenses/gpl-3.0.html.
  *
- * @copyright Copyright (c) 2009 Blackboard Inc. (http://www.blackboardopenlms.com)
+ * @copyright Copyright (c) 2009 Blackboard Inc. (http://www.blackboard.com)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License
  * @package local_mr
  * @author Mark Nielsen
