@@ -73,6 +73,7 @@ div.mr_ajax_table_forceajax {
 
 .mr_html_filter .selectmultiplusitem div.deletebtn {
      float: right;
+     padding-right: 1em;
  }
 
 .mr_html_filter .selectmultiplusitem div.optiontext {
