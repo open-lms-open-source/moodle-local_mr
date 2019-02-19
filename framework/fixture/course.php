@@ -63,8 +63,6 @@ class mr_fixture_course extends mr_fixture_abstract {
     public function build() {
         global $CFG, $DB;
 
-        require_once($CFG->libdir.'/coursecatlib.php');
-
         if (!$this->exists()) {
             $course = (object) $this->get_options();
 
@@ -78,7 +76,7 @@ class mr_fixture_course extends mr_fixture_abstract {
 
             // Try to help folks out...
             if (!property_exists($course, 'category')) {
-                $course->category = coursecat::get_default()->id;
+                $course->category = core_course_category::get_default()->id;
             }
             if (!property_exists($course, 'fullname')) {
                 $course->fullname = '';
