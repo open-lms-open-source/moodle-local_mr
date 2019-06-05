@@ -241,7 +241,9 @@ class mr_helper_recentactivity extends mr_helper_abstract {
 
         // Sort recent activity
         foreach ($recentactivity as $courseid => $course) {
-            uasort($course->recentactivity, create_function('$a, $b', 'return ($a->timestamp == $b->timestamp) ? 0 : (($a->timestamp > $b->timestamp) ? -1 : 1);'));
+            uasort($course->recentactivity, function($a, $b) {
+                return ($a->timestamp == $b->timestamp) ? 0 : (($a->timestamp > $b->timestamp) ? -1 : 1);
+            });
             $recentactivity[$courseid]->recentactivity = array_values($course->recentactivity);
         }
         if ($currentuser !== false) {

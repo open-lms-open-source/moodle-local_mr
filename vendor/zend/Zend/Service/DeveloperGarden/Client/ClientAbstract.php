@@ -135,7 +135,7 @@ abstract class Zend_Service_DeveloperGarden_Client_ClientAbstract
     {
         $this->_credential = new Zend_Service_DeveloperGarden_Credential();
 
-        while (list($name, $value) = each($options)) {
+        foreach ($options as $name => $value) {
             switch (ucfirst($name)) {
                 case 'Username' :
                     $this->_credential->setUsername($value);
