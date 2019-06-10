@@ -14,9 +14,9 @@
  *
  * @category  Zend
  * @package   Zend_Navigation
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Container.php 20096 2010-01-06 02:05:09Z bkarwin $
+ * @version    $Id$
  */
 
 /**
@@ -26,7 +26,7 @@
  *
  * @category  Zend
  * @package   Zend_Navigation
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
@@ -34,7 +34,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
     /**
      * Contains sub pages
      *
-     * @var array
+     * @var Zend_Navigation_Page[]
      */
     protected $_pages = array();
 
@@ -143,9 +143,12 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
     /**
      * Adds several pages at once
      *
-     * @param  array|Zend_Config $pages   pages to add
-     * @return Zend_Navigation_Container  fluent interface, returns self
-     * @throws Zend_Navigation_Exception  if $pages is not array or Zend_Config
+     * @param  Zend_Navigation_Page[]|Zend_Config|Zend_Navigation_Container  $pages  pages to add
+     * @return Zend_Navigation_Container                    fluent interface,
+     *                                                      returns self
+     * @throws Zend_Navigation_Exception                    if $pages is not 
+     *                                                      array, Zend_Config or
+     *                                                      Zend_Navigation_Container
      */
     public function addPages($pages)
     {
@@ -153,11 +156,16 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
             $pages = $pages->toArray();
         }
 
+        if ($pages instanceof Zend_Navigation_Container) {
+            $pages = iterator_to_array($pages);
+        }
+
         if (!is_array($pages)) {
             require_once 'Zend/Navigation/Exception.php';
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $pages must be an array or an ' .
-                    'instance of Zend_Config');
+                    'Invalid argument: $pages must be an array, an ' .
+                    'instance of Zend_Config or an instance of ' .
+                    'Zend_Navigation_Container');
         }
 
         foreach ($pages as $page) {
@@ -170,7 +178,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
     /**
      * Sets pages this container should have, removing existing pages
      *
-     * @param  array $pages               pages to set
+     * @param  Zend_Navigation_Page[] $pages               pages to set
      * @return Zend_Navigation_Container  fluent interface, returns self
      */
     public function setPages(array $pages)
@@ -182,7 +190,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
     /**
      * Returns pages in the container
      *
-     * @return array  array of Zend_Navigation_Page instances
+     * @return Zend_Navigation_Page[]  array of Zend_Navigation_Page instances
      */
     public function getPages()
     {
@@ -192,12 +200,12 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
     /**
      * Removes the given page from the container
      *
-     * @param  Zend_Navigation_Page|int $page  page to remove, either a page
-     *                                         instance or a specific page order
-     * @return bool                            whether the removal was
-     *                                         successful
+     * @param  Zend_Navigation_Page|int $page      page to remove, either a page
+     *                                             instance or a specific page order
+     * @param  bool                     $recursive [optional] whether to remove recursively
+     * @return bool whether the removal was successful
      */
-    public function removePage($page)
+    public function removePage($page, $recursive = false)
     {
         if ($page instanceof Zend_Navigation_Page) {
             $hash = $page->hashCode();
@@ -215,6 +223,16 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
             unset($this->_index[$hash]);
             $this->_dirtyIndex = true;
             return true;
+        }
+
+        if ($recursive) {
+            /** @var Zend_Navigation_Page $childPage */
+            foreach ($this->_pages as $childPage) {
+                if ($childPage->hasPage($page, true)) {
+                    $childPage->removePage($page, true);
+                    return true;
+                }
+            }
         }
 
         return false;
@@ -266,45 +284,138 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
     }
 
     /**
-     * Returns a child page matching $property == $value, or null if not found
+     * Returns a child page matching $property == $value or 
+     * preg_match($value, $property), or null if not found
      *
-     * @param  string $property           name of property to match against
-     * @param  mixed  $value              value to match property against
+     * @param  string  $property          name of property to match against
+     * @param  mixed   $value             value to match property against
+     * @param  bool    $useRegex          [optional] if true PHP's preg_match
+     *                                    is used. Default is false.
      * @return Zend_Navigation_Page|null  matching page or null
      */
-    public function findOneBy($property, $value)
-    {
-        $iterator = new RecursiveIteratorIterator($this,
-                            RecursiveIteratorIterator::SELF_FIRST);
+    public function findOneBy($property, $value, $useRegex = false)
+    {        
+        $iterator = new RecursiveIteratorIterator(
+            $this,
+            RecursiveIteratorIterator::SELF_FIRST
+        );
 
         foreach ($iterator as $page) {
-            if ($page->get($property) == $value) {
-                return $page;
+            $pageProperty = $page->get($property);
+            
+            // Rel and rev
+            if (is_array($pageProperty)) {
+                foreach ($pageProperty as $item) {
+                    if (is_array($item)) {
+                        // Use regex?
+                        if (true === $useRegex) {
+                            foreach ($item as $item2) {
+                                if (0 !== preg_match($value, $item2)) {
+                                    return $page;
+                                }
+                            }
+                        } else {
+                            if (in_array($value, $item)) {
+                                return $page;
+                            }
+                        }
+                    } else {
+                        // Use regex?
+                        if (true === $useRegex) {
+                            if (0 !== preg_match($value, $item)) {
+                                return $page;
+                            }
+                        } else {
+                            if ($item == $value) {
+                                return $page;
+                            }
+                        }
+                    }
+                }
+                
+                continue;
+            }
+            
+            // Use regex?
+            if (true === $useRegex) {
+                if (preg_match($value, $pageProperty)) {
+                    return $page;
+                }
+            } else {
+                if ($pageProperty == $value) {
+                    return $page;
+                }
             }
         }
-
+        
         return null;
     }
 
     /**
-     * Returns all child pages matching $property == $value, or an empty array
-     * if no pages are found
+     * Returns all child pages matching $property == $value or
+     * preg_match($value, $property), or an empty array if no pages are found
      *
      * @param  string $property  name of property to match against
      * @param  mixed  $value     value to match property against
-     * @return array             array containing only Zend_Navigation_Page
+     * @param  bool   $useRegex  [optional] if true PHP's preg_match is used.
+     *                           Default is false.
+     * @return Zend_Navigation_Page[] array containing only Zend_Navigation_Page
      *                           instances
      */
-    public function findAllBy($property, $value)
-    {
+    public function findAllBy($property, $value, $useRegex = false)
+    {        
         $found = array();
 
-        $iterator = new RecursiveIteratorIterator($this,
-                            RecursiveIteratorIterator::SELF_FIRST);
-
+        $iterator = new RecursiveIteratorIterator(
+            $this,
+            RecursiveIteratorIterator::SELF_FIRST
+        );
+        
         foreach ($iterator as $page) {
-            if ($page->get($property) == $value) {
-                $found[] = $page;
+            $pageProperty = $page->get($property);
+            
+            // Rel and rev
+            if (is_array($pageProperty)) {
+                foreach ($pageProperty as $item) {
+                    if (is_array($item)) {
+                        // Use regex?
+                        if (true === $useRegex) {
+                            foreach ($item as $item2) {
+                                if (0 !== preg_match($value, $item2)) {
+                                    $found[] = $page;
+                                }
+                            }
+                        } else {
+                            if (in_array($value, $item)) {
+                                $found[] = $page;
+                            }
+                        }
+                    } else {
+                        // Use regex?
+                        if (true === $useRegex) {
+                            if (0 !== preg_match($value, $item)) {
+                                $found[] = $page;
+                            }
+                        } else {
+                            if ($item == $value) {
+                                $found[] = $page;
+                            }
+                        }
+                    }
+                }
+                
+                continue;
+            }
+            
+            // Use regex?
+            if (true === $useRegex) {
+                if (0 !== preg_match($value, $pageProperty)) {
+                    $found[] = $page;
+                }
+            } else {
+                if ($pageProperty == $value) {
+                    $found[] = $page;
+                }
             }
         }
 
@@ -312,7 +423,8 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
     }
 
     /**
-     * Returns page(s) matching $property == $value
+     * Returns page(s) matching $property == $value or
+     * preg_match($value, $property)
      *
      * @param  string $property  name of property to match against
      * @param  mixed  $value     value to match property against
@@ -322,14 +434,16 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
      *                           matching pages are found. If false, null will
      *                           be returned if no matching page is found.
      *                           Default is false.
+     * @param  bool   $useRegex  [optional] if true PHP's preg_match is used.
+     *                           Default is false.
      * @return Zend_Navigation_Page|null  matching page or null
      */
-    public function findBy($property, $value, $all = false)
+    public function findBy($property, $value, $all = false, $useRegex = false)
     {
         if ($all) {
-            return $this->findAllBy($property, $value);
+            return $this->findAllBy($property, $value, $useRegex);
         } else {
-            return $this->findOneBy($property, $value);
+            return $this->findOneBy($property, $value, $useRegex);
         }
     }
 
@@ -338,38 +452,44 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
      *
      * Examples of finder calls:
      * <code>
-     * // METHOD                    // SAME AS
-     * $nav->findByLabel('foo');    // $nav->findOneBy('label', 'foo');
-     * $nav->findOneByLabel('foo'); // $nav->findOneBy('label', 'foo');
-     * $nav->findAllByClass('foo'); // $nav->findAllBy('class', 'foo');
+     * // METHOD                         // SAME AS
+     * $nav->findByLabel('foo');         // $nav->findOneBy('label', 'foo');
+     * $nav->findByLabel('/foo/', true); // $nav->findBy('label', '/foo/', true);
+     * $nav->findOneByLabel('foo');      // $nav->findOneBy('label', 'foo');
+     * $nav->findAllByClass('foo');      // $nav->findAllBy('class', 'foo');
      * </code>
      *
-     * @param  string $method             method name
-     * @param  array  $arguments          method arguments
-     * @throws Zend_Navigation_Exception  if method does not exist
+     * @param  string $method                       method name
+     * @param  array  $arguments                    method arguments
+     * @return mixed  Zend_Navigation|array|null    matching page, array of pages
+     *                                              or null
+     * @throws Zend_Navigation_Exception            if method does not exist
      */
     public function __call($method, $arguments)
     {
         if (@preg_match('/(find(?:One|All)?By)(.+)/', $method, $match)) {
-            return $this->{$match[1]}($match[2], $arguments[0]);
+            return $this->{$match[1]}($match[2], $arguments[0], !empty($arguments[1]));
         }
 
         require_once 'Zend/Navigation/Exception.php';
-        throw new Zend_Navigation_Exception(sprintf(
+        throw new Zend_Navigation_Exception(
+            sprintf(
                 'Bad method call: Unknown method %s::%s',
                 get_class($this),
-                $method));
+                $method
+            )
+        );
     }
 
     /**
      * Returns an array representation of all pages in container
      *
-     * @return array
+     * @return Zend_Navigation_Page[]
      */
     public function toArray()
     {
         $pages = array();
-        
+
         $this->_dirtyIndex = true;
         $this->_sort();
         $indexes = array_keys($this->_index);

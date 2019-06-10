@@ -15,15 +15,10 @@
  * @category   Zend
  * @package    Zend_Test
  * @subpackage PHPUnit
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Connection.php 20096 2010-01-06 02:05:09Z bkarwin $
+ * @version    $Id$
  */
-
-/**
- * @see PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection
- */
-require_once "PHPUnit/Extensions/Database/DB/DefaultDatabaseConnection.php";
 
 /**
  * @see Zend_Test_PHPUnit_Db_DataSet_QueryTable
@@ -43,7 +38,7 @@ require_once "Zend/Test/PHPUnit/Db/Metadata/Generic.php";
  * @category   Zend
  * @package    Zend_Test
  * @subpackage PHPUnit
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Test_PHPUnit_Db_Connection extends PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection

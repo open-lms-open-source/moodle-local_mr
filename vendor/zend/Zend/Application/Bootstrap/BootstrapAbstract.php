@@ -15,10 +15,20 @@
  * @category   Zend
  * @package    Zend_Application
  * @subpackage Bootstrap
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: BootstrapAbstract.php 22125 2010-05-05 22:23:05Z hobodave $
+ * @version    $Id$
  */
+
+/**
+ * @see Zend_Application_Bootstrap_Bootstrapper
+ */
+require_once 'Zend/Application/Bootstrap/Bootstrapper.php';
+
+/**
+ * @see Zend_Application_Bootstrap_ResourceBootstrapper
+ */
+require_once 'Zend/Application/Bootstrap/ResourceBootstrapper.php';
 
 /**
  * Abstract base class for bootstrap classes
@@ -28,7 +38,7 @@
  * @category   Zend
  * @package    Zend_Application
  * @subpackage Bootstrap
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Application_Bootstrap_BootstrapAbstract
@@ -94,8 +104,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
      * initializer methods.
      *
      * @param  Zend_Application|Zend_Application_Bootstrap_Bootstrapper $application
-     * @return void
-     * @throws Zend_Application_Bootstrap_Exception When invalid applicaiton is provided
+     * @throws Zend_Application_Bootstrap_Exception When invalid application is provided
      */
     public function __construct($application)
     {
@@ -163,7 +172,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
      */
     public function hasOption($key)
     {
-        return in_array($key, $this->_optionKeys);
+        return in_array(strtolower($key), $this->_optionKeys);
     }
 
     /**
@@ -317,8 +326,9 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
     /**
      * Get a registered plugin resource
      *
-     * @param  string $resourceName
+     * @param string $resource
      * @return Zend_Application_Resource_Resource
+     * @throws Zend_Application_Bootstrap_Exception
      */
     public function getPluginResource($resource)
     {
@@ -352,7 +362,9 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
                 continue;
             }
 
-            if (class_exists($plugin)) { //@SEE ZF-7550
+            if (class_exists($plugin)
+            && is_subclass_of($plugin, 'Zend_Application_Resource_Resource')
+            ) { //@SEE ZF-7550
                 $spec = (array) $spec;
                 $spec['bootstrap'] = $this;
                 $instance = new $plugin($spec);
@@ -414,7 +426,8 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
     {
         if ($this->_pluginLoader === null) {
             $options = array(
-                'Zend_Application_Resource' => 'Zend/Application/Resource'
+                'Zend_Application_Resource'  => 'Zend/Application/Resource',
+                'ZendX_Application_Resource' => 'ZendX/Application/Resource'
             );
 
             $this->_pluginLoader = new Zend_Loader_PluginLoader($options);
@@ -428,6 +441,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
      *
      * @param  Zend_Application|Zend_Application_Bootstrap_Bootstrapper $application
      * @return Zend_Application_Bootstrap_BootstrapAbstract
+     * @throws Zend_Application_Bootstrap_Exception
      */
     public function setApplication($application)
     {
@@ -478,6 +492,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
      *
      * @param  object $container
      * @return Zend_Application_Bootstrap_BootstrapAbstract
+     * @throws Zend_Application_Bootstrap_Exception
      */
     public function setContainer($container)
     {
@@ -541,7 +556,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
     }
 
     /**
-     * Implement PHP's magic to retrieve a ressource
+     * Implement PHP's magic to retrieve a resource
      * in the bootstrap
      *
      * @param string $prop
@@ -554,7 +569,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
 
     /**
      * Implement PHP's magic to ask for the
-     * existence of a ressource in the bootstrap
+     * existence of a resource in the bootstrap
      *
      * @param string $prop
      * @return bool
@@ -589,7 +604,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
      *
      * @param  string $method
      * @param  array  $args
-     * @return void
+     * @return Zend_Application_Bootstrap_BootstrapAbstract
      * @throws Zend_Application_Bootstrap_Exception On invalid method name
      */
     public function __call($method, $args)

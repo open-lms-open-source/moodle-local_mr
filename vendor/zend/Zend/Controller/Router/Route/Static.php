@@ -15,8 +15,8 @@
  * @category   Zend
  * @package    Zend_Controller
  * @subpackage Router
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id: Static.php 20096 2010-01-06 02:05:09Z bkarwin $
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @version    $Id$
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -30,16 +30,33 @@ require_once 'Zend/Controller/Router/Route/Abstract.php';
  *
  * @package    Zend_Controller
  * @subpackage Router
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_Abstract
 {
 
+    /**
+     * Route
+     *
+     * @var string|null
+     */
     protected $_route = null;
+
+    /**
+     * Default values for the route (ie. module, controller, action, params)
+     *
+     * @var array
+     */
     protected $_defaults = array();
 
-    public function getVersion() {
+    /**
+     * Get the version of the route
+     *
+     * @return int
+     */
+    public function getVersion()
+    {
         return 1;
     }
 
@@ -47,22 +64,24 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
      * Instantiates route based on passed Zend_Config structure
      *
      * @param Zend_Config $config Configuration object
+     * @return Zend_Controller_Router_Route_Static
      */
     public static function getInstance(Zend_Config $config)
     {
         $defs = ($config->defaults instanceof Zend_Config) ? $config->defaults->toArray() : array();
+
         return new self($config->route, $defs);
     }
 
     /**
      * Prepares the route for mapping.
      *
-     * @param string $route Map used to match with later submitted URL path
-     * @param array $defaults Defaults for map variables with keys as variable names
+     * @param string $route    Map used to match with later submitted URL path
+     * @param array  $defaults Defaults for map variables with keys as variable names
      */
     public function __construct($route, $defaults = array())
     {
-        $this->_route = trim($route, '/');
+        $this->_route    = trim($route, self::URI_DELIMITER);
         $this->_defaults = (array) $defaults;
     }
 
@@ -76,12 +95,15 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
     public function match($path, $partial = false)
     {
         if ($partial) {
-            if (substr($path, 0, strlen($this->_route)) === $this->_route) {
+            if ((empty($path) && empty($this->_route))
+                || (substr($path, 0, strlen($this->_route)) === $this->_route)
+            ) {
                 $this->setMatchedPath($this->_route);
+
                 return $this->_defaults;
             }
         } else {
-            if (trim($path, '/') == $this->_route) {
+            if (trim($path, self::URI_DELIMITER) == $this->_route) {
                 return $this->_defaults;
             }
         }
@@ -106,10 +128,12 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
      * @param string $name Array key of the parameter
      * @return string Previously set default
      */
-    public function getDefault($name) {
+    public function getDefault($name)
+    {
         if (isset($this->_defaults[$name])) {
             return $this->_defaults[$name];
         }
+
         return null;
     }
 
@@ -118,8 +142,8 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
      *
      * @return array Route defaults
      */
-    public function getDefaults() {
+    public function getDefaults()
+    {
         return $this->_defaults;
     }
-
 }

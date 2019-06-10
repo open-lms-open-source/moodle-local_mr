@@ -15,9 +15,9 @@
  * @category   Zend
  * @package    Zend_View
  * @subpackage Helper
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Navigation.php 20096 2010-01-06 02:05:09Z bkarwin $
+ * @version    $Id$
  */
 
 /**
@@ -31,8 +31,12 @@ require_once 'Zend/View/Helper/Navigation/HelperAbstract.php';
  * @category   Zend
  * @package    Zend_View
  * @subpackage Helper
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @method Zend_View_Helper_Navigation_Breadcrumbs breadcrumbs
+ * @method Zend_View_Helper_Navigation_Links links
+ * @method Zend_View_Helper_Navigation_Menu menu
+ * @method Zend_View_Helper_Navigation_Sitemap sitemap
  */
 class Zend_View_Helper_Navigation
     extends Zend_View_Helper_Navigation_HelperAbstract
@@ -157,9 +161,17 @@ class Zend_View_Helper_Navigation
         }
 
         if (!$this->view->getPluginLoader('helper')->getPaths(self::NS)) {
+            // Add navigation helper path at the beginning
+            $paths = $this->view->getHelperPaths();
+            $this->view->setHelperPath(null);
+            
             $this->view->addHelperPath(
                     str_replace('_', '/', self::NS),
                     self::NS);
+            
+            foreach ($paths as $ns => $path) {
+                $this->view->addHelperPath($path, $ns);
+            }
         }
 
         if ($strict) {

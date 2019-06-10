@@ -14,16 +14,16 @@
  *
  * @category   Zend
  * @package    Zend_Config
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Config.php 20096 2010-01-06 02:05:09Z bkarwin $
+ * @version    $Id$
  */
 
 
 /**
  * @category   Zend
  * @package    Zend_Config
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Config implements Countable, Iterator
@@ -444,7 +444,7 @@ class Zend_Config implements Countable, Iterator
      * @param string $errfile
      * @param integer $errline
      */
-    protected function _loadFileErrorHandler($errno, $errstr, $errfile, $errline)
+    public function _loadFileErrorHandler($errno, $errstr, $errfile, $errline)
     {
         if ($this->_loadFileErrorStr === null) {
             $this->_loadFileErrorStr = $errstr;

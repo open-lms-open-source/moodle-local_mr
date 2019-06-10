@@ -15,9 +15,9 @@
  * @category   Zend
  * @package    Zend_Controller
  * @subpackage Zend_Controller_Action_Helper
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Redirector.php 20096 2010-01-06 02:05:09Z bkarwin $
+ * @version    $Id$
  */
 
 /**
@@ -29,7 +29,7 @@ require_once 'Zend/Controller/Action/Helper/Abstract.php';
  * @category   Zend
  * @package    Zend_Controller
  * @subpackage Zend_Controller_Action_Helper
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_Helper_Abstract
@@ -100,7 +100,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
     }
 
     /**
-     * Retrieve HTTP status code for {@link _redirect()} behaviour
+     * Set HTTP status code for {@link _redirect()} behaviour
      *
      * @param  int $code
      * @return Zend_Controller_Action_Helper_Redirector Provides a fluent interface
@@ -123,7 +123,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
     }
 
     /**
-     * Retrieve exit flag for {@link _redirect()} behaviour
+     * Set exit flag for {@link _redirect()} behaviour
      *
      * @param  boolean $flag
      * @return Zend_Controller_Action_Helper_Redirector Provides a fluent interface
@@ -146,7 +146,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
     }
 
     /**
-     * Retrieve 'prepend base' flag for {@link _redirect()} behaviour
+     * Set 'prepend base' flag for {@link _redirect()} behaviour
      *
      * @param  boolean $flag
      * @return Zend_Controller_Action_Helper_Redirector Provides a fluent interface
@@ -215,7 +215,10 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
             $port  = (isset($_SERVER['SERVER_PORT'])?$_SERVER['SERVER_PORT']:80);
             $uri   = $proto . '://' . $host;
             if ((('http' == $proto) && (80 != $port)) || (('https' == $proto) && (443 != $port))) {
-                $uri .= ':' . $port;
+                // do not append if HTTP_HOST already contains port
+                if (strrchr($host, ':') === false) {
+                    $uri .= ':' . $port;
+                }
             }
             $url = $uri . '/' . ltrim($url, '/');
         }
@@ -291,9 +294,9 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
             }
         }
 
-        $params['module']     = $module;
-        $params['controller'] = $controller;
-        $params['action']     = $action;
+        $params[$request->getModuleKey()]     = $module;
+        $params[$request->getControllerKey()] = $controller;
+        $params[$request->getActionKey()]     = $action;
 
         $router = $this->getFrontController()->getRouter();
         $url    = $router->assemble($params, 'default', true);
@@ -403,7 +406,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
     /**
      * Redirect to a route-based URL
      *
-     * Uses route's assemble method tobuild the URL; route is specified by $name;
+     * Uses route's assemble method to build the URL; route is specified by $name;
      * default route is used if none provided.
      *
      * @param  array   $urlOptions Array of key/value pairs used to assemble URL
@@ -424,7 +427,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
     /**
      * Redirect to a route-based URL, and immediately exit
      *
-     * Uses route's assemble method tobuild the URL; route is specified by $name;
+     * Uses route's assemble method to build the URL; route is specified by $name;
      * default route is used if none provided.
      *
      * @param  array   $urlOptions Array of key/value pairs used to assemble URL
@@ -463,7 +466,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
      */
     public function gotoUrlAndExit($url, array $options = array())
     {
-        $this->gotoUrl($url, $options);
+        $this->setGotoUrl($url, $options);
         $this->redirectAndExit();
     }
 

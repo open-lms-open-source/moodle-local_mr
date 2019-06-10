@@ -15,8 +15,9 @@
  * @category   Zend
  * @package    Zend_Feed_Pubsubhubbub
  * @subpackage Callback
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id$
  */
 
 /**
@@ -33,14 +34,14 @@ require_once 'Zend/Feed/Pubsubhubbub/HttpResponse.php';
  * @category   Zend
  * @package    Zend_Feed_Pubsubhubbub
  * @subpackage Callback
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
     implements Zend_Feed_Pubsubhubbub_CallbackInterface
 {
     /**
-     * An instance of Zend_Feed_Pubsubhubbub_Model_SubscriptionInterface used 
+     * An instance of Zend_Feed_Pubsubhubbub_Model_SubscriptionInterface used
      * to background save any verification tokens associated with a subscription
      * or other.
      *
@@ -69,11 +70,11 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
      * options for the Subscriber without calling all supported setter
      * methods in turn.
      *
-     * @param array|Zend_Config $options Options array or Zend_Config instance
+     * @param array|Zend_Config|null $config Options array or Zend_Config instance
      */
     public function __construct($config = null)
     {
-        if (!is_null($config)) {
+        if ($config !== null) {
             $this->setConfig($config);
         }
     }
@@ -81,7 +82,8 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
     /**
      * Process any injected configuration options
      *
-     * @param  array|Zend_Config $options Options array or Zend_Config instance
+     * @param  array|Zend_Config $config Options array or Zend_Config instance
+     * @throws Zend_Feed_Pubsubhubbub_Exception
      * @return Zend_Feed_Pubsubhubbub_CallbackAbstract
      */
     public function setConfig($config)
@@ -131,6 +133,7 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
      * to background save any verification tokens associated with a subscription
      * or other.
      *
+     * @throws Zend_Feed_Pubsubhubbub_Exception
      * @return Zend_Feed_Pubsubhubbub_Model_SubscriptionInterface
      */
     public function getStorage()
@@ -149,6 +152,7 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
      * (i.e. not inherited from) Zend_Controller_Response_Http.
      *
      * @param  Zend_Feed_Pubsubhubbub_HttpResponse|Zend_Controller_Response_Http $httpResponse
+     * @throws Zend_Feed_Pubsubhubbub_Exception
      * @return Zend_Feed_Pubsubhubbub_CallbackAbstract
      */
     public function setHttpResponse($httpResponse)
@@ -187,6 +191,7 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
      * Defaults to 1 if left unchanged.
      *
      * @param  string|int $count
+     * @throws Zend_Feed_Pubsubhubbub_Exception
      * @return Zend_Feed_Pubsubhubbub_CallbackAbstract
      */
     public function setSubscriberCount($count)
@@ -218,7 +223,9 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
     protected function _detectCallbackUrl()
     {
         $callbackUrl = '';
-        if (isset($_SERVER['HTTP_X_REWRITE_URL'])) {
+        if (isset($_SERVER['HTTP_X_ORIGINAL_URL'])) {
+            $callbackUrl = $_SERVER['HTTP_X_ORIGINAL_URL'];
+        } elseif (isset($_SERVER['HTTP_X_REWRITE_URL'])) {
             $callbackUrl = $_SERVER['HTTP_X_REWRITE_URL'];
         } elseif (isset($_SERVER['REQUEST_URI'])) {
             $callbackUrl = $_SERVER['REQUEST_URI'];
@@ -267,7 +274,8 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
     /**
      * Retrieve a Header value from either $_SERVER or Apache
      *
-     * @param string $header
+     * @param  string $header
+     * @return bool
      */
     protected function _getHeader($header)
     {

@@ -15,9 +15,9 @@
  * @category   Zend
  * @package    Zend_Serializer
  * @subpackage Adapter
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: PythonPickle.php 20575 2010-01-24 17:48:27Z mabe $
+ * @version    $Id$
  */
 
 /** @see Zend_Serializer_Adapter_AdapterAbstract */
@@ -31,7 +31,7 @@ require_once 'Zend/Serializer/Adapter/AdapterAbstract.php';
  * @category   Zend
  * @package    Zend_Serializer
  * @subpackage Adapter
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_AdapterAbstract
@@ -100,11 +100,6 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
     const OP_SHORT_BINBYTES  = 'C';     //  "     "   ;    "      "       "      " < 256 bytes
 
     /**
-     * @var bool Whether or not this is a PHP 6 binary
-     */
-    protected static $_isPhp6 = null;
-
-    /**
      * @var bool Whether or not the system is little-endian
      */
     protected static $_isLittleEndian = null;
@@ -154,9 +149,6 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
         // init
         if (self::$_isLittleEndian === null) {
             self::$_isLittleEndian = (pack('l', 1) === "\x01\x00\x00\x00");
-        }
-        if (self::$_isPhp6 === null) {
-            self::$_isPhp6 = !version_compare(PHP_VERSION, '6.0.0', '<');
         }
 
         $this->_marker = new stdClass();
@@ -296,11 +288,11 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
                 $this->_pickle .= self::OP_BINGET . chr($id);
             } else {
                 // LONG_BINGET + pack("<i", i)
-                $idBin = pack('l', $id);
+                $bin = pack('l', $id);
                 if (self::$_isLittleEndian === false) {
-                    $idBin = strrev($bin);
+                    $bin = strrev($bin);
                 }
-                $this->_pickle .= self::OP_LONG_BINGET . $idBin;
+                $this->_pickle .= self::OP_LONG_BINGET . $bin;
             }
         } else {
             $this->_pickle .= self::OP_GET . $id . "\r\n";
@@ -321,11 +313,11 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
                 $this->_pickle .= self::OP_BINPUT . chr($id);
             } else {
                 // LONG_BINPUT + pack("<i", i)
-                $idBin = pack('l', $id);
+                $bin = pack('l', $id);
                 if (self::$_isLittleEndian === false) {
-                    $idBin = strrev($bin);
+                    $bin = strrev($bin);
                 }
-                $this->_pickle .= self::OP_LONG_BINPUT . $idBin;
+                $this->_pickle .= self::OP_LONG_BINPUT . $bin;
             }
         } else {
             $this->_pickle .= self::OP_PUT . $id . "\r\n";
@@ -1103,10 +1095,6 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
         $pattern = '/\\\\u([a-fA-F0-9]{4})/u'; // \uXXXX
         $data    = preg_replace_callback($pattern, array($this, '_convertMatchingUnicodeSequence2Utf8'), $data);
 
-        if (self::$_isPhp6) {
-            $data = unicode_decode($data, 'UTF-8');
-        }
-
         $this->_stack[] = $data;
     }
 
@@ -1171,10 +1159,6 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
         }
         list(, $n) = unpack('l', $n);
         $data      = $this->_read($n);
-
-        if (self::$_isPhp6) {
-            $data = unicode_decode($data, 'UTF-8');
-        }
 
         $this->_stack[] = $data;
     }
@@ -1366,7 +1350,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
     {
         $proto = ord($this->_read(1));
         if ($proto < 2 || $proto > 3) {
-            require_once 'Zend/Serializer/Excception.php';
+            require_once 'Zend/Serializer/Exception.php';
             throw new Zend_Serializer_Exception('Invalid protocol version detected');
         }
         $this->_protocol = $proto;

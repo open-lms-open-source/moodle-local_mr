@@ -14,9 +14,9 @@
  *
  * @category   Zend
  * @package    Zend_Controller
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Http.php 20984 2010-02-08 16:25:08Z matthew $
+ * @version    $Id$
  */
 
 /** @see Zend_Controller_Request_Abstract */
@@ -390,7 +390,11 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
     public function setRequestUri($requestUri = null)
     {
         if ($requestUri === null) {
-            if (isset($_SERVER['HTTP_X_REWRITE_URL'])) { // check this first so IIS will catch
+            if (isset($_SERVER['HTTP_X_ORIGINAL_URL'])) { 
+                // IIS with Microsoft Rewrite Module
+                $requestUri = $_SERVER['HTTP_X_ORIGINAL_URL'];
+            } elseif (isset($_SERVER['HTTP_X_REWRITE_URL'])) { 
+                // IIS with ISAPI_Rewrite
                 $requestUri = $_SERVER['HTTP_X_REWRITE_URL'];
             } elseif (
                 // IIS7 with URL Rewrite: make sure we get the unencoded url (double slash problem)
@@ -545,13 +549,13 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
      *
      * @return string
      */
-    public function getBaseUrl()
+    public function getBaseUrl($raw = false)
     {
         if (null === $this->_baseUrl) {
             $this->setBaseUrl();
         }
 
-        return $this->_baseUrl;
+        return (($raw == false) ? urldecode($this->_baseUrl) : $this->_baseUrl);
     }
 
     /**
@@ -612,29 +616,33 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
     public function setPathInfo($pathInfo = null)
     {
         if ($pathInfo === null) {
-            $baseUrl = $this->getBaseUrl();
-
+            $baseUrl = $this->getBaseUrl(); // this actually calls setBaseUrl() & setRequestUri()
+            $baseUrlRaw = $this->getBaseUrl(false);
+            $baseUrlEncoded = urlencode($baseUrlRaw);
+        
             if (null === ($requestUri = $this->getRequestUri())) {
                 return $this;
             }
-
+        
             // Remove the query string from REQUEST_URI
             if ($pos = strpos($requestUri, '?')) {
                 $requestUri = substr($requestUri, 0, $pos);
             }
-
-            if (null !== $baseUrl
-                && ((!empty($baseUrl) && 0 === strpos($requestUri, $baseUrl)) 
-                    || empty($baseUrl))
-                    && false === ($pathInfo = substr($requestUri, strlen($baseUrl)))
-            ){ 
-                // If substr() returns false then PATH_INFO is set to an empty string 
-                $pathInfo = '';
-            } elseif (null === $baseUrl 
-                    || (!empty($baseUrl) && false === strpos($requestUri, $baseUrl))
-            ) { 
-                $pathInfo = $requestUri; 
+            
+            if (!empty($baseUrl) || !empty($baseUrlRaw)) {
+                if (strpos($requestUri, $baseUrl) === 0) {
+                    $pathInfo = substr($requestUri, strlen($baseUrl));
+                } elseif (strpos($requestUri, $baseUrlRaw) === 0) {
+                    $pathInfo = substr($requestUri, strlen($baseUrlRaw));
+                } elseif (strpos($requestUri, $baseUrlEncoded) === 0) {
+                    $pathInfo = substr($requestUri, strlen($baseUrlEncoded));
+                } else {
+                    $pathInfo = $requestUri;
+                }
+            } else {
+                $pathInfo = $requestUri;
             }
+        
         }
 
         $this->_pathInfo = (string) $pathInfo;
@@ -910,6 +918,20 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
     }
 
     /**
+     * Was the request made by PATCH?
+     *
+     * @return boolean
+     */
+    public function isPatch()
+    {
+        if ('PATCH' == $this->getMethod()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Is the request a Javascript XMLHttpRequest?
      *
      * Should work with Prototype/Script.aculo.us, possibly others.
@@ -978,8 +1000,18 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
         }
 
         // Try to get it from the $_SERVER array first
-        $temp = 'HTTP_' . strtoupper(str_replace('-', '_', $header));
-        if (!empty($_SERVER[$temp])) {
+        $temp = strtoupper(str_replace('-', '_', $header));
+        if (isset($_SERVER['HTTP_' . $temp])) {
+            return $_SERVER['HTTP_' . $temp];
+        }
+
+        /*
+         * Try to get it from the $_SERVER array on POST request or CGI environment
+         * @see https://www.ietf.org/rfc/rfc3875 (4.1.2. and 4.1.3.)
+         */
+        if (isset($_SERVER[$temp])
+            && in_array($temp, array('CONTENT_TYPE', 'CONTENT_LENGTH'))
+        ) {
             return $_SERVER[$temp];
         }
 
@@ -987,8 +1019,14 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
         // Apache
         if (function_exists('apache_request_headers')) {
             $headers = apache_request_headers();
-            if (!empty($headers[$header])) {
+            if (isset($headers[$header])) {
                 return $headers[$header];
+            }
+            $header = strtolower($header);
+            foreach ($headers as $key => $value) {
+                if (strtolower($key) == $header) {
+                    return $value;
+                }
             }
         }
 
@@ -1025,7 +1063,10 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
         $name   = $this->getServer('SERVER_NAME');
         $port   = $this->getServer('SERVER_PORT');
 
-        if (($scheme == self::SCHEME_HTTP && $port == 80) || ($scheme == self::SCHEME_HTTPS && $port == 443)) {
+        if(null === $name) {
+            return '';
+        }
+        elseif (($scheme == self::SCHEME_HTTP && $port == 80) || ($scheme == self::SCHEME_HTTPS && $port == 443)) {
             return $name;
         } else {
             return $name . ':' . $port;

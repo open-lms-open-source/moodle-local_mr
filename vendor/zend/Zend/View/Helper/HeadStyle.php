@@ -15,8 +15,8 @@
  * @category   Zend
  * @package    Zend_View
  * @subpackage Helper
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id: HeadStyle.php 20104 2010-01-06 21:26:01Z matthew $
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @version    $Id$
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -29,8 +29,12 @@ require_once 'Zend/View/Helper/Placeholder/Container/Standalone.php';
  * @uses       Zend_View_Helper_Placeholder_Container_Standalone
  * @package    Zend_View
  * @subpackage Helper
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @method $this appendStyle($content, array $attributes = array())
+ * @method $this offsetSetStyle($index, $content, array $attributes = array())
+ * @method $this prependStyle($content, array $attributes = array())
+ * @method $this setStyle($content, array $attributes = array())
  */
 class Zend_View_Helper_HeadStyle extends Zend_View_Helper_Placeholder_Container_Standalone
 {
@@ -355,15 +359,25 @@ class Zend_View_Helper_HeadStyle extends Zend_View_Helper_Placeholder_Container_
             }
         }
 
-        $html = '<style type="text/css"' . $attrString . '>' . PHP_EOL
-              . $indent . '<!--' . PHP_EOL . $indent . $item->content . PHP_EOL . $indent . '-->' . PHP_EOL
-              . '</style>';
-
+        $escapeStart = $indent . '<!--'. PHP_EOL;
+        $escapeEnd = $indent . '-->'. PHP_EOL;
         if (isset($item->attributes['conditional'])
             && !empty($item->attributes['conditional'])
-            && is_string($item->attributes['conditional']))
-        {
-            $html = '<!--[if ' . $item->attributes['conditional'] . ']> ' . $html . '<![endif]-->';
+            && is_string($item->attributes['conditional'])
+        ) {
+            $escapeStart = null;
+            $escapeEnd = null;
+        }
+
+        $html = '<style type="text/css"' . $attrString . '>' . PHP_EOL
+              . $escapeStart . $indent . $item->content . PHP_EOL . $escapeEnd
+              . '</style>';
+
+        if (null == $escapeStart && null == $escapeEnd) {
+            if (str_replace(' ', '', $item->attributes['conditional']) === '!IE') {
+                $html = '<!-->' . $html . '<!--';
+            }
+            $html = '<!--[if ' . $item->attributes['conditional'] . ']>' . $html . '<![endif]-->';
         }
 
         return $html;

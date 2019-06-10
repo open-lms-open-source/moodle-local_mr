@@ -12,9 +12,9 @@
  *
  * @category   Zend
  * @package    Zend_ProgressBar
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: JsPush.php 20096 2010-01-06 02:05:09Z bkarwin $
+ * @version    $Id$
  */
 
 /**
@@ -34,7 +34,7 @@ require_once 'Zend/ProgressBar/Adapter.php';
  * @category  Zend
  * @package   Zend_ProgressBar
  * @uses      Zend_ProgressBar_Adapter_Interface
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_ProgressBar_Adapter_JsPush extends Zend_ProgressBar_Adapter
@@ -140,9 +140,9 @@ class Zend_ProgressBar_Adapter_JsPush extends Zend_ProgressBar_Adapter
         // 1024 padding is required for Safari, while 256 padding is required
         // for Internet Explorer. The <br /> is required so Safari actually
         // executes the <script />
-        echo str_pad($data . '&nbsp;', 1024, ' ', STR_PAD_RIGHT) . "\n";
+        echo str_pad($data . '<br />', 1024, ' ', STR_PAD_RIGHT) . "\n";
 
         flush();
-        @ob_flush();
+        ob_flush();
     }
 }

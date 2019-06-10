@@ -15,9 +15,9 @@
  * @category   Zend
  * @package    Zend_Auth
  * @subpackage Zend_Auth_Adapter
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Ldap.php 21320 2010-03-04 16:05:09Z sgehrig $
+ * @version    $Id$
  */
 
 /**
@@ -29,7 +29,7 @@ require_once 'Zend/Auth/Adapter/Interface.php';
  * @category   Zend
  * @package    Zend_Auth
  * @subpackage Zend_Auth_Adapter
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
@@ -76,7 +76,6 @@ class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
      * @param  array  $options  An array of arrays of Zend_Ldap options
      * @param  string $username The username of the account being authenticated
      * @param  string $password The password of the account being authenticated
-     * @return void
      */
     public function __construct(array $options = array(), $username = null, $password = null)
     {
@@ -335,8 +334,8 @@ class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
                     $messages[1] = '';
                     $messages[] = "$canonicalName authentication successful";
                     if ($requireRebind === true) {
-	                    // rebinding with authenticated user
-	                    $ldap->bind($dn, $password);
+                        // rebinding with authenticated user
+                        $ldap->bind($dn, $password);
                     }
                     return new Zend_Auth_Result(Zend_Auth_Result::SUCCESS, $canonicalName, $messages);
                 } else {
@@ -371,7 +370,11 @@ class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
                 } else {
                     $line = $zle->getLine();
                     $messages[] = $zle->getFile() . "($line): " . $zle->getMessage();
-                    $messages[] = str_replace($password, '*****', $zle->getTraceAsString());
+                    $messages[] = preg_replace(
+						'/\b'.preg_quote(substr($password, 0, 15), '/').'\b/',
+						'*****',
+						$zle->getTraceAsString()
+					);
                     $messages[0] = 'An unexpected failure occurred';
                 }
                 $messages[1] = $zle->getMessage();
@@ -488,7 +491,9 @@ class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
 
         $returnObject = new stdClass();
 
-        $omitAttribs = array_map('strtolower', $omitAttribs);
+        $returnAttribs = array_map('strtolower', $returnAttribs);
+        $omitAttribs   = array_map('strtolower', $omitAttribs);
+        $returnAttribs = array_diff($returnAttribs, $omitAttribs);
 
         $entry = $this->getLdap()->getEntry($this->_authenticatedDn, $returnAttribs, true);
         foreach ($entry as $attr => $value) {

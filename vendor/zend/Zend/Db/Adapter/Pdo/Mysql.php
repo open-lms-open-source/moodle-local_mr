@@ -15,9 +15,9 @@
  * @category   Zend
  * @package    Zend_Db
  * @subpackage Adapter
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Mysql.php 20096 2010-01-06 02:05:09Z bkarwin $
+ * @version    $Id$
  */
 
 
@@ -33,7 +33,7 @@ require_once 'Zend/Db/Adapter/Pdo/Abstract.php';
  * @category   Zend
  * @package    Zend_Db
  * @subpackage Adapter
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Db_Adapter_Pdo_Mysql extends Zend_Db_Adapter_Pdo_Abstract
@@ -77,6 +77,19 @@ class Zend_Db_Adapter_Pdo_Mysql extends Zend_Db_Adapter_Pdo_Abstract
     );
 
     /**
+     * Override _dsn() and ensure that charset is incorporated in mysql
+     * @see Zend_Db_Adapter_Pdo_Abstract::_dsn()
+     */
+    protected function _dsn()
+    {
+        $dsn = parent::_dsn();
+        if (isset($this->_config['charset'])) {
+            $dsn .= ';charset=' . $this->_config['charset'];
+        }
+        return $dsn;
+    }
+    
+    /**
      * Creates a PDO object and connects to the database.
      *
      * @return void
@@ -88,7 +101,9 @@ class Zend_Db_Adapter_Pdo_Mysql extends Zend_Db_Adapter_Pdo_Abstract
             return;
         }
 
-        if (!empty($this->_config['charset'])) {
+        if (!empty($this->_config['charset'])
+            && version_compare(PHP_VERSION, '5.3.6', '<')
+        ) {
             $initCommand = "SET NAMES '" . $this->_config['charset'] . "'";
             $this->_config['driver_options'][1002] = $initCommand; // 1002 = PDO::MYSQL_ATTR_INIT_COMMAND
         }
