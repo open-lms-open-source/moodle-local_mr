@@ -15,13 +15,13 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2018 Blackboard Inc. (http://www.blackboard.com)
+ * @copyright  Copyright (c) 2019 Blackboard Inc. (http://www.blackboard.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Framework Open';
+$string['pluginname'] = 'Framework Blackboard Open LMS';
 $string['addedactivity'] = '{$a->modname} a été ajouté par {$a->fullname}';
 $string['basichtml'] = 'HTML de base';
 $string['deletedactivity'] = '{$a->modname} a été supprimé par {$a->fullname}';
@@ -63,3 +63,4 @@ $string['paginatorprevlabel'] = 'préc';
 $string['paginatorprevtitle'] = 'Page précédente';
 $string['paginatornextlabel'] = 'suiv';
 $string['paginatornexttitle'] = 'Page suivante';
+$string['privacy:metadata'] = 'Le plug-in Framework Blackboard Open LMS ne stocke aucune donnée personnelle.';
