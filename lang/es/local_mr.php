@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2018 Blackboard Inc. (http://www.blackboard.com)
+ * @copyright  Copyright (c) 2019 Blackboard Inc. (http://www.blackboard.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -30,7 +30,7 @@ $string['filter'] = 'Filtro';
 $string['loadingdotdotdot'] = 'Cargando...';
 $string['local_mr_docs'] = 'Docs';
 $string['moodleroomsframework'] = 'Marco de Blackboard Open LMS';
-$string['mrframework'] = 'Marco Bb Open LMS';
+$string['mrframework'] = 'Marco de Bb Open LMS';
 $string['nolimit'] = 'Sin límites';
 $string['oneday'] = '1 día';
 $string['onemonth'] = '1 mes';
@@ -63,3 +63,4 @@ $string['paginatorprevlabel'] = 'ant.';
 $string['paginatorprevtitle'] = 'Página anterior';
 $string['paginatornextlabel'] = 'sig.';
 $string['paginatornexttitle'] = 'Página siguiente';
+$string['privacy:metadata'] = 'el complemento de Marco de Blackboard Open LMS no almacena datos personales.';
