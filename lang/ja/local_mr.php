@@ -15,13 +15,13 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2018 Blackboard Inc. (http://www.blackboard.com)
+ * @copyright  Copyright (c) 2019 Blackboard Inc. (http://www.blackboard.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Openフレームワーク';
+$string['pluginname'] = 'Blackboard Open LMSフレームワーク';
 $string['addedactivity'] = '{$a->modname} は {$a->fullname} により追加されました';
 $string['basichtml'] = '基本HTML';
 $string['deletedactivity'] = '{$a->modname} は {$a->fullname} により削除されました';
@@ -63,3 +63,4 @@ $string['paginatorprevlabel'] = '前';
 $string['paginatorprevtitle'] = '前のページ';
 $string['paginatornextlabel'] = '次';
 $string['paginatornexttitle'] = '次のページ';
+$string['privacy:metadata'] = 'Blackboard Open LMSフレームワークプラグインでは個人情報を保存しません。';
