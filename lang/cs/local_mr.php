@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2018 Blackboard Inc. (http://www.blackboard.com)
+ * @copyright  Copyright (c) 2019 Blackboard Inc. (http://www.blackboard.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -63,3 +63,4 @@ $string['paginatorprevlabel'] = 'předchozí';
 $string['paginatorprevtitle'] = 'Předchozí stránka';
 $string['paginatornextlabel'] = 'další';
 $string['paginatornexttitle'] = 'Další stránka';
+$string['privacy:metadata'] = 'Plugin Blackboard Open LMS Framework neukládá žádné osobní údaje.';
