@@ -15,13 +15,13 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2018 Blackboard Inc. (http://www.blackboard.com)
+ * @copyright  Copyright (c) 2019 Blackboard Inc. (http://www.blackboard.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'إطار عمل Blackboard Open LMS';
+$string['pluginname'] = 'إطار عمل Blackboard Open LMS Framework';
 $string['addedactivity'] = 'تمت إضافة {$a->modname} بواسطة {$a->fullname}';
 $string['basichtml'] = 'HTML الأساسي';
 $string['deletedactivity'] = 'تم حذف {$a->modname} بواسطة {$a->fullname}';
@@ -29,8 +29,8 @@ $string['export'] = 'التصدير: ';
 $string['filter'] = 'التصفية';
 $string['loadingdotdotdot'] = 'يتم الآن التحميل...';
 $string['local_mr_docs'] = 'مستندات';
-$string['moodleroomsframework'] = 'إطار عمل Blackboard Open LMS';
-$string['mrframework'] = 'إطار عمل Bb Open LMS';
+$string['moodleroomsframework'] = 'إطار عمل Blackboard Open LMS Framework';
+$string['mrframework'] = 'إطار عمل Blackboard Open LMS Framework';
 $string['nolimit'] = 'غير محدود';
 $string['oneday'] = 'يوم 1';
 $string['onemonth'] = 'شهر 1';
@@ -63,3 +63,4 @@ $string['paginatorprevlabel'] = 'السابق';
 $string['paginatorprevtitle'] = 'الصفحة السابقة';
 $string['paginatornextlabel'] = 'التالي';
 $string['paginatornexttitle'] = 'الصفحة التالية';
+$string['privacy:metadata'] = 'لا يُخزن المكون الإضافي لإطار عمل Blackboard Open LMS Framework أية بيانات شخصية.';
