@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2018 Blackboard Inc. (http://www.blackboard.com)
+ * @copyright  Copyright (c) 2019 Blackboard Inc. (http://www.blackboard.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -63,3 +63,4 @@ $string['paginatorprevlabel'] = 'Poprzednia';
 $string['paginatorprevtitle'] = 'Poprzednia strona';
 $string['paginatornextlabel'] = 'Następna';
 $string['paginatornexttitle'] = 'Następna strona';
+$string['privacy:metadata'] = 'Wtyczka Blackboard Open LMS Framework nie przechowuje żadnych danych osobowych.';
