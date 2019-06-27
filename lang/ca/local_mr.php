@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2018 Blackboard Inc. (http://www.blackboard.com)
+ * @copyright  Copyright (c) 2019 Blackboard Inc. (http://www.blackboard.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -63,3 +63,4 @@ $string['paginatorprevlabel'] = 'anterior';
 $string['paginatorprevtitle'] = 'Pàgina anterior';
 $string['paginatornextlabel'] = 'següent';
 $string['paginatornexttitle'] = 'Pàgina següent';
+$string['privacy:metadata'] = 'El connector Marc de Blackboard Open LMS (Sistema de gestió de l\'aprenentatge) no emmagatzema dades personals.';
