@@ -15,13 +15,13 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2018 Blackboard Inc. (http://www.blackboard.com)
+ * @copyright  Copyright (c) 2019 Blackboard Inc. (http://www.blackboard.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Framework di Open';
+$string['pluginname'] = 'Framework Blackboard Open LMS';
 $string['addedactivity'] = '{$a->modname} aggiunto da {$a->fullname}';
 $string['basichtml'] = 'HTML semplice';
 $string['deletedactivity'] = '{$a->modname} eliminato da {$a->fullname}';
@@ -29,7 +29,7 @@ $string['export'] = 'Esporta: ';
 $string['filter'] = 'Filtro';
 $string['loadingdotdotdot'] = 'Caricamento in corso...';
 $string['local_mr_docs'] = 'Doc';
-$string['moodleroomsframework'] = 'Framework di Blackboard Open LMS';
+$string['moodleroomsframework'] = 'Framework Blackboard Open LMS';
 $string['mrframework'] = 'Framework Bb Open LMS';
 $string['nolimit'] = 'nessun limite';
 $string['oneday'] = '1 giorno';
@@ -63,3 +63,4 @@ $string['paginatorprevlabel'] = 'prec';
 $string['paginatorprevtitle'] = 'Pagina precedente';
 $string['paginatornextlabel'] = 'successivo';
 $string['paginatornexttitle'] = 'Pagina successiva';
+$string['privacy:metadata'] = 'Il plugin Framework Blackboard Open LMS non memorizza dati personali.';
