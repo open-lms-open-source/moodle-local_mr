@@ -22,7 +22,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Blackboard Open LMS 框架';
-$string['addedactivity'] = '{$a->modname} 已由 {$a->fullname} 新增 ';
+$string['addedactivity'] = '{$a->modname} 已由 {$a->fullname} 新增';
 $string['basichtml'] = '基本 HTML';
 $string['deletedactivity'] = '{$a->modname} 已由 {$a->fullname} 刪除';
 $string['export'] = '匯出： ';
