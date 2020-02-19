@@ -91,10 +91,12 @@ class mr_html_filter_daterange extends mr_html_filter_abstract {
         }
 
         // Handle defaults
-        $mform->setDefault($this->name.'_sd', $this->preferences_get($this->name.'_sd'));
-        $mform->setDefault($this->name.'_ed', $this->preferences_get($this->name.'_ed'));
-        $mform->setDefault($this->name.'_sc', (int) $this->preferences_get($this->name.'_sd'));
-        $mform->setDefault($this->name.'_ec', (int) $this->preferences_get($this->name.'_ed'));
+        $defaultsd = $this->preferences_get($this->name.'_sd');
+        $defaulted = $this->preferences_get($this->name.'_ed');
+        $mform->setDefault($this->name.'_sd', $defaultsd);
+        $mform->setDefault($this->name.'_ed', $defaulted);
+        $mform->setDefault($this->name.'_sc', empty($defaultsd) ? '' : '1');
+        $mform->setDefault($this->name.'_ec', empty($defaulted) ? '' : '1');
 
         // Disable date fields when checkbox is not checked
         $mform->disabledIf($this->name.'_sd[day]', $this->name.'_sc', 'notchecked');

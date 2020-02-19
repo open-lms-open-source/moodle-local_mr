@@ -29,12 +29,14 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
 require_once($CFG->dirroot.'/local/mr/framework/html/filter/abstract.php');
 
 /**
- * MR HTML Filter Date Range.
+ * MR HTML Filter Date Out of Range.
+ *
+ * This will filter dates which are out of range or null.
  *
  * @author Sebastian Gracia
  * @package mr
  */
-class mr_html_filter_daterangeoutrange extends mr_html_filter_daterange {
+class mr_html_filter_daterangeoutrangeornull extends mr_html_filter_daterange {
 
     /**
      * Set limits on field.
@@ -56,7 +58,8 @@ class mr_html_filter_daterangeoutrange extends mr_html_filter_daterange {
         }
 
         if (!empty($sql)) {
-            return array(implode(' OR ', $sql), $params);
+            $containedsql = '((' . implode(' OR ', $sql) . ') OR ' . $this->field . ' IS NULL)';
+            return array($containedsql, $params);
         }
         return false;
     }
