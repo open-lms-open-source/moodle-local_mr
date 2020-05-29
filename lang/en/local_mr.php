@@ -28,7 +28,7 @@
  * @package local_mr
  */
 
-$string['pluginname'] = 'Blackboard Open LMS Framework';
+$string['pluginname'] = 'Open LMS Framework';
 $string['addedactivity'] = 'Added {$a->modname} by {$a->fullname}';
 $string['basichtml'] = 'Basic HTML';
 $string['deletedactivity'] = 'Deleted {$a->modname} by {$a->fullname}';
@@ -36,8 +36,8 @@ $string['export'] = 'Export: ';
 $string['filter'] = 'Filter';
 $string['loadingdotdotdot'] = 'Loading...';
 $string['local_mr_docs'] = 'Docs';
-$string['moodleroomsframework'] = 'Blackboard Open LMS Framework';
-$string['mrframework'] = 'Bb Open LMS Framework';
+$string['moodleroomsframework'] = 'Open LMS Framework';
+$string['mrframework'] = 'Open LMS Framework';
 $string['nolimit'] = 'No limit';
 $string['oneday'] = '1 day';
 $string['onemonth'] = '1 month';
@@ -70,4 +70,4 @@ $string['paginatorprevlabel'] = 'prev';
 $string['paginatorprevtitle'] = 'Previous Page';
 $string['paginatornextlabel'] = 'next';
 $string['paginatornexttitle'] = 'Next Page';
-$string['privacy:metadata'] = 'The Blackboard Open LMS Framework plugin does not store any personal data.';
+$string['privacy:metadata'] = 'The Open LMS Framework plugin does not store any personal data.';
