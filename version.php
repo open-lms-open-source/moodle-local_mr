@@ -21,9 +21,9 @@
  * @author Mark Nielsen
  */
 
-$plugin->version   = 2018080800;
-$plugin->requires  = 2019052000;
+$plugin->version   = 2020061100;
+$plugin->requires  = 2019111800;
 $plugin->component = 'local_mr';
-$plugin->release   = '3.7.3';
+$plugin->release   = '3.8.3';
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->cron      = 0;
