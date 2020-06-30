@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Estrutura do Blackboard Open LMS';
+$string['pluginname'] = 'Estrutura do Open LMS';
 $string['addedactivity'] = '{$a->modname} adicionado por {$a->fullname}';
 $string['basichtml'] = 'HTML básico';
 $string['deletedactivity'] = '{$a->modname} excluído por {$a->fullname}';
@@ -29,8 +29,8 @@ $string['export'] = 'Exportar: ';
 $string['filter'] = 'Filtro';
 $string['loadingdotdotdot'] = 'Carregando...';
 $string['local_mr_docs'] = 'Documentos';
-$string['moodleroomsframework'] = 'Estrutura do Blackboard Open LMS';
-$string['mrframework'] = 'Estrutura do Bb Open LMS';
+$string['moodleroomsframework'] = 'Estrutura do Open LMS';
+$string['mrframework'] = 'Estrutura do Open LMS';
 $string['nolimit'] = 'Sem limite';
 $string['oneday'] = '1 dia';
 $string['onemonth'] = '1 mês';
@@ -55,12 +55,12 @@ $string['toomanyrows'] = 'O relatório retornaria {$a->total} linhas, número ma
 $string['rowsperpage'] = 'Linhas por página';
 $string['tablesortedbydesc'] = 'Tabela classificada por {$a}, em ordem decrescente.';
 $string['tablesortedbyasc'] = 'Tabela classificada por {$a}, em ordem crescente.';
-$string['paginatorfirstlabel'] = 'primeiro';
+$string['paginatorfirstlabel'] = 'primeira';
 $string['paginatorfirsttitle'] = 'Primeira página';
-$string['paginatorlastlabel'] = 'último';
+$string['paginatorlastlabel'] = 'última';
 $string['paginatorlasttitle'] = 'Última página';
-$string['paginatorprevlabel'] = 'ant';
+$string['paginatorprevlabel'] = 'anterior';
 $string['paginatorprevtitle'] = 'Página anterior';
-$string['paginatornextlabel'] = 'próximo';
+$string['paginatornextlabel'] = 'próxima';
 $string['paginatornexttitle'] = 'Próxima página';
-$string['privacy:metadata'] = 'O plug-in de Estrutura do Blackboard Open LMS não armazena dados pessoais.';
+$string['privacy:metadata'] = 'O plug-in da Estrutura do Open LMS não armazena dados pessoais.';
