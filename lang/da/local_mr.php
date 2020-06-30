@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Blackboard Open LMS Framework';
+$string['pluginname'] = 'Open LMS Framework';
 $string['addedactivity'] = 'Tilføjede {$a->modname} inden {$a->fullname}';
 $string['basichtml'] = 'Grundlæggende HTML';
 $string['deletedactivity'] = 'Slettede {$a->modname} inden {$a->fullname}';
@@ -29,8 +29,8 @@ $string['export'] = 'Eksportér: ';
 $string['filter'] = 'Filtrer';
 $string['loadingdotdotdot'] = 'Indlæser...';
 $string['local_mr_docs'] = 'Dokumenter';
-$string['moodleroomsframework'] = 'Blackboard Open LMS Framework';
-$string['mrframework'] = 'Bb Open LMS Framework';
+$string['moodleroomsframework'] = 'Open LMS Framework';
+$string['mrframework'] = 'Open LMS Framework';
 $string['nolimit'] = 'Ingen grænse';
 $string['oneday'] = '1 dag';
 $string['onemonth'] = '1 måned';
@@ -63,4 +63,4 @@ $string['paginatorprevlabel'] = 'forrige';
 $string['paginatorprevtitle'] = 'Forrige side';
 $string['paginatornextlabel'] = 'næste';
 $string['paginatornexttitle'] = 'Næste side';
-$string['privacy:metadata'] = 'Blackboard Open LMS Framework-plugin\'et gemmer ingen personlige data.';
+$string['privacy:metadata'] = 'Plugin\'et til Open LMS Framework gemmer ingen personlige data.';
