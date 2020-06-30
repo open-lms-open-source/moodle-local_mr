@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'ขอบข่ายงาน Blackboard Open LMS';
+$string['pluginname'] = 'ขอบข่ายงาน LMS แบบเปิด';
 $string['addedactivity'] = 'เพิ่ม {$a->modname} โดย {$a->fullname}';
 $string['basichtml'] = 'HTML พื้นฐาน';
 $string['deletedactivity'] = 'ลบ {$a->modname} โดย {$a->fullname}';
@@ -29,8 +29,8 @@ $string['export'] = 'ส่งออก: ';
 $string['filter'] = 'ตัวกรอง';
 $string['loadingdotdotdot'] = 'กำลังโหลด...';
 $string['local_mr_docs'] = 'เอกสาร';
-$string['moodleroomsframework'] = 'ขอบข่ายงาน Blackboard Open LMS';
-$string['mrframework'] = 'ขอบข่ายงาน Bb Open LMS';
+$string['moodleroomsframework'] = 'ขอบข่ายงาน LMS แบบเปิด';
+$string['mrframework'] = 'ขอบข่ายงาน LMS แบบเปิด';
 $string['nolimit'] = 'ไม่จำกัด';
 $string['oneday'] = '1 วัน';
 $string['onemonth'] = '1 เดือน';
@@ -63,4 +63,4 @@ $string['paginatorprevlabel'] = 'ก่อนหน้า';
 $string['paginatorprevtitle'] = 'หน้าก่อนหน้า';
 $string['paginatornextlabel'] = 'ถัดไป';
 $string['paginatornexttitle'] = 'หน้าถัดไป';
-$string['privacy:metadata'] = 'ปลั๊กอินขอบข่ายงาน Blackboard Open LMS จะไม่จัดเก็บข้อมูลส่วนบุคคลใดๆ';
+$string['privacy:metadata'] = 'ปลั๊กอินขอบข่ายงาน LMS แบบเปิด ไม่ได้จัดเก็บข้อมูลส่วนบุคคลใด ๆ';
