@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Blackboard Open LMS Framework';
+$string['pluginname'] = 'Open LMS Framework';
 $string['addedactivity'] = '{$a->fullname} lisäsi aktiviteetin {$a->modname}';
 $string['basichtml'] = 'HTML-perusmuotoilu';
 $string['deletedactivity'] = '{$a->fullname} poisti aktiviteetin {$a->modname}';
@@ -29,8 +29,8 @@ $string['export'] = 'Vie: ';
 $string['filter'] = 'Suodatin';
 $string['loadingdotdotdot'] = 'Ladataan...';
 $string['local_mr_docs'] = 'Tiedostot';
-$string['moodleroomsframework'] = 'Blackboard Open LMS Framework';
-$string['mrframework'] = 'Bb Open LMS Framework';
+$string['moodleroomsframework'] = 'Open LMS Framework';
+$string['mrframework'] = 'Open LMS Framework';
 $string['nolimit'] = 'Ei rajaa';
 $string['oneday'] = '1 päivä';
 $string['onemonth'] = '1 kuukausi';
@@ -63,4 +63,4 @@ $string['paginatorprevlabel'] = 'edellinen';
 $string['paginatorprevtitle'] = 'Edellinen sivu';
 $string['paginatornextlabel'] = 'seuraava';
 $string['paginatornexttitle'] = 'Seuraava sivu';
-$string['privacy:metadata'] = 'Blackboard Open LMS Framework -lisäosa ei tallenna mitään henkilökohtaisia tietoja.';
+$string['privacy:metadata'] = 'Open LMS Framework -lisäosa ei tallenna mitään henkilökohtaisia tietoja.';
