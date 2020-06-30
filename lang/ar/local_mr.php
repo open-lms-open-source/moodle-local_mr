@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'إطار عمل Blackboard Open LMS Framework';
+$string['pluginname'] = 'Open LMS Framework';
 $string['addedactivity'] = 'تمت إضافة {$a->modname} بواسطة {$a->fullname}';
 $string['basichtml'] = 'HTML الأساسي';
 $string['deletedactivity'] = 'تم حذف {$a->modname} بواسطة {$a->fullname}';
@@ -29,8 +29,8 @@ $string['export'] = 'التصدير: ';
 $string['filter'] = 'التصفية';
 $string['loadingdotdotdot'] = 'يتم الآن التحميل...';
 $string['local_mr_docs'] = 'مستندات';
-$string['moodleroomsframework'] = 'إطار عمل Blackboard Open LMS Framework';
-$string['mrframework'] = 'إطار عمل Blackboard Open LMS Framework';
+$string['moodleroomsframework'] = 'Open LMS Framework';
+$string['mrframework'] = 'Open LMS Framework';
 $string['nolimit'] = 'غير محدود';
 $string['oneday'] = 'يوم 1';
 $string['onemonth'] = 'شهر 1';
@@ -63,4 +63,4 @@ $string['paginatorprevlabel'] = 'السابق';
 $string['paginatorprevtitle'] = 'الصفحة السابقة';
 $string['paginatornextlabel'] = 'التالي';
 $string['paginatornexttitle'] = 'الصفحة التالية';
-$string['privacy:metadata'] = 'لا يُخزن المكون الإضافي لإطار عمل Blackboard Open LMS Framework أية بيانات شخصية.';
+$string['privacy:metadata'] = 'لا يُخزن المكون الإضافي Open LMS Framework أي بيانات شخصية.';
