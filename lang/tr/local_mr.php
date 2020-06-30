@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Blackboard Open LMS Çerçevesi';
+$string['pluginname'] = 'Open LMS Çerçevesi';
 $string['addedactivity'] = '{$a->modname}, {$a->fullname} tarafından eklendi';
 $string['basichtml'] = 'Temel HTML';
 $string['deletedactivity'] = '{$a->modname}, {$a->fullname} tarafından silindi';
@@ -29,8 +29,8 @@ $string['export'] = 'Dışa ver: ';
 $string['filter'] = 'Filtre';
 $string['loadingdotdotdot'] = 'Yükleniyor...';
 $string['local_mr_docs'] = 'Belgeler';
-$string['moodleroomsframework'] = 'Blackboard Open LMS Çerçevesi';
-$string['mrframework'] = 'Bb Open LMS Çerçevesi';
+$string['moodleroomsframework'] = 'Open LMS Çerçevesi';
+$string['mrframework'] = 'Open LMS Çerçevesi';
 $string['nolimit'] = 'Sınır yok';
 $string['oneday'] = '1 gün';
 $string['onemonth'] = '1 ay';
@@ -63,4 +63,4 @@ $string['paginatorprevlabel'] = 'önceki';
 $string['paginatorprevtitle'] = 'Önceki Sayfa';
 $string['paginatornextlabel'] = 'sonraki';
 $string['paginatornexttitle'] = 'Sonraki Sayfa';
-$string['privacy:metadata'] = 'Blackboard Open LMS Çerçevesi eklentisi, kişisel verileri depolamaz.';
+$string['privacy:metadata'] = 'Open LMS Çerçevesi eklentisi kişisel verileri depolamaz.';
