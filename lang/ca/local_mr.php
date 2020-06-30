@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Blackboard Open LMS Framework';
+$string['pluginname'] = 'Open LMS Framework';
 $string['addedactivity'] = '{$a->modname} afegit per {$a->fullname}';
 $string['basichtml'] = 'HTML bàsic';
 $string['deletedactivity'] = '{$a->modname} suprimit per {$a->fullname}';
@@ -29,8 +29,8 @@ $string['export'] = 'Exporta: ';
 $string['filter'] = 'Filtre';
 $string['loadingdotdotdot'] = 'S\'està carregant...';
 $string['local_mr_docs'] = 'Docs';
-$string['moodleroomsframework'] = 'Blackboard Open LMS Framework';
-$string['mrframework'] = 'Bb Open LMS Framework';
+$string['moodleroomsframework'] = 'Open LMS Framework';
+$string['mrframework'] = 'Open LMS Framework';
 $string['nolimit'] = 'Il·limitat';
 $string['oneday'] = 'un dia';
 $string['onemonth'] = '1 mes';
@@ -63,4 +63,4 @@ $string['paginatorprevlabel'] = 'anterior';
 $string['paginatorprevtitle'] = 'Pàgina anterior';
 $string['paginatornextlabel'] = 'següent';
 $string['paginatornexttitle'] = 'Pàgina següent';
-$string['privacy:metadata'] = 'El connector Marc de Blackboard Open LMS (Sistema de gestió de l\'aprenentatge) no emmagatzema dades personals.';
+$string['privacy:metadata'] = 'El connector Open LMS Framework no emmagatzema dades personals.';
