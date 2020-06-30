@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Blackboard Open LMSフレームワーク';
+$string['pluginname'] = 'Open LMSフレームワーク';
 $string['addedactivity'] = '{$a->modname} は {$a->fullname} により追加されました';
 $string['basichtml'] = '基本HTML';
 $string['deletedactivity'] = '{$a->modname} は {$a->fullname} により削除されました';
@@ -29,8 +29,8 @@ $string['export'] = 'エクスポート : ';
 $string['filter'] = 'フィルタ';
 $string['loadingdotdotdot'] = '読み込み中 ...';
 $string['local_mr_docs'] = 'ドキュメント';
-$string['moodleroomsframework'] = 'Blackboard Open LMSフレームワーク';
-$string['mrframework'] = 'Bb Open LMSフレームワーク';
+$string['moodleroomsframework'] = 'Open LMSフレームワーク';
+$string['mrframework'] = 'Open LMSフレームワーク';
 $string['nolimit'] = '無制限';
 $string['oneday'] = '1日';
 $string['onemonth'] = '1ヶ月';
@@ -63,4 +63,4 @@ $string['paginatorprevlabel'] = '前';
 $string['paginatorprevtitle'] = '前のページ';
 $string['paginatornextlabel'] = '次';
 $string['paginatornexttitle'] = '次のページ';
-$string['privacy:metadata'] = 'Blackboard Open LMSフレームワークプラグインでは個人情報を保存しません。';
+$string['privacy:metadata'] = 'Open LMSフレームワークプラグインでは個人情報を保存しません。';
