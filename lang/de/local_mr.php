@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Blackboard Open LMS Framework';
+$string['pluginname'] = 'Open LMS Framework';
 $string['addedactivity'] = '{$a->modname} hinzugefügt von {$a->fullname}';
 $string['basichtml'] = 'Basic HTML';
 $string['deletedactivity'] = '{$a->modname} gelöscht von {$a->fullname}';
@@ -29,8 +29,8 @@ $string['export'] = 'Exportieren: ';
 $string['filter'] = 'Filter';
 $string['loadingdotdotdot'] = 'Wird geladen...';
 $string['local_mr_docs'] = 'Dokumente';
-$string['moodleroomsframework'] = 'Blackboard Open LMS Framework';
-$string['mrframework'] = 'Bb Open LMS Framework';
+$string['moodleroomsframework'] = 'Open LMS Framework';
+$string['mrframework'] = 'Open LMS Framework';
 $string['nolimit'] = 'Keine Begrenzung';
 $string['oneday'] = '1 Tag';
 $string['onemonth'] = '1 Monat';
@@ -63,4 +63,4 @@ $string['paginatorprevlabel'] = 'Vorh.';
 $string['paginatorprevtitle'] = 'Vorherige Seite';
 $string['paginatornextlabel'] = 'Nächste';
 $string['paginatornexttitle'] = 'Nächste Seite';
-$string['privacy:metadata'] = 'Das Plugin "Blackboard Open LMS Framework" speichert keine personenbezogenen Daten.';
+$string['privacy:metadata'] = 'Das Plugin „Open LMS Framework“ speichert keine personenbezogenen Daten.';
