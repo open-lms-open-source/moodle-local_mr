@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Blackboard Open LMS Framework';
+$string['pluginname'] = 'Rámec Open LMS';
 $string['addedactivity'] = 'Modul {$a->modname} byl přidán uživatelem {$a->fullname}.';
 $string['basichtml'] = 'Základní jazyk HTML';
 $string['deletedactivity'] = 'Modul {$a->modname} byl odstraněn uživatelem {$a->fullname}.';
@@ -29,8 +29,8 @@ $string['export'] = 'Exportovat: ';
 $string['filter'] = 'Filtr';
 $string['loadingdotdotdot'] = 'Načítání...';
 $string['local_mr_docs'] = 'Dokumenty';
-$string['moodleroomsframework'] = 'Blackboard Open LMS Framework';
-$string['mrframework'] = 'Bb Open LMS Framework';
+$string['moodleroomsframework'] = 'Rámec Open LMS';
+$string['mrframework'] = 'Rámec Open LMS';
 $string['nolimit'] = 'Bez omezení';
 $string['oneday'] = '1 den';
 $string['onemonth'] = '1 měsíc';
@@ -63,4 +63,4 @@ $string['paginatorprevlabel'] = 'předchozí';
 $string['paginatorprevtitle'] = 'Předchozí stránka';
 $string['paginatornextlabel'] = 'další';
 $string['paginatornexttitle'] = 'Další stránka';
-$string['privacy:metadata'] = 'Plugin Blackboard Open LMS Framework neukládá žádné osobní údaje.';
+$string['privacy:metadata'] = 'Plugin Rámec Open LMS neukládá žádné osobní údaje.';
