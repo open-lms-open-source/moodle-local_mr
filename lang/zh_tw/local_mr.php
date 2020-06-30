@@ -21,7 +21,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Blackboard Open LMS 框架';
+$string['pluginname'] = 'Open LMS 框架';
 $string['addedactivity'] = '{$a->modname} 已由 {$a->fullname} 新增';
 $string['basichtml'] = '基本 HTML';
 $string['deletedactivity'] = '{$a->modname} 已由 {$a->fullname} 刪除';
@@ -29,8 +29,8 @@ $string['export'] = '匯出： ';
 $string['filter'] = '篩選器';
 $string['loadingdotdotdot'] = '正在載入...';
 $string['local_mr_docs'] = '文件';
-$string['moodleroomsframework'] = 'Blackboard Open LMS 框架';
-$string['mrframework'] = 'Bb Open LMS 框架';
+$string['moodleroomsframework'] = 'Open LMS 框架';
+$string['mrframework'] = 'Open LMS 框架';
 $string['nolimit'] = '無限制';
 $string['oneday'] = '1 天';
 $string['onemonth'] = '1 個月';
@@ -63,4 +63,4 @@ $string['paginatorprevlabel'] = '上一頁';
 $string['paginatorprevtitle'] = '上一頁';
 $string['paginatornextlabel'] = '下一頁';
 $string['paginatornexttitle'] = '下一頁';
-$string['privacy:metadata'] = 'Blackboard Open LMS 框架外掛程式不會儲存任何個人資料。';
+$string['privacy:metadata'] = 'Open LMS 框架外掛程式不會儲存任何個人資料。';
