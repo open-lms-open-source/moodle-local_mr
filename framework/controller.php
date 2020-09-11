@@ -95,6 +95,11 @@ abstract class mr_controller extends mr_readonly {
     protected $helper;
 
     /**
+     * @var mr_html_notify
+     */
+    protected $notify;
+
+    /**
      * Global configuration for plugin
      *
      * @var object
