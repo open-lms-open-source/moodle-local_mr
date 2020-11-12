@@ -88,6 +88,10 @@ class Zend_Json_Server extends Zend_Server_Abstract
      */
     public function addFunction($function, $namespace = '')
     {
+        //func_get_args() should be placed at the beginning of a method or function,
+        //changes in PHP 7.0 and onwards.
+        $argv = func_get_args();
+
         if (!is_string($function) && (!is_array($function) || (2 > count($function)))) {
             require_once 'Zend/Json/Server/Exception.php';
             throw new Zend_Json_Server_Exception('Unable to attach function; invalid');
@@ -98,9 +102,7 @@ class Zend_Json_Server extends Zend_Server_Abstract
             throw new Zend_Json_Server_Exception('Unable to attach function; does not exist');
         }
 
-        $argv = null;
         if (2 < func_num_args()) {
-            $argv = func_get_args();
             $argv = array_slice($argv, 2);
         }
 
@@ -141,9 +143,11 @@ class Zend_Json_Server extends Zend_Server_Abstract
      */
     public function setClass($class, $namespace = '', $argv = null)
     {
-        $argv = null;
+        //func_get_args() should be placed at the beginning of a method or function,
+        //changes in PHP 7.0 and onwards.
+        $argv = func_get_args();
+
         if (3 < func_num_args()) {
-            $argv = func_get_args();
             $argv = array_slice($argv, 3);
         }
 

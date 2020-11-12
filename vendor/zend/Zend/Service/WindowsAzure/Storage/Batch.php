@@ -105,7 +105,9 @@ class Zend_Service_WindowsAzure_Storage_Batch
         unset($this->_operations);
         $this->_storageClient->setCurrentBatch(null);
         $this->_storageClient = null;
-        unset($this);
+        $calling_class = get_called_class();
+        $obj = new $calling_class;
+        unset($obj);
     }
 
 	/**

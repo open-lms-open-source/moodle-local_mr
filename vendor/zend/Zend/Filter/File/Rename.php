@@ -53,6 +53,10 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
      */
     public function __construct($options)
     {
+        //func_get_args() should be placed at the beginning of a method or function,
+        //changes in PHP 7.0 and onwards.
+        $argv = func_get_args();
+
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } elseif (is_string($options)) {
@@ -63,7 +67,6 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
         }
 
         if (1 < func_num_args()) {
-            $argv = func_get_args();
             array_shift($argv);
             $source    = array_shift($argv);
             $overwrite = false;

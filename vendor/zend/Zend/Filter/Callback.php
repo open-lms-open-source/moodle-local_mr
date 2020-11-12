@@ -54,10 +54,13 @@ class Zend_Filter_Callback implements Zend_Filter_Interface
      */
     public function __construct($options)
     {
+        //func_get_args() should be placed at the beginning of a method or function,
+        //changes in PHP 7.0 and onwards.
+        $options = func_get_args();
+
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if (!is_array($options) || !array_key_exists('callback', $options)) {
-            $options          = func_get_args();
             $temp['callback'] = array_shift($options);
             if (!empty($options)) {
                 $temp['options'] = array_shift($options);

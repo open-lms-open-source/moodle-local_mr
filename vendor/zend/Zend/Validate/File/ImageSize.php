@@ -124,13 +124,16 @@ class Zend_Validate_File_ImageSize extends Zend_Validate_Abstract
      */
     public function __construct($options)
     {
+        //func_get_args() should be placed at the beginning of a method or function,
+        //changes in PHP 7.0 and onwards.
+        $argv = func_get_args();
+
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } elseif (1 < func_num_args()) {
             if (!is_array($options)) {
                 $options = array('minwidth' => $options);
             }
-            $argv = func_get_args();
             array_shift($argv);
             $options['minheight'] = array_shift($argv);
             if (!empty($argv)) {
