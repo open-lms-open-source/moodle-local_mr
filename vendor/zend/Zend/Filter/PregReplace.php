@@ -88,11 +88,12 @@ class Zend_Filter_PregReplace implements Zend_Filter_Interface
     {
         //func_get_args() should be placed at the beginning of a method or function,
         //changes in PHP 7.0 and onwards.
-        $options = func_get_args();
+        $optionsgetargs = func_get_args();
 
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if (!is_array($options)) {
+            $options = $optionsgetargs;
             $temp    = array();
             if (!empty($options)) {
                 $temp['match'] = array_shift($options);
