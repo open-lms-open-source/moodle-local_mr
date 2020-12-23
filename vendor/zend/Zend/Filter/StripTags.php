@@ -84,13 +84,12 @@ class Zend_Filter_StripTags implements Zend_Filter_Interface
     {
         //func_get_args() should be placed at the beginning of a method or function,
         //changes in PHP 7.0 and onwards.
-        $optionsgetargs = func_get_args();
+        $options = func_get_args();
 
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if ((!is_array($options)) || (is_array($options) && !array_key_exists('allowTags', $options) &&
             !array_key_exists('allowAttribs', $options) && !array_key_exists('allowComments', $options))) {
-            $options = $optionsgetargs;
             $temp['allowTags'] = array_shift($options);
             if (!empty($options)) {
                 $temp['allowAttribs'] = array_shift($options);

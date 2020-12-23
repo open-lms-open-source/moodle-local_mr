@@ -64,12 +64,12 @@ class Zend_Filter_HtmlEntities implements Zend_Filter_Interface
     {
         //func_get_args() should be placed at the beginning of a method or function,
         //changes in PHP 7.0 and onwards.
-        $optionsgetargs = func_get_args();
+        $options = func_get_args();
 
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if (!is_array($options)) {
-            $options = $optionsgetargs;
+
             $temp['quotestyle'] = array_shift($options);
             if (!empty($options)) {
                 $temp['charset'] = array_shift($options);
