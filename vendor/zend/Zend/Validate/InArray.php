@@ -70,16 +70,13 @@ class Zend_Validate_InArray extends Zend_Validate_Abstract
      */
     public function __construct($options)
     {
-        //func_num_args() should be placed at the beginning of a method or function,
-        //changes in PHP 7.0 and onwards.
-        $count = func_num_args();
-
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if (!is_array($options)) {
             require_once 'Zend/Validate/Exception.php';
             throw new Zend_Validate_Exception('Array expected as parameter');
         } else {
+            $count = func_num_args();
             $temp  = array();
             if ($count > 1) {
                 $temp['haystack'] = func_get_arg(0);

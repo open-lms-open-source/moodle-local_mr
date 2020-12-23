@@ -50,13 +50,10 @@ class Zend_Filter_StringTrim implements Zend_Filter_Interface
      */
     public function __construct($options = null)
     {
-        //func_get_args() should be placed at the beginning of a method or function,
-        //changes in PHP 7.0 and onwards.
-        $options = func_get_args();
-
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if (!is_array($options)) {
+            $options          = func_get_args();
             $temp['charlist'] = array_shift($options);
             $options          = $temp;
         }

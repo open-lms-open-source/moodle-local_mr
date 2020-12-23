@@ -108,11 +108,6 @@ class Zend_Test_PHPUnit_Constraint_Redirect37 extends PHPUnit_Framework_Constrai
      */
     public function evaluate($other, $assertType = null, $variable = FALSE)
     {
-        //func_get_args() - func_num_args() should be placed at the beginning of a method or function,
-        //changes in PHP 7.0 and onwards.
-        $argv     = func_get_args();
-        $argc     = func_num_args();
-
         if (!$other instanceof Zend_Controller_Response_Abstract) {
             require_once 'Zend/Test/PHPUnit/Constraint/Exception.php';
             throw new Zend_Test_PHPUnit_Constraint_Exception('Redirect constraint assertions require a response object');
@@ -131,6 +126,8 @@ class Zend_Test_PHPUnit_Constraint_Redirect37 extends PHPUnit_Framework_Constrai
         $this->_assertType = $assertType;
 
         $response = $other;
+        $argv     = func_get_args();
+        $argc     = func_num_args();
 
         switch ($assertType) {
             case self::ASSERT_REDIRECT_TO:

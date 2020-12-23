@@ -121,11 +121,6 @@ class Zend_Test_PHPUnit_Constraint_ResponseHeader37 extends PHPUnit_Framework_Co
      */
     public function evaluate($response, $assertType = '', $variable = FALSE)
     {
-        //func_get_args() - func_num_args() should be placed at the beginning of a method or function,
-        //changes in PHP 7.0 and onwards.
-        $argv     = func_get_args();
-        $argc     = func_num_args();
-
         if (!$response instanceof Zend_Controller_Response_Abstract) {
             require_once 'Zend/Test/PHPUnit/Constraint/Exception.php';
             throw new Zend_Test_PHPUnit_Constraint_Exception('Header constraint assertions require a response object');
@@ -142,6 +137,9 @@ class Zend_Test_PHPUnit_Constraint_ResponseHeader37 extends PHPUnit_Framework_Co
         }
 
         $this->_assertType = $assertType;
+
+        $argv     = func_get_args();
+        $argc     = func_num_args();
 
         switch ($assertType) {
             case self::ASSERT_RESPONSE_CODE:

@@ -57,13 +57,10 @@ class Zend_Log_Formatter_Xml extends Zend_Log_Formatter_Abstract
      */
     public function __construct($options = array())
     {
-        //func_get_args() should be placed at the beginning of a method or function,
-        //changes in PHP 7.0 and onwards.
-        $args     = func_get_args();
-
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } elseif (!is_array($options)) {
+            $args = func_get_args();
 
             $options = array(
             	'rootElement' => array_shift($args)

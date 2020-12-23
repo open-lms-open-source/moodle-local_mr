@@ -218,9 +218,7 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
      */
     public static function setDefaultSearchField($fieldName)
     {
-        $calling_class = get_called_class();
-        $obj = new $calling_class;
-        foreach ($obj->_indices as $index) {
+        foreach ($this->_indices as $index) {
             $index->setDefaultSearchField($fieldName);
         }
     }
@@ -236,16 +234,14 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
      */
     public static function getDefaultSearchField()
     {
-        $calling_class = get_called_class();
-        $obj = new $calling_class;
-        if (count($obj->_indices) == 0) {
+        if (count($this->_indices) == 0) {
             require_once 'Zend/Search/Lucene/Exception.php';
             throw new Zend_Search_Lucene_Exception('Indices list is empty');
         }
 
-        $defaultSearchField = reset($obj->_indices)->getDefaultSearchField();
+        $defaultSearchField = reset($this->_indices)->getDefaultSearchField();
 
-        foreach ($obj->_indices as $index) {
+        foreach ($this->_indices as $index) {
             if ($index->getDefaultSearchField() !== $defaultSearchField) {
                 require_once 'Zend/Search/Lucene/Exception.php';
                 throw new Zend_Search_Lucene_Exception('Indices have different default search field.');
@@ -264,9 +260,7 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
      */
     public static function setResultSetLimit($limit)
     {
-        $calling_class = get_called_class();
-        $obj = new $calling_class;
-        foreach ($obj->_indices as $index) {
+        foreach ($this->_indices as $index) {
             $index->setResultSetLimit($limit);
         }
     }
@@ -281,16 +275,14 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
      */
     public static function getResultSetLimit()
     {
-        $calling_class = get_called_class();
-        $obj = new $calling_class;
-        if (count($obj->_indices) == 0) {
+        if (count($this->_indices) == 0) {
             require_once 'Zend/Search/Lucene/Exception.php';
             throw new Zend_Search_Lucene_Exception('Indices list is empty');
         }
 
-        $defaultResultSetLimit = reset($obj->_indices)->getResultSetLimit();
+        $defaultResultSetLimit = reset($this->_indices)->getResultSetLimit();
 
-        foreach ($obj->_indices as $index) {
+        foreach ($this->_indices as $index) {
             if ($index->getResultSetLimit() !== $defaultResultSetLimit) {
                 require_once 'Zend/Search/Lucene/Exception.php';
                 throw new Zend_Search_Lucene_Exception('Indices have different default search field.');

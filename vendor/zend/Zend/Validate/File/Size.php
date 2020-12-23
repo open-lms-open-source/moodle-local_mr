@@ -103,10 +103,6 @@ class Zend_Validate_File_Size extends Zend_Validate_Abstract
      */
     public function __construct($options)
     {
-        //func_get_args() should be placed at the beginning of a method or function,
-        //changes in PHP 7.0 and onwards.
-        $argv = func_get_args();
-
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } elseif (is_string($options) || is_numeric($options)) {
@@ -117,6 +113,7 @@ class Zend_Validate_File_Size extends Zend_Validate_Abstract
         }
 
         if (1 < func_num_args()) {
+            $argv = func_get_args();
             array_shift($argv);
             $options['max'] = array_shift($argv);
             if (!empty($argv)) {

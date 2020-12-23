@@ -919,10 +919,6 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
      */
     public function find($query)
     {
-        //func_get_args() should be placed at the beginning of a method or function,
-        //changes in PHP 7.0 and onwards.
-        $argList    = func_get_args();
-
         if (is_string($query)) {
             require_once 'Zend/Search/Lucene/Search/QueryParser.php';
 
@@ -989,6 +985,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
         } else {
             // sort by given field names
 
+            $argList    = func_get_args();
             $fieldNames = $this->getFieldNames();
             $sortArgs   = array();
 
