@@ -59,7 +59,7 @@ class Zend_Gdata_Gapps_ServiceException extends Zend_Exception
      *
      * @var array
      */
-    protected $_errors = array();
+    protected $_errors = [];
 
     /**
      * Create a new ServiceException.
@@ -103,7 +103,7 @@ class Zend_Gdata_Gapps_ServiceException extends Zend_Exception
      * @throws Zend_Gdata_App_Exception
      */
     public function setErrors($array) {
-        $this->_errors = array();
+        $this->_errors = [];
         foreach ($array as $error) {
             $this->addError($error);
         }
@@ -127,12 +127,7 @@ class Zend_Gdata_Gapps_ServiceException extends Zend_Exception
      *              if not found.
      */
     public function getError($errorCode) {
-        if (array_key_exists($errorCode, $this->_errors)) {
-            $result = $this->_errors[$errorCode];
-            return $result;
-        } else {
-            return null;
-        }
+        return $this->_errors[$errorCode] ?? null;
     }
 
     /**

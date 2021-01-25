@@ -106,26 +106,26 @@ class Zend_Feed_Reader
 
     protected static $_pluginLoader = null;
 
-    protected static $_prefixPaths = array();
+    protected static $_prefixPaths = [];
 
-    protected static $_extensions = array(
-        'feed' => array(
+    protected static $_extensions = [
+        'feed' => [
             'DublinCore_Feed',
             'Atom_Feed'
-        ),
-        'entry' => array(
+        ],
+        'entry' => [
             'Content_Entry',
             'DublinCore_Entry',
             'Atom_Entry'
-        ),
-        'core' => array(
+        ],
+        'core' => [
             'DublinCore_Feed',
             'Atom_Feed',
             'Content_Entry',
             'DublinCore_Entry',
             'Atom_Entry'
-        )
-    );
+        ]
+    ];
 
     /**
      * Get the Feed cache
@@ -255,11 +255,14 @@ class Zend_Feed_Reader
                     $client->setHeaders('If-Modified-Since', $lastModified);
                 }
             }
+
             $response = $client->request('GET');
+
             if ($response->getStatus() !== 200 && $response->getStatus() !== 304) {
                 require_once 'Zend/Feed/Exception.php';
                 throw new Zend_Feed_Exception('Feed failed to load, got response code ' . $response->getStatus());
             }
+
             if ($response->getStatus() == 304) {
                 $responseXml = $data;
             } else {
@@ -282,7 +285,9 @@ class Zend_Feed_Reader
             if ($data !== false) {
                 return self::importString($data);
             }
+
             $response = $client->request('GET');
+
             if ($response->getStatus() !== 200) {
                 require_once 'Zend/Feed/Exception.php';
                 throw new Zend_Feed_Exception('Feed failed to load, got response code ' . $response->getStatus());
@@ -296,17 +301,22 @@ class Zend_Feed_Reader
             return self::importString($responseXml);
         } else {
             $response = $client->request('GET');
+
             if ($response->getStatus() !== 200) {
                 require_once 'Zend/Feed/Exception.php';
                 throw new Zend_Feed_Exception('Feed failed to load, got response code ' . $response->getStatus());
             }
+
             $responseXml = $response->getBody();
+
             if (empty($responseXml)) {
                 require_once 'Zend/Feed/Exception.php';
                 throw new Zend_Feed_Exception('Feed failed to load, got empty response body');
             }
+
             $reader = self::importString($responseXml);
             $reader->setOriginalSourceUri($uri);
+
             return $reader;
         }
     }
@@ -407,6 +417,7 @@ class Zend_Feed_Reader
         $client = self::getHttpClient();
         $client->setUri($uri);
         $response = $client->request();
+
         if ($response->getStatus() !== 200) {
             /**
              * @see Zend_Feed_Exception
@@ -414,6 +425,7 @@ class Zend_Feed_Reader
             require_once 'Zend/Feed/Exception.php';
             throw new Zend_Feed_Exception("Failed to access $uri, got response code " . $response->getStatus());
         }
+
         $responseHtml = $response->getBody();
         $libxml_errflag = libxml_use_internal_errors(true);
         $oldValue = libxml_disable_entity_loader(true);
@@ -583,9 +595,9 @@ class Zend_Feed_Reader
     {
         if (!isset(self::$_pluginLoader)) {
             require_once 'Zend/Loader/PluginLoader.php';
-            self::$_pluginLoader = new Zend_Loader_PluginLoader(array(
+            self::$_pluginLoader = new Zend_Loader_PluginLoader([
                 'Zend_Feed_Reader_Extension_' => 'Zend/Feed/Reader/Extension/',
-            ));
+            ]);
         }
         return self::$_pluginLoader;
     }
@@ -698,25 +710,25 @@ class Zend_Feed_Reader
         self::$_httpMethodOverride = false;
         self::$_httpConditionalGet = false;
         self::$_pluginLoader       = null;
-        self::$_prefixPaths        = array();
-        self::$_extensions         = array(
-            'feed' => array(
+        self::$_prefixPaths        = [];
+        self::$_extensions         = [
+            'feed' => [
                 'DublinCore_Feed',
                 'Atom_Feed'
-            ),
-            'entry' => array(
+            ],
+            'entry' => [
                 'Content_Entry',
                 'DublinCore_Entry',
                 'Atom_Entry'
-            ),
-            'core' => array(
+            ],
+            'core' => [
                 'DublinCore_Feed',
                 'Atom_Feed',
                 'Content_Entry',
                 'DublinCore_Entry',
                 'Atom_Entry'
-            )
-        );
+            ]
+        ];
     }
 
     /**

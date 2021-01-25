@@ -78,6 +78,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
             $client = Zend_Feed::getHttpClient();
             $client->setUri($uri);
             $response = $client->request('GET');
+
             if ($response->getStatus() !== 200) {
                 /**
                  * @see Zend_Feed_Exception
@@ -85,6 +86,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
                 require_once 'Zend/Feed/Exception.php';
                 throw new Zend_Feed_Exception('Feed failed to load, got response code ' . $response->getStatus() . '; request: ' . $client->getLastRequest() . "\nresponse: " . $response->asString());
             }
+
             $this->_element = $this->_importFeedFromString($response->getBody());
             $this->__wakeup();
         } elseif ($string !== null) {
@@ -146,7 +148,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
     {
         $this->_element = $this->saveXML();
 
-        return array('_element');
+        return ['_element'];
     }
 
 
@@ -158,7 +160,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
      */
     protected function _buildEntryCache()
     {
-        $this->_entries = array();
+        $this->_entries = [];
         foreach ($this->_element->childNodes as $child) {
             if ($child->localName == $this->_entryElementName) {
                 $this->_entries[] = $child;

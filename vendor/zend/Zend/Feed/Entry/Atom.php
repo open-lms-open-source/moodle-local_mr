@@ -103,7 +103,7 @@ class Zend_Feed_Entry_Atom extends Zend_Feed_Entry_Abstract
                 // Redirect
                 case 3:
                     $deleteUri = $response->getHeader('Location');
-                    continue;
+                    break;
                 // Error
                 default:
                     /**
@@ -153,8 +153,8 @@ class Zend_Feed_Entry_Atom extends Zend_Feed_Entry_Abstract
             $client = Zend_Feed::getHttpClient();
             $client->setUri($editUri);
             if (Zend_Feed::getHttpMethodOverride()) {
-                $client->setHeaders(array('X-HTTP-Method-Override: PUT',
-                    'Content-Type: ' . self::CONTENT_TYPE));
+                $client->setHeaders(['X-HTTP-Method-Override: PUT',
+                    'Content-Type: ' . self::CONTENT_TYPE]);
                 $client->setRawData($this->saveXML());
                 $response = $client->request('POST');
             } else {
@@ -162,6 +162,7 @@ class Zend_Feed_Entry_Atom extends Zend_Feed_Entry_Abstract
                 $client->setRawData($this->saveXML());
                 $response = $client->request('PUT');
             }
+
             if ($response->getStatus() !== 200) {
                 /**
                  * @see Zend_Feed_Exception
@@ -261,7 +262,7 @@ class Zend_Feed_Entry_Atom extends Zend_Feed_Entry_Abstract
         $links = parent::__get('link');
         if (!is_array($links)) {
             if ($links instanceof Zend_Feed_Element) {
-                $links = array($links);
+                $links = [$links];
             } else {
                 return $links;
             }
