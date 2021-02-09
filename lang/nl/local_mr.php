@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2020 Blackboard Inc. (http://www.blackboard.com)
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -25,7 +25,7 @@ $string['pluginname'] = 'Open LMS Framework';
 $string['addedactivity'] = '{$a->modname}toegevoegd door {$a->fullname}';
 $string['basichtml'] = 'Basis HTML';
 $string['deletedactivity'] = '{$a->modname} is verwijderd door {$a->fullname}';
-$string['export'] = 'Export: ';
+$string['export'] = 'Export:';
 $string['filter'] = 'Filter';
 $string['loadingdotdotdot'] = 'Laden...';
 $string['local_mr_docs'] = 'Documenten';
@@ -43,7 +43,7 @@ $string['plugin-text/tsv'] = 'TSV';
 $string['popupdocs'] = 'Open documenten in een nieuw venster';
 $string['popuperrors'] = 'Open documentfouten in een nieuw venster';
 $string['reportsql'] = 'Rapport-SQL';
-$string['reset'] = 'Stel opnieuw in';
+$string['reset'] = 'Terugzetten';
 $string['standard'] = 'Standaard';
 $string['updatedactivity'] = '{$a->modname} is bijgewerkt door {$a->fullname}';
 $string['xdays'] = '{$a} dagen';

@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2020 Blackboard Inc. (http://www.blackboard.com)
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -25,7 +25,7 @@ $string['pluginname'] = 'Open LMS 框架';
 $string['addedactivity'] = '{$a->modname} 已由 {$a->fullname} 新增';
 $string['basichtml'] = '基本 HTML';
 $string['deletedactivity'] = '{$a->modname} 已由 {$a->fullname} 刪除';
-$string['export'] = '匯出： ';
+$string['export'] = '匯出：';
 $string['filter'] = '篩選器';
 $string['loadingdotdotdot'] = '正在載入...';
 $string['local_mr_docs'] = '文件';
