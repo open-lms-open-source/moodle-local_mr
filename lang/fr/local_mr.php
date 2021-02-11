@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2020 Blackboard Inc. (http://www.blackboard.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -25,9 +25,9 @@ $string['pluginname'] = 'Framework Open LMS';
 $string['addedactivity'] = '{$a->modname} a été ajouté par {$a->fullname}';
 $string['basichtml'] = 'HTML de base';
 $string['deletedactivity'] = '{$a->modname} a été supprimé par {$a->fullname}';
-$string['export'] = 'Exporter :';
+$string['export'] = 'Exporter : ';
 $string['filter'] = 'Filtre';
-$string['loadingdotdotdot'] = 'Chargement en cours...';
+$string['loadingdotdotdot'] = 'Chargement...';
 $string['local_mr_docs'] = 'Docs';
 $string['moodleroomsframework'] = 'Framework Open LMS';
 $string['mrframework'] = 'Framework Open LMS';
@@ -47,10 +47,10 @@ $string['reset'] = 'Réinitialiser';
 $string['standard'] = 'Standard';
 $string['updatedactivity'] = '{$a->modname} mis à jour par {$a->fullname}';
 $string['xdays'] = '{$a} jours';
-$string['xhours'] = '{$a} heures';
+$string['xhours'] = '{$a} heures';
 $string['xminutes'] = '{$a} minutes';
 $string['xmonths'] = '{$a} mois';
-$string['xweeks'] = '{$a} semaines';
+$string['xweeks'] = '{$a} semaines';
 $string['toomanyrows'] = 'Le rapport doit renvoyer {$a->total} lignes, ce qui est supérieur au maximum autorisé de {$a->max}. Si un filtre est disponible, utilisez-le pour réduire le nombre de résultats.';
 $string['rowsperpage'] = 'Lignes par page';
 $string['tablesortedbydesc'] = 'Tableau trié par {$a}, dans l\'ordre décroissant.';
