@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2020 Blackboard Inc. (http://www.blackboard.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -25,9 +25,9 @@ $string['pluginname'] = 'Estrutura do Open LMS';
 $string['addedactivity'] = '{$a->modname} adicionado por {$a->fullname}';
 $string['basichtml'] = 'HTML básico';
 $string['deletedactivity'] = '{$a->modname} excluído por {$a->fullname}';
-$string['export'] = 'Exportar:';
+$string['export'] = 'Exportar: ';
 $string['filter'] = 'Filtro';
-$string['loadingdotdotdot'] = 'Carregando…';
+$string['loadingdotdotdot'] = 'Carregando...';
 $string['local_mr_docs'] = 'Documentos';
 $string['moodleroomsframework'] = 'Estrutura do Open LMS';
 $string['mrframework'] = 'Estrutura do Open LMS';
@@ -43,7 +43,7 @@ $string['plugin-text/tsv'] = 'TSV';
 $string['popupdocs'] = 'Abrir documentos em uma nova janela';
 $string['popuperrors'] = 'Abrir erros de documentos em uma nova janela';
 $string['reportsql'] = 'SQL de relatório';
-$string['reset'] = 'Limpar';
+$string['reset'] = 'Redefinir';
 $string['standard'] = 'Padrão';
 $string['updatedactivity'] = '{$a->modname} atualizado por {$a->fullname}';
 $string['xdays'] = '{$a} dias';
