@@ -33,7 +33,7 @@ class mr_config_storage_default_test extends advanced_testcase {
 
     protected $component = 'phpunit_phpunit';
 
-    protected function setUp() {
+    protected function setUp(): void {
         $this->resetAfterTest();
     }
 
