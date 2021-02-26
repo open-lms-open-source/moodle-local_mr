@@ -1,6 +1,6 @@
 <?php
 /**
- * Blackboard Open LMS framework
+ * Open LMS framework
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see http://opensource.org/licenses/gpl-3.0.html.
  *
- * @copyright Copyright (c) 2009 Blackboard Inc. (http://www.blackboard.com)
+ * @copyright Copyright (c) 2009 Open LMS (https://www.openlms.net)
  * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License
  * @package mr
  * @author Mark Nielsen
@@ -76,7 +76,7 @@ class mr_bootstrap {
     /**
      * Run shutdown routine
      *
-     * Recommended to call this when you don't want the Blackboard Open LMS
+     * Recommended to call this when you don't want the Open LMS
      * Framework to conflict with other code, EG: when using the
      * framework on the cron.
      *
