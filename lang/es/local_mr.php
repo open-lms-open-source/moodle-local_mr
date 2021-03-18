@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2020 Blackboard Inc. (http://www.blackboard.com)
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -25,7 +25,7 @@ $string['pluginname'] = 'Marco de Open LMS';
 $string['addedactivity'] = '{$a->modname} agregado por {$a->fullname}';
 $string['basichtml'] = 'HTML básico';
 $string['deletedactivity'] = '{$a->modname} eliminado por {$a->fullname}';
-$string['export'] = 'Exportar: ';
+$string['export'] = 'Exportar:';
 $string['filter'] = 'Filtro';
 $string['loadingdotdotdot'] = 'Cargando...';
 $string['local_mr_docs'] = 'Docs';
