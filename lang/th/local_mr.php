@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2020 Blackboard Inc. (http://www.blackboard.com)
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -25,7 +25,7 @@ $string['pluginname'] = 'ขอบข่ายงาน LMS แบบเปิ�
 $string['addedactivity'] = 'เพิ่ม {$a->modname} โดย {$a->fullname}';
 $string['basichtml'] = 'HTML พื้นฐาน';
 $string['deletedactivity'] = 'ลบ {$a->modname} โดย {$a->fullname}';
-$string['export'] = 'ส่งออก: ';
+$string['export'] = 'ส่งออก:';
 $string['filter'] = 'ตัวกรอง';
 $string['loadingdotdotdot'] = 'กำลังโหลด...';
 $string['local_mr_docs'] = 'เอกสาร';
