@@ -15,19 +15,19 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2020 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Open LMSフレームワーク';
-$string['addedactivity'] = '{$a->modname} は {$a->fullname} により追加されました';
+$string['addedactivity'] = '{$a->modname} を {$a->fullname} さんが追加しました';
 $string['basichtml'] = '基本HTML';
-$string['deletedactivity'] = '{$a->modname} は {$a->fullname} により削除されました';
-$string['export'] = 'エクスポート : ';
+$string['deletedactivity'] = '{$a->modname} を {$a->fullname} さんが削除しました';
+$string['export'] = 'エクスポート :';
 $string['filter'] = 'フィルタ';
-$string['loadingdotdotdot'] = '読み込み中 ...';
+$string['loadingdotdotdot'] = 'ロード中...';
 $string['local_mr_docs'] = 'ドキュメント';
 $string['moodleroomsframework'] = 'Open LMSフレームワーク';
 $string['mrframework'] = 'Open LMSフレームワーク';
@@ -45,9 +45,9 @@ $string['popuperrors'] = '新しいウィンドウでドキュメントのエラ
 $string['reportsql'] = 'SQLレポート';
 $string['reset'] = 'リセット';
 $string['standard'] = '標準';
-$string['updatedactivity'] = '{$a->modname} は {$a->fullname} により更新されました';
+$string['updatedactivity'] = '{$a->modname} を {$a->fullname} さんが更新しました';
 $string['xdays'] = '{$a} 日';
-$string['xhours'] = '{$a} 時間前';
+$string['xhours'] = '{$a} 時間';
 $string['xminutes'] = '{$a} 分';
 $string['xmonths'] = '{$a} ヶ月';
 $string['xweeks'] = '{$a} 週間';

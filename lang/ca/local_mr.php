@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2020 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -25,16 +25,16 @@ $string['pluginname'] = 'Open LMS Framework';
 $string['addedactivity'] = '{$a->modname} afegit per {$a->fullname}';
 $string['basichtml'] = 'HTML bàsic';
 $string['deletedactivity'] = '{$a->modname} suprimit per {$a->fullname}';
-$string['export'] = 'Exporta: ';
+$string['export'] = 'Exporta:';
 $string['filter'] = 'Filtre';
 $string['loadingdotdotdot'] = 'S\'està carregant...';
 $string['local_mr_docs'] = 'Docs';
 $string['moodleroomsframework'] = 'Open LMS Framework';
 $string['mrframework'] = 'Open LMS Framework';
 $string['nolimit'] = 'Il·limitat';
-$string['oneday'] = 'un dia';
+$string['oneday'] = '1 dia';
 $string['onemonth'] = '1 mes';
-$string['oneweek'] = 'una setmana';
+$string['oneweek'] = '1 setmana';
 $string['oneyear'] = '1 any';
 $string['plugin-spreadsheet/excel'] = 'XLS';
 $string['plugin-spreadsheet/ods'] = 'ODS';
@@ -44,7 +44,7 @@ $string['popupdocs'] = 'Obre els documents en una finestra nova';
 $string['popuperrors'] = 'Obre els errors dels documents en una finestra nova';
 $string['reportsql'] = 'Informe SQL';
 $string['reset'] = 'Reinicia';
-$string['standard'] = 'Estàndard';
+$string['standard'] = 'Estandard';
 $string['updatedactivity'] = '{$a->modname} actualitzat per {$a->fullname}';
 $string['xdays'] = '{$a} dies';
 $string['xhours'] = '{$a} hores';

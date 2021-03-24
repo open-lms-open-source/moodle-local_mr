@@ -15,19 +15,19 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2020 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Open LMS Framework';
-$string['addedactivity'] = 'Składnik {$a->modname} dodany przez {$a->fullname}';
+$string['addedactivity'] = '{$a->fullname} dodał/a {$a->modname}';
 $string['basichtml'] = 'Basic HTML';
-$string['deletedactivity'] = 'Moduł {$a->modname} usunięty przez {$a->fullname}';
-$string['export'] = 'Eksportuj: ';
+$string['deletedactivity'] = '{$a->fullname} usunął/usunęła {$a->modname}';
+$string['export'] = 'Eksportuj:';
 $string['filter'] = 'Filtr';
-$string['loadingdotdotdot'] = 'Ładowanie...';
+$string['loadingdotdotdot'] = 'Ładuję ...';
 $string['local_mr_docs'] = 'Dokumenty';
 $string['moodleroomsframework'] = 'Open LMS Framework';
 $string['mrframework'] = 'Open LMS Framework';
@@ -43,14 +43,14 @@ $string['plugin-text/tsv'] = 'TSV';
 $string['popupdocs'] = 'Otwiera dokumenty w nowym oknie';
 $string['popuperrors'] = 'Otwórz błędy dokumentu w nowym oknie';
 $string['reportsql'] = 'Raport SQL';
-$string['reset'] = 'Zresetuj';
-$string['standard'] = 'Standard';
-$string['updatedactivity'] = 'Składnik {$a->modname} zaktualizowany przez {$a->fullname}';
+$string['reset'] = 'Resetuj';
+$string['standard'] = 'Standardowe';
+$string['updatedactivity'] = '{$a->fullname} zaktualizował/a {$a->modname}';
 $string['xdays'] = '{$a} dni';
 $string['xhours'] = '{$a} godz.';
 $string['xminutes'] = '{$a} min.';
 $string['xmonths'] = '{$a} mies.';
-$string['xweeks'] = '{$a} tyg.';
+$string['xweeks'] = '{$a} tygod.';
 $string['toomanyrows'] = 'Raport zwróciłby następującą liczbę wierszy: {$a->total}, co oznacza, że przekroczona została maksymalna dopuszczalna liczba: {$a->max}. Jeśli dostępny jest filtr, użyj go w celu ograniczenia liczby wyników.';
 $string['rowsperpage'] = 'Wierszy na stronę';
 $string['tablesortedbydesc'] = 'Sortowanie tabeli wg {$a}, malejąco.';

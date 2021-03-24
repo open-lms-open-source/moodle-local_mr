@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2020 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -25,7 +25,7 @@ $string['pluginname'] = 'Open LMS Çerçevesi';
 $string['addedactivity'] = '{$a->modname}, {$a->fullname} tarafından eklendi';
 $string['basichtml'] = 'Temel HTML';
 $string['deletedactivity'] = '{$a->modname}, {$a->fullname} tarafından silindi';
-$string['export'] = 'Dışa ver: ';
+$string['export'] = 'Dışa ver:';
 $string['filter'] = 'Filtre';
 $string['loadingdotdotdot'] = 'Yükleniyor...';
 $string['local_mr_docs'] = 'Belgeler';
