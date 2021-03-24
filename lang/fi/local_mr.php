@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2020 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -25,9 +25,9 @@ $string['pluginname'] = 'Open LMS Framework';
 $string['addedactivity'] = '{$a->fullname} lisäsi aktiviteetin {$a->modname}';
 $string['basichtml'] = 'HTML-perusmuotoilu';
 $string['deletedactivity'] = '{$a->fullname} poisti aktiviteetin {$a->modname}';
-$string['export'] = 'Vie: ';
-$string['filter'] = 'Suodatin';
-$string['loadingdotdotdot'] = 'Ladataan...';
+$string['export'] = 'Vie:';
+$string['filter'] = 'Näytä';
+$string['loadingdotdotdot'] = 'Lataa...';
 $string['local_mr_docs'] = 'Tiedostot';
 $string['moodleroomsframework'] = 'Open LMS Framework';
 $string['mrframework'] = 'Open LMS Framework';
@@ -44,7 +44,7 @@ $string['popupdocs'] = 'Avaa tiedostot uuteen ikkunaan';
 $string['popuperrors'] = 'Avaa tiedostovirheet uuteen ikkunaan';
 $string['reportsql'] = 'SQL-raportti';
 $string['reset'] = 'Nollaa';
-$string['standard'] = 'Vakio';
+$string['standard'] = 'Standardi';
 $string['updatedactivity'] = '{$a->fullname} päivitti aktiviteetin {$a->modname}';
 $string['xdays'] = '{$a} päivää';
 $string['xhours'] = '{$a} tuntia';
