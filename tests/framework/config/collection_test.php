@@ -89,11 +89,9 @@ class mr_config_collection_test extends basic_testcase {
         $this->assertEquals('baz', $collection->get('bat'), 'Can retrieve config from collection');
     }
 
-    /**
-     * @expectedException coding_exception
-     */
     public function test_bad_get() {
         $collection = new mr_config_collection();
+        $this->expectException(coding_exception::class);
         $collection->get('foo');
     }
 
@@ -114,11 +112,9 @@ class mr_config_collection_test extends basic_testcase {
         $this->assertEquals('bat', $collection->get('foo'), 'The the collection reflectes the updated value');
     }
 
-    /**
-     * @expectedException coding_exception
-     */
     public function test_bad_set() {
         $collection = new mr_config_collection();
+        $this->expectException(coding_exception::class);
         $collection->set('foo', 'bat');
     }
 
@@ -153,11 +149,9 @@ class mr_config_collection_test extends basic_testcase {
         $this->assertFalse($collection->has('hat'), 'The collection should not have this');
     }
 
-    /**
-     * @expectedException coding_exception
-     */
     public function test_add_duplicate() {
         $collection = new mr_config_collection();
+        $this->expectException(coding_exception::class);
         $collection->add(new mr_config('foo', 'bar'));
         $collection->add(new mr_config('foo', 'bat'));
     }
