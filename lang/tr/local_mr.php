@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2022 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2023 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -51,7 +51,7 @@ $string['xhours'] = '{$a} saat';
 $string['xminutes'] = '{$a} dakika';
 $string['xmonths'] = '{$a} ay';
 $string['xweeks'] = '{$a} hafta';
-$string['toomanyrows'] = 'Rapor, {$a->total} satır döndürür; bu da izin verilen maksimum {$a->max} tutarından fazla. Bir filtre varsa sonuç sayısını azaltmak için lütfen filtreyi kullanın.';
+$string['toomanyrows'] = 'Rapor, {$a->total} satır döndürüyor; bu da izin verilen maksimum {$a->max} miktarından fazla. Bir filtre varsa sonuç sayısını azaltmak için lütfen filtreyi kullanın.';
 $string['rowsperpage'] = 'Sayfa başına satır';
 $string['tablesortedbydesc'] = 'Tablo sıralama ölçütü {$a}, azalan.';
 $string['tablesortedbyasc'] = 'Tablo sıralama ölçütü {$a}, artan.';
