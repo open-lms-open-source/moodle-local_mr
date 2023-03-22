@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2022 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2023 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -51,7 +51,7 @@ $string['xhours'] = '{$a} 小時';
 $string['xminutes'] = '{$a} 分';
 $string['xmonths'] = '{$a} 個月';
 $string['xweeks'] = '{$a} 週';
-$string['toomanyrows'] = '報告將傳回 {$a->total} 列，超過最大允許列數 {$a->max}。若可使用篩選器，請利用篩選器減少結果數量。';
+$string['toomanyrows'] = '報告將傳回 {$a->total} 列，其超過最大允許列數 {$a->max}。若可使用篩選器，請利用篩選器減少結果數量。';
 $string['rowsperpage'] = '各頁面列數';
 $string['tablesortedbydesc'] = '表格依 {$a} 降冪排序。';
 $string['tablesortedbyasc'] = '表格依 {$a} 升冪排序。';
