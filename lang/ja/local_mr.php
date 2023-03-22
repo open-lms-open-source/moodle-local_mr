@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2022 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2023 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -25,7 +25,7 @@ $string['pluginname'] = 'Open LMSフレームワーク';
 $string['addedactivity'] = '{$a->modname} を {$a->fullname} さんが追加しました';
 $string['basichtml'] = '基本HTML';
 $string['deletedactivity'] = '{$a->modname} を {$a->fullname} さんが削除しました';
-$string['export'] = 'エクスポート :';
+$string['export'] = 'エクスポート：';
 $string['filter'] = 'フィルタ';
 $string['loadingdotdotdot'] = 'ロード中...';
 $string['local_mr_docs'] = 'ドキュメント';
