@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2022 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2023 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -51,7 +51,7 @@ $string['xhours'] = '{$a} uren';
 $string['xminutes'] = '{$a} minuten';
 $string['xmonths'] = '{$a} maanden';
 $string['xweeks'] = '{$a} weken';
-$string['toomanyrows'] = 'Het rapport zoje {$a->total} rijen opleveren, wat meer is dan het maximaal toegestane aantal van {$a->max}. Als er een filter beschikbaar is, gebruik dit dan om het aantal resultaten te verminderen.';
+$string['toomanyrows'] = 'Het rapport zou {$a->total} rijen opleveren, wat meer is dan het maximaal toegestane aantal van {$a->max}. Als er een filter beschikbaar is, gebruik dit dan om het aantal resultaten te verminderen.';
 $string['rowsperpage'] = 'Rijen per pagina';
 $string['tablesortedbydesc'] = 'Tabel gesorteerd op {$a}, aflopend.';
 $string['tablesortedbyasc'] = 'Tabel gesorteerd op {$a}, oplopend.';
