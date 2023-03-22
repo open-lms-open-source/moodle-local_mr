@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2022 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2023 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -51,7 +51,7 @@ $string['xhours'] = '{$a} timer';
 $string['xminutes'] = '{$a} minutter';
 $string['xmonths'] = '{$a} måneder';
 $string['xweeks'] = '{$a} uger';
-$string['toomanyrows'] = 'Rapporten ville returnere {$a->total} rækker, hvilket er mere end det maksimalt tilladte antal {$a->max}.  Hvis et filter er tilgængeligt, skal du bruge det for at reducere antallet af resultater.';
+$string['toomanyrows'] = 'Rapporten ville hente {$a->total} rækker, hvilket er mere end det maksimalt tilladte antal på {$a->max}. Hvis der er et filter tilgængeligt, skal du venligst bruge det for at reducere antallet af resultater.';
 $string['rowsperpage'] = 'Rækker pr. side';
 $string['tablesortedbydesc'] = 'Tabel sorteret efter {$a}, faldende.';
 $string['tablesortedbyasc'] = 'Tabel sorteret efter {$a}, stigende.';
@@ -63,4 +63,4 @@ $string['paginatorprevlabel'] = 'forrige';
 $string['paginatorprevtitle'] = 'Forrige side';
 $string['paginatornextlabel'] = 'næste';
 $string['paginatornexttitle'] = 'Næste side';
-$string['privacy:metadata'] = 'Plugin\'et til Open LMS Framework gemmer ingen personlige data.';
+$string['privacy:metadata'] = 'Plugin&apos;et til Open LMS Framework gemmer ingen personlige data.';
