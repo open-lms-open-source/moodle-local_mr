@@ -183,7 +183,7 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      * @param string $offset
      * @return boolean
      */
-    public function offsetExists($offset) {
+    public function offsetExists($offset): bool {
         return $this->__isset($offset);
     }
 
@@ -195,7 +195,7 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      * @param string $offset
      * @return mixed
      */
-    public function offsetGet($offset) {
+    public function offsetGet($offset): mixed {
         return $this->__get($offset);
     }
 
@@ -207,7 +207,7 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      * @param string $offset
      * @param mixed $value
      */
-    public function offsetSet($offset, $value) {
+    public function offsetSet($offset, $value): void {
         $this->__set($offset, $value);
     }
 
@@ -218,7 +218,7 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      *
      * @param string $offset
      */
-    public function offsetUnset($offset) {
+    public function offsetUnset($offset): void {
         $this->__unset($offset);
     }
 
@@ -229,6 +229,7 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      *
      * @return ArrayIterator|Traversable
      */
+    #[\ReturnTypeWillChange]
     public function getIterator() {
         return new ArrayIterator($this->_record);
     }
@@ -240,7 +241,7 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      *
      * @return int
      */
-    public function count() {
+    public function count(): int {
         return count(get_object_vars($this->_record));
     }
 
