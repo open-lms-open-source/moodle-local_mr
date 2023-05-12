@@ -422,9 +422,17 @@ class local_mr_renderer extends plugin_renderer_base {
                 array('tablesortedbyasc', 'local_mr'),
             )
         );
+
+        // Change the URL to send PLD AJAX requests with `tjson: 1`.
+        $url = $table->get_url();
+        if ($url->get_path() === '/local/pld/view.php') {
+            $url = new moodle_url('/local/pld/ajax.php', array('controller' => $url->get_param('controller'), 'courseid' => $url->get_param('courseid')));
+        }
+        $url = $url->out(false, array('tjson' => 1));
+
         $arguments = (object) array(
             'id'          => $id,
-            'url'         => $table->get_url()->out(false, array('tjson' => 1)),
+            'url'         => $url,
             'sort'        => $table->get_sort(),
             'order'       => $table->get_order(),
             'page'        => $paging->get_page(),
