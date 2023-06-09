@@ -60,23 +60,23 @@ class mr_repository_recordset extends moodle_recordset {
      * Our only real magic here, we are converting the record
      * to our model.
      *
-     * @return mr_model_record_abstract
+     * @return mixed
      */
-    public function current() {
+    public function current(): mixed {
         return $this->repo->record_to_model(
             $this->rs->current()
         );
     }
 
-    public function next() {
+    public function next(): void {
         $this->rs->next();
     }
 
-    public function key() {
+    public function key(): mixed {
         return $this->rs->key();
     }
 
-    public function valid() {
+    public function valid(): bool {
         return $this->rs->valid();
     }
 
