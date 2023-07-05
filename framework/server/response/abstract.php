@@ -223,6 +223,8 @@ abstract class mr_server_response_abstract {
                     $value = 0;
                 } elseif ($value === true) {
                     $value = 1;
+                } elseif ($value === null) {
+                    $value = '';
                 }
                 $element = $dom->createElement($key);
                 $element->appendChild($dom->createTextNode($value));
