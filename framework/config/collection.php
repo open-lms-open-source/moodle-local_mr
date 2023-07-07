@@ -153,6 +153,7 @@ class mr_config_collection implements IteratorAggregate, Countable {
      *
      * @return ArrayIterator
      */
+    #[\ReturnTypeWillChange]
     public function getIterator() {
         return new ArrayIterator($this->configs);
     }
@@ -164,6 +165,7 @@ class mr_config_collection implements IteratorAggregate, Countable {
      *
      * @return int
      */
+    #[\ReturnTypeWillChange]
     public function count() {
         return count($this->configs);
     }
