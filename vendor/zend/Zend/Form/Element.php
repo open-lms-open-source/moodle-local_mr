@@ -338,8 +338,8 @@ class Zend_Form_Element implements Zend_Validate_Interface
      * Used to resolve and return an element ID
      *
      * Passed to the HtmlTag decorator as a callback in order to provide an ID.
-     * 
-     * @param  Zend_Form_Decorator_Interface $decorator 
+     *
+     * @param  Zend_Form_Decorator_Interface $decorator
      * @return string
      */
     public static function resolveElementId(Zend_Form_Decorator_Interface $decorator)
@@ -426,7 +426,7 @@ class Zend_Form_Element implements Zend_Validate_Interface
     /**
      * Retrieve localization translator object
      *
-     * @return Zend_Translate_Adapter|null
+     * @return Zend_Translate|null
      */
     public function getTranslator()
     {
@@ -588,7 +588,7 @@ class Zend_Form_Element implements Zend_Validate_Interface
      * @param  string $key
      * @return void
      */
-    protected function _filterValue(&$value, &$key)
+    protected function _filterValue(&$value, $key)
     {
         foreach ($this->getFilters() as $filter) {
             $value = $filter->filter($value);
@@ -896,7 +896,7 @@ class Zend_Form_Element implements Zend_Validate_Interface
      * Retrieve element attribute
      *
      * @param  string $name
-     * @return string
+     * @return string|null
      */
     public function getAttrib($name)
     {
@@ -975,7 +975,7 @@ class Zend_Form_Element implements Zend_Validate_Interface
      *
      * @param  string $key
      * @param  mixed $value
-     * @return voide
+     * @return void
      */
     public function __set($key, $value)
     {
@@ -1096,7 +1096,7 @@ class Zend_Form_Element implements Zend_Validate_Interface
      */
     public function addPrefixPath($prefix, $path, $type = null)
     {
-        $type = strtoupper($type);
+        $type = strtoupper((string) $type);
         switch ($type) {
             case self::DECORATOR:
             case self::FILTER:
@@ -1317,7 +1317,7 @@ class Zend_Form_Element implements Zend_Validate_Interface
      * Remove a single validator by name
      *
      * @param  string $name
-     * @return bool
+     * @return Zend_Form_Element|Zend_Form_Element_File
      */
     public function removeValidator($name)
     {
@@ -1871,7 +1871,7 @@ class Zend_Form_Element implements Zend_Validate_Interface
     /**
      * Add a decorator for rendering the element
      *
-     * @param  string|Zend_Form_Decorator_Interface $decorator
+     * @param  string|array|Zend_Form_Decorator_Interface $decorator
      * @param  array|Zend_Config $options Options with which to initialize decorator
      * @return Zend_Form_Element
      */
@@ -2116,7 +2116,7 @@ class Zend_Form_Element implements Zend_Validate_Interface
         } else {
             $r = new ReflectionClass($name);
             if ($r->hasMethod('__construct')) {
-                $instance = $r->newInstanceArgs((array) $filter['options']);
+                $instance = $r->newInstanceArgs(array_values((array) $filter['options']));
             } else {
                 $instance = $r->newInstance();
             }
@@ -2275,7 +2275,9 @@ class Zend_Form_Element implements Zend_Validate_Interface
             if (null !== $translator) {
                 $message = $translator->translate($message);
             }
-            if ($this->isArray() || is_array($value)) {
+            if (is_string($value)) {
+                $messages[$key] = str_replace('%value%', $value, $message);
+            } elseif ($this->isArray() || is_array($value)) {
                 $aggregateMessages = [];
                 foreach ($value as $val) {
                     $aggregateMessages[] = str_replace('%value%', $val, $message);

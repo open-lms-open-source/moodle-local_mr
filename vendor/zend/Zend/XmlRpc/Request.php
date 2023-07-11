@@ -440,6 +440,6 @@ class Zend_XmlRpc_Request
      */
     public function __toString()
     {
-        return $this->saveXML();
+        return $this->saveXml();
     }
 }

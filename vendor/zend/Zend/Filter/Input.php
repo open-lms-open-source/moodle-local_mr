@@ -803,8 +803,8 @@ class Zend_Filter_Input
             $this->_data = [];
             return;
         }
-        
-        // remember the default not empty message in case we want to temporarily change it        
+
+        // remember the default not empty message in case we want to temporarily change it
         $preserveDefaultNotEmptyMessage = $this->_defaults[self::NOT_EMPTY_MESSAGE];
 
         foreach ($this->_validatorRules as $ruleName => &$validatorRule) {
@@ -842,14 +842,14 @@ class Zend_Filter_Input
             }
             if (!isset($validatorRule[self::ALLOW_EMPTY])) {
                 $foundNotEmptyValidator = false;
-                
+
                 foreach ($validatorRule as $rule) {
                     if ($rule === 'NotEmpty') {
                         $foundNotEmptyValidator = true;
                         // field may not be empty, we are ready
                         break 1;
                     }
-                    
+
                     if (is_array($rule)) {
                         $keys      = array_keys($rule);
                         $classKey  = array_shift($keys);
@@ -868,14 +868,14 @@ class Zend_Filter_Input
                         // it cannot be a NotEmpty validator, skip this one
                         continue;
                     }
-                    
+
                     if($rule instanceof Zend_Validate_NotEmpty) {
                         $foundNotEmptyValidator = true;
                         // field may not be empty, we are ready
                         break 1;
                     }
                 }
-                
+
                 if (!$foundNotEmptyValidator) {
                     $validatorRule[self::ALLOW_EMPTY] = $this->_defaults[self::ALLOW_EMPTY];
                 } else {
@@ -925,7 +925,7 @@ class Zend_Filter_Input
                             /** we are changing the defaults here, this is alright if all subsequent validators are also a not empty
                             * validator, but it goes wrong if one of them is not AND is required!!!
                             * that is why we restore the default value at the end of this loop
-                            */ 
+                            */
                             if (is_array($value)) {
                                 $temp = $value; // keep the original value
                                 $this->_defaults[self::NOT_EMPTY_MESSAGE] = array_pop($temp);
@@ -953,11 +953,11 @@ class Zend_Filter_Input
             } else {
                 $this->_validateRule($validatorRule);
             }
-            
+
             // reset the default not empty message
             $this->_defaults[self::NOT_EMPTY_MESSAGE] = $preserveDefaultNotEmptyMessage;
         }
-        
+
 
 
         /**
@@ -1037,8 +1037,8 @@ class Zend_Filter_Input
                     if (!($notEmptyValidator = $this->_getNotEmptyValidatorInstance($validatorRule))) {
                         $notEmptyValidator = $this->_getValidator('NotEmpty');
                         $notEmptyValidator->setMessage($this->_getNotEmptyMessage($validatorRule[self::RULE], $fieldKey));
-                    }            
-                            
+                    }
+
                     if (!$notEmptyValidator->isValid($field)) {
                         foreach ($notEmptyValidator->getMessages() as $messageKey => $message) {
                             if (!isset($messages[$messageKey])) {
@@ -1080,7 +1080,7 @@ class Zend_Filter_Input
                 $notEmptyValidator = $this->_getValidator('NotEmpty');
                 $notEmptyValidator->setMessage($this->_getNotEmptyMessage($validatorRule[self::RULE], $fieldName));
             }
-            
+
             if ($validatorRule[self::ALLOW_EMPTY]) {
                 $validatorChain = $validatorRule[self::VALIDATOR_CHAIN];
             } else {
@@ -1138,13 +1138,14 @@ class Zend_Filter_Input
             }
         }
     }
-    
+
     /**
      * Check a validatorRule for the presence of a NotEmpty validator instance.
-     * The purpose is to preserve things like a custom message, that may have been 
+     * The purpose is to preserve things like a custom message, that may have been
      * set on the validator outside Zend_Filter_Input.
+     *
      * @param array $validatorRule
-     * @return mixed false if none is found, Zend_Validate_NotEmpty instance if found
+     * @return false|Zend_Validate_NotEmpty false if none is found, Zend_Validate_NotEmpty instance if found
      */
     protected function _getNotEmptyValidatorInstance($validatorRule) {
         foreach ($validatorRule as $rule => $value) {
@@ -1152,13 +1153,13 @@ class Zend_Filter_Input
                 return $value;
             }
         }
-        
+
         return false;
     }
 
     /**
      * @param mixed $classBaseName
-     * @return Zend_Filter_Interface
+     * @return object|null
      */
     protected function _getFilter($classBaseName)
     {
@@ -1167,7 +1168,7 @@ class Zend_Filter_Input
 
     /**
      * @param mixed $classBaseName
-     * @return Zend_Validate_Interface
+     * @return object|null
      */
     protected function _getValidator($classBaseName)
     {
@@ -1177,7 +1178,7 @@ class Zend_Filter_Input
     /**
      * @param string $type
      * @param mixed $classBaseName
-     * @return Zend_Filter_Interface|Zend_Validate_Interface
+     * @return object|null
      * @throws Zend_Filter_Exception
      */
     protected function _getFilterOrValidator($type, $classBaseName)

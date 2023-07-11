@@ -364,7 +364,7 @@ class Zend_Cache_Backend_Static
             if (is_dir($directory)) {
                 foreach (new DirectoryIterator($directory) as $file) {
                     if (true === $file->isFile()) {
-                        if (false === unlink($file->getPathName())) {
+                        if (false === unlink($file->getPathname())) {
                             return false;
                         }
                     }

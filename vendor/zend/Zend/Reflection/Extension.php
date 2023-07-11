@@ -43,7 +43,7 @@ class Zend_Reflection_Extension extends ReflectionExtension
      * @param  string $reflectionClass Name of reflection class to use
      * @return array Array of Zend_Reflection_Function objects
      */
-    public function getFunctions($reflectionClass = 'Zend_Reflection_Function')
+    public function getFunctions($reflectionClass = 'Zend_Reflection_Function'): array
     {
         $phpReflections  = parent::getFunctions();
         $zendReflections = [];
@@ -66,7 +66,7 @@ class Zend_Reflection_Extension extends ReflectionExtension
      * @param  string $reflectionClass Name of reflection class to use
      * @return array Array of Zend_Reflection_Class objects
      */
-    public function getClasses($reflectionClass = 'Zend_Reflection_Class')
+    public function getClasses($reflectionClass = 'Zend_Reflection_Class'): array
     {
         $phpReflections  = parent::getClasses();
         $zendReflections = [];

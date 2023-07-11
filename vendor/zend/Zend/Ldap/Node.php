@@ -880,7 +880,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * @return null
      * @throws Zend_Ldap_Exception
      */
-    public function offsetSet($name, $value)
+    public function offsetSet($name, $value): void
     {
         $this->setAttribute($name, $value);
     }
@@ -897,7 +897,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * @return null
      * @throws Zend_Ldap_Exception
      */
-    public function offsetUnset($name)
+    public function offsetUnset($name): void
     {
         $this->deleteAttribute($name);
     }
@@ -947,7 +947,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * @param  string|Zend_Ldap_Filter_Abstract $filter
      * @param  integer                          $scope
      * @param  string                           $sort
-     * @return Zend_Ldap_Node_Collection
+     * @return Zend_Ldap_Collection
      * @throws Zend_Ldap_Exception
      */
     public function searchSubtree($filter, $scope = Zend_Ldap::SEARCH_SCOPE_SUB, $sort = null)
@@ -995,7 +995,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      *
      * @param  string|Zend_Ldap_Filter_Abstract $filter
      * @param  string                           $sort
-     * @return Zend_Ldap_Node_Collection
+     * @return Zend_Ldap_Collection
      * @throws Zend_Ldap_Exception
      */
     public function searchChildren($filter, $sort = null)
@@ -1012,7 +1012,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * @return boolean
      * @throws Zend_Ldap_Exception
      */
-    public function hasChildren()
+    public function hasChildren(): bool
     {
         if (!is_array($this->_children)) {
             if ($this->isAttached()) {
@@ -1033,7 +1033,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * @return Zend_Ldap_Node_ChildrenIterator
      * @throws Zend_Ldap_Exception
      */
-    public function getChildren()
+    public function getChildren(): ?\RecursiveIterator
     {
         if (!is_array($this->_children)) {
             $this->_children = [];
@@ -1073,8 +1073,9 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * Return the current attribute.
      * Implements Iterator
      *
-     * @return array
+     * @return Zend_Ldap_Node
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this;
@@ -1086,6 +1087,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      *
      * @return string
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return $this->getRdnString();
@@ -1095,7 +1097,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * Move forward to next attribute.
      * Implements Iterator
      */
-    public function next()
+    public function next(): void
     {
         $this->_iteratorRewind = false;
     }
@@ -1104,7 +1106,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * Rewind the Iterator to the first attribute.
      * Implements Iterator
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->_iteratorRewind = true;
     }
@@ -1116,7 +1118,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      *
      * @return boolean
      */
-    public function valid()
+    public function valid(): bool
     {
         return $this->_iteratorRewind;
     }

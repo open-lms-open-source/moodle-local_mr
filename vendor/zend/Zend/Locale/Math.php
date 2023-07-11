@@ -143,7 +143,7 @@ class Zend_Locale_Math
      */
     public static function floatalize($value)
     {
-        $value = strtoupper($value);
+        $value = strtoupper((string) $value);
         if (strpos($value, 'E') === false) {
             return $value;
         }
@@ -215,6 +215,7 @@ class Zend_Locale_Math
      */
     public static function exponent($value, $scale = null)
     {
+        $scale = max(0, $scale);
         if (!extension_loaded('bcmath')) {
             return $value;
         }
@@ -242,6 +243,13 @@ class Zend_Locale_Math
      */
     public static function Add($op1, $op2, $scale = null)
     {
+        /**
+         * Before PHP8 bcmath functions could be called with a negative
+         * scale factor which was handled as if $scale were 0
+         *
+         * With PHP8 this would emit a ValueError
+         */
+        $scale = max(0, $scale);
         $op1 = self::exponent($op1, $scale);
         $op2 = self::exponent($op2, $scale);
 
@@ -258,6 +266,7 @@ class Zend_Locale_Math
      */
     public static function Sub($op1, $op2, $scale = null)
     {
+        $scale = max(0, $scale);
         $op1 = self::exponent($op1, $scale);
         $op2 = self::exponent($op2, $scale);
         return bcsub($op1, $op2, $scale);
@@ -273,6 +282,7 @@ class Zend_Locale_Math
      */
     public static function Pow($op1, $op2, $scale = null)
     {
+        $scale = max(0, $scale);
         $op1 = self::exponent($op1, $scale);
         $op2 = self::exponent($op2, $scale);
         return bcpow($op1, $op2, $scale);
@@ -288,6 +298,7 @@ class Zend_Locale_Math
      */
     public static function Mul($op1, $op2, $scale = null)
     {
+        $scale = max(0, $scale);
         $op1 = self::exponent($op1, $scale);
         $op2 = self::exponent($op2, $scale);
         return bcmul($op1, $op2, $scale);
@@ -303,6 +314,7 @@ class Zend_Locale_Math
      */
     public static function Div($op1, $op2, $scale = null)
     {
+        $scale = max(0, $scale);
         $op1 = self::exponent($op1, $scale);
         $op2 = self::exponent($op2, $scale);
         return bcdiv($op1, $op2, $scale);
@@ -317,6 +329,7 @@ class Zend_Locale_Math
      */
     public static function Sqrt($op1, $scale = null)
     {
+        $scale = max(0, $scale);
         $op1 = self::exponent($op1, $scale);
         return bcsqrt($op1, $scale);
     }
@@ -341,10 +354,11 @@ class Zend_Locale_Math
      * @param  string  $op1
      * @param  string  $op2
      * @param  integer $scale
-     * @return string
+     * @return int
      */
     public static function Comp($op1, $op2, $scale = null)
     {
+        $scale = max(0, $scale);
         $op1 = self::exponent($op1, $scale);
         $op2 = self::exponent($op2, $scale);
         return bccomp($op1, $op2, $scale);

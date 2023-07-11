@@ -512,7 +512,7 @@ class Zend_Tool_Framework_Client_Console_ArgumentParser implements Zend_Tool_Fra
     /**
      * _createHelpResponse
      *
-     * @param unknown_type $options
+     * @param array $options
      */
     protected function _createHelpResponse($options = [])
     {

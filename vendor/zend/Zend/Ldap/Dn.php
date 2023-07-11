@@ -302,7 +302,7 @@ class Zend_Ldap_Dn implements ArrayAccess
      * Assert if value is in a correct RDN format
      *
      * @param  array $value
-     * @return boolean
+     * @return void
      * @throws Zend_Ldap_Exception
      */
     protected static function _assertRdn(array $value)
@@ -418,7 +418,7 @@ class Zend_Ldap_Dn implements ArrayAccess
      * @param  int $offset
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         $offset = (int)$offset;
         if ($offset < 0 || $offset >= count($this->_dn)) {
@@ -435,6 +435,7 @@ class Zend_Ldap_Dn implements ArrayAccess
      * @param  int $offset
      * @return array
      */
+     #[\ReturnTypeWillChange]
      public function offsetGet($offset)
      {
          return $this->get($offset, 1, null);
@@ -447,7 +448,7 @@ class Zend_Ldap_Dn implements ArrayAccess
       * @param int   $offset
       * @param array $value
       */
-     public function offsetSet($offset, $value)
+     public function offsetSet($offset, $value): void
      {
          $this->set($offset, $value);
      }
@@ -458,7 +459,7 @@ class Zend_Ldap_Dn implements ArrayAccess
       *
       * @param int $offset
       */
-     public function offsetUnset($offset)
+     public function offsetUnset($offset): void
      {
          $this->remove($offset, 1);
      }

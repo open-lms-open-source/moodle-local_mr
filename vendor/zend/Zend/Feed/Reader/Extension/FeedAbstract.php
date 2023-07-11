@@ -78,7 +78,7 @@ abstract class Zend_Feed_Reader_Extension_FeedAbstract
      * @param  string $type Feed type
      * @return void
      */
-    public function __construct(DomDocument $dom, $type = null, DOMXPath $xpath = null)
+    public function __construct(DOMDocument $dom, $type = null, DOMXPath $xpath = null)
     {
         $this->_domDocument = $dom;
 
@@ -142,7 +142,7 @@ abstract class Zend_Feed_Reader_Extension_FeedAbstract
      * Set the XPath query
      *
      * @param  DOMXPath $xpath
-     * @return Zend_Feed_Reader_Extension_EntryAbstract
+     * @return Zend_Feed_Reader_Extension_FeedAbstract
      */
     public function setXpath(DOMXPath $xpath)
     {
@@ -154,7 +154,7 @@ abstract class Zend_Feed_Reader_Extension_FeedAbstract
     /**
      * Get the DOMXPath object
      *
-     * @return string
+     * @return DOMXPath|null
      */
     public function getXpath()
     {
@@ -174,7 +174,7 @@ abstract class Zend_Feed_Reader_Extension_FeedAbstract
     /**
      * Set the XPath prefix
      *
-     * @return Zend_Feed_Reader_Feed_Atom
+     * @return void
      */
     public function setXpathPrefix($prefix)
     {

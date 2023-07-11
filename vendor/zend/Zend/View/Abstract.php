@@ -901,7 +901,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
     public function escape($var)
     {
         if (in_array($this->_escape, ['htmlspecialchars', 'htmlentities'])) {
-            return call_user_func($this->_escape, $var, ENT_COMPAT, $this->_encoding);
+            return call_user_func($this->_escape, (string) $var, ENT_COMPAT, $this->_encoding);
         }
 
         if (1 == func_num_args()) {
@@ -956,7 +956,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
      * Finds a view script from the available directories.
      *
      * @param string $name The base name of the script.
-     * @return void
+     * @return string
      */
     protected function _script($name)
     {

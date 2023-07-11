@@ -145,7 +145,7 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
      * Instantiates route based on passed Zend_Config structure
      *
      * @param Zend_Config $config Configuration object
-     * @return Zend_Controller_Router_Route_Hostname
+     * @return static
      */
     public static function getInstance(Zend_Config $config)
     {
@@ -153,7 +153,7 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
         $defs   = ($config->defaults instanceof Zend_Config) ? $config->defaults->toArray() : [];
         $scheme = (isset($config->scheme)) ? $config->scheme : null;
 
-        return new self($config->route, $defs, $reqs, $scheme);
+        return new static($config->route, $defs, $reqs, $scheme);
     }
 
     /**

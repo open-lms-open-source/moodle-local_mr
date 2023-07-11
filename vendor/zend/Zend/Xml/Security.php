@@ -19,7 +19,7 @@
  * @version    $Id$
  */
 
- 
+
 /**
  * @category   Zend
  * @package    Zend_Xml_SecurityScan
@@ -83,7 +83,9 @@ class Zend_Xml_Security
         }
 
         if (!self::isPhpFpm()) {
-            $loadEntities = libxml_disable_entity_loader(true);
+            if (LIBXML_VERSION < 20900) {
+                $loadEntities = libxml_disable_entity_loader(true);
+            }
             $useInternalXmlErrors = libxml_use_internal_errors(true);
         }
 
@@ -91,13 +93,15 @@ class Zend_Xml_Security
         // error disabled with @ for PHP-FPM scenario
         set_error_handler(['Zend_Xml_Security', 'loadXmlErrorHandler'], E_WARNING);
 
-        $result = $dom->loadXml($xml, LIBXML_NONET);
+        $result = $dom->loadXML($xml, LIBXML_NONET);
         restore_error_handler();
 
         if (!$result) {
             // Entity load to previous setting
             if (!self::isPhpFpm()) {
-                libxml_disable_entity_loader($loadEntities);
+                if (LIBXML_VERSION < 20900) {
+                    libxml_disable_entity_loader($loadEntities);
+                }
                 libxml_use_internal_errors($useInternalXmlErrors);
             }
             return false;
@@ -117,7 +121,9 @@ class Zend_Xml_Security
 
         // Entity load to previous setting
         if (!self::isPhpFpm()) {
-            libxml_disable_entity_loader($loadEntities);
+            if (LIBXML_VERSION < 20900) {
+                libxml_disable_entity_loader($loadEntities);
+            }
             libxml_use_internal_errors($useInternalXmlErrors);
         }
 
@@ -169,7 +175,7 @@ class Zend_Xml_Security
         $isVulnerableVersion = (
             version_compare(PHP_VERSION, '5.5.22', 'lt')
             || (
-                version_compare(PHP_VERSION, '5.6', 'gte')
+                version_compare(PHP_VERSION, '5.6', 'ge')
                 && version_compare(PHP_VERSION, '5.6.6', 'lt')
             )
         );

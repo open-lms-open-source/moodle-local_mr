@@ -59,7 +59,7 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
      *
      * @param  string|array $validator Validator to set
      * @param  string|array $files     Files to limit this validator to
-     * @return Zend_File_Transfer_Adapter
+     * @return Zend_File_Transfer_Adapter_Http
      */
     public function setValidators(array $validators, $files = null)
     {
@@ -429,8 +429,7 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
     /**
      * Prepare the $_FILES array to match the internal syntax of one file per entry
      *
-     * @param  array $files
-     * @return array
+     * @return $this
      */
     protected function _prepareFiles()
     {

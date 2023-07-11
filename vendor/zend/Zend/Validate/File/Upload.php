@@ -163,7 +163,7 @@ class Zend_Validate_File_Upload extends Zend_Validate_Abstract
     {
         $this->_messages = [];
         $files = [];
-        
+
         if (array_key_exists($value, $this->_files)) {
             $files[$value] = $this->_files[$value];
         } else {

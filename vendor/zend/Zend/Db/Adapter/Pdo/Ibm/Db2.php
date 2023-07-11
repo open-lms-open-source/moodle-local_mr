@@ -120,7 +120,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
         $colseq         = 11;
 
         foreach ($result as $key => $row) {
-            list ($primary, $primaryPosition, $identity) = [false, null, false];
+            [$primary, $primaryPosition, $identity] = [false, null, false];
             if ($row[$tabconstype] == 'P') {
                 $primary = true;
                 $primaryPosition = $row[$colseq];
@@ -206,7 +206,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
      * DB2-specific last sequence id
      *
      * @param string $sequenceName
-     * @return integer
+     * @return string
      */
     public function lastSequenceId($sequenceName)
     {
@@ -219,7 +219,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
      * DB2-specific sequence id value
      *
      *  @param string $sequenceName
-     *  @return integer
+     *  @return string
      */
     public function nextSequenceId($sequenceName)
     {

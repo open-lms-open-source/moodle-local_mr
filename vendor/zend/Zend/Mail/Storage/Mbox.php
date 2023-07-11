@@ -338,7 +338,9 @@ class Zend_Mail_Storage_Mbox extends Zend_Mail_Storage_Abstract
      */
     public function close()
     {
-        @fclose($this->_fh);
+        if ($this->_fh && 'Unknown' !== get_resource_type($this->_fh)) {
+            @fclose($this->_fh);
+        }
         $this->_positions = [];
     }
 
@@ -346,7 +348,7 @@ class Zend_Mail_Storage_Mbox extends Zend_Mail_Storage_Abstract
     /**
      * Waste some CPU cycles doing nothing.
      *
-     * @return void
+     * @return bool
      */
     public function noop()
     {
@@ -377,7 +379,7 @@ class Zend_Mail_Storage_Mbox extends Zend_Mail_Storage_Abstract
      * number is save enough.
      *
      * @param int|null $id message number
-     * @return array|string message number for given message or all messages as array
+     * @return array|int message number for given message or all messages as array
      * @throws Zend_Mail_Storage_Exception
      */
     public function getUniqueId($id = null)
@@ -399,7 +401,7 @@ class Zend_Mail_Storage_Mbox extends Zend_Mail_Storage_Abstract
      * as parameter and use this method to translate it to message number right before calling removeMessage()
      *
      * @param string $id unique id
-     * @return int message number
+     * @return string message number
      * @throws Zend_Mail_Storage_Exception
      */
     public function getNumberByUniqueId($id)

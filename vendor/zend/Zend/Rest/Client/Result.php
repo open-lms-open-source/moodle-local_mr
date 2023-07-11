@@ -50,7 +50,7 @@ class Zend_Rest_Client_Result implements IteratorAggregate {
     public function __construct($data)
     {
         set_error_handler([$this, 'handleXmlErrors']);
-        $this->_sxml = Zend_Xml_Security::scan($data); 
+        $this->_sxml = Zend_Xml_Security::scan($data);
         restore_error_handler();
         if($this->_sxml === false) {
             if ($this->_errstr === null) {
@@ -84,7 +84,7 @@ class Zend_Rest_Client_Result implements IteratorAggregate {
      * Casts a SimpleXMLElement to its appropriate PHP value
      *
      * @param SimpleXMLElement $value
-     * @return mixed
+     * @return string|null
      */
     public function toValue(SimpleXMLElement $value)
     {
@@ -125,7 +125,7 @@ class Zend_Rest_Client_Result implements IteratorAggregate {
      *
      * @param string $method
      * @param array $args
-     * @return mixed
+     * @return array|string|null
      */
     public function __call($method, $args)
     {
@@ -169,9 +169,10 @@ class Zend_Rest_Client_Result implements IteratorAggregate {
     /**
      * Implement IteratorAggregate::getIterator()
      *
-     * @return SimpleXMLIterator
+     * @return bool|DomDocument|SimpleXMLElement|null
      */
-    public function getIterator(): traversable
+    #[\ReturnTypeWillChange]
+    public function getIterator(): \Traversable
     {
         return $this->_sxml;
     }
@@ -185,7 +186,7 @@ class Zend_Rest_Client_Result implements IteratorAggregate {
     {
         $status = $this->_sxml->xpath('//status/text()');
         if ( !isset($status[0]) ) return false;
-        
+
         $status = strtolower($status[0]);
 
         if (ctype_alpha($status) && $status == 'success') {

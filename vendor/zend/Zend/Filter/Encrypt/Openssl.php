@@ -145,7 +145,9 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
                         throw new Zend_Filter_Exception("Public key '{$cert}' not valid");
                     }
 
-                    openssl_free_key($test);
+                    if (PHP_VERSION_ID < 80000) {
+                        openssl_free_key($test);
+                    }
                     $this->_keys['public'][$key] = $cert;
                     break;
                 case 'private':
@@ -155,7 +157,9 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
                         throw new Zend_Filter_Exception("Private key '{$cert}' not valid");
                     }
 
-                    openssl_free_key($test);
+                    if (PHP_VERSION_ID < 80000) {
+                        openssl_free_key($test);
+                    }
                     $this->_keys['private'][$key] = $cert;
                     break;
                 case 'envelope':
@@ -382,8 +386,10 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
         }
 
         $crypt  = openssl_seal($value, $encrypted, $encryptedkeys, $keys);
-        foreach ($keys as $key) {
-            openssl_free_key($key);
+        if (PHP_VERSION_ID < 80000) {
+            foreach ($keys as $key) {
+                openssl_free_key($key);
+            }
         }
 
         if ($crypt === false) {
@@ -460,7 +466,9 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
         }
 
         $crypt  = openssl_open($value, $decrypted, $envelope, $keys);
-        openssl_free_key($keys);
+        if (PHP_VERSION_ID < 80000) {
+            openssl_free_key($keys);
+        }
 
         if ($crypt === false) {
             require_once 'Zend/Filter/Exception.php';

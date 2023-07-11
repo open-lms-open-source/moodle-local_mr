@@ -136,7 +136,7 @@ abstract class Zend_Feed_Reader_EntryAbstract
         $dom = new DOMDocument('1.0', $this->getEncoding());
         $entry = $dom->importNode($this->getElement(), true);
         $dom->appendChild($entry);
-        return $dom->saveXml();
+        return $dom->saveXML();
     }
 
     /**
@@ -166,7 +166,7 @@ abstract class Zend_Feed_Reader_EntryAbstract
      * Set the XPath query
      *
      * @param  DOMXPath $xpath
-     * @return Zend_Feed_Reader_Entry_EntryAbstract
+     * @return void|Zend_Feed_Reader_EntryAbstract
      */
     public function setXpath(DOMXPath $xpath)
     {

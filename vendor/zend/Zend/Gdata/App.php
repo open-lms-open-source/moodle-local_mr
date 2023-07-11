@@ -823,22 +823,22 @@ class Zend_Gdata_App
         }
 
         // Load the feed as an XML DOMDocument object
-        @ini_set('track_errors', 1);
         $doc = new DOMDocument();
         $doc = @Zend_Xml_Security::scan($string, $doc);
-        @ini_restore('track_errors');
 
         if (!$doc) {
+            $err = error_get_last();
+            $phpErrormsg = $err['message'];
             require_once 'Zend/Gdata/App/Exception.php';
             throw new Zend_Gdata_App_Exception(
-                "DOMDocument cannot parse XML: $php_errormsg");
+                "DOMDocument cannot parse XML: $phpErrormsg");
         }
 
         $feed = new $className();
         $feed->setMajorProtocolVersion($majorProtocolVersion);
         $feed->setMinorProtocolVersion($minorProtocolVersion);
         $feed->transferFromXML($string);
-        $feed->setHttpClient(self::getstaticHttpClient());
+        $feed->setHttpClient(self::getStaticHttpClient());
         return $feed;
     }
 
@@ -855,13 +855,13 @@ class Zend_Gdata_App
     public static function importFile($filename,
             $className='Zend_Gdata_App_Feed', $useIncludePath = false)
     {
-        @ini_set('track_errors', 1);
         $feed = @file_get_contents($filename, $useIncludePath);
-        @ini_restore('track_errors');
         if ($feed === false) {
+            $err = error_get_last();
+            $phpErrormsg = $err['message'];
             require_once 'Zend/Gdata/App/Exception.php';
             throw new Zend_Gdata_App_Exception(
-                "File could not be loaded: $php_errormsg");
+                "File could not be loaded: $phpErrormsg");
         }
         return self::importString($feed, $className);
     }
@@ -983,7 +983,7 @@ class Zend_Gdata_App
         $response = $this->post($data, $uri, null, null, $extraHeaders);
 
         $returnEntry = new $className($response->getBody());
-        $returnEntry->setHttpClient(self::getstaticHttpClient());
+        $returnEntry->setHttpClient(self::getStaticHttpClient());
 
         $etag = $response->getHeader('ETag');
         if ($etag !== null) {
@@ -1023,7 +1023,7 @@ class Zend_Gdata_App
 
         $response = $this->put($data, $uri, null, null, $extraHeaders);
         $returnEntry = new $className($response->getBody());
-        $returnEntry->setHttpClient(self::getstaticHttpClient());
+        $returnEntry->setHttpClient(self::getStaticHttpClient());
 
         $etag = $response->getHeader('ETag');
         if ($etag !== null) {
@@ -1084,11 +1084,11 @@ class Zend_Gdata_App
             } else {
                 require_once 'Zend/Gdata/App/Exception.php';
                 throw new Zend_Gdata_App_Exception(
-                        "Unable to find '${class}' in registered packages");
+                        "Unable to find '{$class}' in registered packages");
             }
         } else {
             require_once 'Zend/Gdata/App/Exception.php';
-            throw new Zend_Gdata_App_Exception("No such method ${method}");
+            throw new Zend_Gdata_App_Exception("No such method {$method}");
         }
     }
 
@@ -1099,7 +1099,7 @@ class Zend_Gdata_App
      * execution to timeout without proper precautions in place.
      *
      * @param object $feed The feed to iterate through.
-     * @return mixed A new feed of the same type as the one originally
+     * @return object A new feed of the same type as the one originally
      *          passed in, containing all relevent entries.
      */
     public function retrieveAllEntriesForFeed($feed) {

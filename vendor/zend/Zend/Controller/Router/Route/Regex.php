@@ -73,7 +73,7 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
      * Instantiates route based on passed Zend_Config structure
      *
      * @param Zend_Config $config Configuration object
-     * @return Zend_Controller_Router_Route_Regex
+     * @return static
      */
     public static function getInstance(Zend_Config $config)
     {
@@ -81,7 +81,7 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
         $map     = ($config->map instanceof Zend_Config) ? $config->map->toArray() : [];
         $reverse = (isset($config->reverse)) ? $config->reverse : null;
 
-        return new self($config->route, $defs, $map, $reverse);
+        return new static($config->route, $defs, $map, $reverse);
     }
 
     /**
@@ -90,7 +90,7 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
      * @param       $route
      * @param array $defaults
      * @param array $map
-     * @param null  $reverse
+     * @param string|null  $reverse
      */
     public function __construct($route, $defaults = [], $map = [], $reverse = null)
     {
@@ -180,7 +180,7 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
                 } elseif (false === ($index = array_search($key, $this->_map))) {
                     $index = $key;
                 }
-                $return[$index] = $values[$key];
+                $return[$index] = $value;
             } elseif ($reversed) {
                 $index = $key;
                 if (!is_int($key)) {
@@ -191,7 +191,7 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
                     }
                 }
                 if (false !== $index) {
-                    $return[$index] = $values[$key];
+                    $return[$index] = $value;
                 }
             } elseif ($preserve) {
                 $return[$key] = $value;
@@ -245,7 +245,7 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
 
         ksort($mergedData);
 
-        $return = @vsprintf($this->_reverse, $mergedData);
+        $return = !empty($mergedData) ? @vsprintf($this->_reverse, $mergedData) : false;
 
         if ($return === false) {
             require_once 'Zend/Controller/Router/Exception.php';

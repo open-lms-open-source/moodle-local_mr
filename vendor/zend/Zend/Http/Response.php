@@ -183,7 +183,7 @@ class Zend_Http_Response
         $this->body = $body;
 
         // Set the HTTP version
-        if (! preg_match('|^\d\.\d$|', $version)) {
+        if (! preg_match('|^\d(\.\d)?$|', $version)) {
             require_once 'Zend/Http/Exception.php';
             throw new Zend_Http_Exception("Invalid HTTP response version: $version");
         }
@@ -252,7 +252,7 @@ class Zend_Http_Response
         $body = '';
 
         // Decode the body if it was transfer-encoded
-        switch (strtolower($this->getHeader('transfer-encoding'))) {
+        switch (strtolower((string) $this->getHeader('transfer-encoding'))) {
 
             // Handle chunked body
             case 'chunked':
@@ -267,7 +267,7 @@ class Zend_Http_Response
         }
 
         // Decode any content-encoding (gzip or deflate) if needed
-        switch (strtolower($this->getHeader('content-encoding'))) {
+        switch (strtolower((string) $this->getHeader('content-encoding'))) {
 
             // Handle gzip encoding
             case 'gzip':
@@ -506,7 +506,7 @@ class Zend_Http_Response
         $last_header = null;
 
         foreach($lines as $index => $line) {
-            if ($index === 0 && preg_match('#^HTTP/\d+(?:\.\d+) [1-5]\d+#', $line)) {
+            if ($index === 0 && preg_match('#^HTTP/\d+(?:\.\d+)? [1-5]\d+#', $line)) {
                 // Status line; ignore
                 continue;
             }

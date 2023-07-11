@@ -99,7 +99,7 @@ class Zend_Feed_Writer_Renderer_RendererAbstract
      */
     public function saveXml()
     {
-        return $this->getDomDocument()->saveXml();
+        return $this->getDomDocument()->saveXML();
     }
 
     /**

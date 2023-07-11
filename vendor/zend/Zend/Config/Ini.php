@@ -56,6 +56,12 @@ class Zend_Config_Ini extends Zend_Config
     protected $_skipExtends = false;
 
     /**
+     * Ini Scanner mode as defined in parse_ini_file
+     * @var int
+     */
+    protected $_scannerMode = INI_SCANNER_NORMAL;
+
+    /**
      * Loads the section $section from the config file $filename for
      * access facilitated by nested object properties.
      *
@@ -90,6 +96,7 @@ class Zend_Config_Ini extends Zend_Config
      *     'allowModifications' => false,
      *     'nestSeparator'      => ':',
      *     'skipExtends'        => false,
+     *     'scannerMode'        => INI_SCANNER_NORMAL,
      *      );
      *
      * @param  string        $filename
@@ -120,6 +127,9 @@ class Zend_Config_Ini extends Zend_Config
             }
             if (isset($options['skipExtends'])) {
                 $this->_skipExtends = (bool) $options['skipExtends'];
+            }
+            if (isset($options['scannerMode'])) {
+                $this->_scannerMode = (int) $options['scannerMode'];
             }
         }
 
@@ -170,7 +180,7 @@ class Zend_Config_Ini extends Zend_Config
     protected function _parseIniFile($filename)
     {
         set_error_handler([$this, '_loadFileErrorHandler']);
-        $iniArray = parse_ini_file($filename, true); // Warnings and errors are suppressed
+        $iniArray = parse_ini_file($filename, true, $this->_scannerMode); // Warnings and errors are suppressed
         restore_error_handler();
 
         // Check if there was a error while loading file

@@ -124,7 +124,12 @@ abstract class Zend_Http_UserAgent_AbstractDevice
      *
      * @return string
      */
-    public function serialize()
+    public function serialize(): ?string
+    {
+        return serialize($this->__serialize());
+    }
+
+    public function __serialize(): array
     {
         $spec = [
             '_aFeatures'      => $this->_aFeatures,
@@ -134,7 +139,7 @@ abstract class Zend_Http_UserAgent_AbstractDevice
             '_userAgent'      => $this->_userAgent,
             '_images'         => $this->_images,
         ];
-        return serialize($spec);
+        return $spec;
     }
 
     /**
@@ -143,9 +148,13 @@ abstract class Zend_Http_UserAgent_AbstractDevice
      * @param  string $serialized
      * @return void
      */
-    public function unserialize($serialized)
+    public function unserialize($serialized): void
     {
-        $spec = unserialize($serialized);
+        $this->__unserialize(unserialize($serialized));
+    }
+
+    public function __unserialize(array $spec): void
+    {
         $this->_restoreFromArray($spec);
     }
 
@@ -806,7 +815,7 @@ abstract class Zend_Http_UserAgent_AbstractDevice
     /**
      * Get maximum image height supported by this device
      *
-     * @return int
+     * @return string|null
      */
     public function getMaxImageHeight()
     {
@@ -816,7 +825,7 @@ abstract class Zend_Http_UserAgent_AbstractDevice
     /**
      * Get maximum image width supported by this device
      *
-     * @return int
+     * @return string|null
      */
     public function getMaxImageWidth()
     {
@@ -826,7 +835,7 @@ abstract class Zend_Http_UserAgent_AbstractDevice
     /**
      * Get physical screen height of this device
      *
-     * @return int
+     * @return string|null
      */
     public function getPhysicalScreenHeight()
     {
@@ -836,7 +845,7 @@ abstract class Zend_Http_UserAgent_AbstractDevice
     /**
      * Get physical screen width of this device
      *
-     * @return int
+     * @return string|null
      */
     public function getPhysicalScreenWidth()
     {
@@ -934,7 +943,7 @@ abstract class Zend_Http_UserAgent_AbstractDevice
     }
 
     /**
-     * @return the $_images
+     * @return array|string[] $_images
      */
     public function getImages()
     {

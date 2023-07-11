@@ -685,7 +685,7 @@ class Zend_Mail extends Zend_Mime_Message
         }
 
         $email = $this->_filterEmail($email);
-        $name  = $this->_filterName($name);
+        $name  = $this->_filterName($name ?? '');
         $this->_from = $email;
         $this->_storeHeader('From', $this->_formatAddress($email, $name), true);
 

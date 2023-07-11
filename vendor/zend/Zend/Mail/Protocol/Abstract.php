@@ -345,7 +345,7 @@ abstract class Zend_Mail_Protocol_Abstract
      *
      * @param  string $request
      * @throws Zend_Mail_Protocol_Exception
-     * @return integer|boolean Number of bytes written to remote host
+     * @return integer|void Number of bytes written to remote host
      */
     protected function _send($request)
     {
@@ -399,10 +399,10 @@ abstract class Zend_Mail_Protocol_Abstract
         }
 
         // Retrieve response
-        $reponse = fgets($this->_socket, 1024);
+        $response = fgets($this->_socket, 1024);
 
         // Save request to internal log
-        $this->_addLog($reponse);
+        $this->_addLog($response);
 
         // Check meta data to ensure connection is still valid
         $info = stream_get_meta_data($this->_socket);
@@ -415,7 +415,7 @@ abstract class Zend_Mail_Protocol_Abstract
             throw new Zend_Mail_Protocol_Exception($this->_host . ' has timed out');
         }
 
-        if ($reponse === false) {
+        if ($response === false) {
             /**
              * @see Zend_Mail_Protocol_Exception
              */
@@ -423,7 +423,7 @@ abstract class Zend_Mail_Protocol_Abstract
             throw new Zend_Mail_Protocol_Exception('Could not read from ' . $this->_host);
         }
 
-        return $reponse;
+        return $response;
     }
 
 

@@ -316,8 +316,8 @@ class Zend_Pdf
      * @param string  $source - PDF file to load
      * @param integer $revision
      * @param bool    $load
-     * @throws Zend_Pdf_Exception
-     * @return Zend_Pdf
+     * @return void
+     *@throws Zend_Pdf_Exception
      */
     public function __construct($source = null, $revision = null, $load = false)
     {
@@ -612,7 +612,7 @@ class Zend_Pdf
             }
         }
     }
-  
+
     /**
      * Load form fields
      *
@@ -1386,7 +1386,7 @@ class Zend_Pdf
                     case 'Producer':
                         if (extension_loaded('mbstring') === true) {
                             $detected = mb_detect_encoding($value);
-                            if ($detected !== 'ASCII') {
+                            if ($detected !== 'ASCII' && $detected !== false) {
                                 $value = "\xfe\xff" . mb_convert_encoding($value, 'UTF-16', $detected);
                             }
                         }

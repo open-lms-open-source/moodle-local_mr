@@ -96,11 +96,6 @@ class Zend_Tool_Project_Provider_DbAdapter
 
         parse_str($dsn, $dsnVars);
 
-        // parse_str suffers when magic_quotes is enabled
-        if (get_magic_quotes_gpc()) {
-            array_walk_recursive($dsnVars, [$this, '_cleanMagicQuotesInValues']);
-        }
-
         $dbConfigValues = ['resources' => ['db' => null]];
 
         if (isset($dsnVars['adapter'])) {
@@ -130,10 +125,4 @@ class Zend_Tool_Project_Provider_DbAdapter
                 );
         }
     }
-
-    protected function _cleanMagicQuotesInValues(&$value, $key)
-    {
-        $value = stripslashes($value);
-    }
-
 }

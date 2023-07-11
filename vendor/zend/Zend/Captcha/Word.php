@@ -325,7 +325,7 @@ abstract class Zend_Captcha_Word extends Zend_Captcha_Base
     protected function _generateWord()
     {
         $word       = '';
-        $wordLen    = $this->getWordLen();
+        $wordLen    = $this->getWordlen();
         $vowels     = $this->_useNumbers ? self::$VN : self::$V;
         $consonants = $this->_useNumbers ? self::$CN : self::$C;
 

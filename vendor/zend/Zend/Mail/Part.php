@@ -96,10 +96,10 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      * @var int
      */
     protected $_messageNum = 0;
-    
+
     /**
      * Class to use when creating message parts
-     * @var string 
+     * @var string
      */
     protected $_partClass;
 
@@ -138,7 +138,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
             $this->_mail       = $params['handler'];
             $this->_messageNum = $params['id'];
         }
-        
+
         if (isset($params['partclass'])) {
             $this->setPartClass($params['partclass']);
         }
@@ -162,7 +162,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
             }
         }
     }
-    
+
     /**
      * Set name pf class used to encapsulate message parts
      * @param string $class
@@ -184,14 +184,14 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
             require_once 'Zend/Mail/Exception.php';
             throw new Zend_Mail_Exception("Class '{$class}' must implement Zend_Mail_Part_Interface");
         }
-        
+
         $this->_partClass = $class;
         return $this;
     }
-    
+
     /**
      * Retrieve the class name used to encapsulate message parts
-     * @return string 
+     * @return string
      */
     public function getPartClass()
     {
@@ -509,7 +509,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return bool current element has children/is multipart
      */
-    public function hasChildren()
+    public function hasChildren(): bool
     {
         $current = $this->current();
         return $current && $current instanceof Zend_Mail_Part && $current->isMultipart();
@@ -520,7 +520,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return Zend_Mail_Part same as self::current()
      */
-    public function getChildren()
+    public function getChildren(): ?\RecursiveIterator
     {
         return $this->current();
     }
@@ -530,7 +530,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return bool check if there's a current element
      */
-    public function valid()
+    public function valid(): bool
     {
         if ($this->_countParts === null) {
             $this->countParts();
@@ -543,7 +543,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return null
      */
-    public function next()
+    public function next(): void
     {
         ++$this->_iterationPos;
     }
@@ -551,8 +551,9 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
     /**
      * implements Iterator::key()
      *
-     * @return string key/number of current part
+     * @return int key/number of current part
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return $this->_iterationPos;
@@ -563,6 +564,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return Zend_Mail_Part current part
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->getPart($this->_iterationPos);
@@ -573,7 +575,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return null
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->countParts();
         $this->_iterationPos = 1;

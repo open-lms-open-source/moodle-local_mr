@@ -75,7 +75,7 @@ class Zend_OpenId
      * selfUrl() response
      *
      * @param string $selfUrl the URL to be set
-     * @return string the old value of overriding URL
+     * @return string|null the old value of overriding URL
      */
     static public function setSelfUrl($selfUrl = null)
     {
@@ -127,11 +127,11 @@ class Zend_OpenId
         }
 
         $url .= $port;
-        if (isset($_SERVER['HTTP_X_ORIGINAL_URL'])) { 
+        if (isset($_SERVER['HTTP_X_ORIGINAL_URL'])) {
             // IIS with Microsoft Rewrite Module
             $url .= $_SERVER['HTTP_X_ORIGINAL_URL'];
         } elseif (isset($_SERVER['HTTP_X_REWRITE_URL'])) {
-            // IIS with ISAPI_Rewrite 
+            // IIS with ISAPI_Rewrite
             $url .= $_SERVER['HTTP_X_REWRITE_URL'];
         } elseif (isset($_SERVER['REQUEST_URI'])) {
             $query = strpos($_SERVER['REQUEST_URI'], '?');
@@ -414,7 +414,7 @@ class Zend_OpenId
         }
 
         // 7.2.4
-        return self::normalizeURL($id);
+        return self::normalizeUrl($id);
     }
 
     /**
@@ -546,7 +546,7 @@ class Zend_OpenId
      * representation.
      *
      * @param string $bin binary representation of big number
-     * @return mixed
+     * @return GMP|int|resource|string
      * @throws Zend_OpenId_Exception
      */
     static protected function binToBigNum($bin)
@@ -630,7 +630,7 @@ class Zend_OpenId
      * @param string $p prime number in binary representation
      * @param string $g generator in binary representation
      * @param string $priv_key private key in binary representation
-     * @return mixed
+     * @return array|false|OpenSSLAsymmetricKey
      */
     static public function createDhKey($p, $g, $priv_key = null)
     {

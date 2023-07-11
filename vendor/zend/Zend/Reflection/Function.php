@@ -58,6 +58,7 @@ class Zend_Reflection_Function extends ReflectionFunction
      * @param  bool $includeDocComment
      * @return int
      */
+    #[\ReturnTypeWillChange]
     public function getStartLine($includeDocComment = false)
     {
         if ($includeDocComment) {
@@ -93,7 +94,7 @@ class Zend_Reflection_Function extends ReflectionFunction
      * @param  string $reflectionClass Name of reflection class to use
      * @return array Array of Zend_Reflection_Parameter
      */
-    public function getParameters($reflectionClass = 'Zend_Reflection_Parameter')
+    public function getParameters($reflectionClass = 'Zend_Reflection_Parameter'): array
     {
         $phpReflections  = parent::getParameters();
         $zendReflections = [];
@@ -113,7 +114,7 @@ class Zend_Reflection_Function extends ReflectionFunction
     /**
      * Get return type tag
      *
-     * @return Zend_Reflection_Docblock_Tag_Return
+     * @return Zend_Reflection_Docblock_Tag
      */
     public function getReturn()
     {

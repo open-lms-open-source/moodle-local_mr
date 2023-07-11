@@ -100,7 +100,7 @@ class Zend_XmlRpc_Fault
     /**
      * Constructor
      *
-     * @return Zend_XmlRpc_Fault
+     * @return void
      */
     public function __construct($code = 404, $message = '')
     {
@@ -302,6 +302,6 @@ class Zend_XmlRpc_Fault
      */
     public function __toString()
     {
-        return $this->saveXML();
+        return $this->saveXml();
     }
 }

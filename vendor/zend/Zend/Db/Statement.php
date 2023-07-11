@@ -180,7 +180,7 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
         // get the character for value quoting
         // this should be '
         $q = $this->_adapter->quote('a');
-        $q = $q[0];        
+        $q = $q[0];
         // get the value used as an escaped quote,
         // e.g. \' or ''
         $qe = $this->_adapter->quote($q);
@@ -197,7 +197,7 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
         // get a version of the SQL statement with all quoted
         // values and delimited identifiers stripped out
         // remove "foo\"bar"
-        $sql = preg_replace("/\"(\\\\\"|[^\"])*\"/Us", '', $sql);
+        $sql = preg_replace("/\"(\\\\\"|[^\"])*\"/Us", '', (string) $sql);
 
         // get the character for delimited id quotes,
         // this is usually " but in MySQL is `
@@ -479,7 +479,8 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
     /**
      * Gets the resource or object setup by the
      * _parse
-     * @return unknown_type
+     *
+     * @return object|resource|null
      */
     public function getDriverStatement()
     {

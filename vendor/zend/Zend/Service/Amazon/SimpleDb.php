@@ -260,7 +260,7 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
      * @param  string $domainName
      * @param  string $itemName
      * @param  array $attributes
-     * @return void
+     * @return bool
      */
     public function deleteAttributes($domainName, $itemName, array $attributes = [])
     {
@@ -288,7 +288,7 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
      *
      * @param int $maxNumberOfDomains
      * @param int $nextToken
-     * @return array              0 or more domain names
+     * @return Zend_Service_Amazon_SimpleDb_Page              0 or more domain names
      */
     public function listDomains($maxNumberOfDomains = 100, $nextToken = null)
     {
@@ -452,7 +452,7 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
         // UTF-8 encode all parameters and replace '+' characters
         foreach ($params as $name => $value) {
             unset($params[$name]);
-            $params[utf8_encode($name)] = $value;
+            $params[mb_convert_encoding($name, 'UTF-8', 'ISO-8859-1')] = $value;
         }
 
         $params = $this->_addRequiredParameters($params);

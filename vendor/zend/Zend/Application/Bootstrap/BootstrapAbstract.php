@@ -202,10 +202,10 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
     {
         if (is_array($array2)) {
             foreach ($array2 as $key => $val) {
-                if (is_array($array2[$key])) {
+                if (is_array($val)) {
                     $array1[$key] = (array_key_exists($key, $array1) && is_array($array1[$key]))
-                                  ? $this->mergeOptions($array1[$key], $array2[$key])
-                                  : $array2[$key];
+                                  ? $this->mergeOptions($array1[$key], $val)
+                                  : $val;
                 } else {
                     $array1[$key] = $val;
                 }

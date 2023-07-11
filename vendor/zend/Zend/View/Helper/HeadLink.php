@@ -235,6 +235,7 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
      * @param  array $value
      * @return void
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($index, $value)
     {
         if (!$this->_isValid($value)) {
@@ -251,7 +252,7 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
      * prepend()
      *
      * @param  array $value
-     * @return Zend_Layout_ViewHelper_HeadLink
+     * @return void
      */
     public function prepend($value)
     {
@@ -269,7 +270,7 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
      * set()
      *
      * @param  array $value
-     * @return Zend_Layout_ViewHelper_HeadLink
+     * @return void
      */
     public function set($value)
     {

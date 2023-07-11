@@ -69,6 +69,7 @@ class Zend_Reflection_Method extends ReflectionMethod
      * @param  bool $includeDocComment
      * @return int
      */
+    #[\ReturnTypeWillChange]
     public function getStartLine($includeDocComment = false)
     {
         if ($includeDocComment) {
@@ -86,7 +87,7 @@ class Zend_Reflection_Method extends ReflectionMethod
      * @param  string $reflectionClass Name of reflection class to use
      * @return Zend_Reflection_Class
      */
-    public function getDeclaringClass($reflectionClass = 'Zend_Reflection_Class')
+    public function getDeclaringClass($reflectionClass = 'Zend_Reflection_Class'): \ReflectionClass
     {
         $phpReflection  = parent::getDeclaringClass();
         $zendReflection = new $reflectionClass($phpReflection->getName());
@@ -104,7 +105,7 @@ class Zend_Reflection_Method extends ReflectionMethod
      * @param  string $reflectionClass Name of reflection class to use
      * @return array of Zend_Reflection_Parameter objects
      */
-    public function getParameters($reflectionClass = 'Zend_Reflection_Parameter')
+    public function getParameters($reflectionClass = 'Zend_Reflection_Parameter'): array
     {
         $phpReflections  = parent::getParameters();
         $zendReflections = [];
@@ -156,7 +157,7 @@ class Zend_Reflection_Method extends ReflectionMethod
             $firstLine = array_shift($lines);
         } while (strpos($firstLine, ')') === false);
 
-        // If the opening brace isn't on the same line as method 
+        // If the opening brace isn't on the same line as method
         // signature, then we should pop off more lines until we find it
         if (strpos($firstLine,'{') === false) {
             do {

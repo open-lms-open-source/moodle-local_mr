@@ -137,11 +137,11 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
             // title should always have only one entry, but we process all nodeset entries
             $docTitle .= $titleNode->nodeValue . ' ';
         }
-        $this->addField(Zend_Search_Lucene_Field::Text('title', $docTitle, 'UTF-8'));
+        $this->addField(Zend_Search_Lucene_Field::text('title', $docTitle, 'UTF-8'));
 
         $metaNodes = $xpath->query('/html/head/meta[@name]');
         foreach ($metaNodes as $metaNode) {
-            $this->addField(Zend_Search_Lucene_Field::Text($metaNode->getAttribute('name'),
+            $this->addField(Zend_Search_Lucene_Field::text($metaNode->getAttribute('name'),
                                                            $metaNode->getAttribute('content'),
                                                            'UTF-8'));
         }
@@ -153,9 +153,9 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
             $this->_retrieveNodeText($bodyNode, $docBody);
         }
         if ($storeContent) {
-            $this->addField(Zend_Search_Lucene_Field::Text('body', $docBody, 'UTF-8'));
+            $this->addField(Zend_Search_Lucene_Field::text('body', $docBody, 'UTF-8'));
         } else {
-            $this->addField(Zend_Search_Lucene_Field::UnStored('body', $docBody, 'UTF-8'));
+            $this->addField(Zend_Search_Lucene_Field::unStored('body', $docBody, 'UTF-8'));
         }
 
         $linkNodes = $this->_doc->getElementsByTagName('a');
@@ -481,4 +481,3 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
         return implode($outputFragments);
     }
 }
-

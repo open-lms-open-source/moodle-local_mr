@@ -53,8 +53,9 @@ class Zend_Barcode_Object_Code25interleaved extends Zend_Barcode_Object_Code25
 
     /**
      * Activate/deactivate drawing of bearer bars
+     *
      * @param boolean $value
-     * @return Zend_Barcode_Object_Int25
+     * @return Zend_Barcode_Object_Code25interleaved
      */
     public function setWithBearerBars($value)
     {
@@ -96,6 +97,7 @@ class Zend_Barcode_Object_Code25interleaved extends Zend_Barcode_Object_Code25
         }
 
         // Start character (0000)
+        $barcodeTable = [];
         $barcodeTable[] = [1, $this->_barThinWidth, 0, 1];
         $barcodeTable[] = [0, $this->_barThinWidth, 0, 1];
         $barcodeTable[] = [1, $this->_barThinWidth, 0, 1];

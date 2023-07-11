@@ -283,7 +283,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
      * Add many prefix paths at once
      *
      * @param  array $spec
-     * @return Zend_File_Transfer_Exception
+     * @return Zend_File_Transfer_Adapter_Abstract
      */
     public function addPrefixPaths(array $spec)
     {
@@ -328,7 +328,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
      * @param  boolean      $breakChainOnFailure If the validation chain should stop an failure
      * @param  string|array $options             Options to set for the validator
      * @param  string|array $files               Files to limit this validator to
-     * @return Zend_File_Transfer_Adapter
+     * @return Zend_File_Transfer_Adapter_Abstract
      */
     public function addValidator($validator, $breakChainOnFailure = false, $options = null, $files = null)
     {
@@ -442,7 +442,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
      *
      * @param  string|array $validator Validator to set
      * @param  string|array $files     Files to limit this validator to
-     * @return Zend_File_Transfer_Adapter
+     * @return Zend_File_Transfer_Adapter_Abstract|Zend_File_Transfer_Adapter_Http
      */
     public function setValidators(array $validators, $files = null)
     {
@@ -745,7 +745,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
      * @param  string|array $filter Type of filter to add
      * @param  string|array $options   Options to set for the filter
      * @param  string|array $files     Files to limit this filter to
-     * @return Zend_File_Transfer_Adapter
+     * @return Zend_File_Transfer_Adapter_Abstract
      */
     public function addFilter($filter, $options = null, $files = null)
     {
@@ -817,7 +817,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
      *
      * @param  string|array $filter Filter to set
      * @param  string|array $files     Files to limit this filter to
-     * @return Zend_File_Transfer_Adapter
+     * @return Zend_File_Transfer_Adapter_Abstract
      */
     public function setFilters(array $filters, $files = null)
     {
@@ -1021,11 +1021,11 @@ abstract class Zend_File_Transfer_Adapter_Abstract
     /**
      * Sets a new destination for the given files
      *
-     * @deprecated Will be changed to be a filter!!!
      * @param  string       $destination New destination directory
      * @param  string|array $files       Files to set the new destination for
-     * @return Zend_File_Transfer_Abstract
+     * @return Zend_File_Transfer_Adapter_Abstract
      * @throws Zend_File_Transfer_Exception when the given destination is not a directory or does not exist
+     *@deprecated Will be changed to be a filter!!!
      */
     public function setDestination($destination, $files = null)
     {
@@ -1107,7 +1107,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
      * Set translator object for localization
      *
      * @param  Zend_Translate|null $translator
-     * @return Zend_File_Transfer_Abstract
+     * @return Zend_File_Transfer_Adapter_Abstract
      * @throws Zend_File_Transfer_Exception
      */
     public function setTranslator($translator = null)
@@ -1129,7 +1129,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
     /**
      * Retrieve localization translator object
      *
-     * @return Zend_Translate_Adapter|null
+     * @return Zend_Translate|null
      */
     public function getTranslator()
     {
@@ -1144,7 +1144,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
      * Indicate whether or not translation should be disabled
      *
      * @param  bool $flag
-     * @return Zend_File_Transfer_Abstract
+     * @return Zend_File_Transfer_Adapter_Abstract
      */
     public function setDisableTranslator($flag)
     {

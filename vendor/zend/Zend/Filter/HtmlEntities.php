@@ -49,7 +49,7 @@ class Zend_Filter_HtmlEntities implements Zend_Filter_Interface
     /**
      * Corresponds to the forth htmlentities() argument
      *
-     * @var unknown_type
+     * @var bool
      */
     protected $_doubleQuote;
 
@@ -167,7 +167,7 @@ class Zend_Filter_HtmlEntities implements Zend_Filter_Interface
     /**
      * Returns the doubleQuote option
      *
-     * @return boolean
+     * @return bool
      */
     public function getDoubleQuote()
     {

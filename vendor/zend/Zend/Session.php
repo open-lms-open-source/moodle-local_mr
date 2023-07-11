@@ -375,7 +375,7 @@ class Zend_Session extends Zend_Session_Abstract
             self::regenerateId();
             return;
         }
-        
+
         if (!self::$_sessionStarted) { // session_set_cookie_params(): Cannot change session cookie parameters when session is active
             $cookieParams = session_get_cookie_params();
             session_set_cookie_params(
@@ -385,7 +385,7 @@ class Zend_Session extends Zend_Session_Abstract
                     $cookieParams['secure']
                 );
         }
-        
+
         // normally "rememberMe()" represents a security context change, so should use new session id
         self::regenerateId();
     }
@@ -619,7 +619,7 @@ class Zend_Session extends Zend_Session_Abstract
                         unset($_SESSION['__ZF'][$namespace]['ENVGH']);
                     }
                 }
-                
+
                 if (isset($namespace) && empty($_SESSION['__ZF'][$namespace])) {
                     unset($_SESSION['__ZF'][$namespace]);
                 }

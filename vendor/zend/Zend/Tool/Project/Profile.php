@@ -53,7 +53,7 @@ class Zend_Tool_Project_Profile extends Zend_Tool_Project_Profile_Resource_Conta
      * Constructor, standard usage would allow the setting of options
      *
      * @param array $options
-     * @return bool
+     * @return void
      */
     public function __construct($options = null)
     {
@@ -80,6 +80,7 @@ class Zend_Tool_Project_Profile extends Zend_Tool_Project_Profile_Resource_Conta
      *
      * @return RecursiveIteratorIterator
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         require_once 'Zend/Tool/Project/Profile/Iterator/EnabledResourceFilter.php';

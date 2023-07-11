@@ -408,7 +408,7 @@ class Zend_Mail_Storage_Maildir extends Zend_Mail_Storage_Abstract
     /**
      * Waste some CPU cycles doing nothing.
      *
-     * @return void
+     * @return bool
      */
     public function noop()
     {

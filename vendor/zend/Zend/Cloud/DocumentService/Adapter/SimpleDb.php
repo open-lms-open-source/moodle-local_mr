@@ -134,7 +134,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
      * List collections.
      *
      * @param  array  $options
-     * @return array
+     * @return string
      */
     public function listCollections($options = null)
     {
@@ -185,8 +185,8 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
         try {
             $this->_simpleDb->putAttributes(
                 $collectionName,
-                $document->getID(),
-                $this->_makeAttributes($document->getID(), $document->getFields())
+                $document->getId(),
+                $this->_makeAttributes($document->getId(), $document->getFields())
             );
         } catch(Zend_Service_Amazon_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on document insertion: '.$e->getMessage(), $e->getCode(), $e);
@@ -304,7 +304,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
      * @param  string $collectionName Collection name
      * @param  mixed $documentId Document ID, adapter-dependent
      * @param  array $options
-     * @return array|Zend_Cloud_DocumentService_Document
+     * @return array|false
      */
     public function fetchDocument($collectionName, $documentId, $options = null)
     {
@@ -328,7 +328,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
      * @param  string $collectionName Collection name
      * @param  string $query
      * @param  array $options
-     * @return array Zend_Cloud_DocumentService_DocumentSet
+     * @return Zend_Cloud_DocumentService_DocumentSet Zend_Cloud_DocumentService_DocumentSet
      */
     public function query($collectionName, $query, $options = null)
     {

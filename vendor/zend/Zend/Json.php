@@ -73,6 +73,9 @@ class Zend_Json
      */
     public static function decode($encodedValue, $objectDecodeType = Zend_Json::TYPE_ARRAY)
     {
+        if (in_array($encodedValue, [null, ''])) {
+            return null;
+        }
         $encodedValue = (string) $encodedValue;
         if (function_exists('json_decode') && self::$useBuiltinEncoderDecoder !== true) {
             $decode = json_decode($encodedValue, $objectDecodeType);
@@ -186,13 +189,13 @@ class Zend_Json
      *
      * NOTE: This method is used internally by the encode method.
      *
-     * @see encode
      * @param array|object|Zend_Json_Expr $value a string - object property to be encoded
      * @param array $javascriptExpressions
      * @param null $currentKey
      *
-     * @internal param mixed $valueToCheck
-     * @return void
+     * @return array|object|string|Zend_Json_Expr
+     *@internal param mixed $valueToCheck
+     * @see encode
      */
     protected static function _recursiveJsonExprFinder(&$value, array &$javascriptExpressions, $currentKey = null)
     {
@@ -349,7 +352,7 @@ class Zend_Json
      * @param string $xmlStringContents XML String to be converted
      * @param boolean $ignoreXmlAttributes Include or exclude XML attributes in
      * the xml2json conversion process.
-     * @return mixed - JSON formatted string on success
+     * @return string - JSON formatted string on success
      * @throws Zend_Json_Exception
      */
     public static function fromXml($xmlStringContents, $ignoreXmlAttributes=true)
@@ -374,7 +377,7 @@ class Zend_Json
         return($jsonStringOutput);
     }
 
-    
+
 
     /**
      * Pretty-print JSON string
@@ -438,9 +441,9 @@ class Zend_Json
                 $result .= $token . $lineBreak;
             } else {
                 $result .= ( $inLiteral ? '' : $prefix ) . $token;
-                
+
                 // Count # of unescaped double-quotes in token, subtract # of
-                // escaped double-quotes and if the result is odd then we are 
+                // escaped double-quotes and if the result is odd then we are
                 // inside a string literal
                 if ((substr_count($token, "\"") - substr_count($token, "\\\"")) % 2 != 0) {
                     $inLiteral = !$inLiteral;

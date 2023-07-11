@@ -54,7 +54,7 @@ class Zend_Tool_Framework_Manifest_Repository
      * setRegistry()
      *
      * @param Zend_Tool_Framework_Registry_Interface $registry
-     * @return unknown
+     * @return Zend_Tool_Framework_Manifest_Repository
      */
     public function setRegistry(Zend_Tool_Framework_Registry_Interface $registry)
     {
@@ -295,7 +295,7 @@ class Zend_Tool_Framework_Manifest_Repository
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->_metadatas);
     }
@@ -305,7 +305,8 @@ class Zend_Tool_Framework_Manifest_Repository
      *
      * @return ArrayIterator
      */
-    public function getIterator()
+    #[\ReturnTypeWillChange]
+    public function getIterator(): \Traversable
     {
         return new ArrayIterator($this->_metadatas);
     }

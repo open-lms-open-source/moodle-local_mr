@@ -385,6 +385,6 @@ class Zend_Feed_Atom extends Zend_Feed_Abstract
 
         header('Content-Type: application/atom+xml; charset=' . $this->_element->ownerDocument->actualEncoding);
 
-        echo $this->saveXML();
+        echo $this->saveXml();
     }
 }

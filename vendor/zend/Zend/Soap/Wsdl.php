@@ -103,7 +103,7 @@ class Zend_Soap_Wsdl
         if (!$this->_dom = Zend_Xml_Security::scan($wsdl, $this->_dom)) {
             require_once 'Zend/Server/Exception.php';
             throw new Zend_Server_Exception('Unable to create DomDocument');
-        } 
+        }
         $this->_wsdl = $this->_dom->documentElement;
 
         $this->setComplexTypeStrategy($strategy);
@@ -113,7 +113,7 @@ class Zend_Soap_Wsdl
      * Set a new uri for this WSDL
      *
      * @param  string|Zend_Uri_Http $uri
-     * @return Zend_Server_Wsdl
+     * @return Zend_Soap_Wsdl
      */
     public function setUri($uri)
     {
@@ -171,7 +171,7 @@ class Zend_Soap_Wsdl
     /**
      * Get the current complex type strategy
      *
-     * @return Zend_Soap_Wsdl_Strategy_Interface
+     * @return Zend_Soap_Wsdl_Strategy_Interface|null
      */
     public function getComplexTypeStrategy()
     {
@@ -451,10 +451,10 @@ class Zend_Soap_Wsdl
      */
     public function addTypes($types)
     {
-        if ($types instanceof DomDocument) {
+        if ($types instanceof DOMDocument) {
             $dom = $this->_dom->importNode($types->documentElement);
             $this->_wsdl->appendChild($types->documentElement);
-        } elseif ($types instanceof DomNode || $types instanceof DomElement || $types instanceof DomDocumentFragment ) {
+        } elseif ($types instanceof DOMNode || $types instanceof DOMElement || $types instanceof DOMDocumentFragment) {
             $dom = $this->_dom->importNode($types);
             $this->_wsdl->appendChild($dom);
         }

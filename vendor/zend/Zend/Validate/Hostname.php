@@ -1750,6 +1750,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
      * (.ES) Spain https://www.nic.es/media/2008-05/1210147705287.pdf
      * (.FI) Finland http://www.ficora.fi/en/index/palvelut/fiverkkotunnukset/aakkostenkaytto.html
      * (.GR) Greece https://grweb.ics.forth.gr/CharacterTable1_en.jsp
+     * (.HR) Croatia https://domene.hr/en/portal/files/Odluka_1,2alfanum_dijak_en.pdf
      * (.HU) Hungary http://www.domain.hu/domain/English/szabalyzat/szabalyzat.html
      * (.INFO) International http://www.nic.info/info/idn
      * (.IO) British Indian Ocean Territory http://www.nic.io/IO-IDN-Policy.pdf
@@ -1809,6 +1810,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
         'FI'  => [1 => '/^[\x{002d}0-9a-zäåö]{1,63}$/iu'],
         'GR'  => [1 => '/^[\x{002d}0-9a-zΆΈΉΊΌΎ-ΡΣ-ώἀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼῂῃῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲῳῴῶ-ῼ]{1,63}$/iu'],
         'HK'  => 'Hostname/Cn.php',
+        'HR'  => [1 => '/^[\x{002d}0-9a-zčćžšđ]{1,63}$/iu'],
         'HU'  => [1 => '/^[\x{002d}0-9a-záéíóöúüőű]{1,63}$/iu'],
         'IL'  => [1 => '/^[\x{002d}0-9\x{05D0}-\x{05EA}]{1,63}$/iu',
             2 => '/^[\x{002d}0-9a-z]{1,63}$/i'],
@@ -2182,6 +2184,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
                     // ldh: alpha / digit / dash
 
                     // Match TLD against known list
+                    $removedTld = false;
                     $this->_tld = $matches[1];
                     if ($this->_options['tld']) {
                         if (!in_array(strtolower($this->_tld), $this->_validTlds)
@@ -2193,6 +2196,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
                         // We have already validated that the TLD is fine. We don't want it to go through the below
                         // checks as new UTF-8 TLDs will incorrectly fail if there is no IDN regex for it.
                         array_pop($domainParts);
+                        $removedTld = true;
                     }
 
                     /**
@@ -2211,6 +2215,10 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
 
                     // Check each hostname part
                     $check = 0;
+                    $lastDomainPart = end($domainParts);
+                    if (! $removedTld) {
+                        $lastDomainPart = prev($domainParts);
+                    }
                     foreach ($domainParts as $domainPart) {
                         // If some domain part is empty (i.e. zend..com), it's invalid
                         if (empty($domainPart) && $domainPart !== '0') {
@@ -2237,7 +2245,9 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
 
                         // Check each domain part
                         $checked = false;
-                        foreach($regexChars as $regexKey => $regexChar) {
+                        $isSubDomain = $domainPart != $lastDomainPart;
+                        $partRegexChars = $isSubDomain ? ['/^[a-z0-9_\x2d]{1,63}$/i'] + $regexChars : $regexChars;
+                        foreach ($partRegexChars as $regexKey => $regexChar) {
                             $status = preg_match($regexChar, $domainPart);
                             if ($status > 0) {
                                 $length = 63;
@@ -2248,6 +2258,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
 
                                 if (iconv_strlen($domainPart, 'UTF-8') > $length) {
                                     $this->_error(self::INVALID_HOSTNAME);
+                                    $status = false;
                                 } else {
                                     $checked = true;
                                     break;

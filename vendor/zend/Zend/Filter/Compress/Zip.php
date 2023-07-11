@@ -77,7 +77,7 @@ class Zend_Filter_Compress_Zip extends Zend_Filter_Compress_CompressAbstract
      * Sets the archive to use for de-/compression
      *
      * @param string $archive Archive to use
-     * @return Zend_Filter_Compress_Rar
+     * @return Zend_Filter_Compress_Zip
      */
     public function setArchive($archive)
     {
@@ -101,7 +101,7 @@ class Zend_Filter_Compress_Zip extends Zend_Filter_Compress_CompressAbstract
      * Sets the target to use
      *
      * @param string $target
-     * @return Zend_Filter_Compress_Rar
+     * @return Zend_Filter_Compress_Zip
      */
     public function setTarget($target)
     {

@@ -116,7 +116,7 @@ class Zend_Amf_Adobe_Introspector
      * Authentication handler
      *
      * @param  Zend_Acl $acl
-     * @return unknown_type
+     * @return false
      */
     public function initAcl(Zend_Acl $acl)
     {
@@ -183,8 +183,10 @@ class Zend_Amf_Adobe_Introspector
                     $arg->setAttribute('name', $param->getName());
 
                     $type = $param->getType();
-                    if ($type == 'mixed' && ($pclass = $param->getClass())) {
-                        $type = $pclass->getName();
+                    if (PHP_VERSION_ID < 80000) {
+                        if ($type == 'mixed' && ($pclass = $param->getClass())) {
+                            $type = $pclass->getName();
+                        }
                     }
 
                     $ptype = $this->_registerType($type);

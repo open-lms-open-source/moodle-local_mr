@@ -545,10 +545,10 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
                     continue;
                 }
 
-                $color    = (imagecolorat($img, $sx, $sy) >> 16)         & 0xFF;
-                $color_x  = (imagecolorat($img, $sx + 1, $sy) >> 16)     & 0xFF;
-                $color_y  = (imagecolorat($img, $sx, $sy + 1) >> 16)     & 0xFF;
-                $color_xy = (imagecolorat($img, $sx + 1, $sy + 1) >> 16) & 0xFF;
+                $color    = (imagecolorat($img, (int)$sx, (int)$sy) >> 16)         & 0xFF;
+                $color_x  = (imagecolorat($img, (int)$sx + 1, (int)$sy) >> 16)     & 0xFF;
+                $color_y  = (imagecolorat($img, (int)$sx, (int)$sy + 1) >> 16)     & 0xFF;
+                $color_xy = (imagecolorat($img, (int)$sx + 1, (int)$sy + 1) >> 16) & 0xFF;
 
                 if ($color == 255 && $color_x == 255 && $color_y == 255 && $color_xy == 255) {
                     // ignore background
@@ -570,7 +570,7 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
                               + $color_y  * $frac_x1 * $frac_y
                               + $color_xy * $frac_x  * $frac_y;
                 }
-                imagesetpixel($img2, $x, $y, imagecolorallocate($img2, $newcolor, $newcolor, $newcolor));
+                imagesetpixel($img2, $x, $y, imagecolorallocate($img2, (int)$newcolor, (int)$newcolor, (int)$newcolor));
             }
         }
 

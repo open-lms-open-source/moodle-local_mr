@@ -77,7 +77,7 @@ class Zend_Translate_Adapter_Qt extends Zend_Translate_Adapter {
         xml_parser_set_option($this->_file, XML_OPTION_CASE_FOLDING, 0);
         xml_set_element_handler($this->_file, "_startElement", "_endElement");
         xml_set_character_data_handler($this->_file, "_contentElement");
-        
+
         try {
             Zend_Xml_Security::scanFile($filename);
         } catch (Zend_Xml_Exception $e) {
@@ -154,7 +154,7 @@ class Zend_Translate_Adapter_Qt extends Zend_Translate_Adapter {
 
     private function _findEncoding($filename)
     {
-        $file = file_get_contents($filename, null, null, 0, 100);
+        $file = file_get_contents($filename, false, null, 0, 100);
         if (strpos($file, "encoding") !== false) {
             $encoding = substr($file, strpos($file, "encoding") + 9);
             $encoding = substr($encoding, 1, strpos($encoding, $encoding[0], 1) - 1);

@@ -32,7 +32,7 @@ final class Zend_Version
     /**
      * Zend Framework version identification - see compareVersion()
      */
-    const VERSION = '1.18.8';
+    const VERSION = '1.21.4';
 
     /**
      * The latest stable version Zend Framework available
@@ -81,9 +81,9 @@ final class Zend_Version
             $content = file_get_contents('https://api.github.com/repos/Shardj/zf1-future/releases/latest', false, $context);
 
             if (false !== $content) {
-                $releaseName = json_decode($content, true)['name'];
+                $releaseName = explode('-', json_decode($content, true)['name']);
 
-                self::$_latestVersion = array_pop(explode('-', $releaseName));
+                self::$_latestVersion = array_pop($releaseName);
             }
         }
 

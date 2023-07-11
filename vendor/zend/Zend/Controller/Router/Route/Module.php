@@ -95,7 +95,7 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
      * Instantiates route based on passed Zend_Config structure
      *
      * @param Zend_Config $config
-     * @return Zend_Controller_Router_Route_Module
+     * @return static
      */
     public static function getInstance(Zend_Config $config)
     {
@@ -105,7 +105,7 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
         $dispatcher = $frontController->getDispatcher();
         $request    = $frontController->getRequest();
 
-        return new self($defs, $dispatcher, $request);
+        return new static($defs, $dispatcher, $request);
     }
 
     /**
@@ -266,7 +266,7 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
                     $url .= self::URI_DELIMITER . $arrayValue;
                 }
             } else {
-                if ($encode) {
+                if ($encode && is_string($value)) {
                     $value = urlencode($value);
                 }
                 $url .= self::URI_DELIMITER . $key;

@@ -136,6 +136,7 @@ class Zend_Queue_Adapter_Array extends Zend_Queue_Adapter_AdapterAbstract
      * @return integer
      * @throws Zend_Queue_Exception
      */
+    #[\ReturnTypeWillChange]
     public function count(Zend_Queue $queue=null)
     {
         if ($queue === null) {
@@ -333,7 +334,7 @@ class Zend_Queue_Adapter_Array extends Zend_Queue_Adapter_AdapterAbstract
      * returns underlying _data array
      * $queue->getAdapter()->getData();
      *
-     * @return $this;
+     * @return array;
      */
     public function getData()
     {

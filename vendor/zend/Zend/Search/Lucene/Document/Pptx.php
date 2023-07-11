@@ -166,25 +166,25 @@ class Zend_Search_Lucene_Document_Pptx extends Zend_Search_Lucene_Document_OpenX
         $package->close();
 
         // Store filename
-        $this->addField(Zend_Search_Lucene_Field::Text('filename', $fileName, 'UTF-8'));
+        $this->addField(Zend_Search_Lucene_Field::text('filename', $fileName, 'UTF-8'));
 
             // Store contents
         if ($storeContent) {
-            $this->addField(Zend_Search_Lucene_Field::Text('body', implode(' ', $documentBody), 'UTF-8'));
+            $this->addField(Zend_Search_Lucene_Field::text('body', implode(' ', $documentBody), 'UTF-8'));
         } else {
-            $this->addField(Zend_Search_Lucene_Field::UnStored('body', implode(' ', $documentBody), 'UTF-8'));
+            $this->addField(Zend_Search_Lucene_Field::unStored('body', implode(' ', $documentBody), 'UTF-8'));
         }
 
         // Store meta data properties
         foreach ($coreProperties as $key => $value)
         {
-            $this->addField(Zend_Search_Lucene_Field::Text($key, $value, 'UTF-8'));
+            $this->addField(Zend_Search_Lucene_Field::text($key, $value, 'UTF-8'));
         }
 
         // Store title (if not present in meta data)
         if (!isset($coreProperties['title']))
         {
-            $this->addField(Zend_Search_Lucene_Field::Text('title', $fileName, 'UTF-8'));
+            $this->addField(Zend_Search_Lucene_Field::text('title', $fileName, 'UTF-8'));
         }
     }
 

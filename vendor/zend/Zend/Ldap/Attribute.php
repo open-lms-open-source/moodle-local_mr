@@ -217,7 +217,7 @@ class Zend_Ldap_Attribute
     /**
      * Converts a PHP data type into its LDAP representation
      *
-     * @deprected    use Zend_Ldap_Converter instead
+     * @deprecated     use Zend_Ldap_Converter instead
      * @param          mixed $value
      * @return         string|null - null if the PHP data type cannot be converted.
      */
@@ -229,7 +229,7 @@ class Zend_Ldap_Attribute
     /**
      * Converts an LDAP value into its PHP data type
      *
-     * @deprected    use Zend_Ldap_Converter instead
+     * @deprecated     use Zend_Ldap_Converter instead
      * @param          string $value
      * @return         mixed
      */
@@ -254,7 +254,7 @@ class Zend_Ldap_Attribute
      * Converts LDAP date/time representation into a timestamp
      *
      * @param  string $value
-     * @return integer|null - null if the value cannot be converted.
+     * @return string|null - null if the value cannot be converted.
      */
     public static function convertFromLdapDateTimeValue($value)
     {
@@ -403,7 +403,7 @@ class Zend_Ldap_Attribute
 
     /**
      * @param  string|DateTime $value
-     * @return integer|null
+     * @return string|null
      */
     private static function _valueFromLdapDateTime($value)
     {

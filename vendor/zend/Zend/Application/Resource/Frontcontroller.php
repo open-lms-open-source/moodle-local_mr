@@ -143,7 +143,7 @@ class Zend_Application_Resource_Frontcontroller extends Zend_Application_Resourc
                     if (!isset($value['params'])) {
                         $value['params'] = [];
                     }
-                    
+
                     $dispatchClass = $value['class'];
                     if (!class_exists($dispatchClass)) {
                         require_once 'Zend/Application/Exception.php';

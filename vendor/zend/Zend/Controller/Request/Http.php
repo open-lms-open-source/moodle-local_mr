@@ -382,7 +382,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
      * Set the REQUEST_URI on which the instance operates
      *
      * If no request URI is passed, uses the value in $_SERVER['REQUEST_URI'],
-     * $_SERVER['HTTP_X_REWRITE_URL'], or $_SERVER['ORIG_PATH_INFO'] + $_SERVER['QUERY_STRING'].
+     *  or $_SERVER['ORIG_PATH_INFO'] + $_SERVER['QUERY_STRING'].
      *
      * @param string $requestUri
      * @return Zend_Controller_Request_Http
@@ -390,13 +390,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
     public function setRequestUri($requestUri = null)
     {
         if ($requestUri === null) {
-            if (isset($_SERVER['HTTP_X_ORIGINAL_URL'])) { 
-                // IIS with Microsoft Rewrite Module
-                $requestUri = $_SERVER['HTTP_X_ORIGINAL_URL'];
-            } elseif (isset($_SERVER['HTTP_X_REWRITE_URL'])) { 
-                // IIS with ISAPI_Rewrite
-                $requestUri = $_SERVER['HTTP_X_REWRITE_URL'];
-            } elseif (
+            if (
                 // IIS7 with URL Rewrite: make sure we get the unencoded url (double slash problem)
                 isset($_SERVER['IIS_WasUrlRewritten'])
                 && $_SERVER['IIS_WasUrlRewritten'] == '1'
@@ -619,16 +613,16 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
             $baseUrl = $this->getBaseUrl(); // this actually calls setBaseUrl() & setRequestUri()
             $baseUrlRaw = $this->getBaseUrl(false);
             $baseUrlEncoded = urlencode($baseUrlRaw);
-        
+
             if (null === ($requestUri = $this->getRequestUri())) {
                 return $this;
             }
-        
+
             // Remove the query string from REQUEST_URI
             if ($pos = strpos($requestUri, '?')) {
                 $requestUri = substr($requestUri, 0, $pos);
             }
-            
+
             if (!empty($baseUrl) || !empty($baseUrlRaw)) {
                 if (strpos($requestUri, $baseUrl) === 0) {
                     $pathInfo = substr($requestUri, strlen($baseUrl));
@@ -642,7 +636,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
             } else {
                 $pathInfo = $requestUri;
             }
-        
+
         }
 
         $this->_pathInfo = (string) $pathInfo;

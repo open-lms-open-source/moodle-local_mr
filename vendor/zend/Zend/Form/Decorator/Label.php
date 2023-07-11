@@ -164,7 +164,7 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
     /**
      * Get the class to apply to the HTML tag, if any, with which to surround label
      *
-     * @return void
+     * @return string
      */
     public function getTagClass()
     {
@@ -302,7 +302,7 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
         }
 
         $label = $element->getLabel();
-        $label = trim($label);
+        $label = trim((string) $label);
 
         if (empty($label)) {
             return '';

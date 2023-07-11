@@ -42,16 +42,14 @@ class Zend_Tool_Framework_Action_Base implements Zend_Tool_Framework_Action_Inte
     /**
      * constructor -
      *
-     * @param unknown_type $options
+     * @param string|null $options
      */
     public function __construct($options = null)
     {
-        if ($options !== null) {
-            if (is_string($options)) {
-                $this->setName($options);
-            }
-            // implement $options here in the future if this is needed
+        if (is_string($options)) {
+            $this->setName($options);
         }
+        // implement $options here in the future if this is needed
     }
 
     /**

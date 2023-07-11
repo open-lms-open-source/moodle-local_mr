@@ -257,7 +257,7 @@ class Zend_OpenId_Consumer
             /* Ignore query part in openid.return_to */
             $pos = strpos($params['openid_return_to'], '?');
             if ($pos === false ||
-                SUBSTR($params['openid_return_to'], 0 , $pos) != Zend_OpenId::selfUrl()) {
+                substr($params['openid_return_to'], 0 , $pos) != Zend_OpenId::selfUrl()) {
 
                 $this->_setError("Wrong openid.return_to '".
                     $params['openid_return_to']."' != '" . Zend_OpenId::selfUrl() ."'");
@@ -300,7 +300,7 @@ class Zend_OpenId_Consumer
             if (isset($params['openid_op_endpoint']) && $url !== $params['openid_op_endpoint']) {
                 $this->_setError("The op_endpoint URI is not the same of URI associated with the assoc_handle");
                 return false;
-            }       
+            }
             $signed = explode(',', $params['openid_signed']);
             // Check the parameters for the signature
             // @see https://openid.net/specs/openid-authentication-2_0.html#positive_assertions
@@ -314,7 +314,7 @@ class Zend_OpenId_Consumer
                     return false;
                 }
             }
-            
+
             $data = '';
             foreach ($signed as $key) {
                 $data .= $key . ':' . $params['openid_' . strtr($key,'.','_')] . "\n";
@@ -405,7 +405,7 @@ class Zend_OpenId_Consumer
                     if (!empty($line)) {
                         $x = explode(':', $line, 2);
                         if (is_array($x) && count($x) === 2) {
-                            list($key, $value) = $x;
+                            [$key, $value] = $x;
                             $r[trim($key)] = trim($value);
                         }
                     }
@@ -464,7 +464,7 @@ class Zend_OpenId_Consumer
      * @param string &$macFunc HMAC function (sha1 or sha256)
      * @param string &$secret shared secret
      * @param integer &$expires expiration UNIX time
-     * @return void
+     * @return bool
      */
     protected function _getAssociation($url, &$handle, &$macFunc, &$secret, &$expires)
     {
@@ -497,7 +497,7 @@ class Zend_OpenId_Consumer
      * @param array $params additional qwery parameters to be passed with
      * @param int &$staus HTTP status code
      *  request
-     * @return mixed
+     * @return false|string|null
      */
     protected function _httpRequest($url, $method = 'GET', array $params = [], &$status = null)
     {
@@ -614,7 +614,7 @@ class Zend_OpenId_Consumer
                 if (!empty($line)) {
                     $x = explode(':', $line, 2);
                     if (is_array($x) && count($x) === 2) {
-                        list($key, $value) = $x;
+                        [$key, $value] = $x;
                         $r[trim($key)] = trim($value);
                     } else {
                         $bad_response = true;
@@ -768,13 +768,13 @@ class Zend_OpenId_Consumer
                 $r)) {
             $XRDS = $r[3];
             $version = 2.0;
-            $response = $this->_httpRequest($XRDS); 
+            $response = $this->_httpRequest($XRDS);
             if (preg_match(
                     '/<URI>([^\t]*)<\/URI>/i',
                     $response,
                     $x)) {
                 $server = $x[1];
-                // $realId 
+                // $realId
                 $realId = 'http://specs.openid.net/auth/2.0/identifier_select';
             }
             else {

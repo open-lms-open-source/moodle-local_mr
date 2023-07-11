@@ -91,6 +91,8 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
 
     /**
      * Instantiates route based on passed Zend_Config structure
+     *
+     * @return static
      */
     public static function getInstance(Zend_Config $config)
     {
@@ -107,7 +109,7 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
             }
         }
 
-        return new self($frontController, $defaultsArray, $restfulConfigArray);
+        return new static($frontController, $defaultsArray, $restfulConfigArray);
     }
 
     /**
@@ -189,7 +191,7 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
         // Digest URI params
         if ($numSegs = count($path)) {
             for ($i = 0; $i < $numSegs; $i = $i + 2) {
-                $key = urldecode($path[$i]);
+                $key = urldecode((string) $path[$i]);
                 $val = isset($path[$i + 1]) ? $path[$i + 1] : null;
                 $params[$key] = urldecode($val);
             }

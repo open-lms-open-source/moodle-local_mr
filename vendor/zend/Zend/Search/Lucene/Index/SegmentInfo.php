@@ -365,7 +365,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
      *
      * Returns bitset or an array depending on bitset extension availability
      *
-     * @return mixed
+     * @return array|string|null
      * @throws Zend_Search_Lucene_Exception
      */
     private function _loadPre21DelFile()
@@ -689,6 +689,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
      *
      * @return integer
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return $this->_docCount;
@@ -787,7 +788,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
 
             // Load dictionary index data
             if (($unserializedData = @unserialize($stiFileData)) !== false) {
-                list($this->_termDictionary, $this->_termDictionaryInfos) = $unserializedData;
+                [$this->_termDictionary, $this->_termDictionaryInfos] = $unserializedData;
                 return;
             }
         }
@@ -802,7 +803,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
         require_once 'Zend/Search/Lucene/Index/DictionaryLoader.php';
 
         // Load dictionary index data
-        list($this->_termDictionary, $this->_termDictionaryInfos) =
+        [$this->_termDictionary, $this->_termDictionaryInfos] =
                     Zend_Search_Lucene_Index_DictionaryLoader::load($tiiFileData);
 
         $stiFileData = serialize([$this->_termDictionary, $this->_termDictionaryInfos]);
@@ -1070,7 +1071,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
      * @param Zend_Search_Lucene_Index_Term $term
      * @param integer $shift
      * @param Zend_Search_Lucene_Index_DocsFilter|null $docsFilter
-     * @return Zend_Search_Lucene_Index_TermInfo
+     * @return array
      */
     public function termFreqs(Zend_Search_Lucene_Index_Term $term, $shift = 0, $docsFilter = null)
     {
@@ -1202,7 +1203,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
      * @param Zend_Search_Lucene_Index_Term $term
      * @param integer $shift
      * @param Zend_Search_Lucene_Index_DocsFilter|null $docsFilter
-     * @return Zend_Search_Lucene_Index_TermInfo
+     * @return array
      */
     public function termPositions(Zend_Search_Lucene_Index_Term $term, $shift = 0, $docsFilter = null)
     {

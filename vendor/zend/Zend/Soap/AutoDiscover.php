@@ -547,7 +547,7 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
     public function toXml()
     {
         if($this->_wsdl !== null) {
-            return $this->_wsdl->toXml();
+            return $this->_wsdl->toXML();
         } else {
             /**
              * @see Zend_Soap_AutoDiscover_Exception
@@ -570,7 +570,6 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
     /**
      * Load Functions
      *
-     * @param unknown_type $definition
      * @throws Zend_Soap_AutoDiscover_Exception
      */
     public function loadFunctions($definition)

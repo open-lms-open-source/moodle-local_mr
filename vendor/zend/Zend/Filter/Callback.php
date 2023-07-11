@@ -90,16 +90,10 @@ class Zend_Filter_Callback implements Zend_Filter_Interface
     /**
      * Sets a new callback for this filter
      *
-     * @param unknown_type $callback
-     * @return unknown
+     * @return Zend_Filter_Callback
      */
-    public function setCallback($callback, $options = null)
+    public function setCallback(callable $callback, $options = null)
     {
-        if (!is_callable($callback)) {
-            require_once 'Zend/Filter/Exception.php';
-            throw new Zend_Filter_Exception('Callback can not be accessed');
-        }
-
         $this->_callback = $callback;
         $this->setOptions($options);
         return $this;

@@ -134,10 +134,16 @@ class Zend_Loader
         // - Avoid error-logs full of PHP Warnings due to autoloads from class-exists()-checks.
         // - If a class does not exist that we really need, error will be thrown anyway.
         // - Fatal errors from the included files are still thrown anyway.
+        // Since PHP 8.0 @ doesn't mute the errors, which makes for a lot of clutter on the error log when you are using class_exists() and it doesn't
+        // Added stream_resolve_include_path to avoid it.
         if ($once) {
-            @include_once $filename;
+            if(stream_resolve_include_path($filename)) {
+                @include_once $filename;
+            }
         } else {
-            @include $filename;
+            if(stream_resolve_include_path($filename)) {
+                @include $filename;
+            }
         }
 
         /**
@@ -342,6 +348,6 @@ class Zend_Loader
             $file      = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
         }
         $file .= str_replace('_', DIRECTORY_SEPARATOR, $fileName) . '.php';
-        return $file;    
+        return $file;
     }
 }

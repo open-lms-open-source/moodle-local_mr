@@ -313,7 +313,7 @@ class Zend_Locale_Format
         $symbols = Zend_Locale_Data::getList($options['locale'], 'symbols');
         $oenc = self::_getEncoding();
         self::_setEncoding('UTF-8');
-        
+
         // Get format
         $format = $options['number_format'];
         if ($format === null) {
@@ -542,7 +542,7 @@ class Zend_Locale_Format
      *
      * @param  string $type
      * @param  array  $options Options: locale. See {@link setOptions()} for details.
-     * @return string
+     * @return array
      * @throws Zend_Locale_Exception
      */
     private static function _getRegexForType($type, $options)

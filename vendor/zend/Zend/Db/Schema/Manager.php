@@ -55,7 +55,7 @@ class Zend_Db_Schema_Manager
      * If the table does not exist, it will be created and the version will
      * be set to 0.
      *
-     * @return int
+     * @return string
      */
     public function getCurrentSchemaVersion()
     {

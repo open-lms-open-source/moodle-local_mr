@@ -191,7 +191,7 @@ class Zend_Cache_Core
     /**
      * Returns the backend
      *
-     * @return Zend_Cache_Backend backend object
+     * @return Zend_Cache_Backend_Interface|null backend object
      */
     public function getBackend()
     {
@@ -340,7 +340,7 @@ class Zend_Cache_Core
      * @param  mixed $data           Data to put in cache (can be another type than string if automatic_serialization is on)
      * @param  string $id             Cache id (if not set, the last cache id will be used)
      * @param  array $tags           Cache tags
-     * @param  int $specificLifetime If != false, set a specific lifetime for this cache record (null => infinite lifetime)
+     * @param  int|false|null $specificLifetime If != false, set a specific lifetime for this cache record (null => infinite lifetime)
      * @param  int   $priority         integer between 0 (very low priority) and 10 (maximum priority) used by some particular backends
      * @throws Zend_Cache_Exception
      * @return boolean True if no problem

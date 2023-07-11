@@ -138,7 +138,7 @@ class Zend_Loader_Autoloader
      * Set the default autoloader implementation
      *
      * @param  string|array $callback PHP callback
-     * @return void
+     * @return Zend_Loader_Autoloader
      */
     public function setDefaultAutoloader($callback)
     {
@@ -153,7 +153,7 @@ class Zend_Loader_Autoloader
     /**
      * Retrieve the default autoloader callback
      *
-     * @return string|array PHP Callback
+     * @return array PHP Callback
      */
     public function getDefaultAutoloader()
     {

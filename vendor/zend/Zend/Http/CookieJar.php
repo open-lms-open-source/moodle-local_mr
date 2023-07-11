@@ -390,7 +390,7 @@ class Zend_Http_CookieJar implements Countable, IteratorAggregate
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->_rawCookies);
     }
@@ -400,7 +400,8 @@ class Zend_Http_CookieJar implements Countable, IteratorAggregate
      *
      * @return ArrayIterator
      */
-    public function getIterator()
+    #[\ReturnTypeWillChange]
+    public function getIterator(): \Traversable
     {
         return new ArrayIterator($this->_rawCookies);
     }
