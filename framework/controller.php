@@ -124,11 +124,18 @@ abstract class mr_controller extends mr_readonly {
     protected $component;
 
     /**
-     * Get string idenifier
+     * Get string identifier
      *
      * @var string
      */
     protected $identifier;
+
+    /**
+     *  The help string identifier
+     *
+     * @var string
+     */
+    protected $helpidentifier;
 
     /**
      * Controller tabs
@@ -164,11 +171,12 @@ abstract class mr_controller extends mr_readonly {
      * Setup the controller with plugin specific configurations.
      *
      * @param string $plugin The plugin path
-     * @param string $identifier Get string idenifier
+     * @param string $identifier Get string identifier
      * @param string $component Get string component
      * @param string $action Set the current action of the controller
+     * @param string $helpidentifier The help string indentifier
      */
-    public function __construct($plugin, $identifier, $component, $action) {
+    public function __construct($plugin, $identifier, $component, $action, $helpidentifier = '') {
         global $PAGE;
 
         // Controller name
@@ -182,9 +190,10 @@ abstract class mr_controller extends mr_readonly {
         }
 
         // Store plugin information
-        $this->component   = $component;
-        $this->plugin      = $plugin;
-        $this->identifier  = $identifier;
+        $this->component      = $component;
+        $this->plugin         = $plugin;
+        $this->identifier     = $identifier;
+        $this->helpidentifier = $helpidentifier;
 
         // Rest of the variable setup
         $this->action   = $action;
@@ -242,7 +251,7 @@ abstract class mr_controller extends mr_readonly {
         $PAGE->set_title(format_string($COURSE->fullname));
         $PAGE->set_heading(format_string($COURSE->fullname));
         $PAGE->set_url($relativeurl, $moodleurl->params());
-        $this->heading->set($this->identifier);
+        $this->heading->set($this->identifier, $this->helpidentifier);
     }
 
     /**
@@ -357,12 +366,13 @@ abstract class mr_controller extends mr_readonly {
      * controller/foo.php and call method "bar_action".
      *
      * @param string $plugin The plugin path
-     * @param string $identifier Get string idenifier
+     * @param string $identifier Get string identifier
      * @param string $component Get string component
+     * @param string $helpidentifier The help string identifier
      * @return void
      * @throws coding_exception
      */
-    public static function render($plugin, $identifier, $component) {
+    public static function render($plugin, $identifier, $component, $helpidentifier = '') {
         $controller = optional_param('controller', 'default', PARAM_PATH);
         $action     = optional_param('action', 'view', PARAM_ALPHA);
         $helper     = new mr_helper($plugin);
@@ -393,7 +403,7 @@ abstract class mr_controller extends mr_readonly {
             throw new coding_exception("Unable to handle request for $method");
         }
         // Action is OK, instantiate the controller
-        $controller = $reflection->newInstance($plugin, $identifier, $component, $action);
+        $controller = $reflection->newInstance($plugin, $identifier, $component, $action, $helpidentifier);
 
         // Capability check
         $controller->require_capability();
