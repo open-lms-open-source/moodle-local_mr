@@ -15,7 +15,6 @@
 /**
  * Form autosubmit JavaScript module.
  *
- * @package    local_mr
  * @author     Sam Chaffee
  * @copyright  Copyright (c) 2017 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

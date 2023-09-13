@@ -20,7 +20,7 @@ div.mr_file_export .urlselect label {
 
 /* mr_report_abstract styles */
 div.mr_report_sqlbox {
-    padding: 0px;
+    padding: 0;
 }
 
 div.mr_report_sqlbox div {
@@ -72,8 +72,8 @@ div.mr_ajax_table_forceajax {
 }
 
 .mr_html_filter .selectmultiplusitem div.deletebtn {
-     float: right;
-     padding-right: 1em;
+    float: right;
+    padding-right: 1em;
  }
 
 .mr_html_filter .selectmultiplusitem div.optiontext {
