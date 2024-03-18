@@ -242,7 +242,7 @@ class local_mr_renderer extends plugin_renderer_base {
 
         if (empty($rows)) {
             $cell = new html_table_cell($table->get_emptymessage());
-            $cell->colspan = count($htmltable->head);
+            $cell->colspan = count($htmltable->head ?? array());
             $htmltable->data[] = new html_table_row(array($cell));
         } else {
             $htmltable->data = $this->convert_to_htmlrows($table);
