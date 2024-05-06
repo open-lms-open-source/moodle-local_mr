@@ -240,7 +240,14 @@ abstract class mr_controller extends mr_readonly {
         $currentcourse = optional_param('currentcourse', null, PARAM_INT);
 
         // We want to send relative URL to $PAGE so $PAGE can set it to https or not
-        $moodleurl   = $this->new_url(array('action' => $this->action));
+        $params = array('action' => $this->action);
+
+        // For new PLD navigation, add the param to the URL.
+        if ($this->helpidentifier == 'pld_redesign') {
+            $params = array_merge($params, array('newpld' => 1));
+        }
+
+        $moodleurl   = $this->new_url($params);
         $relativeurl = str_replace($CFG->wwwroot, '', $moodleurl->out_omit_querystring());
 
         // We are setting temporally $COURSE->theme to the theme of the original course if it's need it.
