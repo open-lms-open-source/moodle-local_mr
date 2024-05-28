@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2023 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2024 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -63,4 +63,4 @@ $string['paginatorprevlabel'] = 'forrige';
 $string['paginatorprevtitle'] = 'Forrige side';
 $string['paginatornextlabel'] = 'næste';
 $string['paginatornexttitle'] = 'Næste side';
-$string['privacy:metadata'] = 'Plugin&apos;et til Open LMS Framework gemmer ingen personlige data.';
+$string['privacy:metadata'] = 'Plugin\'et til Open LMS Framework gemmer ingen personlige data.';
