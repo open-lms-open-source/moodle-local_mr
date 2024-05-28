@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2023 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2024 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -42,7 +42,7 @@ $string['plugin-text/csv'] = 'CSV';
 $string['plugin-text/tsv'] = 'TSV';
 $string['popupdocs'] = 'Belgeleri yeni pencerede aç';
 $string['popuperrors'] = 'Belge hatalarını yeni pencerede aç';
-$string['reportsql'] = 'SQL’i raporla';
+$string['reportsql'] = 'SQL\'i raporla';
 $string['reset'] = 'Sıfırla';
 $string['standard'] = 'Standart';
 $string['updatedactivity'] = '{$a->modname}, {$a->fullname} tarafından güncelleştirildi';
