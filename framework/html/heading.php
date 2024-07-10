@@ -77,6 +77,14 @@ class mr_html_heading implements renderable {
     public $iconalt = '';
 
     /**
+     * Get helpidentifier
+     *
+     * @var string
+     */
+
+    public $helpidentifier;
+
+    /**
      * Get string component
      *
      * @var string

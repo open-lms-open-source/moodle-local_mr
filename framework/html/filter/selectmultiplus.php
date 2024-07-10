@@ -31,6 +31,8 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  * @package mr
  */
 class mr_html_filter_selectmultiplus extends mr_html_filter_abstract {
+    public $options;
+
     public function __construct($name, $label, $options = array(), $advanced = false, $field = NULL) {
         parent::__construct($name, $label, $advanced, $field);
 
