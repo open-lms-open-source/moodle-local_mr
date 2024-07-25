@@ -39,6 +39,7 @@ class mr_helper_sql extends mr_helper_abstract {
      */
     public static function limit($limitfrom = 0, $limitnum = 0) {
         global $DB;
+        $sql = '';
 
         // The SQL building below is taken from dml class for the respecitve db families.
         switch ($DB->get_dbfamily()) {
