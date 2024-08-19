@@ -235,7 +235,7 @@ abstract class mr_controller extends mr_readonly {
     public function setup() {
         global $CFG, $COURSE, $PAGE;
 
-        require_login(optional_param('courseid', SITEID, PARAM_INT));
+//        require_login(optional_param('courseid', SITEID, PARAM_INT)); // To be reviewed by
         // currentcourse has the id of the course where the user initially views the report block.
         $currentcourse = optional_param('currentcourse', null, PARAM_INT);
 
