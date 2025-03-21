@@ -42,6 +42,9 @@ require_once 'Zend/Server/Reflection/Parameter.php';
  */
 class Zend_Server_Reflection_Prototype
 {
+    public $_return; // Open LMS patch INT-20894:
+    public $_params; // Open LMS patch INT-20894:
+
     /**
      * Constructor
      *
