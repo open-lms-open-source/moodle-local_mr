@@ -208,7 +208,7 @@ class mr_html_table_column {
      * @throws coding_exception
      */
     public function get_cell($row) {
-        if ($row instanceof html_table_row) {
+        if ($row instanceof \core_table\output\html_table_row) {
             throw new coding_exception('Cannot get cell from html_table_row classes. '.
                                        'This must be done before adding the cell to a '.
                                        'html_table_row instance');
@@ -218,7 +218,7 @@ class mr_html_table_column {
 
             // Apply all formats to the value
             foreach ($this->formats as $format) {
-                if ($value instanceof html_table_cell) {
+                if ($value instanceof \core_table\output\html_table_cell) {
                     $value->text = $format->format($value->text);
                 } else {
                     $value = $format->format($value);

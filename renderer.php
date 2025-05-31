@@ -36,17 +36,17 @@ require_once($CFG->dirroot.'/local/mr/framework/html/tag.php');
  * @package mr
  * @author Mark Nielsen
  */
-class local_mr_renderer extends plugin_renderer_base {
+class local_mr_renderer extends \core\output\plugin_renderer_base {
     /**
      * Returns rendered widget.
      *
      * Add another error catching layer for
      * rendering reports.
      *
-     * @param renderable $widget instance with renderable interface
+     * @param \core\output\renderable $widget instance with renderable interface
      * @return string
      */
-    public function render(renderable $widget) {
+    public function render(\core\output\renderable $widget) {
         try {
             return parent::render($widget);
         } catch (coding_exception $e) {
@@ -91,7 +91,7 @@ class local_mr_renderer extends plugin_renderer_base {
             } else {
                 $currenttab = $tabs->toptab;
             }
-            $output = html_writer::tag('div', print_tabs($rows, $currenttab, $inactive, $active, true), array('class' => 'mr_html_tabs'));
+            $output = \core\output\html_writer::tag('div', print_tabs($rows, $currenttab, $inactive, $active, true), array('class' => 'mr_html_tabs'));
         }
         return $output;
     }
@@ -116,7 +116,7 @@ class local_mr_renderer extends plugin_renderer_base {
         if (!empty($heading->helpidentifier)) {
             $help = $this->output->help_icon($heading->helpidentifier, $heading->component);
         }
-        return html_writer::tag('div', $this->output->heading($icon.$heading->text.$help, $heading->level, $heading->classes, $heading->id), array('class' => 'mr_html_heading'));
+        return \core\output\html_writer::tag('div', $this->output->heading($icon.$heading->text.$help, $heading->level, $heading->classes, $heading->id), array('class' => 'mr_html_heading'));
     }
 
     /**
@@ -129,7 +129,7 @@ class local_mr_renderer extends plugin_renderer_base {
         // Only render the filter form if one of the filters is not hidden
         foreach ($filter->get_filters() as $mrfilter) {
             if (!$mrfilter instanceof mr_html_filter_hidden) {
-                return html_writer::tag('div', $filter->init()->get_helper()->buffer(array($filter->get_mform(), 'display')), array('class' => 'mr_html_filter'));
+                return \core\output\html_writer::tag('div', $filter->init()->get_helper()->buffer(array($filter->get_mform(), 'display')), array('class' => 'mr_html_filter'));
             }
         }
         return '';
@@ -155,7 +155,7 @@ class local_mr_renderer extends plugin_renderer_base {
                     $options[$opt] = $opt;
                 }
             }
-            $singleselect = new single_select($paging->get_url(), $paging->REQUEST_PERPAGE, $options, $paging->get_perpage(), array());
+            $singleselect = new \core\output\single_select($paging->get_url(), $paging->REQUEST_PERPAGE, $options, $paging->get_perpage(), array());
             $singleselect->set_label(get_string('rowsperpage', 'local_mr'), array('class' => 'accesshide'));
 
             $select = $this->output->render($singleselect);
@@ -166,7 +166,7 @@ class local_mr_renderer extends plugin_renderer_base {
             } else {
                 $output .= $this->output->box($select, 'paging');
             }
-            $output = html_writer::tag('div', $output, array('class' => 'mr_html_paging'));
+            $output = \core\output\html_writer::tag('div', $output, array('class' => 'mr_html_paging'));
         }
         return $output;
     }
@@ -183,7 +183,7 @@ class local_mr_renderer extends plugin_renderer_base {
         $columns = $table->get_columns(true);
 
         // Table setup
-        $htmltable       = new html_table();
+        $htmltable       = new \core_table\output\html_table();
         $htmltable->data = array();
 
         foreach ($table->get_attributes() as $name => $value) {
@@ -233,7 +233,7 @@ class local_mr_renderer extends plugin_renderer_base {
                 } else {
                     $heading = $config->heading;
                 }
-                $cell = new html_table_cell($heading);
+                $cell = new \core_table\output\html_table_cell($heading);
                 $cell->attributes = array_merge($cell->attributes, $config->attributes);
 
                 $htmltable->head[] = $cell;
@@ -241,13 +241,13 @@ class local_mr_renderer extends plugin_renderer_base {
         }
 
         if (empty($rows)) {
-            $cell = new html_table_cell($table->get_emptymessage());
+            $cell = new \core_table\output\html_table_cell($table->get_emptymessage());
             $cell->colspan = count($htmltable->head ?? array());
-            $htmltable->data[] = new html_table_row(array($cell));
+            $htmltable->data[] = new \core_table\output\html_table_row(array($cell));
         } else {
             $htmltable->data = $this->convert_to_htmlrows($table);
         }
-        return html_writer::tag('div', html_writer::table($htmltable), array('class' => 'mr_html_table'));
+        return \core\output\html_writer::tag('div', \core\output\html_writer::table($htmltable), array('class' => 'mr_html_table'));
     }
 
     /**
@@ -257,10 +257,10 @@ class local_mr_renderer extends plugin_renderer_base {
      * @return string
      */
     protected function render_mr_file_export(mr_file_export $export) {
-        $select = new url_select($export->get_url_select_options(), '');
+        $select = new \core\output\url_select($export->get_url_select_options(), '');
         $select->set_label(get_string('export', 'local_mr'));
 
-        return html_writer::tag('div', $this->output->render($select), array('class' => 'mr_file_export'));
+        return \core\output\html_writer::tag('div', $this->output->render($select), array('class' => 'mr_file_export'));
     }
 
     /**
@@ -340,8 +340,8 @@ class local_mr_renderer extends plugin_renderer_base {
             $url = clone($report->get_url());
             $url->param('forceajax', $newajax);
 
-            $link = html_writer::link($url, $label, array('title' => $label));
-            $output .= html_writer::tag('div', $link, array('class' => 'mr_ajax_table_forceajax'));
+            $link = \core\output\html_writer::link($url, $label, array('title' => $label));
+            $output .= \core\output\html_writer::tag('div', $link, array('class' => 'mr_ajax_table_forceajax'));
         }
 
         // Close wrapper DIV
@@ -394,7 +394,7 @@ class local_mr_renderer extends plugin_renderer_base {
 
         // Place holder div's ID
         if (empty($id)) {
-            $id = html_writer::random_id();
+            $id = \core\output\html_writer::random_id();
         }
 
         $loadingmsg = $this->output->pix_icon('i/ajaxloader', get_string('loadingdotdotdot', 'local_mr')).
@@ -464,7 +464,7 @@ class local_mr_renderer extends plugin_renderer_base {
                 'paginatornexttitle',
             ), 'local_mr');
 
-        return html_writer::tag('div', '', array('id' => $id, 'class' => 'mr_html_table mr_ajax_table'));
+        return \core\output\html_writer::tag('div', '', array('id' => $id, 'class' => 'mr_html_table mr_ajax_table'));
     }
 
     /**
@@ -588,17 +588,17 @@ class local_mr_renderer extends plugin_renderer_base {
         $htmlrows = array();
         foreach ($rows as $row) {
             // Generate a html_table_row
-            if ($row instanceof html_table_row) {
+            if ($row instanceof \core_table\output\html_table_row) {
                 $htmlrow = $row;
             } else {
-                $htmlrow = new html_table_row();
+                $htmlrow = new \core_table\output\html_table_row();
                 foreach ($columns as $column) {
                     $cell = $column->get_cell($row);
 
-                    if ($cell instanceof html_table_cell) {
+                    if ($cell instanceof \core_table\output\html_table_cell) {
                         $htmlrow->cells[] = $cell;
                     } else {
-                        $cell = new html_table_cell($cell);
+                        $cell = new \core_table\output\html_table_cell($cell);
                         foreach ($column->get_config()->attributes as $name => $value) {
                             if (property_exists($cell, $name)) {
                                 $cell->$name = $value;

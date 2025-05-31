@@ -32,7 +32,7 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  * @author Mark Nielsen
  * @example controller/default.php
  */
-class mr_html_tabs implements renderable {
+class mr_html_tabs implements \core\output\renderable {
     /**
      * An array of tabobjects
      *
@@ -111,7 +111,7 @@ class mr_html_tabs implements renderable {
         if (!empty($this->toptab) and !empty($this->tabs['__parents__'])) {
             foreach ($this->tabs['__parents__'] as $parents) {
                 foreach ($parents as $key => $parent) {
-                    if ($parent instanceof tabobject) {
+                    if ($parent instanceof \core\output\tabobject) {
                         $toptabs[$key] = $parent;
                     }
                 }
@@ -119,7 +119,7 @@ class mr_html_tabs implements renderable {
             if (!empty($this->tabs[$this->toptab])) {
                 foreach ($this->tabs[$this->toptab] as $children) {
                     foreach ($children as $key => $child) {
-                        if ($child instanceof tabobject) {
+                        if ($child instanceof \core\output\tabobject) {
                             $subtabs[$key] = $child;
                         }
                     }
@@ -183,7 +183,7 @@ class mr_html_tabs implements renderable {
             $name = get_string("$prefix{$id}tab", $this->component);
         }
 
-        $this->tabs[$parentid][$weight][$id] = ($visible ? new tabobject($id, $url, $name, $title, $linkedwhenselected) : false);
+        $this->tabs[$parentid][$weight][$id] = ($visible ? new \core\output\tabobject($id, $url, $name, $title, $linkedwhenselected) : false);
         ksort($this->tabs[$parentid]);
         return $this;
     }

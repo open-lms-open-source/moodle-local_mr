@@ -39,7 +39,7 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  * @package mr
  * @see mr_controller
  */
-class mr_html_notify implements renderable {
+class mr_html_notify implements \core\output\renderable {
     /**
      * Message that is bad
      */

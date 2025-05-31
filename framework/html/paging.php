@@ -37,7 +37,7 @@ require_once($CFG->dirroot.'/local/mr/framework/readonly.php');
  * @author Mark Nielsen
  * @example controller/table.php See how to use this class
  */
-class mr_html_paging extends mr_readonly implements renderable {
+class mr_html_paging extends mr_readonly implements \core\output\renderable {
     /**
      * Page request param
      */

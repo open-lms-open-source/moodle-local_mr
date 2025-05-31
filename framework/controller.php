@@ -154,7 +154,7 @@ abstract class mr_controller extends mr_readonly {
     /**
      * Either plugin's renderer or core renderer
      *
-     * @var renderer_base
+     * @var \core\output\renderer_base
      */
     protected $output;
 

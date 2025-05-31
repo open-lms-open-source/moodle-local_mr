@@ -63,10 +63,10 @@ class local_mr_controller_default extends mr_controller_block {
      */
     public function docs_action() {
         $link      = new moodle_url('/local/mr/docs/index.html');
-        $action    = new popup_action('click', $link, 'localmrdocs', array('height' => 950, 'width' => 1500));
+        $action    = new \core\output\actions\popup_action('click', $link, 'localmrdocs', array('height' => 950, 'width' => 1500));
         $docspop   = $this->output->action_link($link, get_string('popupdocs', 'local_mr'), $action);
         $link      = new moodle_url('/local/mr/docs/errors.html');
-        $action    = new popup_action('click', $link, 'localmrdocs', array('height' => 950, 'width' => 1500));
+        $action    = new \core\output\actions\popup_action('click', $link, 'localmrdocs', array('height' => 950, 'width' => 1500));
         $errorspop = $this->output->action_link($link, get_string('popuperrors', 'local_mr'), $action);
 
         return $this->output->box("$docspop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$errorspop").

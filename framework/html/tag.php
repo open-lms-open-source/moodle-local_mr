@@ -420,8 +420,8 @@ class mr_html_tag {
 
         // Generate the tag
         if (!is_null($this->contents)) {
-            return html_writer::tag($this->tag, $this->contents, (array) $this->attributes);
+            return \core\output\html_writer::tag($this->tag, $this->contents, (array) $this->attributes);
         }
-        return html_writer::empty_tag($this->tag, (array) $this->attributes);
+        return \core\output\html_writer::empty_tag($this->tag, (array) $this->attributes);
     }
 }

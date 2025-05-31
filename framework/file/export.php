@@ -34,7 +34,7 @@ defined('MOODLE_INTERNAL') or die('Direct access to this script is forbidden.');
  * @author Mark Nielsen
  * @example controller/table.php See how to use this class
  */
-class mr_file_export implements renderable {
+class mr_file_export implements \core\output\renderable {
 
     /**
      * Flag for if exporting is currently underway or not

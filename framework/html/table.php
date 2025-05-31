@@ -48,7 +48,7 @@ require_once($CFG->dirroot.'/local/mr/framework/html/table/column/dynamic.php');
  * @example controller/table.php See how to use this class
  * @todo Make html_table class available through this class?
  */
-class mr_html_table extends mr_readonly implements renderable {
+class mr_html_table extends mr_readonly implements \core\output\renderable {
     /**
      * Sort request param
      */
@@ -516,9 +516,9 @@ class mr_html_table extends mr_readonly implements renderable {
         $columns = $this->get_columns(true);
 
         // Try our best with html_table_row
-        if ($row instanceof html_table_row) {
+        if ($row instanceof \core_table\output\html_table_row) {
             foreach ($row->cells as $cell) {
-                if ($cell instanceof html_table_cell) {
+                if ($cell instanceof \core_table\output\html_table_cell) {
                     $data[] = $cell->text;
                 } else {
                     $data[] = $cell;
@@ -532,7 +532,7 @@ class mr_html_table extends mr_readonly implements renderable {
                 }
                 $cell = $column->get_cell($row);
 
-                if ($cell instanceof html_table_cell) {
+                if ($cell instanceof \core_table\output\html_table_cell) {
                     $data[] = $cell->text;
                 } else {
                     $data[] = $cell;
