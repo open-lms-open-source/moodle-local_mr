@@ -43,7 +43,7 @@ class mr_html_tabs implements \core\output\renderable {
     /**
      * Base URL for tabs
      *
-     * @var moodle_url
+     * @var \core\url
      */
     protected $url;
 
@@ -78,7 +78,7 @@ class mr_html_tabs implements \core\output\renderable {
     /**
      * Constructor
      *
-     * @param moodle_url $url Base URL for the tabs
+     * @param \core\url $url Base URL for the tabs
      * @param string $component Default get string component key
      */
     public function __construct($url = NULL, $component = '') {
@@ -170,7 +170,7 @@ class mr_html_tabs implements \core\output\renderable {
         }
         if (is_array($url)) {
             if (is_null($this->url)) {
-                throw new \core\exception\coding_exception('Must pass a moodle_url to constructor to pass an array of URL params');
+                throw new \core\exception\coding_exception('Must pass a \core\url to constructor to pass an array of URL params');
             }
             $url = $this->url->out(false, $url);
         }
@@ -192,7 +192,7 @@ class mr_html_tabs implements \core\output\renderable {
      * Simple interface: Adds a top tab
      *
      * @param string $id The unique top tab ID
-     * @param mixed $url moodle_url or an array of params
+     * @param mixed $url \core\url or an array of params
      * @param boolean $visible If the tab is visible to the user or not
      * @return mr_html_tabs
      * @throws \core\exception\coding_exception
@@ -205,7 +205,7 @@ class mr_html_tabs implements \core\output\renderable {
      * Simple interface: Adds a sub tab
      *
      * @param string $id The unique sub tab ID
-     * @param mixed $url moodle_url or an array of params
+     * @param mixed $url \core\url or an array of params
      * @param boolean $visible If the tab is visible to the user or not
      * @param string $toptabid The top tab's ID that the sub tab belongs to (defaults to the last top tab's ID)
      * @return mr_html_tabs

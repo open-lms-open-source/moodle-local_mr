@@ -65,7 +65,7 @@ class mr_html_heading implements \core\output\renderable {
     /**
      * Header icon
      *
-     * @var string|moodle_url
+     * @var string|\core\url
      */
     public $icon = '';
 

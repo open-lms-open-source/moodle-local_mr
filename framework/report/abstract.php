@@ -105,7 +105,7 @@ abstract class mr_report_abstract extends mr_readonly implements \core\output\re
     /**
      * Base URL
      *
-     * @var moodle_url
+     * @var \core\url
      */
     protected $url;
 
@@ -133,12 +133,12 @@ abstract class mr_report_abstract extends mr_readonly implements \core\output\re
     /**
      * Construct
      *
-     * @param moodle_url $url Base URL
+     * @param \core\url $url Base URL
      * @param int $courseid Course ID
      * @param boolean $autorun Automatically run the report SQL and
      *                         retrieve rows for rendering or exporting
      */
-    public function __construct(moodle_url $url, $courseid = NULL, $autorun = true) {
+    public function __construct(\core\url $url, $courseid = NULL, $autorun = true) {
         if (is_null($courseid) or $courseid == 0) {
             $courseid = SITEID;
         }

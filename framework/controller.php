@@ -83,7 +83,7 @@ abstract class mr_controller extends mr_readonly {
     /**
      * URL of the controller
      *
-     * @var moodle_url
+     * @var \core\url
      */
     protected $url;
 
@@ -265,12 +265,12 @@ abstract class mr_controller extends mr_readonly {
      * Generate a new URL to this controller
      *
      * @param array $extraparams Extra parameters to add to the URL
-     * @return moodle_url
+     * @return \core\url
      */
     public function new_url($extraparams = array()) {
         global $COURSE;
 
-        return new moodle_url("/$this->plugin/view.php", array_merge(array('controller' => $this->name, 'courseid' => $COURSE->id), $extraparams));
+        return new \core\url("/$this->plugin/view.php", array_merge(array('controller' => $this->name, 'courseid' => $COURSE->id), $extraparams));
     }
 
     /**

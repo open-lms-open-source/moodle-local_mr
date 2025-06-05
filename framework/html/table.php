@@ -118,7 +118,7 @@ class mr_html_table extends mr_readonly implements \core\output\renderable {
     /**
      * Base URL
      *
-     * @var moodle_url
+     * @var \core\url
      */
     protected $url;
 
@@ -166,11 +166,11 @@ class mr_html_table extends mr_readonly implements \core\output\renderable {
      * Setup
      *
      * @param mr_preferences $preferences User preferences
-     * @param moodle_url $url Base url
+     * @param \core\url $url Base url
      * @param string $sort Sorting field
      * @param int|string $order Sorting order
      */
-    public function __construct($preferences, moodle_url $url, $sort = '', $order = SORT_ASC) {
+    public function __construct($preferences, \core\url $url, $sort = '', $order = SORT_ASC) {
         $this->url          = $url;
         $this->preferences  = $preferences;
         $this->helper       = new mr_helper();

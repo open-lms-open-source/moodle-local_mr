@@ -57,7 +57,7 @@ class mr_html_filter extends mr_readonly implements \core\output\renderable {
     /**
      * Base URL
      *
-     * @var moodle_url
+     * @var \core\url
      */
     protected $url;
 
@@ -93,7 +93,7 @@ class mr_html_filter extends mr_readonly implements \core\output\renderable {
      * Construct
      *
      * @param mr_preferences $preferences Preferences model
-     * @param moodle_url $url Base URL
+     * @param \core\url $url Base URL
      * @param string $formpath The patch to the form class, passed to mr_helper_load
      */
     public function __construct($preferences, $url, $formpath = 'local/mr/form/filter') {

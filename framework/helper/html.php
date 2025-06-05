@@ -43,7 +43,7 @@ class mr_helper_html extends mr_helper_abstract {
      * Add autocomplete to a form text field
      *
      * @param MoodleQuickForm $mform Moodle form
-     * @param array|moodle_url $options Array of autocomplete options, if $hiddenfieldname is
+     * @param array|\core\url $options Array of autocomplete options, if $hiddenfieldname is
      *                       passed, array indexes are considered record IDs
      * @param string $textfieldname The text field's name
      * @param string $hiddenfieldname The hidden field's name.  If passed,
@@ -63,7 +63,7 @@ class mr_helper_html extends mr_helper_abstract {
         $data = NULL;
 
         // Generate data source
-        if ($options instanceof moodle_url) {
+        if ($options instanceof \core\url) {
             $url = $options->out(false);
         } else {
             $data  = array();

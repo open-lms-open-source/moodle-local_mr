@@ -426,7 +426,7 @@ class local_mr_renderer extends \core\output\plugin_renderer_base {
         // Change the URL to send PLD AJAX requests with `tjson: 1`.
         $url = $table->get_url();
         if ($url->get_path() === '/local/pld/view.php') {
-            $url = new moodle_url('/local/pld/ajax.php', array('controller' => $url->get_param('controller'), 'courseid' => $url->get_param('courseid')));
+            $url = new \core\url('/local/pld/ajax.php', array('controller' => $url->get_param('controller'), 'courseid' => $url->get_param('courseid')));
         }
         $url = $url->out(false, array('tjson' => 1));
 

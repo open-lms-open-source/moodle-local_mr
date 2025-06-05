@@ -79,7 +79,7 @@ class mr_html_paging extends mr_readonly implements \core\output\renderable {
     /**
      * Base URL
      *
-     * @var moodle_url
+     * @var \core\url
      */
     protected $url;
 
@@ -94,9 +94,9 @@ class mr_html_paging extends mr_readonly implements \core\output\renderable {
      * Constructor
      *
      * @param mr_preferences $preferences Preferences to store paging information
-     * @param moodle_url $url Current URL
+     * @param \core\url $url Current URL
      */
-    public function __construct(mr_preferences $preferences, moodle_url $url) {
+    public function __construct(mr_preferences $preferences, \core\url $url) {
         $this->url         = $url;
         $this->preferences = $preferences;
         $defultperpage     = $this->preferences->get($this->REQUEST_PERPAGE, $this->perpage);

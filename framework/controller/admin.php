@@ -78,9 +78,9 @@ abstract class mr_controller_admin extends mr_controller {
      * Generate a new URL to this controller
      *
      * @param array $extraparams Extra parameters to add to the URL
-     * @return moodle_url
+     * @return \core\url
      */
     public function new_url($extraparams = array()) {
-        return new moodle_url("/$this->plugin/view.php", array_merge(array('controller' => $this->name), $extraparams));
+        return new \core\url("/$this->plugin/view.php", array_merge(array('controller' => $this->name), $extraparams));
     }
 }

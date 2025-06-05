@@ -67,7 +67,7 @@ class mr_file_export implements \core\output\renderable {
     /**
      * Moodle URL - used for rendering
      *
-     * @var moodle_url
+     * @var \core\url
      */
     protected $url;
 
@@ -100,11 +100,11 @@ class mr_file_export implements \core\output\renderable {
      *
      * @param mixed $exporters This can take on many forms, see above for examples.
      * @param boolean $requirefile If true, then no export plugin will be included that cannot generate a file
-     * @param moodle_url $url Moodle URL for current page, used for rendering only
+     * @param \core\url $url Moodle URL for current page, used for rendering only
      * @param string $filename The exported file's name
      * @throws \core\exception\coding_exception
      */
-    public function __construct($exporters = '**', $requirefile = false, moodle_url $url = NULL, $filename = 'export') {
+    public function __construct($exporters = '**', $requirefile = false, \core\url $url = NULL, $filename = 'export') {
         // Store params
         $this->url = $url;
         $this->set_filename($filename);
@@ -306,12 +306,12 @@ class mr_file_export implements \core\output\renderable {
     /**
      * Get the URL
      *
-     * @return moodle_url
+     * @return \core\url
      * @throws \core\exception\coding_exception
      */
     public function get_url() {
-        if (!$this->url instanceof moodle_url) {
-            throw new \core\exception\coding_exception('Must pass an instance of moodle_url');
+        if (!$this->url instanceof \core\url) {
+            throw new \core\exception\coding_exception('Must pass an instance of \core\url');
         }
         return $this->url;
     }
