@@ -57,7 +57,7 @@ require_once($CFG->dirroot.'/local/mr/framework/model/record/abstract.php');
  * @package mr
  * @example controller/model.php See this class in action
  * @see http://martinfowler.com/eaaCatalog/dataMapper.html
- * @throws coding_exception
+ * @throws \core\exception\coding_exception
  */
 abstract class mr_repository_abstract {
     /**
@@ -90,7 +90,7 @@ abstract class mr_repository_abstract {
      *
      * @param mr_db_table|string $table
      * @return mr_repository_abstract
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function set_table($table) {
         if (is_string($table)) {
@@ -98,7 +98,7 @@ abstract class mr_repository_abstract {
         } else if ($table instanceof mr_db_table) {
             $this->table = $table;
         } else {
-            throw new coding_exception('Invalid: table must be a string or an instance of mr_db_table');
+            throw new \core\exception\coding_exception('Invalid: table must be a string or an instance of mr_db_table');
         }
         return $this;
     }
@@ -230,7 +230,7 @@ abstract class mr_repository_abstract {
      * The model's ID property is required, but after
      * the delete, the ID property will be set to null.
      *
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @param mr_model_record_abstract $model
      * @return mr_repository_abstract
      */
@@ -239,7 +239,7 @@ abstract class mr_repository_abstract {
 
         $id = $model->get_id();
         if (empty($id)) {
-            throw new coding_exception('The passed model cannot be deleted because it doesn\'t have an ID');
+            throw new \core\exception\coding_exception('The passed model cannot be deleted because it doesn\'t have an ID');
         }
         $DB->delete_records($this->get_table()->get_name(), array('id' => $id));
 

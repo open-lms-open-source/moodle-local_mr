@@ -162,7 +162,7 @@ class mr_html_tabs implements \core\output\renderable {
      * @param string $title The alt text of the tab
      * @param boolean $linkedwhenselected Keep the tab clickable when selected
      * @return mr_html_tabs
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function add_subtab($parentid, $id, $url, $name = NULL, $weight = 0, $visible = true, $title = '', $linkedwhenselected = true) {
         if ($parentid == '__parents__') {
@@ -170,7 +170,7 @@ class mr_html_tabs implements \core\output\renderable {
         }
         if (is_array($url)) {
             if (is_null($this->url)) {
-                throw new coding_exception('Must pass a moodle_url to constructor to pass an array of URL params');
+                throw new \core\exception\coding_exception('Must pass a moodle_url to constructor to pass an array of URL params');
             }
             $url = $this->url->out(false, $url);
         }
@@ -195,7 +195,7 @@ class mr_html_tabs implements \core\output\renderable {
      * @param mixed $url moodle_url or an array of params
      * @param boolean $visible If the tab is visible to the user or not
      * @return mr_html_tabs
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function toptab($id, $url = array(), $visible = true) {
         return $this->add($id, $url, NULL, 0, $visible);
@@ -209,12 +209,12 @@ class mr_html_tabs implements \core\output\renderable {
      * @param boolean $visible If the tab is visible to the user or not
      * @param string $toptabid The top tab's ID that the sub tab belongs to (defaults to the last top tab's ID)
      * @return mr_html_tabs
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function subtab($id, $url = array(), $visible = true, $toptabid = NULL) {
         if ($toptabid == NULL) {
             if (empty($this->lasttoptabid)) {
-                throw new coding_exception('No toptabs have been added, create one before creating subtabs');
+                throw new \core\exception\coding_exception('No toptabs have been added, create one before creating subtabs');
             }
             $toptabid = $this->lasttoptabid;
         }

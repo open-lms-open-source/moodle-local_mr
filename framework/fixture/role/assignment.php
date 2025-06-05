@@ -77,7 +77,7 @@ class mr_fixture_role_assignment extends mr_fixture_abstract {
      * This method must be safe to call multiple times.
      *
      * @return void
-     * @throws moodle_exception
+     * @throws \core\exception\moodle_exception
      */
     public function build() {
         global $DB;
@@ -105,7 +105,7 @@ class mr_fixture_role_assignment extends mr_fixture_abstract {
      * This method must be safe to call multiple times.
      *
      * @return void
-     * @throws moodle_exception
+     * @throws \core\exception\moodle_exception
      */
     public function destroy() {
         if ($this->exists() and $this->get_role()->exists() and $this->get_user()->exists()) {
@@ -155,24 +155,24 @@ class mr_fixture_role_assignment extends mr_fixture_abstract {
      * Derive the context ID from the context varaible
      *
      * @return int
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function get_contextid() {
         $context = $this->get_context();
         if ($context instanceof mr_fixture_user) {
             if (!$context->exists()) {
-                throw new coding_exception('User fixture does not exist yet.  You are calling this too early.');
+                throw new \core\exception\coding_exception('User fixture does not exist yet.  You are calling this too early.');
             }
             $context = context_user::instance($context->get('id'));
 
         } else if ($context instanceof mr_fixture_course) {
             if (!$context->exists()) {
-                throw new coding_exception('Course fixture does not exist yet.  You are calling this too early.');
+                throw new \core\exception\coding_exception('Course fixture does not exist yet.  You are calling this too early.');
             }
             $context = context_course::instance($context->get('id'));
 
         } else if (!$context instanceof context) {
-            throw new coding_exception('Invalid context argument');
+            throw new \core\exception\coding_exception('Invalid context argument');
         }
         return $context->id;
     }

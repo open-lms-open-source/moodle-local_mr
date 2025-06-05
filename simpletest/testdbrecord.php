@@ -35,13 +35,13 @@ class mr_db_record_test extends UnitTestCase {
     public function test_default_bad_id() {
         // ID should not be set to $record
         $record = new mr_db_record('user', array('id' => NULL, 'username' => 'simpletest'));
-        $this->expectException('coding_exception');
+        $this->expectException('\\core\\exception\\coding_exception');
         $record->id;
     }
 
     public function test_set_bad_id() {
         $record = new mr_db_record('user', array('username' => 'simpletest'));
-        $this->expectException('coding_exception');
+        $this->expectException('\\core\\exception\\coding_exception');
         $record->id = NULL;
     }
 }

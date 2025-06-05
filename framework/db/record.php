@@ -124,15 +124,15 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      *
      * @param string $name
      * @param mixed $value
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @return void
      */
     public function __set($name, $value) {
         if (!$this->trustcolumns and !$this->_table->column_exists($name)) {
-            throw new coding_exception("Column $name does not exist in table $this->_table");
+            throw new \core\exception\coding_exception("Column $name does not exist in table $this->_table");
         }
         if ($name == 'id' and (!is_number($value) or $value <= 0)) {
-            throw new coding_exception("Must set the id column to an integer greater than zero.  Value given: $value");
+            throw new \core\exception\coding_exception("Must set the id column to an integer greater than zero.  Value given: $value");
         }
         if (!property_exists($this->_record, $name) or $this->_record->$name !== $value) {
             $this->_record->$name = $value;
@@ -144,14 +144,14 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      * Get a record value
      *
      * @param string $name
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @return mixed
      */
     public function __get($name) {
         if (property_exists($this->_record, $name)) {
             return $this->_record->$name;
         }
-        throw new coding_exception("Invalid member call: $name");
+        throw new \core\exception\coding_exception("Invalid member call: $name");
     }
 
     /**
@@ -340,7 +340,7 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      *
      * @param boolean $bulk Bulk flag which gets passed to inserts and updates
      * @return mr_db_record
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function save($bulk = false) {
         // Check for delete
@@ -380,7 +380,7 @@ class mr_db_record implements ArrayAccess, IteratorAggregate, Countable {
      * Delete the record.
      *
      * @return mr_db_record
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function delete() {
         $this->queue_delete();

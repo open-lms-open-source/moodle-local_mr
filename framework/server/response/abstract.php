@@ -238,12 +238,12 @@ abstract class mr_server_response_abstract {
      *
      * @param string $name Method name
      * @param array $arguments Method args
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @return DOMDocument
      * @deprecated Use core built in web service API instead
      */
     public function __call($name, $arguments) {
         $class = get_class($this);
-        throw new coding_exception("Call to undefined response: class = $class method = $name");
+        throw new \core\exception\coding_exception("Call to undefined response: class = $class method = $name");
     }
 }

@@ -74,7 +74,7 @@ class mr_helper_tag extends mr_helper_abstract {
      * @param string $name A method in mr_html_tag
      * @param array $arguments The args to pass to the mr_html_tag method
      * @return mixed
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function __call($name, $arguments) {
         return call_user_func_array(array($this->tag, $name), $arguments);

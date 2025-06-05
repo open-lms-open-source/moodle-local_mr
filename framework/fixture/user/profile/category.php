@@ -56,7 +56,7 @@ class mr_fixture_user_profile_category extends mr_fixture_abstract {
      * This method must be safe to call multiple times.
      *
      * @return void
-     * @throws moodle_exception
+     * @throws \core\exception\moodle_exception
      */
     public function build() {
         global $DB;
@@ -81,7 +81,7 @@ class mr_fixture_user_profile_category extends mr_fixture_abstract {
      * This method must be safe to call multiple times.
      *
      * @return void
-     * @throws moodle_exception
+     * @throws \core\exception\moodle_exception
      */
     public function destroy() {
         global $DB;

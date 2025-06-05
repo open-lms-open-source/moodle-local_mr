@@ -102,7 +102,7 @@ class mr_file_export implements \core\output\renderable {
      * @param boolean $requirefile If true, then no export plugin will be included that cannot generate a file
      * @param moodle_url $url Moodle URL for current page, used for rendering only
      * @param string $filename The exported file's name
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function __construct($exporters = '**', $requirefile = false, moodle_url $url = NULL, $filename = 'export') {
         // Store params
@@ -136,7 +136,7 @@ class mr_file_export implements \core\output\renderable {
         }
         // Make sure we successfully loaded some
         if (empty($this->exporters)) {
-            throw new coding_exception('Failed to load exporters, check the $exporters param value');
+            throw new \core\exception\coding_exception('Failed to load exporters, check the $exporters param value');
         }
 
         // If files are requred, then weed out any exporters that cannot produce a file
@@ -147,7 +147,7 @@ class mr_file_export implements \core\output\renderable {
                 }
             }
             if (empty($this->exporters)) {
-                throw new coding_exception('All loaded exporters do not generate files, but files required');
+                throw new \core\exception\coding_exception('All loaded exporters do not generate files, but files required');
             }
         }
 
@@ -161,12 +161,12 @@ class mr_file_export implements \core\output\renderable {
      * Once an export has started, you can get access
      * to the current exporter through this method.
      *
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @return mr_file_export_abstract
      */
     public function instance() {
         if (!$this->instance instanceof mr_file_export_abstract) {
-            throw new coding_exception('Must call init() before the export instance is available');
+            throw new \core\exception\coding_exception('Must call init() before the export instance is available');
         }
         return $this->instance;
     }
@@ -188,11 +188,11 @@ class mr_file_export implements \core\output\renderable {
      * @param string $exporter The exporter to use
      * @param string $filename Optionally change the file name
      * @return mr_file_export
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function init($exporter, $filename = NULL) {
         if ($this->is_exporting()) {
-            throw new coding_exception('Cannot re-init while exporting');
+            throw new \core\exception\coding_exception('Cannot re-init while exporting');
         }
         $this->set_filename($filename);
 
@@ -204,7 +204,7 @@ class mr_file_export implements \core\output\renderable {
 
         // Set the exporter instance
         if (!array_key_exists($exporter, $this->exporters)) {
-            throw new coding_exception('The passed exporter is not one of the available exporters');
+            throw new \core\exception\coding_exception('The passed exporter is not one of the available exporters');
         }
         $this->instance = $this->exporters[$exporter];
 
@@ -291,11 +291,11 @@ class mr_file_export implements \core\output\renderable {
      *
      * @param string $filename The new file name
      * @return mr_file_export
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function set_filename($filename) {
         if ($this->is_exporting()) {
-            throw new coding_exception('Cannot change the file name while exporting');
+            throw new \core\exception\coding_exception('Cannot change the file name while exporting');
         }
         if (!is_null($filename)) {
             $this->filename = $filename;
@@ -307,11 +307,11 @@ class mr_file_export implements \core\output\renderable {
      * Get the URL
      *
      * @return moodle_url
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function get_url() {
         if (!$this->url instanceof moodle_url) {
-            throw new coding_exception('Must pass an instance of moodle_url');
+            throw new \core\exception\coding_exception('Must pass an instance of moodle_url');
         }
         return $this->url;
     }

@@ -62,7 +62,7 @@ abstract class mr_lock_abstract {
      * @param string $uniquekey This key is used to generate the key for the lock.
      *                          Example values: mod_quiz_cron, admin_cron, etc.
      * @param int $timetolive The number of seconds until the lock expires completely.  Default is 8 hours.
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function __construct($uniquekey, $timetolive = NULL) {
         global $CFG;
@@ -72,7 +72,7 @@ abstract class mr_lock_abstract {
         $timetolive = clean_param($timetolive, PARAM_INT);
 
         if (empty($uniquekey)) {
-            throw new coding_exception('Passed unique key is empty (after cleaning)');
+            throw new \core\exception\coding_exception('Passed unique key is empty (after cleaning)');
         }
         if (!empty($CFG->local_mr_lock_default_timetolive)) {
             if (empty($timetolive)) {

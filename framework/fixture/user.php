@@ -57,7 +57,7 @@ class mr_fixture_user extends mr_fixture_abstract {
      * This method must be safe to call multiple times.
      *
      * @return void
-     * @throws moodle_exception
+     * @throws \core\exception\moodle_exception
      */
     public function build() {
         global $CFG, $DB;
@@ -86,7 +86,7 @@ class mr_fixture_user extends mr_fixture_abstract {
      * This method must be safe to call multiple times.
      *
      * @return void
-     * @throws moodle_exception
+     * @throws \core\exception\moodle_exception
      */
     public function destroy() {
         if ($this->exists()) {

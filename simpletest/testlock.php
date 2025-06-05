@@ -66,7 +66,7 @@ class mr_lock_test extends UnitTestCase {
     }
 
     public function test_bad_uniquekey() {
-        $this->expectException('coding_exception');
+        $this->expectException('\\core\\exception\\coding_exception');
         $lock = new mr_lock('&*^@(!');
     }
 /*

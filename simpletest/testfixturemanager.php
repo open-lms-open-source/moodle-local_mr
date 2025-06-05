@@ -75,13 +75,13 @@ class mr_fixture_manager_test extends UnitTestCase {
         $manager = new mr_fixture_manager();
         $manager->set('course', $course);
 
-        $this->expectException('coding_exception');
+        $this->expectException('\\core\\exception\\coding_exception');
         $manager->set('course', $course);
     }
 
     public function test_invalid_get() {
         $manager = new mr_fixture_manager();
-        $this->expectException('coding_exception');
+        $this->expectException('\\core\\exception\\coding_exception');
         $manager->get('course');
     }
 

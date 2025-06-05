@@ -81,12 +81,12 @@ class mr_fixture_manager {
      * @param string $name A unique name for the fixture
      * @param mr_fixture_interface $fixture
      * @return \mr_fixture_manager
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @see mr_fixture_manager::get()
      */
     public function set($name, mr_fixture_interface $fixture) {
         if ($this->has($name)) {
-            throw new coding_exception("Fixture with associated name of $name has already been set, please choose a unique name for each fixture");
+            throw new \core\exception\coding_exception("Fixture with associated name of $name has already been set, please choose a unique name for each fixture");
         }
         $fixture->build();
         $this->fixtures[$name] = $fixture;
@@ -98,11 +98,11 @@ class mr_fixture_manager {
      *
      * @param string $name The unique name for the fixture
      * @return mr_fixture_interface
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function get($name) {
         if (!$this->has($name)) {
-            throw new coding_exception("Could not find a fixture associated with the name of $name");
+            throw new \core\exception\coding_exception("Could not find a fixture associated with the name of $name");
         }
         return $this->fixtures[$name];
     }

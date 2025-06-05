@@ -44,7 +44,7 @@ abstract class mr_readonly {
      * @param string $name Method name which should be get_{dataMember}()
      * @param array $arguments Should be empty, no args needed
      * @return mixed
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function __call($name, $arguments) {
         $parts = explode('_', $name, 2);
@@ -55,6 +55,6 @@ abstract class mr_readonly {
                 return $this->$member;
             }
         }
-        throw new coding_exception("Method $name does not exist in class ".get_class($this));
+        throw new \core\exception\coding_exception("Method $name does not exist in class ".get_class($this));
     }
 }

@@ -49,7 +49,7 @@ class local_mr_renderer extends \core\output\plugin_renderer_base {
     public function render(\core\output\renderable $widget) {
         try {
             return parent::render($widget);
-        } catch (coding_exception $e) {
+        } catch (\core\exception\coding_exception $e) {
             if ($widget instanceof mr_report_abstract) {
                 return $this->render_mr_report_abstract($widget);
             }

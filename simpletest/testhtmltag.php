@@ -83,22 +83,22 @@ class mr_html_tag_test extends UnitTestCase {
     }
 
     public function test_bad_close() {
-        $this->expectException('coding_exception');
+        $this->expectException('\\core\\exception\\coding_exception');
         mr_html_tag::open()->close();
     }
 
     public function test_bad_no_attribute_params() {
-        $this->expectException('coding_exception');
+        $this->expectException('\\core\\exception\\coding_exception');
         mr_html_tag::open()->strong()->foo();
     }
 
     public function test_bad_no_attribute_manipulation_params() {
-        $this->expectException('coding_exception');
+        $this->expectException('\\core\\exception\\coding_exception');
         mr_html_tag::open()->strong()->append_class();
     }
 
     public function test_nonexistent_method() {
-        $this->expectException('coding_exception');
+        $this->expectException('\\core\\exception\\coding_exception');
         mr_html_tag::open()->strong()->something_crazy();
     }
 }

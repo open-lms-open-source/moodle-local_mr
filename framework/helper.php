@@ -138,7 +138,7 @@ class mr_helper {
      *
      * @param string $name Helper name
      * @return mr_helper_abstract
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function __get($name) {
         if (!array_key_exists($name, self::$instances[$this->namespace])) {
@@ -146,7 +146,7 @@ class mr_helper {
                 // First try current namespace
                 self::$instances[$this->namespace][$name] = $this->load("helper/$name");
 
-            } catch (coding_exception $e) {
+            } catch (\core\exception\coding_exception $e) {
                 // On fail, try MR namespace
                 if ($this->namespace != $this->mrnamespace) {
                     self::$instances[$this->namespace][$name] = $this->load("helper/$name", array(), $this->mrnamespace);
@@ -155,7 +155,7 @@ class mr_helper {
                 }
             }
             if (!self::$instances[$this->namespace][$name] instanceof mr_helper_abstract) {
-                throw new coding_exception("Helper '$name' does not extend mr_helper_abstract");
+                throw new \core\exception\coding_exception("Helper '$name' does not extend mr_helper_abstract");
             }
             self::$instances[$this->namespace][$name]->_set_helper_namespace($this->namespace);
         }
@@ -168,11 +168,11 @@ class mr_helper {
      * @param string $name Helper name
      * @param array $arguments Direct method args
      * @return mixed
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function __call($name, $arguments) {
         if (!method_exists($this->$name, 'direct')) {
-            throw new coding_exception("The helper $name does not implement method 'direct'");
+            throw new \core\exception\coding_exception("The helper $name does not implement method 'direct'");
         }
         return call_user_func_array(array($this->$name, 'direct'), $arguments);
     }

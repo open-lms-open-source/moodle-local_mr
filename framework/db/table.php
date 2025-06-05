@@ -104,7 +104,7 @@ class mr_db_table {
      * @param string $name The function name
      * @param array $arguments The arguements to pass, exclude the table name!
      * @return mixed
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @see mr_db_record
      */
     public function __call($name, $arguments) {
@@ -138,7 +138,7 @@ class mr_db_table {
             case 'set_field_select':
                 return call_user_func_array(array($DB, $name), $arguments);
         }
-        throw new coding_exception("Invalid method call to mr_db_table::$name()");
+        throw new \core\exception\coding_exception("Invalid method call to mr_db_table::$name()");
     }
 
     /**
@@ -154,7 +154,7 @@ class mr_db_table {
      * Get meta column data for the table
      *
      * @return array
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function get_columns() {
         return array_combine(array_keys($this->get_metacolumns()), array_keys($this->get_metacolumns()));
@@ -163,14 +163,14 @@ class mr_db_table {
     /**
      * Get meta data for a specific column
      *
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @param $name
      * @return object
      */
     public function get_metacolumn($name) {
         $metacolumns = $this->get_metacolumns();
         if (!array_key_exists($name, $metacolumns)) {
-            throw new coding_exception("Column $name does not exist in $this->table");
+            throw new \core\exception\coding_exception("Column $name does not exist in $this->table");
         }
         return $metacolumns[$name];
     }
@@ -179,13 +179,13 @@ class mr_db_table {
      * Get meta column data for the table
      *
      * @return array
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function get_metacolumns() {
         global $DB;
 
         if (!$columns = $DB->get_columns($this->table)) {
-            throw new coding_exception("Failed to get meta columns for database table $this->table");
+            throw new \core\exception\coding_exception("Failed to get meta columns for database table $this->table");
         }
         return $columns;
     }
@@ -195,7 +195,7 @@ class mr_db_table {
      *
      * @param string $name The column name
      * @return boolean
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function column_exists($name) {
         return array_key_exists($name, $this->get_metacolumns());
@@ -204,7 +204,7 @@ class mr_db_table {
     /**
      * Get the default for a column
      *
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @param string|object $column The column name or the column object from get_metacolumn(s)
      * @return mixed
      */
@@ -217,7 +217,7 @@ class mr_db_table {
         } else if (empty($column->not_null)) {
             return NULL;
         }
-        throw new coding_exception('Default not handled');
+        throw new \core\exception\coding_exception('Default not handled');
     }
 
     /**
@@ -266,7 +266,7 @@ class mr_db_table {
      *
      * @param mixed $data Array or object of record data
      * @return mr_db_record
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function save($data) {
         return $this->record()->set($data)->save();
@@ -287,11 +287,11 @@ class mr_db_table {
      *
      * @param string $id The record ID to delete
      * @return void
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function delete($id) {
         if (!$this->delete_records(array('id' => $id))) {
-            throw new coding_exception("Failed to delete record with id = $id from table $this->table");
+            throw new \core\exception\coding_exception("Failed to delete record with id = $id from table $this->table");
         }
     }
 }

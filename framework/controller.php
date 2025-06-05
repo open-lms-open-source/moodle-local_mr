@@ -217,12 +217,12 @@ abstract class mr_controller extends mr_readonly {
         // Load up renderers (Last, otherwise cannot customize layout)
         try {
             $this->output = $PAGE->get_renderer($this->component);
-        } catch (moodle_exception $e) {
+        } catch (\core\exception\moodle_exception $e) {
             $this->output = $PAGE->get_renderer('core'); // Should this be $OUTPUT ?
         }
         try {
             $this->mroutput = $PAGE->get_renderer('local_mr', 'extended');
-        } catch (moodle_exception $e) {
+        } catch (\core\exception\moodle_exception $e) {
             $this->mroutput = $PAGE->get_renderer('local_mr');
         }
     }
@@ -377,7 +377,7 @@ abstract class mr_controller extends mr_readonly {
      * @param string $component Get string component
      * @param string $helpidentifier The help string identifier
      * @return void
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public static function render($plugin, $identifier, $component, $helpidentifier = '') {
         $controller = optional_param('controller', 'default', PARAM_PATH);
@@ -407,7 +407,7 @@ abstract class mr_controller extends mr_readonly {
         // Ensure the method is available and is public
         $reflection = new ReflectionClass($classname);
         if (!$reflection->hasMethod($method) or $reflection->getMethod($method)->isPublic() != true) {
-            throw new coding_exception("Unable to handle request for $method");
+            throw new \core\exception\coding_exception("Unable to handle request for $method");
         }
         // Action is OK, instantiate the controller
         $controller = $reflection->newInstance($plugin, $identifier, $component, $action, $helpidentifier);

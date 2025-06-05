@@ -37,7 +37,7 @@ require_once($CFG->dirroot.'/local/mr/framework/model/abstract.php');
  * and a record doesn't have to map to a single model.  For example,
  * a model may contain data from multiple tables.
  *
- * @throws coding_exception
+ * @throws \core\exception\coding_exception
  * @author Mark Nielsen
  * @package mr
  * @example controller/model.php See this class in action
@@ -62,16 +62,16 @@ abstract class mr_model_record_abstract extends mr_model_abstract {
     /**
      * Set the ID to null or to a positive whole number
      *
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @param int|null $id
      * @return mr_model_record_abstract
      */
     public function set_id($id) {
         if (!is_number($id) and !is_null($id)) {
-            throw new coding_exception('ID must be a number or NULL');
+            throw new \core\exception\coding_exception('ID must be a number or NULL');
         }
         if (!is_null($id) and $id < 1) {
-            throw new coding_exception('ID must be a positive, non-zero number');
+            throw new \core\exception\coding_exception('ID must be a positive, non-zero number');
         }
         $this->id = $id;
         return $this;

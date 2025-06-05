@@ -40,7 +40,7 @@ class mr_autoload_test extends UnitTestCase {
     }
 
     public function test_no_namespace() {
-        $this->expectException('coding_exception');
+        $this->expectException('\\core\\exception\\coding_exception');
         $instance = new mr_autoload('');
     }
 

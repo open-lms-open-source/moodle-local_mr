@@ -108,11 +108,11 @@ class mr_html_filter extends mr_readonly implements \core\output\renderable {
      * initialze the form and handle submitted data
      *
      * @return mr_html_filter
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function init() {
         if (empty($this->filters)) {
-            throw new coding_exception('Must add filters');
+            throw new \core\exception\coding_exception('Must add filters');
         }
         if (empty($this->mform)) {
             $this->mform = $this->helper->load($this->formpath, array($this->url, $this), false);
@@ -180,11 +180,11 @@ class mr_html_filter extends mr_readonly implements \core\output\renderable {
      * @param string $identifier Help button text identifier
      * @param string $component The plugin component
      * @return mr_html_filter
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function add_helpbutton($filtername, $identifier, $component = 'moodle') {
         if (!array_key_exists($filtername, $this->filters)) {
-            throw new coding_exception("Cannot add filter help button because filter '$filtername' does not exist");
+            throw new \core\exception\coding_exception("Cannot add filter help button because filter '$filtername' does not exist");
         }
         $this->filters[$filtername]->add_helpbutton($identifier, $component);
         return $this;
@@ -198,11 +198,11 @@ class mr_html_filter extends mr_readonly implements \core\output\renderable {
      * @param string $condition The condition to check
      * @param string $value Used in conjunction with condition.
      * @return mr_html_filter
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function add_disabledif($filtername, $dependenton, $condition = 'notchecked', $value = '1') {
         if (!array_key_exists($filtername, $this->filters)) {
-            throw new coding_exception("Cannot add filter disabled if because filter '$filtername' does not exist");
+            throw new \core\exception\coding_exception("Cannot add filter disabled if because filter '$filtername' does not exist");
         }
         $this->filters[$filtername]->add_disabledif($dependenton, $condition, $value);
         return $this;

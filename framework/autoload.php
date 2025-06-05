@@ -64,11 +64,11 @@ class mr_autoload {
      * Set up the helper to assist with autoloading.
      *
      * @param string $namespace The namespace to pass to the helper, cannot be empty string.
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function __construct($namespace = 'local/mr/framework') {
         if ($namespace === '') {
-            throw new coding_exception('Cannot autoload with an empty namespace.  This will enable autoload for all of Moodle.');
+            throw new \core\exception\coding_exception('Cannot autoload with an empty namespace.  This will enable autoload for all of Moodle.');
         }
         $this->load = new mr_helper_load();
         $this->load->_set_helper_namespace($namespace);
@@ -108,7 +108,7 @@ class mr_autoload {
 
             // Try to load the class file
             $this->load->file($path);
-        } catch (coding_exception $e) {
+        } catch (\core\exception\coding_exception $e) {
             return false;
         }
         return class_exists($class, false);
@@ -121,7 +121,7 @@ class mr_autoload {
      *
      * @param mr_autoload $autoload An instance of mr_autoload or NULL
      * @return void
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public static function register(mr_autoload $autoload = NULL) {
         if (is_null($autoload)) {
@@ -137,7 +137,7 @@ class mr_autoload {
      *
      * @param mr_autoload $autoload An instance of mr_autoload or NULL
      * @return void
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public static function unregister(mr_autoload $autoload = NULL) {
         if (is_null($autoload)) {

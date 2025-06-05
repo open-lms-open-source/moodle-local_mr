@@ -157,7 +157,7 @@ class mr_html_tag {
      * @param string $name The function name called
      * @param string $arguments The function arguments passed
      * @return mixed
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @example controller/default.php See more examples
      */
     public function __call($name, $arguments) {
@@ -174,7 +174,7 @@ class mr_html_tag {
         // Handle adding of an attribute
         } else if (count($parts) == 1) {
             if (count($arguments) != 1) {
-                throw new coding_exception("Invalid method call mr_html_tag::$name() - must pass an argument");
+                throw new \core\exception\coding_exception("Invalid method call mr_html_tag::$name() - must pass an argument");
             }
             return $this->add_attribute($name, $arguments[0]);
 
@@ -188,7 +188,7 @@ class mr_html_tag {
                 case 'append':
                 case 'prepend':
                     if (count($arguments) != 1) {
-                        throw new coding_exception("Invalid method call mr_html_tag::$name() - must pass an argument");
+                        throw new \core\exception\coding_exception("Invalid method call mr_html_tag::$name() - must pass an argument");
                     }
                     $method = "{$method}_attribute";
                     return $this->$method($attrname, $arguments[0]);
@@ -197,7 +197,7 @@ class mr_html_tag {
                     return $this->remove_attribute($attrname);
             }
         }
-        throw new coding_exception("Call to non-existent method: mr_html_tag::$name()");
+        throw new \core\exception\coding_exception("Call to non-existent method: mr_html_tag::$name()");
     }
 
     /**
@@ -405,11 +405,11 @@ class mr_html_tag {
      *
      * @param string $param Pass as many strings as you like, all will be added to the contents of the tag
      * @return string
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function close() {
         if (is_null($this->tag)) {
-            throw new coding_exception('The HTML tag name is not defined, cannot render HTML');
+            throw new \core\exception\coding_exception('The HTML tag name is not defined, cannot render HTML');
         }
 
         // Handle any strings passed

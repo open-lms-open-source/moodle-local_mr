@@ -58,7 +58,7 @@ abstract class mr_controller_mod extends mr_controller {
      *
      * @return void
      * @see $cm, $instance
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function setup() {
         global $DB, $COURSE, $PAGE;
@@ -73,7 +73,7 @@ abstract class mr_controller_mod extends mr_controller {
         } else if ($a) {
             $this->cm = get_coursemodule_from_instance($this->component, $a, 0, false, MUST_EXIST);
         } else {
-            throw new coding_exception('No Course Module or Instance ID was passed');
+            throw new \core\exception\coding_exception('No Course Module or Instance ID was passed');
         }
 
         // Get the module instance

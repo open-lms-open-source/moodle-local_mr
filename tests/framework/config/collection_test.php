@@ -91,7 +91,7 @@ class mr_config_collection_test extends basic_testcase {
 
     public function test_bad_get() {
         $collection = new mr_config_collection();
-        $this->expectException(coding_exception::class);
+        $this->expectException(\core\exception\coding_exception::class);
         $collection->get('foo');
     }
 
@@ -114,7 +114,7 @@ class mr_config_collection_test extends basic_testcase {
 
     public function test_bad_set() {
         $collection = new mr_config_collection();
-        $this->expectException(coding_exception::class);
+        $this->expectException(\core\exception\coding_exception::class);
         $collection->set('foo', 'bat');
     }
 
@@ -151,7 +151,7 @@ class mr_config_collection_test extends basic_testcase {
 
     public function test_add_duplicate() {
         $collection = new mr_config_collection();
-        $this->expectException(coding_exception::class);
+        $this->expectException(\core\exception\coding_exception::class);
         $collection->add(new mr_config('foo', 'bar'));
         $collection->add(new mr_config('foo', 'bat'));
     }

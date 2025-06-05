@@ -231,13 +231,13 @@ class mr_helper_testwebservice extends mr_helper_abstract {
      *
      * @param string $request The last request
      * @param Zend_Http_Response $response The last response
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @return string
      * @deprecated Use core built in web service API instead
      */
     public function debuginfo($request, $response) {
         if (!$response instanceof Zend_Http_Response) {
-            throw new coding_exception('Passed invalid response');
+            throw new \core\exception\coding_exception('Passed invalid response');
         }
         $output  = "LAST REQUEST\n\n$request\n\n";
         $output .= "LAST RESPONSE\n\n";

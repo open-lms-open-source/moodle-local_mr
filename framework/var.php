@@ -78,7 +78,7 @@ class mr_var extends stdClass {
     /**
      * Set values
      *
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @param mixed $param Pass an array(name => value, etc) or ($name, $value)
      * @return mr_var
      */
@@ -89,12 +89,12 @@ class mr_var extends stdClass {
             $args = array_shift($args);
 
             if (!is_array($args)) {
-                throw new coding_exception('Invalid call to method set: single arg is not an array');
+                throw new \core\exception\coding_exception('Invalid call to method set: single arg is not an array');
             }
         } else if (count($args) == 2) {
             $args = array($args[0] => $args[1]);
         } else {
-            throw new coding_exception('Invalid call to method set: invalid argument count');
+            throw new \core\exception\coding_exception('Invalid call to method set: invalid argument count');
         }
         foreach ($args as $name => $value) {
             $this->$name = $value;
@@ -106,13 +106,13 @@ class mr_var extends stdClass {
      * Get a value at index
      *
      * @param string $index The index's value to fetch
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @return mr_var
      * @todo allow the passing of a default?
      */
     public function get($index) {
         if (!property_exists($this, $index)) {
-            throw new coding_exception("No entry is registered for key '$index'");
+            throw new \core\exception\coding_exception("No entry is registered for key '$index'");
         }
         return $this->$index;
     }

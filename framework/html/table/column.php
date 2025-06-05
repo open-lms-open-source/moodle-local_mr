@@ -181,7 +181,7 @@ class mr_html_table_column {
      *                      representing the format's name.  If a string, then keep passing
      *                      args which will be passed to the format's constructor
      * @return mr_html_table_column
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function add_format($format) {
         if (is_string($format)) {
@@ -193,7 +193,7 @@ class mr_html_table_column {
             $format = $helper->load("format/$format", $args);
 
         } else if (!$format instanceof mr_format_abstract) {
-            throw new coding_exception('Invalid format parameter');
+            throw new \core\exception\coding_exception('Invalid format parameter');
         }
         $this->formats[] = $format;
 
@@ -205,11 +205,11 @@ class mr_html_table_column {
      *
      * @param array $row Generally database record object
      * @return mixed
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function get_cell($row) {
         if ($row instanceof \core_table\output\html_table_row) {
-            throw new coding_exception('Cannot get cell from html_table_row classes. '.
+            throw new \core\exception\coding_exception('Cannot get cell from html_table_row classes. '.
                                        'This must be done before adding the cell to a '.
                                        'html_table_row instance');
         }

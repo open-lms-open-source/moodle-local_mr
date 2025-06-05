@@ -43,7 +43,7 @@ interface mr_fixture_interface {
      * @abstract
      * @param string $name The name of the property to get from the build results
      * @return mixed
-     * @throws moodle_exception
+     * @throws \core\exception\moodle_exception
      */
     public function get($name);
 
@@ -79,7 +79,7 @@ interface mr_fixture_interface {
      *
      * @abstract
      * @return void
-     * @throws moodle_exception
+     * @throws \core\exception\moodle_exception
      */
     public function build();
 
@@ -90,7 +90,7 @@ interface mr_fixture_interface {
      *
      * @abstract
      * @return void
-     * @throws moodle_exception
+     * @throws \core\exception\moodle_exception
      */
     public function destroy();
 

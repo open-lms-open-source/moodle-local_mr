@@ -24,7 +24,7 @@
 
 namespace local_mr\api;
 
-use coding_exception;
+use \core\exception\coding_exception;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -65,7 +65,7 @@ abstract class persistor {
 
     /**
      * @param $row
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function add_row($row) {
         if (empty($this->file)) {

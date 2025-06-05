@@ -61,11 +61,11 @@ class mr_config_collection implements IteratorAggregate, Countable {
      *
      * @param mr_config_interface $config
      * @return mr_config_collection
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function add(mr_config_interface $config) {
         if ($this->has($config->get_name())) {
-            throw new coding_exception("Configuration already exists with name {$config->get_name()}");
+            throw new \core\exception\coding_exception("Configuration already exists with name {$config->get_name()}");
         }
         $this->configs[$config->get_name()] = $config;
 
@@ -89,13 +89,13 @@ class mr_config_collection implements IteratorAggregate, Countable {
      *
      * @param string $name The name of the configuration
      * @return mixed
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function get($name) {
         if ($this->has($name)) {
             return $this->configs[$name]->get_value();
         }
-        throw new coding_exception("Attempting to access an unknown configruation: $name");
+        throw new \core\exception\coding_exception("Attempting to access an unknown configruation: $name");
     }
 
     /**
@@ -106,7 +106,7 @@ class mr_config_collection implements IteratorAggregate, Countable {
      * @param string $name The configuration name
      * @param mixed $value The configuration value
      * @return mr_config_collection
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function set($name, $value) {
         if ($this->has($name)) {
@@ -117,7 +117,7 @@ class mr_config_collection implements IteratorAggregate, Countable {
             }
             return $this;
         }
-        throw new coding_exception("Attempting to set an unknown configruation: $name");
+        throw new \core\exception\coding_exception("Attempting to set an unknown configruation: $name");
     }
 
     /**

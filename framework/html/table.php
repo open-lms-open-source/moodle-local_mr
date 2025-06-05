@@ -362,7 +362,7 @@ class mr_html_table extends mr_readonly implements \core\output\renderable {
      * Get sort SQL
      *
      * @return string
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function get_sql_sort() {
         if (!empty($this->sort)) {
@@ -373,7 +373,7 @@ class mr_html_table extends mr_readonly implements \core\output\renderable {
                     return ''; // Nothing to fallback on
                 }
                 if (!array_key_exists($this->defaultsort, $columns)) {
-                    throw new coding_exception('Invalid column sorting ('.$this->defaultsort.')');
+                    throw new \core\exception\coding_exception('Invalid column sorting ('.$this->defaultsort.')');
                 }
                 $column = $columns[$this->defaultsort];
             } else {
@@ -460,7 +460,7 @@ class mr_html_table extends mr_readonly implements \core\output\renderable {
      * @param string $format Format name or mr_format_abstract
      * @param mixed $x Keep passing params to pass to the format's constructor
      * @return mr_html_table
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function add_format($columns, $format) {
         // Get remaining args, burn columns
@@ -472,7 +472,7 @@ class mr_html_table extends mr_readonly implements \core\output\renderable {
         }
         foreach ($columns as $column) {
             if (!array_key_exists($column, $this->columns)) {
-                throw new coding_exception("Attempting to add a format to a nonexistant column: $column");
+                throw new \core\exception\coding_exception("Attempting to add a format to a nonexistant column: $column");
             }
             call_user_func_array(array($this->columns[$column], 'add_format'), $args);
         }

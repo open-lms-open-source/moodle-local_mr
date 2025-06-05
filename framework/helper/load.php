@@ -106,7 +106,7 @@ class mr_helper_load extends mr_helper_abstract {
      * @param array $arguments Arguments to pass to the constructor
      * @param string $namespace Alter namespace
      * @return mixed
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function direct($path, $arguments = array(), $namespace = NULL) {
         global $CFG;
@@ -119,7 +119,7 @@ class mr_helper_load extends mr_helper_abstract {
             } else if (substr($path, -2) == '/*') {
                 $descend = false;
             } else {
-                throw new coding_exception("Improper use of asterisk in path ($path), use {path}/* or {path}/**");
+                throw new \core\exception\coding_exception("Improper use of asterisk in path ($path), use {path}/* or {path}/**");
             }
             $path  = rtrim($path, '/*');
             $path  = $this->resolve_namespace($path, $namespace);
@@ -197,7 +197,7 @@ class mr_helper_load extends mr_helper_abstract {
      * @param string $plugin The plugin path
      * @return mixed
      * @example controller/plugin.php
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function plugin($plugin = '*') {
         global $CFG;
@@ -219,14 +219,14 @@ class mr_helper_load extends mr_helper_abstract {
 
             // Check path
             if (!is_dir($absolute)) {
-                throw new coding_exception("Derived path is not a directory: $this->namespace/$relative");
+                throw new \core\exception\coding_exception("Derived path is not a directory: $this->namespace/$relative");
             }
 
             $plugins = get_list_of_plugins("$this->namespace/$relative", 'base');
 
             // We should find plugins!
             if (empty($plugins)) {
-                throw new coding_exception("Failed to find any plugins in $this->namespace/$relative");
+                throw new \core\exception\coding_exception("Failed to find any plugins in $this->namespace/$relative");
             }
             $loaded = array();
             foreach ($plugins as $plugin) {
@@ -249,7 +249,7 @@ class mr_helper_load extends mr_helper_abstract {
      * @param string $path Relative file path to file, EG: controller/mycontroller
      * @param string $namespace Alter namespace
      * @return void
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function file($path, $namespace = NULL) {
         global $CFG;
@@ -259,7 +259,7 @@ class mr_helper_load extends mr_helper_abstract {
         $fullpath = "$CFG->dirroot/$path.php";
 
         if (!file_exists($fullpath)) {
-            throw new coding_exception("Path does not exist: $path.php");
+            throw new \core\exception\coding_exception("Path does not exist: $path.php");
         }
         require_once($fullpath);
     }
@@ -270,7 +270,7 @@ class mr_helper_load extends mr_helper_abstract {
      * @param string $path Relative file path to class definition, EG: controller/mycontroller
      * @param string $namespace Alter namespace
      * @return string
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function classname($path, $namespace = NULL) {
         $path = $this->resolve_namespace($path, $namespace);
@@ -295,7 +295,7 @@ class mr_helper_load extends mr_helper_abstract {
         if (class_exists($newclass, false)) {
             return $newclass;
         }
-        throw new coding_exception("Failed to derive classname from path: $path");
+        throw new \core\exception\coding_exception("Failed to derive classname from path: $path");
     }
 
     /**
@@ -304,7 +304,7 @@ class mr_helper_load extends mr_helper_abstract {
      * @param string $classname Name of class
      * @param array $arguments Arguments to pass to the class constructor
      * @return mixed
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function instance($classname, $arguments = array()) {
         $reflection = new ReflectionClass($classname);
@@ -316,7 +316,7 @@ class mr_helper_load extends mr_helper_abstract {
                 return $reflection->newInstance();
             }
         }
-        throw new coding_exception("Failed to instantiate class: $classname");
+        throw new \core\exception\coding_exception("Failed to instantiate class: $classname");
     }
 
     /**

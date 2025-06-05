@@ -107,7 +107,7 @@ class mr_db_queue {
      *
      * @param mr_db_record|mr_db_record[] $records Can be a single record or an array of records
      *                       Records must be of type mr_db_record
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @return mr_db_queue
      */
     public function add($records) {
@@ -117,7 +117,7 @@ class mr_db_queue {
 
         foreach ($records as $record) {
             if (!$record instanceof mr_db_record) {
-                throw new coding_exception('Invalid object passed');
+                throw new \core\exception\coding_exception('Invalid object passed');
 
             } else if ($record->is_update()) {
                 //update counter
@@ -203,7 +203,7 @@ class mr_db_queue {
      * Flushes inserts
      *
      * @param string $table The table to flush
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @return void
      */
     protected function _flush_inserts($table) {
@@ -232,7 +232,7 @@ class mr_db_queue {
                 // Get the record values in order of our columns
                 foreach ($columns as $column) {
                     if (!array_key_exists($column, $metacolumns)) {
-                        throw new coding_exception("Using an non-existant column ($column) for table ($table)");
+                        throw new \core\exception\coding_exception("Using an non-existant column ($column) for table ($table)");
 
                     } else if (isset($record->$column)) {
                         $params[] = $this->normalise_value($mrtable, $metacolumns[$column], $record->$column);
@@ -257,7 +257,7 @@ class mr_db_queue {
      * Flushes deletes
      *
      * @param string $table The table to flush
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      * @return void
      */
     protected function _flush_deletes($table) {
@@ -268,7 +268,7 @@ class mr_db_queue {
             unset($this->deletes[$table]);  // Clear it before we send to DB
 
             if (!$DB->delete_records_select($table, 'id IN('.implode(',', $deletes).')')) {
-                throw new coding_exception('Failed to perform bulk delete');
+                throw new \core\exception\coding_exception('Failed to perform bulk delete');
             }
         }
     }

@@ -52,8 +52,8 @@ abstract class mr_fixture_abstract implements mr_fixture_interface {
      *
      * @param string $name The name of the property to get from the build results
      * @return mixed
-     * @throws moodle_exception
-     * @throws coding_exception
+     * @throws \core\exception\moodle_exception
+     * @throws \core\exception\coding_exception
      */
     public function get($name) {
         $results = $this->get_results();
@@ -66,7 +66,7 @@ abstract class mr_fixture_abstract implements mr_fixture_interface {
         } else {
             $debuginfo = null;
         }
-        throw new coding_exception("The property '$name'' does not exist in the fixture build results.", $debuginfo);
+        throw new \core\exception\coding_exception("The property '$name'' does not exist in the fixture build results.", $debuginfo);
     }
 
     /**

@@ -64,7 +64,7 @@ abstract class mr_controller_block extends mr_controller {
      *
      * @return void
      * @see $blockname, $instance
-     * @throws coding_exception
+     * @throws \core\exception\coding_exception
      */
     public function setup() {
         global $DB;
