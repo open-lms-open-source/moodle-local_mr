@@ -15,16 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2024 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2025 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Open LMS 框架';
-$string['addedactivity'] = '{$a->modname} 已由 {$a->fullname} 新增';
+$string['addedactivity'] = '{$a->fullname} 已新增 {$a->modname}';
 $string['basichtml'] = '基本 HTML';
-$string['deletedactivity'] = '{$a->modname} 已由 {$a->fullname} 刪除';
+$string['deletedactivity'] = '已由 {$a->fullname} 刪除 {$a->modname}';
 $string['export'] = '匯出：';
 $string['filter'] = '篩選器';
 $string['loadingdotdotdot'] = '正在載入...';
@@ -45,10 +45,10 @@ $string['popuperrors'] = '在新視窗中開啟文件錯誤';
 $string['reportsql'] = '報告 SQL';
 $string['reset'] = '重設';
 $string['standard'] = '標準';
-$string['updatedactivity'] = '{$a->modname} 已由 {$a->fullname} 更新';
+$string['updatedactivity'] = '{$a->fullname} 已更新 {$a->modname}';
 $string['xdays'] = '{$a} 天';
 $string['xhours'] = '{$a} 小時';
-$string['xminutes'] = '{$a} 分';
+$string['xminutes'] = '{$a} 分鐘';
 $string['xmonths'] = '{$a} 個月';
 $string['xweeks'] = '{$a} 週';
 $string['toomanyrows'] = '報告將傳回 {$a->total} 列，其超過最大允許列數 {$a->max}。若可使用篩選器，請利用篩選器減少結果數量。';
