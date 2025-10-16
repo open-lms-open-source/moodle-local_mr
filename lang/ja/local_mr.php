@@ -15,16 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2024 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2025 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Open LMSフレームワーク';
-$string['addedactivity'] = '{$a->modname} を {$a->fullname} さんが追加しました';
+$string['addedactivity'] = '{$a->fullname} によって {$a->modname} が追加されました';
 $string['basichtml'] = '基本HTML';
-$string['deletedactivity'] = '{$a->modname} を {$a->fullname} さんが削除しました';
+$string['deletedactivity'] = '{$a->fullname} によって {$a->modname} が削除されました';
 $string['export'] = 'エクスポート：';
 $string['filter'] = 'フィルタ';
 $string['loadingdotdotdot'] = 'ロード中...';
@@ -45,11 +45,11 @@ $string['popuperrors'] = '新しいウィンドウでドキュメントのエラ
 $string['reportsql'] = 'SQLレポート';
 $string['reset'] = 'リセット';
 $string['standard'] = '標準';
-$string['updatedactivity'] = '{$a->modname} を {$a->fullname} さんが更新しました';
+$string['updatedactivity'] = '{$a->fullname} によって {$a->modname} が更新されました';
 $string['xdays'] = '{$a} 日';
 $string['xhours'] = '{$a} 時間';
 $string['xminutes'] = '{$a} 分';
-$string['xmonths'] = '{$a} ヶ月';
+$string['xmonths'] = '{$a} ヵ月';
 $string['xweeks'] = '{$a} 週間';
 $string['toomanyrows'] = 'レポートの行数は {$a->total} 行です。これは、最大許容行数の {$a->max} を超えています。フィルタを利用できる場合は、フィルタを使用して、結果の数を減らしてください。';
 $string['rowsperpage'] = '1ページあたりの行数';
