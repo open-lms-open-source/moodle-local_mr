@@ -15,16 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2024 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2025 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Open LMS Framework';
-$string['addedactivity'] = '{$a->modname}toegevoegd door {$a->fullname}';
+$string['addedactivity'] = '{$a->modname} toegevoegd door {$a->fullname}';
 $string['basichtml'] = 'Basis HTML';
-$string['deletedactivity'] = '{$a->modname} is verwijderd door {$a->fullname}';
+$string['deletedactivity'] = '{$a->modname} verwijderd door {$a->fullname}';
 $string['export'] = 'Export:';
 $string['filter'] = 'Filter';
 $string['loadingdotdotdot'] = 'Laden...';
@@ -45,9 +45,9 @@ $string['popuperrors'] = 'Open documentfouten in een nieuw venster';
 $string['reportsql'] = 'Rapport-SQL';
 $string['reset'] = 'Terugzetten';
 $string['standard'] = 'Standaard';
-$string['updatedactivity'] = '{$a->modname} is bijgewerkt door {$a->fullname}';
+$string['updatedactivity'] = '{$a->modname} bijgewerkt door {$a->fullname}';
 $string['xdays'] = '{$a} dagen';
-$string['xhours'] = '{$a} uren';
+$string['xhours'] = '{$a} uur';
 $string['xminutes'] = '{$a} minuten';
 $string['xmonths'] = '{$a} maanden';
 $string['xweeks'] = '{$a} weken';
