@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2024 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2025 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -45,13 +45,13 @@ $string['popuperrors'] = 'Belge hatalarını yeni pencerede aç';
 $string['reportsql'] = 'SQL\'i raporla';
 $string['reset'] = 'Sıfırla';
 $string['standard'] = 'Standart';
-$string['updatedactivity'] = '{$a->modname}, {$a->fullname} tarafından güncelleştirildi';
+$string['updatedactivity'] = '{$a->modname}, {$a->fullname} tarafından güncellendi';
 $string['xdays'] = '{$a} gün';
 $string['xhours'] = '{$a} saat';
 $string['xminutes'] = '{$a} dakika';
 $string['xmonths'] = '{$a} ay';
 $string['xweeks'] = '{$a} hafta';
-$string['toomanyrows'] = 'Rapor, {$a->total} satır döndürüyor; bu da izin verilen maksimum {$a->max} miktarından fazla. Bir filtre varsa sonuç sayısını azaltmak için lütfen filtreyi kullanın.';
+$string['toomanyrows'] = 'Rapor, {$a->total} satır döndürüyor; bu da izin verilen maksimum satır sayısından ({$a->max}) fazla. Bir filtre varsa sonuç sayısını azaltmak için lütfen filtreyi kullanın.';
 $string['rowsperpage'] = 'Sayfa başına satır';
 $string['tablesortedbydesc'] = 'Tablo sıralama ölçütü {$a}, azalan.';
 $string['tablesortedbyasc'] = 'Tablo sıralama ölçütü {$a}, artan.';
