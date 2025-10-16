@@ -15,16 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2024 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2025 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Open LMS Framework';
-$string['addedactivity'] = 'Tilføjede {$a->modname} inden {$a->fullname}';
+$string['addedactivity'] = 'Tilføjet {$a->modname} af {$a->fullname}';
 $string['basichtml'] = 'Grundlæggende HTML';
-$string['deletedactivity'] = 'Slettede {$a->modname} inden {$a->fullname}';
+$string['deletedactivity'] = 'Slettet {$a->modname} af {$a->fullname}';
 $string['export'] = 'Eksportér:';
 $string['filter'] = 'Filtrer';
 $string['loadingdotdotdot'] = 'Indlæser ...';
@@ -45,7 +45,7 @@ $string['popuperrors'] = 'Åbn dokumentfejl i et nyt vindue';
 $string['reportsql'] = 'Rapportér SQL';
 $string['reset'] = 'Nulstil';
 $string['standard'] = 'Standard';
-$string['updatedactivity'] = 'Opdaterede {$a->modname} inden {$a->fullname}';
+$string['updatedactivity'] = 'Opdateret {$a->modname} af {$a->fullname}';
 $string['xdays'] = '{$a} dage';
 $string['xhours'] = '{$a} timer';
 $string['xminutes'] = '{$a} minutter';
