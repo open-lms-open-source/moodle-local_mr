@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2024 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2025 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -24,7 +24,7 @@ defined('MOODLE_INTERNAL') || die();
 $string['pluginname'] = 'Estrutura do Open LMS';
 $string['addedactivity'] = '{$a->modname} adicionado por {$a->fullname}';
 $string['basichtml'] = 'HTML básico';
-$string['deletedactivity'] = '{$a->modname} excluído por {$a->fullname}';
+$string['deletedactivity'] = 'Excluída {$a->modname} por {$a->fullname}';
 $string['export'] = 'Exportar:';
 $string['filter'] = 'Filtro';
 $string['loadingdotdotdot'] = 'Carregando…';
@@ -45,7 +45,7 @@ $string['popuperrors'] = 'Abrir erros de documentos em uma nova janela';
 $string['reportsql'] = 'SQL de relatório';
 $string['reset'] = 'Limpar';
 $string['standard'] = 'Padrão';
-$string['updatedactivity'] = '{$a->modname} atualizado por {$a->fullname}';
+$string['updatedactivity'] = 'Atualizado {$a->modname} por {$a->fullname}';
 $string['xdays'] = '{$a} dias';
 $string['xhours'] = '{$a} horas';
 $string['xminutes'] = '{$a} minutos';

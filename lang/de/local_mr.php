@@ -15,16 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2024 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2025 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Open LMS Framework';
-$string['addedactivity'] = '{$a->modname} hinzugefügt von {$a->fullname}';
+$string['addedactivity'] = '{$a->modname} von {$a->fullname} hinzugefügt';
 $string['basichtml'] = 'Basic HTML';
-$string['deletedactivity'] = '{$a->modname} gelöscht von {$a->fullname}';
+$string['deletedactivity'] = '{$a->modname} von {$a->fullname} gelöscht';
 $string['export'] = 'Exportieren:';
 $string['filter'] = 'Filter';
 $string['loadingdotdotdot'] = 'Wird geladen...';
@@ -45,11 +45,11 @@ $string['popuperrors'] = 'Dokumentenfehler in neuem Fenster öffnen';
 $string['reportsql'] = 'Bericht-SQL';
 $string['reset'] = 'Zurücksetzen';
 $string['standard'] = 'Standard';
-$string['updatedactivity'] = '{$a->modname} aktualisiert von {$a->fullname}';
+$string['updatedactivity'] = '{$a->modname} von {$a->fullname} aktualisiert';
 $string['xdays'] = '{$a} Tage';
 $string['xhours'] = '{$a} Stunden';
 $string['xminutes'] = '{$a} Minuten';
-$string['xmonths'] = '{$a} Monat(en)';
+$string['xmonths'] = '{$a} Monate';
 $string['xweeks'] = '{$a} Wochen';
 $string['toomanyrows'] = 'Der Bericht würde {$a->total} Zeilen ausgeben, was die maximal erlaubte Zeilenanzahl von {$a->max} überschreitet. Wenn ein Filter zur Verfügung steht, verwenden Sie diesen bitte, um die Anzahl der Ergebnisse zu reduzieren.';
 $string['rowsperpage'] = 'Zeilen pro Seite';

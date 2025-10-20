@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2024 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2025 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -46,12 +46,12 @@ $string['reportsql'] = 'تقرير SQL';
 $string['reset'] = 'إعادة تعيين';
 $string['standard'] = 'قياسي';
 $string['updatedactivity'] = 'تم تحديث {$a->modname} بواسطة {$a->fullname}';
-$string['xdays'] = '{$a} أيام';
-$string['xhours'] = '{$a} ساعات';
-$string['xminutes'] = '{$a} دقائق';
-$string['xmonths'] = '{$a} أشهر';
-$string['xweeks'] = '{$a} أسابيع';
-$string['toomanyrows'] = 'سيقوم التقرير بإرجاع {‎$a->total} من الصفوف، وهو أكبر من الحد الأقصى للمقدار المسموح به البالغ {‎$a->max}. في حال توفر عامل تصفية، يُرجى استخدامه في تقليل عدد النتائج.';
+$string['xdays'] = '{$a} من الأيام';
+$string['xhours'] = '{$a} من الساعات';
+$string['xminutes'] = '{$a} من الدقائق';
+$string['xmonths'] = '{$a} من الأشهر';
+$string['xweeks'] = '{$a} من الأسابيع';
+$string['toomanyrows'] = 'سيقوم التقرير بإرجاع {$a->total} من الصفوف، وهو أكبر من الحد الأقصى للمقدار المسموح به البالغ {$a->max}.  في حال توفر عامل تصفية، يُرجى استخدامه في تقليل عدد النتائج.';
 $string['rowsperpage'] = 'صفوف في كل صفحة';
 $string['tablesortedbydesc'] = 'جدول تم فرزه حسب {$a}، تنازليًا.';
 $string['tablesortedbyasc'] = 'جدول تم فرزه حسب {$a}، تصاعديًا.';

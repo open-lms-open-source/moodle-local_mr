@@ -15,22 +15,22 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2024 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2025 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Marco de Open&nbsp;LMS';
-$string['addedactivity'] = '{$a->modname} agregado por {$a->fullname}';
+$string['pluginname'] = 'Marco de Open LMS';
+$string['addedactivity'] = 'Se ha agregado {$a->modname} por {$a->fullname}';
 $string['basichtml'] = 'HTML básico';
-$string['deletedactivity'] = '{$a->modname} eliminado por {$a->fullname}';
+$string['deletedactivity'] = '{$a->modname} eliminada por {$a->fullname}';
 $string['export'] = 'Exportar:';
 $string['filter'] = 'Filtro';
 $string['loadingdotdotdot'] = 'Cargando...';
 $string['local_mr_docs'] = 'Docs';
-$string['moodleroomsframework'] = 'Marco de Open&nbsp;LMS';
-$string['mrframework'] = 'Marco de Open&nbsp;LMS';
+$string['moodleroomsframework'] = 'Marco de Open LMS';
+$string['mrframework'] = 'Marco de Open LMS';
 $string['nolimit'] = 'Sin límites';
 $string['oneday'] = '1 día';
 $string['onemonth'] = '1 mes';
@@ -63,4 +63,4 @@ $string['paginatorprevlabel'] = 'ant.';
 $string['paginatorprevtitle'] = 'Página anterior';
 $string['paginatornextlabel'] = 'sig.';
 $string['paginatornexttitle'] = 'Página siguiente';
-$string['privacy:metadata'] = 'El complemento del Marco de Open&nbsp;LMS no almacena datos personales.';
+$string['privacy:metadata'] = 'El complemento del Marco de Open LMS no almacena datos personales.';

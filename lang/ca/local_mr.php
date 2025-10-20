@@ -15,16 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2024 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2025 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Open LMS Framework';
-$string['addedactivity'] = '{$a->modname} afegit per {$a->fullname}';
+$string['addedactivity'] = '{$a->fullname} ha afegit {$a->modname}';
 $string['basichtml'] = 'HTML bàsic';
-$string['deletedactivity'] = '{$a->modname} suprimit per {$a->fullname}';
+$string['deletedactivity'] = '{$a->fullname} ha suprimit {$a->modname}';
 $string['export'] = 'Exporta:';
 $string['filter'] = 'Filtre';
 $string['loadingdotdotdot'] = 'S\'està carregant...';
@@ -45,16 +45,16 @@ $string['popuperrors'] = 'Obre els errors dels documents en una finestra nova';
 $string['reportsql'] = 'Informe SQL';
 $string['reset'] = 'Reinicia';
 $string['standard'] = 'Estandard';
-$string['updatedactivity'] = '{$a->modname} actualitzat per {$a->fullname}';
+$string['updatedactivity'] = '{$a->fullname} ha actualitzat {$a->modname}';
 $string['xdays'] = '{$a} dies';
 $string['xhours'] = '{$a} hores';
 $string['xminutes'] = '{$a} minuts';
 $string['xmonths'] = '{$a} mesos';
 $string['xweeks'] = '{$a} setmanes';
-$string['toomanyrows'] = 'L’informe retornarà {$a->total} files i supera la quantitat màxima permesa de {$a->max}. Si hi ha un filtre disponible, feu-lo servir per disminuir el nombre de resultats.';
+$string['toomanyrows'] = 'L\'informe retornarà {$a->total} files, cosa que supera la quantitat màxima permesa ({$a->max}). Si hi ha un filtre disponible, feu-lo servir per reduir el nombre de resultats.';
 $string['rowsperpage'] = 'Files per pàgina';
-$string['tablesortedbydesc'] = 'Taula ordenada per {$a}, descendent.';
-$string['tablesortedbyasc'] = 'Taula ordenada per {$a}, ascendent.';
+$string['tablesortedbydesc'] = 'Taula ordenada per {$a}, en ordre descendent.';
+$string['tablesortedbyasc'] = 'Taula ordenada per {$a}, en ordre ascendent.';
 $string['paginatorfirstlabel'] = 'primer';
 $string['paginatorfirsttitle'] = 'Primera pàgina';
 $string['paginatorlastlabel'] = 'últim';
