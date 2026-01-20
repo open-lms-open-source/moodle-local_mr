@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class mr_html_filter_autocompleteid</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class mr_html_filter_autocompleteid</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MR HTML Filter Autocomplete with IDs</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Mark Nielsen</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_html---filter---autocompleteid.php.html">/html/filter/autocompleteid.php</a> (line <span class="field">37</span>)
+		</p>
+		
+				
+		<pre><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a>
+   |
+   --mr_html_filter_autocompleteid</pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																								<div class="var-title">
+					<span class="var-type">array</span>
+					<a href="#$options" title="details" class="var-name">$options</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																														
+				<div class="method-definition">
+											<span class="method-result">mr_html_filter_autocompleteid</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$name</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$label</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$options</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$advanced</span> = <span class="var-default">false</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$field</span> = <span class="var-default">NULL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#add_element" title="details" class="method-name">add_element</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$mform</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#preferences_defaults" title="details" class="method-name">preferences_defaults</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#sql" title="details" class="method-name">sql</a>
+										()
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+<a name="var$options" id="$options"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$options</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">46</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Autocomplete options</p>
+<p class="description"><p>Options must be: array(recordID =&gt; 'display text')</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_html_filter_abstract.html#var$advanced">mr_html_filter_abstract::$advanced</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_html_filter_abstract.html#var$disabledif">mr_html_filter_abstract::$disabledif</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_html_filter_abstract.html#var$field">mr_html_filter_abstract::$field</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_html_filter_abstract.html#var$helpbutton">mr_html_filter_abstract::$helpbutton</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_html_filter_abstract.html#var$label">mr_html_filter_abstract::$label</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_html_filter_abstract.html#var$name">mr_html_filter_abstract::$name</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_html_filter_abstract.html#var$preferences">mr_html_filter_abstract::$preferences</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">53</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Adding an options param for the select options</p>
+<p class="description"><p>Options must be: array(recordID =&gt; 'display text')</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mr_html_filter_autocompleteid</span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$name</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$label</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$options</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$advanced</span> = <span class="var-default">false</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$field</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$name</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$label</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$options</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$advanced</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$field</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../mr/mr_html_filter_abstract.html#method__construct">mr_html_filter_abstract::__construct()</a></dt>
+						<dd>Construct</dd>
+					</dl>
+			
+	</div>
+<a name="methodadd_element" id="add_element"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">add_element</span> (line <span class="line-number">68</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add text input for autocomplete and hidden field to store ID</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			add_element
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$mform</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$mform</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../mr/mr_html_filter_abstract.html#methodadd_element">mr_html_filter_abstract::add_element()</a></dt>
+						<dd>Add filter form element</dd>
+					</dl>
+			
+	</div>
+<a name="methodpreferences_defaults" id="preferences_defaults"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">preferences_defaults</span> (line <span class="line-number">61</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Defaults for two fields</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			preferences_defaults
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../mr/mr_html_filter_abstract.html#methodpreferences_defaults">mr_html_filter_abstract::preferences_defaults()</a></dt>
+						<dd>Filter defaults</dd>
+					</dl>
+			
+	</div>
+<a name="methodsql" id="sql"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">sql</span> (line <span class="line-number">91</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Restrict to value</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			sql
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../mr/mr_html_filter_abstract.html#methodsql">mr_html_filter_abstract::sql()</a></dt>
+						<dd>Generate this filter's SQL</dd>
+					</dl>
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../mr/mr_html_filter_abstract.html">mr_html_filter_abstract</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../mr/mr_html_filter_abstract.html#method__construct">mr_html_filter_abstract::__construct()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_html_filter_abstract.html#methodadd_disabledif">mr_html_filter_abstract::add_disabledif()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_html_filter_abstract.html#methodadd_element">mr_html_filter_abstract::add_element()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_html_filter_abstract.html#methodadd_elements">mr_html_filter_abstract::add_elements()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_html_filter_abstract.html#methodadd_helpbutton">mr_html_filter_abstract::add_helpbutton()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_html_filter_abstract.html#methodget_element_name">mr_html_filter_abstract::get_element_name()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_html_filter_abstract.html#methodget_field">mr_html_filter_abstract::get_field()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_html_filter_abstract.html#methodget_name">mr_html_filter_abstract::get_name()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_html_filter_abstract.html#methodpreferences_defaults">mr_html_filter_abstract::preferences_defaults()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_html_filter_abstract.html#methodpreferences_delete">mr_html_filter_abstract::preferences_delete()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_html_filter_abstract.html#methodpreferences_get">mr_html_filter_abstract::preferences_get()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_html_filter_abstract.html#methodpreferences_init">mr_html_filter_abstract::preferences_init()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_html_filter_abstract.html#methodpreferences_update">mr_html_filter_abstract::preferences_update()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_html_filter_abstract.html#methodsql">mr_html_filter_abstract::sql()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_html_filter_abstract.html#method__toString">mr_html_filter_abstract::__toString()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:46 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

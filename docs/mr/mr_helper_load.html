@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class mr_helper_load</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class mr_helper_load</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MR Helper Load</p>
+<p class="description"><p>This helper assists with dynamically including  class files and also with dynamically instantiating  those classes.</p><p>This class is namespace driven.  A namespace is a relative  directory path from Moodle's directory root. Examples: <ul><li>local/mr/framework</li><li>blocks/helloworld</li></ul>  Files are loaded based on the passed path and current or  passed namespace.  Once combined, a file name is generated.  Example: path = foo/bar, namespace = blocks/helloworld, derived file  path would be /path/to/moodle/blocks/helloworld/foo/bar.php</p><p>Class names are derived in the same way, but no &quot;.php&quot; and  the forwardslahes are replaced with underscores.  So, the above  example would load the class: blocks_helloworld_foo_bar.</p><p>There are currently two exceptions to the generation of class names: <ol><li>For class names, blocks can be block as Moodle very often ignores the &quot;s&quot;, but the namespace MUST be blocks</li><li>lib_mr gets switched to just mr.  This is so all the mr classes are not lib_mr_*</li></ol></p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Mark Nielsen</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_helper---load.php.html">/helper/load.php</a> (line <span class="field">59</span>)
+		</p>
+		
+				
+		<pre><a href="../mr/mr_helper_abstract.html">mr_helper_abstract</a>
+   |
+   --mr_helper_load</pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																								<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$namespace" title="details" class="var-name">$namespace</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																						
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#classname" title="details" class="method-name">classname</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$path</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span> = <span class="var-default">NULL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#direct" title="details" class="method-name">direct</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$path</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$arguments</span> = <span class="var-default">array()</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span> = <span class="var-default">NULL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#file" title="details" class="method-name">file</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$path</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span> = <span class="var-default">NULL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#get_namespace" title="details" class="method-name">get_namespace</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#instance" title="details" class="method-name">instance</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$classname</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$arguments</span> = <span class="var-default">array()</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#plugin" title="details" class="method-name">plugin</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$plugin</span> = <span class="var-default">'*'</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#resolve_namespace" title="details" class="method-name">resolve_namespace</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$path</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_helper_load.html">mr_helper_load</a></span>
+										<a href="#set_namespace" title="details" class="method-name">set_namespace</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#_set_helper_namespace" title="details" class="method-name">_set_helper_namespace</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span>)
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+<a name="var$namespace" id="$namespace"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$namespace</span>
+			 = <span class="var-default"> 'local/mr/framework'</span>			(line <span class="line-number">65</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Default name space for loading files/classes</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../mr/mr_helper_abstract.html">mr_helper_abstract</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_helper_abstract.html#var$_helper_namespace">mr_helper_abstract::$_helper_namespace</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodclassname" id="classname"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">classname</span> (line <span class="line-number">275</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Generate a class name from path</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			classname
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$path</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$path</span><span class="var-description">: Relative file path to class definition, EG: controller/mycontroller</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$namespace</span><span class="var-description">: Alter namespace</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddirect" id="direct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">direct</span> (line <span class="line-number">111</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Load an instance from a file</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			direct
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$path</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$arguments</span> = <span class="var-default">array()</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$path</span><span class="var-description">: Relative file path to class definition, EG: controller/mycontroller                      Include &quot;/*&quot; at the end of path to load all files in path                      Include &quot;/**&quot; at the end of path to load all files in path and sub directories</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$arguments</span><span class="var-description">: Arguments to pass to the constructor</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$namespace</span><span class="var-description">: Alter namespace</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodfile" id="file"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">file</span> (line <span class="line-number">254</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Load a file</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			file
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$path</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$path</span><span class="var-description">: Relative file path to file, EG: controller/mycontroller</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$namespace</span><span class="var-description">: Alter namespace</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodget_namespace" id="get_namespace"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_namespace</span> (line <span class="line-number">96</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the current namespace</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			get_namespace
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodinstance" id="instance"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">instance</span> (line <span class="line-number">309</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Generate an instance of a class</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			instance
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$classname</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$arguments</span> = <span class="var-default">array()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$classname</span><span class="var-description">: Name of class</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$arguments</span><span class="var-description">: Arguments to pass to the class constructor</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodplugin" id="plugin"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">plugin</span> (line <span class="line-number">202</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Load plugins</p>
+<p class="description"><p>This method does not augment the namespace, use  set_namespace if it needs to be modified.</p><p>Based on the following layout: <ul><li>/namespace/plugin/PLUGINPATH/class.php</li></ul> Where PLUGINPATH is a the plugin's directory or directory  path, meaning you could have multiple levels of plugins.</p><p>Examples: <ul><li>/namespace/plugin/foo/class.php</li><li>/namespace/plugin/foo/bar/class.php</li><li>/namespace/plugin/foo/bar/baz/class.php</li></ul>  Do not name any plugins &quot;base&quot;.  This is reserved for  any plugins that want to use /namespace/plugin/base/class.php  as their plugin's base class.</p><p>Example Calls to this method  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;If&nbsp;you&nbsp;have&nbsp;the&nbsp;single&nbsp;plugin&nbsp;type&nbsp;layout</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$helper&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_helper.html">mr_helper</a></span><span class="src-sym">(</span><span class="src-str">'namespace/path'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$helper</span><span class="src-sym">-&gt;</span><span class="src-id">load</span><span class="src-sym">-&gt;</span><a href="../mr/mr_helper_load.html#methodplugin">plugin</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="src-comm">//&nbsp;Loads&nbsp;all&nbsp;plugins</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$helper</span><span class="src-sym">-&gt;</span><span class="src-id">load</span><span class="src-sym">-&gt;</span><a href="../mr/mr_helper_load.html#methodplugin">plugin</a><span class="src-sym">(</span><span class="src-str">'*'</span><span class="src-sym">)</span><span class="src-sym">;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="src-comm">//&nbsp;Loads&nbsp;all&nbsp;plugins</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$helper</span><span class="src-sym">-&gt;</span><span class="src-id">load</span><span class="src-sym">-&gt;</span><a href="../mr/mr_helper_load.html#methodplugin">plugin</a><span class="src-sym">(</span><span class="src-str">'bar'</span><span class="src-sym">)</span><span class="src-sym">;&nbsp;&nbsp;</span><span class="src-comm">//&nbsp;Loads&nbsp;a&nbsp;plugin&nbsp;with&nbsp;name&nbsp;'bar'</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;If&nbsp;you&nbsp;have&nbsp;the&nbsp;Multiple&nbsp;plugin&nbsp;type&nbsp;layout</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$helper&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_helper.html">mr_helper</a></span><span class="src-sym">(</span><span class="src-str">'namespace/path'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$helper</span><span class="src-sym">-&gt;</span><span class="src-id">load</span><span class="src-sym">-&gt;</span><a href="../mr/mr_helper_load.html#methodplugin">plugin</a><span class="src-sym">(</span><span class="src-str">'foo/*'</span><span class="src-sym">)</span><span class="src-sym">;&nbsp;&nbsp;&nbsp;</span><span class="src-comm">//&nbsp;This&nbsp;will&nbsp;load&nbsp;all&nbsp;plugins&nbsp;of&nbsp;type&nbsp;foo</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$helper</span><span class="src-sym">-&gt;</span><span class="src-id">load</span><span class="src-sym">-&gt;</span><a href="../mr/mr_helper_load.html#methodplugin">plugin</a><span class="src-sym">(</span><span class="src-str">'foo/bar'</span><span class="src-sym">)</span><span class="src-sym">;&nbsp;</span><span class="src-comm">//&nbsp;This&nbsp;will&nbsp;load&nbsp;the&nbsp;bar&nbsp;plugin&nbsp;of&nbsp;type&nbsp;foo</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;If&nbsp;you&nbsp;have&nbsp;arguments,&nbsp;you&nbsp;can&nbsp;use&nbsp;any&nbsp;of&nbsp;the&nbsp;above&nbsp;and&nbsp;then</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;keep&nbsp;passing&nbsp;arguments.&nbsp;&nbsp;The&nbsp;arguments&nbsp;will&nbsp;be&nbsp;passed&nbsp;to&nbsp;every</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;plugin&nbsp;that&nbsp;gets&nbsp;created</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$helper&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_helper.html">mr_helper</a></span><span class="src-sym">(</span><span class="src-str">'namespace/path'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Loads&nbsp;plugin&nbsp;with&nbsp;name&nbsp;'one'&nbsp;and&nbsp;passes&nbsp;$arg1&nbsp;and&nbsp;$arg2&nbsp;to&nbsp;its&nbsp;constructor</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$helper</span><span class="src-sym">-&gt;</span><span class="src-id">load</span><span class="src-sym">-&gt;</span><a href="../mr/mr_helper_load.html#methodplugin">plugin</a><span class="src-sym">(</span><span class="src-str">'one'</span><span class="src-sym">,&nbsp;</span><span class="src-var">$arg1</span><span class="src-sym">,&nbsp;</span><span class="src-var">$arg2</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Loads&nbsp;all&nbsp;plugins&nbsp;and&nbsp;passes&nbsp;$arg1&nbsp;and&nbsp;$arg2&nbsp;to&nbsp;each&nbsp;plugin's&nbsp;constructor</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$helper</span><span class="src-sym">-&gt;</span><span class="src-id">load</span><span class="src-sym">-&gt;</span><a href="../mr/mr_helper_load.html#methodplugin">plugin</a><span class="src-sym">(</span><span class="src-str">'*'</span><span class="src-sym">,&nbsp;</span><span class="src-var">$arg1</span><span class="src-sym">,&nbsp;</span><span class="src-var">$arg2</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-php">?&gt;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+				<li><span class="field">example:</span> <a href="../__examplesource/exsource_ule2-maint_blocks_helloworld_controller_plugin.php_f389601b3e05a1419f1535326d57dad1.html">example</a></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			plugin
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$plugin</span> = <span class="var-default">'*'</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$plugin</span><span class="var-description">: The plugin path</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodresolve_namespace" id="resolve_namespace"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">resolve_namespace</span> (line <span class="line-number">330</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Combine path with either passed namespace or  with currently set namesapce.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			resolve_namespace
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$path</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$path</span><span class="var-description">: Relative file path to class definition, EG: controller/mycontroller</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$namespace</span><span class="var-description">: Alter namespace</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodset_namespace" id="set_namespace"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_namespace</span> (line <span class="line-number">86</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set namespace</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_helper_load.html">mr_helper_load</a></span>
+		<span class="method-name">
+			set_namespace
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$namespace</span><span class="var-description">: New namespace, EG: blocks/reports</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method_set_helper_namespace" id="_set_helper_namespace"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">_set_helper_namespace</span> (line <span class="line-number">75</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set the namespace of the mr_helper that created this instance</p>
+<p class="description"><p>Also, set our current namespace</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			_set_helper_namespace
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$namespace</span><span class="var-description">: The namespace, EG: blocks/helloworld</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../mr/mr_helper_abstract.html#method_set_helper_namespace">mr_helper_abstract::_set_helper_namespace()</a></dt>
+						<dd>Set the namespace of the mr_helper that created this instance</dd>
+					</dl>
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../mr/mr_helper_abstract.html">mr_helper_abstract</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../mr/mr_helper_abstract.html#method_set_helper_namespace">mr_helper_abstract::_set_helper_namespace()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:49 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

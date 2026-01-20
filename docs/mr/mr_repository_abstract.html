@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class mr_repository_abstract</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class mr_repository_abstract</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MR Repository Abstract</p>
+<p class="description"><p>Most basic repository mapper that maps data  from the database to an application's models  and also from the models to the database.</p><p>A repository mapper DOES NOT need to extend  this class as this class might be too simplistic  for your needs.</p><p>In the end, all database interactions that take  place between your models and the database should be  stored in this class.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Mark Nielsen</li>
+				<li><span class="field">see:</span> <a href="http://martinfowler.com/eaaCatalog/dataMapper.html">http://martinfowler.com/eaaCatalog/dataMapper.html</a></li>
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">example:</span> <a href="../__examplesource/exsource_oule2-maint_blocks_helloworld_controller_model.php_2d255e8d018617d4ffe86fe10e326331.html">See this class in action</a></li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_repository---abstract.php.html">/repository/abstract.php</a> (line <span class="field">62</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																								<div class="var-title">
+					<span class="var-type"><a href="../mr/mr_db_table.html">mr_db_table</a></span>
+					<a href="#$table" title="details" class="var-name">$table</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_repository_abstract.html">mr_repository_abstract</a></span>
+										<a href="#delete" title="details" class="method-name">delete</a>
+											(<span class="var-type"><a href="../mr/mr_model_record_abstract.html">mr_model_record_abstract</a></span>&nbsp;<span class="var-name">$model</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">boolean|<a href="../mr/mr_model_record_abstract.html">mr_model_record_abstract</a></span>
+										<a href="#get" title="details" class="method-name">get</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$conditions</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$strictness</span> = <span class="var-default">MUST_EXIST</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_model_record_abstract.html">mr_model_record_abstract</a></span>
+										<a href="#get_new_model" title="details" class="method-name">get_new_model</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_repository_recordset.html">mr_repository_recordset</a></span>
+										<a href="#get_recordset" title="details" class="method-name">get_recordset</a>
+											([<span class="var-type">null</span>&nbsp;<span class="var-name">$conditions</span> = <span class="var-default">null</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$sort</span> = <span class="var-default">''</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$limitfrom</span> = <span class="var-default">0</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$limitnum</span> = <span class="var-default">0</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_db_table.html">mr_db_table</a></span>
+										<a href="#get_table" title="details" class="method-name">get_table</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#get_table_name" title="details" class="method-name">get_table_name</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">stdClass;</span>
+										<a href="#model_to_record" title="details" class="method-name">model_to_record</a>
+											(<span class="var-type"><a href="../mr/mr_model_record_abstract.html">mr_model_record_abstract</a></span>&nbsp;<span class="var-name">$model</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_model_record_abstract.html">mr_model_record_abstract</a></span>
+										<a href="#record_to_model" title="details" class="method-name">record_to_model</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$record</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_repository_abstract.html">mr_repository_abstract</a></span>
+										<a href="#save" title="details" class="method-name">save</a>
+											(<span class="var-type"><a href="../mr/mr_model_record_abstract.html">mr_model_record_abstract</a></span>&nbsp;<span class="var-name">$model</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$bulk</span> = <span class="var-default">false</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_repository_abstract.html">mr_repository_abstract</a></span>
+										<a href="#set_table" title="details" class="method-name">set_table</a>
+											(<span class="var-type"><a href="../mr/mr_db_table.html">mr_db_table</a>|string</span>&nbsp;<span class="var-name">$table</span>)
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+<a name="var$table" id="$table"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type"><a href="../mr/mr_db_table.html">mr_db_table</a></span>
+			<span class="var-name">$table</span>
+						(line <span class="line-number">69</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The table that this repository mapper  is primarily associated with</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methoddelete" id="delete"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">delete</span> (line <span class="line-number">237</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Delete a model</p>
+<p class="description"><p>The model's ID property is required, but after  the delete, the ID property will be set to null.</p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_repository_abstract.html">mr_repository_abstract</a></span>
+		<span class="method-name">
+			delete
+		</span>
+					(<span class="var-type"><a href="../mr/mr_model_record_abstract.html">mr_model_record_abstract</a></span>&nbsp;<span class="var-name">$model</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_model_record_abstract.html">mr_model_record_abstract</a></span>
+				<span class="var-name">$model</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodget" id="get"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get</span> (line <span class="line-number">172</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get a model based on conditions</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean|<a href="../mr/mr_model_record_abstract.html">mr_model_record_abstract</a></span>
+		<span class="method-name">
+			get
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$conditions</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$strictness</span> = <span class="var-default">MUST_EXIST</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$conditions</span><span class="var-description">: Where conditions for get_record()</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$strictness</span><span class="var-description">: IGNORE_MISSING means compatible mode, false returned if record not found, debug message if more found;                         IGNORE_MULTIPLE means return first, ignore multiple records found(not recommended);                         MUST_EXIST means throw exception if no record or multiple records found</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodget_new_model" id="get_new_model"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_new_model</span> (line <span class="line-number">77</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get a new instance of the model that the repository uses</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_model_record_abstract.html">mr_model_record_abstract</a></span>
+		<span class="method-name">
+			get_new_model
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_recordset" id="get_recordset"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_recordset</span> (line <span class="line-number">192</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get a mr_repository_recordset based on conditions, etc</p>
+<p class="description"><p>Use this to iterate over your models.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_repository_recordset.html">mr_repository_recordset</a></span>
+		<span class="method-name">
+			get_recordset
+		</span>
+					([<span class="var-type">null</span>&nbsp;<span class="var-name">$conditions</span> = <span class="var-default">null</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$sort</span> = <span class="var-default">''</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$limitfrom</span> = <span class="var-default">0</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$limitnum</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">null</span>
+				<span class="var-name">$conditions</span><span class="var-description">: Where conditions for get_recordset()</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sort</span><span class="var-description">: Sorting</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$limitfrom</span><span class="var-description">: Limit from</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$limitnum</span><span class="var-description">: Limit number</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodget_table" id="get_table"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_table</span> (line <span class="line-number">114</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the table that this repository mapper uses</p>
+<p class="description"><p>Warning: this method WILL set the table property  if it's not set already.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_db_table.html">mr_db_table</a></span>
+		<span class="method-name">
+			get_table
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_table_name" id="get_table_name"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_table_name</span> (line <span class="line-number">85</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The name of the table that the repository uses</p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			get_table_name
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodmodel_to_record" id="model_to_record"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">model_to_record</span> (line <span class="line-number">130</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Convert the model to a record</p>
+<p class="description"><p>If the default implementation doesn't work,  it's 100% acceptable to override this method.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">stdClass;</span>
+		<span class="method-name">
+			model_to_record
+		</span>
+					(<span class="var-type"><a href="../mr/mr_model_record_abstract.html">mr_model_record_abstract</a></span>&nbsp;<span class="var-name">$model</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_model_record_abstract.html">mr_model_record_abstract</a></span>
+				<span class="var-name">$model</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrecord_to_model" id="record_to_model"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">record_to_model</span> (line <span class="line-number">157</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Convert a record to a model</p>
+<p class="description"><p>If the default implementation doesn't work,  it's 100% acceptable to override this method.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_model_record_abstract.html">mr_model_record_abstract</a></span>
+		<span class="method-name">
+			record_to_model
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$record</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">stdClass</span>
+				<span class="var-name">$record</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsave" id="save"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">save</span> (line <span class="line-number">212</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Save a model</p>
+<p class="description"><p>Common reason for needing to override  this method is perhaps to update a time  modified timestamp and then calling  this parent method.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_repository_abstract.html">mr_repository_abstract</a></span>
+		<span class="method-name">
+			save
+		</span>
+					(<span class="var-type"><a href="../mr/mr_model_record_abstract.html">mr_model_record_abstract</a></span>&nbsp;<span class="var-name">$model</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$bulk</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_model_record_abstract.html">mr_model_record_abstract</a></span>
+				<span class="var-name">$model</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$bulk</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodset_table" id="set_table"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_table</span> (line <span class="line-number">95</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set the table that this repository mapper  uses.  Generally you do not want to use this.</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_repository_abstract.html">mr_repository_abstract</a></span>
+		<span class="method-name">
+			set_table
+		</span>
+					(<span class="var-type"><a href="../mr/mr_db_table.html">mr_db_table</a>|string</span>&nbsp;<span class="var-name">$table</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../mr/mr_db_table.html">mr_db_table</a>|string</span>
+				<span class="var-name">$table</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:46 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

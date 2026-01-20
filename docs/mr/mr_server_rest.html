@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class mr_server_rest</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class mr_server_rest</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-vars">Vars</a>
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MR Server Rest</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Mark Nielsen</li>
+				<li><span class="field">example:</span> <a href="../__examplesource/exsource_ule2-maint_blocks_helloworld_controller_server.php_a4df7da15f0287015b6305b4c2b86e1b.html">Example client</a></li>
+				<li><span class="field">example:</span> <a href="../__examplesource/exsource_tes_joule2-maint_blocks_helloworld_webservices.php_c1a862a8922f2c4590de2cdacca66e16.html">Example server usage</a></li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_server---rest.php.html">/server/rest.php</a> (line <span class="field">39</span>)
+		</p>
+		
+				
+		<pre><a href="../mr/mr_server_abstract.html">mr_server_abstract</a>
+   |
+   --mr_server_rest</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-vars">Vars</a>
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																						
+				<div class="method-definition">
+											<span class="method-result">object|\Zend_Rest_Server</span>
+										<a href="#new_server" title="details" class="method-name">new_server</a>
+										()
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../mr/mr_server_abstract.html">mr_server_abstract</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_server_abstract.html#var$request">mr_server_abstract::$request</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_server_abstract.html#var$response">mr_server_abstract::$response</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_server_abstract.html#var$responseclass">mr_server_abstract::$responseclass</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_server_abstract.html#var$server">mr_server_abstract::$server</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_server_abstract.html#var$serviceclass">mr_server_abstract::$serviceclass</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../mr/mr_server_abstract.html#var$validator">mr_server_abstract::$validator</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-vars">Vars</a>
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodnew_server" id="new_server"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">new_server</span> (line <span class="line-number">45</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Use a Zend_Rest_Server</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">object|\Zend_Rest_Server</span>
+		<span class="method-name">
+			new_server
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../mr/mr_server_abstract.html#methodnew_server">mr_server_abstract::new_server()</a></dt>
+						<dd>Create a new Zend Server instance</dd>
+					</dl>
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../mr/mr_server_abstract.html">mr_server_abstract</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../mr/mr_server_abstract.html#method__construct">mr_server_abstract::__construct()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_server_abstract.html#methoddocument">mr_server_abstract::document()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_server_abstract.html#methodfault">mr_server_abstract::fault()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_server_abstract.html#methodget_request">mr_server_abstract::get_request()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_server_abstract.html#methodget_response">mr_server_abstract::get_response()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_server_abstract.html#methodhandle">mr_server_abstract::handle()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_server_abstract.html#methodis_successful">mr_server_abstract::is_successful()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_server_abstract.html#methodnew_server">mr_server_abstract::new_server()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_server_abstract.html#methodsecurity">mr_server_abstract::security()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_server_abstract.html#methodsend_headers">mr_server_abstract::send_headers()</a></span><br>
+													<span class="method-name"><a href="../mr/mr_server_abstract.html#methodsimpletest_report">mr_server_abstract::simpletest_report()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:51 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

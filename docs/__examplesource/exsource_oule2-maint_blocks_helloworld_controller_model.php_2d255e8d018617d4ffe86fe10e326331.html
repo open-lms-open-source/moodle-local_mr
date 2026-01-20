@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>See this class in action</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+											</head>
+		<body>
+						<h1>See this class in action</h1>
+<div class="listing">
+<div class="src-code"><ol><li><div class="src-line"><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line"><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;Model&nbsp;controller</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Mark&nbsp;Nielsen</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;block_helloworld</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><a href="http://www.php.net/defined">defined</a><span class="src-sym">(</span><span class="src-str">'MOODLE_INTERNAL'</span><span class="src-sym">)&nbsp;</span><span class="src-key">or&nbsp;</span><span class="src-key">die</span><span class="src-sym">(</span><span class="src-str">'Direct&nbsp;access&nbsp;to&nbsp;this&nbsp;script&nbsp;is&nbsp;forbidden.'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><span class="src-key">class&nbsp;</span><span class="src-id">block_helloworld_controller_model&nbsp;</span><span class="src-key">extends&nbsp;</span><a href="../mr/mr_controller_block.html">mr_controller_block</a>&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Default&nbsp;screen</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Demo&nbsp;of&nbsp;mr_model_record_abstract</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Demo&nbsp;of&nbsp;mr_repository_abstract</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">public&nbsp;</span><span class="src-key">function&nbsp;</span><span class="src-id">view_action</span><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">global&nbsp;</span><span class="src-var">$CFG</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-inc">require_once</span><span class="src-sym">(</span><span class="src-var">$CFG</span><span class="src-sym">-&gt;</span><span class="src-id">dirroot</span>.<span class="src-str">'/blocks/helloworld/repository/helloworld.php'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$output&nbsp;</span>=&nbsp;<span class="src-str">''</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">####&nbsp;DEMO&nbsp;CODE&nbsp;####</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Our&nbsp;repository</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$repo&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id">block_helloworld_repository_helloworld</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;our&nbsp;model,&nbsp;set&nbsp;some&nbsp;properties</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$bat&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id">block_helloworld_model_helloworld</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$bat</span><span class="src-sym">-&gt;</span><span class="src-id">set_name</span><span class="src-sym">(</span><span class="src-str">'Fred'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">set_foo</span><span class="src-sym">(</span><span class="src-str">'foo'</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">set_bar</span><span class="src-sym">(</span><span class="src-str">'bar'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Save&nbsp;it,&nbsp;repository&nbsp;figures&nbsp;out&nbsp;its&nbsp;an&nbsp;insert&nbsp;based&nbsp;on&nbsp;id&nbsp;property</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$repo</span><span class="src-sym">-&gt;</span><span class="src-id">save</span><span class="src-sym">(</span><span class="src-var">$bat</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$output&nbsp;</span>.=&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">helper</span><span class="src-sym">-&gt;</span><span class="src-id">dump</span><span class="src-sym">(</span><span class="src-var">$bat</span><span class="src-sym">,&nbsp;</span><span class="src-str">'$bat&nbsp;after&nbsp;insert&nbsp;(id&nbsp;is&nbsp;now&nbsp;set&nbsp;for&nbsp;us)'</span><span class="src-sym">,&nbsp;</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;...later&nbsp;we&nbsp;can&nbsp;get&nbsp;$bat</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$model&nbsp;</span>=&nbsp;<span class="src-var">$repo</span><span class="src-sym">-&gt;</span><span class="src-id">get</span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'id'&nbsp;</span>=&gt;&nbsp;<span class="src-var">$bat</span><span class="src-sym">-&gt;</span><span class="src-id">get_id</span><span class="src-sym">(</span><span class="src-sym">)))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$output&nbsp;</span>.=&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">helper</span><span class="src-sym">-&gt;</span><span class="src-id">dump</span><span class="src-sym">(</span><span class="src-var">$model</span><span class="src-sym">,&nbsp;</span><span class="src-str">'Result&nbsp;of&nbsp;$repo-&gt;get(...)'</span><span class="src-sym">,&nbsp;</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Because&nbsp;of&nbsp;the&nbsp;@method&nbsp;in&nbsp;our&nbsp;repository&nbsp;class's&nbsp;PHPDoc,</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;our&nbsp;ID&nbsp;can&nbsp;auto-complete&nbsp;on&nbsp;our&nbsp;$model,&nbsp;try&nbsp;it&nbsp;out!</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$name&nbsp;</span>=&nbsp;<span class="src-var">$model</span><span class="src-sym">-&gt;</span><span class="src-id">get_name</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$output&nbsp;</span>.=&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">helper</span><span class="src-sym">-&gt;</span><span class="src-id">dump</span><span class="src-sym">(</span><span class="src-var">$name</span><span class="src-sym">,&nbsp;</span><span class="src-str">'Result&nbsp;of&nbsp;$model-&gt;get_name()'</span><span class="src-sym">,&nbsp;</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Now&nbsp;we&nbsp;can&nbsp;delete&nbsp;Fred!</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$repo</span><span class="src-sym">-&gt;</span><span class="src-id">delete</span><span class="src-sym">(</span><span class="src-var">$model</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$output&nbsp;</span>.=&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">helper</span><span class="src-sym">-&gt;</span><span class="src-id">dump</span><span class="src-sym">(</span><span class="src-var">$model</span><span class="src-sym">,&nbsp;</span><span class="src-str">'$model&nbsp;after&nbsp;delete&nbsp;(id&nbsp;is&nbsp;now&nbsp;set&nbsp;to&nbsp;null)'</span><span class="src-sym">,&nbsp;</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Let's&nbsp;try&nbsp;iterating&nbsp;over&nbsp;a&nbsp;mr_repository_recordset!</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Make&nbsp;some&nbsp;records...</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$repo</span><span class="src-sym">-&gt;</span><span class="src-id">save</span><span class="src-sym">(</span><span class="src-key">new&nbsp;</span><span class="src-id">block_helloworld_model_helloworld</span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'name'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'Tom'</span><span class="src-sym">)))</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">save</span><span class="src-sym">(</span><span class="src-key">new&nbsp;</span><span class="src-id">block_helloworld_model_helloworld</span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'name'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'Martin'</span><span class="src-sym">)))</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">save</span><span class="src-sym">(</span><span class="src-key">new&nbsp;</span><span class="src-id">block_helloworld_model_helloworld</span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'name'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'Kris'</span><span class="src-sym">)))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Our&nbsp;repository&nbsp;mapper&nbsp;can&nbsp;return&nbsp;a&nbsp;special&nbsp;record&nbsp;set,&nbsp;mr_repository_recordset,&nbsp;that&nbsp;returns</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;instances&nbsp;of&nbsp;our&nbsp;models&nbsp;when&nbsp;we&nbsp;iterate&nbsp;over&nbsp;it</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$rs&nbsp;</span>=&nbsp;<span class="src-var">$repo</span><span class="src-sym">-&gt;</span><span class="src-id">get_recordset</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">foreach&nbsp;</span><span class="src-sym">(</span><span class="src-var">$rs&nbsp;</span><span class="src-key">as&nbsp;</span><span class="src-var">$instance</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;This&nbsp;PHPDoc&nbsp;tells&nbsp;our&nbsp;IDE&nbsp;that&nbsp;$instance&nbsp;is&nbsp;an&nbsp;instance&nbsp;of&nbsp;block_helloworld_model_helloworld</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/**&nbsp;@var&nbsp;$instance&nbsp;block_helloworld_model_helloworld&nbsp;*/</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$instance</span><span class="src-sym">-&gt;</span><span class="src-id">get_name</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;&nbsp;</span><span class="src-comm">//&nbsp;Try&nbsp;it&nbsp;out!</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$output&nbsp;</span>.=&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">helper</span><span class="src-sym">-&gt;</span><span class="src-id">dump</span><span class="src-sym">(</span><span class="src-var">$instance</span><span class="src-sym">,&nbsp;</span><span class="src-str">'$instance&nbsp;dump&nbsp;in&nbsp;foreach&nbsp;loop'</span><span class="src-sym">,&nbsp;</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$repo</span><span class="src-sym">-&gt;</span><span class="src-id">delete</span><span class="src-sym">(</span><span class="src-var">$instance</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$rs</span><span class="src-sym">-&gt;</span><span class="src-id">close</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;&nbsp;&nbsp;</span><span class="src-comm">//&nbsp;Don't&nbsp;forget&nbsp;to&nbsp;close,&nbsp;just&nbsp;like&nbsp;usual!</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">####&nbsp;DEMO&nbsp;CODE&nbsp;####</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">output</span><span class="src-sym">-&gt;</span><span class="src-id">heading</span><span class="src-sym">(</span><span class="src-str">'Demo&nbsp;of&nbsp;mr_model_record_abstract&nbsp;and&nbsp;mr_repository_abstract'</span><span class="src-sym">)</span>.</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">helper</span><span class="src-sym">-&gt;</span><span class="src-id">highlight</span><span class="src-sym">(</span>__CLASS__<span class="src-sym">,&nbsp;</span>__FUNCTION__<span class="src-sym">,&nbsp;</span><span class="src-id">true</span><span class="src-sym">)</span>.</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">output</span><span class="src-sym">-&gt;</span><span class="src-id">box</span><span class="src-sym">(</span><span class="src-var">$output</span><span class="src-sym">,&nbsp;</span><span class="src-str">'generalbox&nbsp;boxaligncenter&nbsp;boxwidthnormal'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><span class="src-sym">}</span></div></li>
+</ol></div>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:51 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

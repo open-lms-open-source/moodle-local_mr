@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class mr_db_dump</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class mr_db_dump</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MR DB Dump</p>
+<p class="description"><p>Generates a MySQL dump file from  a recordset.</p><p>Example:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;instance</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$dump&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../mr/mr_db_dump.html">mr_db_dump</a></span><span class="src-sym">(</span><span class="src-str">&quot;</span><span class="src-str"><span class="src-var">$CFG</span><span class="src-sym">-&gt;</span><span class="src-id">dataroot</span>/archive/plugin/logs.sql</span><span class="src-str">&quot;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Get&nbsp;a&nbsp;resultset</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$rs&nbsp;</span>=&nbsp;<span class="src-var">$DB</span><span class="src-sym">-&gt;</span><span class="src-id">get_recordset_sql</span><span class="src-sym">(</span><span class="src-str">'SELECT&nbsp;*&nbsp;FROM&nbsp;tablename'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Run&nbsp;the&nbsp;dump&nbsp;and&nbsp;zip&nbsp;it&nbsp;up</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$zipfile&nbsp;</span>=&nbsp;<span class="src-var">$dump</span><span class="src-sym">-&gt;</span><a href="../mr/mr_db_dump.html#methodrun">run</a><span class="src-sym">(</span><span class="src-str">'tablename'</span><span class="src-sym">,&nbsp;</span><span class="src-var">$rs</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><a href="../mr/mr_db_dump.html#methodzip">zip</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Later,&nbsp;call&nbsp;clean&nbsp;in&nbsp;some&nbsp;way&nbsp;if&nbsp;you&nbsp;want</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;to&nbsp;delete&nbsp;any&nbsp;of&nbsp;the&nbsp;files...</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$dump</span><span class="src-sym">-&gt;</span><a href="../mr/mr_db_dump.html#methodclean">clean</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-php">?&gt;</span></div></li>
+</ol></div></p><p>WARNING: Works only with mysqli</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Mark Nielsen</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_db---dump.php.html">/db/dump.php</a> (line <span class="field">61</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$file" title="details" class="var-name">$file</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">int</span>
+					<a href="#$rowsdumped" title="details" class="var-name">$rowsdumped</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																						
+				<div class="method-definition">
+											<span class="method-result">mr_db_dump</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$file</span>, [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$mustnotexist</span> = <span class="var-default">true</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$appendtime</span> = <span class="var-default">true</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_db_dump.html">mr_db_dump</a></span>
+										<a href="#archive" title="details" class="method-name">archive</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$table</span>, <span class="var-type">moodle_recordset</span>&nbsp;<span class="var-name">$rs</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_db_dump.html">mr_db_dump</a></span>
+										<a href="#clean" title="details" class="method-name">clean</a>
+											([<span class="var-type">boolean</span>&nbsp;<span class="var-name">$deletezip</span> = <span class="var-default">true</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$deletesql</span> = <span class="var-default">true</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$deleteifempty</span> = <span class="var-default">true</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_db_dump.html">mr_db_dump</a></span>
+										<a href="#dump" title="details" class="method-name">dump</a>
+											(<span class="var-type">string|<a href="../mr/mr_db_table.html">mr_db_table</a></span>&nbsp;<span class="var-name">$table</span>, <span class="var-type">moodle_recordset</span>&nbsp;<span class="var-name">$rs</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$archive</span> = <span class="var-default">false</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#get_rows_dumped" title="details" class="method-name">get_rows_dumped</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#get_zip_file" title="details" class="method-name">get_zip_file</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_db_dump.html">mr_db_dump</a></span>
+										<a href="#run" title="details" class="method-name">run</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$table</span>, <span class="var-type">moodle_recordset</span>&nbsp;<span class="var-name">$rs</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../mr/mr_db_dump.html">mr_db_dump</a></span>
+										<a href="#validate_file" title="details" class="method-name">validate_file</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#zip" title="details" class="method-name">zip</a>
+										()
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+<a name="var$file" id="$file"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$file</span>
+						(line <span class="line-number">74</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Full file path to the SQL dump file</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$rowsdumped" id="$rowsdumped"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">int</span>
+			<span class="var-name">$rowsdumped</span>
+			 = <span class="var-default"> 0</span>			(line <span class="line-number">67</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Counter - counts number of rows sent to the dump file</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">84</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constructor</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mr_db_dump</span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$file</span>, [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$mustnotexist</span> = <span class="var-default">true</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$appendtime</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$file</span><span class="var-description">: The full path to creat the SQL dump file, EG: $CFG-&gt;dataroot.'/archive/plugin/logs.sql'</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$mustnotexist</span><span class="var-description">: If the file must not exist beforehand.  Prevents overwriting files on accident.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$appendtime</span><span class="var-description">: Append the time to the file name, helps with uniqueness and informative.  EG: Appends _YYYYMMDDHHMMSS</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodarchive" id="archive"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">archive</span> (line <span class="line-number">159</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Run the dump and delete records that get added to the dump</p>
+<p class="description"><p>One of the primary entry points.  Don't use  this method when exporting very very large amounts  of rows.  It is better to use separate delete SQL to  remove the rows.</p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_db_dump.html">mr_db_dump</a></span>
+		<span class="method-name">
+			archive
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$table</span>, <span class="var-type">moodle_recordset</span>&nbsp;<span class="var-name">$rs</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$table</span><span class="var-description">: The table name or an instance of mr_db_table</span>			</li>
+					<li>
+				<span class="var-type">moodle_recordset</span>
+				<span class="var-name">$rs</span><span class="var-description">: The recordset to iterate over and add to the dump file</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodclean" id="clean"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">clean</span> (line <span class="line-number">311</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Cleanup!</p>
+<p class="description"><p>Can delete the zip file and the SQL file</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_db_dump.html">mr_db_dump</a></span>
+		<span class="method-name">
+			clean
+		</span>
+					([<span class="var-type">boolean</span>&nbsp;<span class="var-name">$deletezip</span> = <span class="var-default">true</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$deletesql</span> = <span class="var-default">true</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$deleteifempty</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$deletezip</span><span class="var-description">: Delete the zip file</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$deletesql</span><span class="var-description">: Delete the SQL file</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$deleteifempty</span><span class="var-description">: Force the deletion of both files if they are empty</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddump" id="dump"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">dump</span> (line <span class="line-number">172</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Actually runs the dump and optionally the archive</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_db_dump.html">mr_db_dump</a></span>
+		<span class="method-name">
+			dump
+		</span>
+					(<span class="var-type">string|<a href="../mr/mr_db_table.html">mr_db_table</a></span>&nbsp;<span class="var-name">$table</span>, <span class="var-type">moodle_recordset</span>&nbsp;<span class="var-name">$rs</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$archive</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string|<a href="../mr/mr_db_table.html">mr_db_table</a></span>
+				<span class="var-name">$table</span><span class="var-description">: The table name or an instance of mr_db_table</span>			</li>
+					<li>
+				<span class="var-type">moodle_recordset</span>
+				<span class="var-name">$rs</span><span class="var-description">: The recordset to iterate over and add to the dump file</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$archive</span><span class="var-description">: If true, then records dumped will also be deleted</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodget_rows_dumped" id="get_rows_dumped"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_rows_dumped</span> (line <span class="line-number">263</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the number of rows dumped</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			get_rows_dumped
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_zip_file" id="get_zip_file"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_zip_file</span> (line <span class="line-number">297</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the zip file path (may not exist!)</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			get_zip_file
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodrun" id="run"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">run</span> (line <span class="line-number">142</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Run the dump</p>
+<p class="description"><p>One of the primary entry points.</p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_db_dump.html">mr_db_dump</a></span>
+		<span class="method-name">
+			run
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$table</span>, <span class="var-type">moodle_recordset</span>&nbsp;<span class="var-name">$rs</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$table</span><span class="var-description">: The table name or an instance of mr_db_table</span>			</li>
+					<li>
+				<span class="var-type">moodle_recordset</span>
+				<span class="var-name">$rs</span><span class="var-description">: The recordset to iterate over and add to the dump file</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodvalidate_file" id="validate_file"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">validate_file</span> (line <span class="line-number">110</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Validates the file path</p>
+<p class="description"><p>Validation steps: <ul><li>The path must be set.</li><li>The file extension must be 'sql'</li><li>The file's directory must exist, but this will try to make it first.</li><li>The file and directory must be writable.</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../mr/mr_db_dump.html">mr_db_dump</a></span>
+		<span class="method-name">
+			validate_file
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodzip" id="zip"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">zip</span> (line <span class="line-number">273</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Zip the SQL file</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The path to the zip file</li>
+				<li><span class="field">throws:</span> coding_exception</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			zip
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 28 Jun 2012 16:33:48 -0700 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>
